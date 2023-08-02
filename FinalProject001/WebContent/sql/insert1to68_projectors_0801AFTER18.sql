@@ -1105,3 +1105,4 @@ CREATE TABLE MEM_OUT_RATE
 --==>> Table MEM_OUT_RATE이(가) 생성되었습니다.
 
 
+--==>> 입력 완료
