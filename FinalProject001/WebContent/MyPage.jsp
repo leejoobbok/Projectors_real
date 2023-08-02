@@ -37,7 +37,8 @@
 	
 	#myPageBox		/* 전체 박스 클래스 */
 	{
-		margin: 10px 400px;
+		width: 1007px;	 /* 윈도우 조절해도 안 줄어들게 고정 */
+		margin: auto;	 
 		border: 1px solid;
 		border-radius: 20px;
 	}
