@@ -144,7 +144,7 @@
 			<tr>
 				<td>18997</td>
 				<td>
-					<a href="">주차 시스템  프로젝트</a>
+					<a href="PostFormSample.jsp">주차 시스템  프로젝트</a>
 				</td>
 				<td>프론트엔드 0/4 | 백엔드 0/7</td>
 				<td>프론트엔드 4  | 백엔드 7</td>
@@ -156,7 +156,7 @@
 			<tr>
 				<td>14221</td>
 				<td>
-					<a href="">스포츠 분석 시스템</a>
+					<a href="PostFormSample.jsp">스포츠 분석 시스템</a>
 				</td>
 				<td>프론트엔드 1/2 | 백엔드 2/4</td>
 				<td>-</td>
@@ -168,7 +168,7 @@
 			<tr>
 				<td>12354</td>
 				<td>
-					<a href="">웹 메신저 ‘코코넛톡</a>
+					<a href="PostFormSample.jsp">웹 메신저 ‘코코넛톡</a>
 				</td>
 				<td>프론트엔드 0/2 | 백엔드 0/5</td>
 				<td>-</td>
