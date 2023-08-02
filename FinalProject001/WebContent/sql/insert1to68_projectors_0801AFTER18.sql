@@ -1105,4 +1105,20 @@ CREATE TABLE MEM_OUT_RATE
 --==>> Table MEM_OUT_RATE이(가) 생성되었습니다.
 
 
---==>> 입력 완료
+
+--[31-1] 모집 사용 도구
+CREATE TABLE RECRUIT_TOOL
+( RECRUIT_TOOL_NO       VARCHAR2(20)
+, RECRUIT_NO            VARCHAR2(16) NOT NULL
+, TOOL_NO               NUMBER(3)    NOT NULL
+, CONSTRAINT RECRUIT_TOOL_NO_PK PRIMARY KEY(RECRUIT_TOOL_NO)
+, CONSTRAINT TOOL_RECRUIT_NO_FK FOREIGN KEY(RECRUIT_NO)
+                                REFERENCES RECRUIT(RECRUIT_NO)
+, CONSTRAINT RECRUIT_TOOL_NO_FK FOREIGN KEY(TOOL_NO)
+                                REFERENCES TOOL(TOOL_NO)                
+);
+--==>> Table RECRUIT_TOOL이(가) 생성되었습니다.
+
+
+
+--==>> 모두 입력 완료
