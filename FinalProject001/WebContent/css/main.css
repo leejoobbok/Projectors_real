@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+*
+{
+	font-family: 맑은 고딕;
+	color: #343;
+}
+
+#root							/*body 영역 (제일 바깥) 전체*/
+{
+	padding: 40px;
+	height: 100%;
+}
+
+
+
