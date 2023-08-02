@@ -13,12 +13,19 @@ String cp = request.getContextPath();
 <style type="text/css">
 
 	*{font-size: 14pt;}
-	#root{padding-top: 160px}
+	
+	#root
+	{	
+		padding-top: 160px;
+		width: 1224px;				/* 가로길이 고정*/
+		margin: auto;
+	}
 	
 	#logoBox 					   /*로고 이미지*/
 	{
-		text-align: center;
-		height: 100px;
+		width: 249px; 			  /* 이미지 파일 가로길이 */
+		margin: auto;
+		
 		padding-top: 20px;
 		/* border: 1px solid; */
 	}
@@ -59,8 +66,9 @@ String cp = request.getContextPath();
 	}
 	#joinFind		/*하단 메뉴영역 (가입, 비번찾기..)*/
 	{
-		
 		text-align: center;
+		width: 400px;
+		margin: auto;
 	}
 	#joinFind a			/* 하단메뉴 a태그 */
 	{
@@ -111,7 +119,8 @@ String cp = request.getContextPath();
 			</div>
 			<div id="joinFind">
 				<a href="CreateAccount.jsp">회원가입 </a>
-				<a href="FindPassword.jsp">아이디/비밀번호 찾기 </a>
+				<a href="FindId.jsp">아이디 찾기 </a>
+				<a href="FindPassword.jsp">비밀번호 찾기 </a>
 			</div>
 		</div><!-- end of #wrapper div -->
 	</div><!-- end of #root div -->
