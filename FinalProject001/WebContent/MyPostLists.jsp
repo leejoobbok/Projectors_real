@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 모집 공고</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
@@ -88,6 +89,24 @@
 	
 	
 </style>
+<script type="text/javascript">
+	// 모집공고 보러가기
+	function showRecruit()
+	{
+		window.location.href = "PostFormSample.jsp";
+	}
+	
+	// 지원서 보러가기
+	$(function() 
+	{
+		$(".showApply").click(function() 
+		{
+			//alert($(this).val());
+			window.open('ApplyArticle.jsp','applyArticle',
+		             'left=500,top=300,width=1000,height=1000,resizable=no,location=no');
+		});
+	});
+</script>
 </head>
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
@@ -113,7 +132,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="">모집 중인 공고</a>
+			<a href="MyPostLists.jsp">모집 중인 공고</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -128,7 +147,9 @@
 	<div>
 		<h2>
 			모집 중인 공고 
-			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn">모집공고 보러가기</button>
+			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn"
+			onclick="showRecruit()"
+			>모집공고 보러가기</button>
 		</h2> 
 		프로젝트 명
 	</div>
@@ -148,34 +169,37 @@
 		<h2>신규 지원자</h2>
 		<hr />
 		<br />
-		
-		<table class="table">
-			<tr>
-				<th>지원포지션</th>
-				<th>지원자</th>
-				<th>사용가능언어</th>
-				<th>내용</th>
-				<th></th>
-			</tr>
-			<tr>
-				<td>웹프론트엔드A</td>
-				<td>말랑콩떡</td>
-				<td>JavaScript, JSTL ...</td>
-				<td>첫 프로젝트지만 잘...</td>
-				<td>
-					<button type="button" name="showApply" class="blackBtn">지원서 보러가기</button>
-				</td>
-			</tr>
-			<tr>
-				<td>웹백엔드A</td>
-				<td>햄찌사랑</td>
-				<td>Java, Phython ...</td>
-				<td>백엔드만큼은 자부심 있슴다!</td>
-				<td>
-					<button type="button" name="showApply" class="blackBtn">지원서 보러가기</button>
-				</td>
-			</tr>
-		</table>
+		<form action="">
+			<table class="table">
+				<tr>
+					<th>지원포지션</th>
+					<th>지원자</th>
+					<th>사용가능언어</th>
+					<th>내용</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>웹프론트엔드A</td>
+					<td>말랑콩떡</td>
+					<td>JavaScript, JSTL ...</td>
+					<td>첫 프로젝트지만 잘...</td>
+					<td>
+						<button type="button" class="blackBtn showApply"
+						value="">지원서 보러가기</button>
+					</td>
+				</tr>
+				<tr>
+					<td>웹백엔드A</td>
+					<td>햄찌사랑</td>
+					<td>Java, Phython ...</td>
+					<td>백엔드만큼은 자부심 있슴다!</td>
+					<td>
+						<button type="button" class="blackBtn showApply" 
+						value="">지원서 보러가기</button>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 	<hr />
 	<br />
