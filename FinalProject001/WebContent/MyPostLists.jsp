@@ -90,15 +90,22 @@
 	
 </style>
 <script type="text/javascript">
+	// 모집공고 보러가기
 	function showRecruit()
 	{
 		window.location.href = "PostFormSample.jsp";
 	}
 	
-	function ()
+	// 지원서 보러가기
+	$(function() 
 	{
-		
-	}
+		$(".showApply").click(function() 
+		{
+			//alert($(this).val());
+			window.open('ApplyArticle.jsp','applyArticle',
+		             'left=500,top=300,width=1000,height=1000,resizable=no,location=no');
+		});
+	});
 </script>
 </head>
 <body>
@@ -177,7 +184,7 @@
 					<td>JavaScript, JSTL ...</td>
 					<td>첫 프로젝트지만 잘...</td>
 					<td>
-						<button type="button" class="showApply()" name="showApply" class="blackBtn"
+						<button type="button" class="blackBtn showApply"
 						value="">지원서 보러가기</button>
 					</td>
 				</tr>
@@ -187,7 +194,7 @@
 					<td>Java, Phython ...</td>
 					<td>백엔드만큼은 자부심 있슴다!</td>
 					<td>
-						<button type="button" class="showApply()" name="showApply" class="blackBtn"
+						<button type="button" class="blackBtn showApply" 
 						value="">지원서 보러가기</button>
 					</td>
 				</tr>
