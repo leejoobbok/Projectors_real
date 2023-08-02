@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,9 @@ String cp = request.getContextPath();
 
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
-
+	
+	a{text-decoration: none;}
+	
 	#ProfileContainer		/* 전체 컨테이너 */
 	{
 		margin: 10px;
@@ -68,7 +70,7 @@ String cp = request.getContextPath();
 				  src="images/test_profile.JPG">
 			</div>
 			<div style="margin: 30px 16px;">
-				<button type="submit">사진 등록/수정</button>
+				<button type="submit" onclick="location.href='ProfileUpdate.jsp'" >사진 등록/수정</button>
 			</div>
 		</div>
 				
