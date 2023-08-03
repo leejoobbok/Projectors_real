@@ -1,8 +1,6 @@
 SELECT USER
 FROM DUAL;
 
-/*
 
-
-
-*/
+SELECT *
+FROM TOOL;
