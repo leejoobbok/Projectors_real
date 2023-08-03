@@ -105,8 +105,8 @@
 	
 	.outMember
 	{
-		background-color: green;
-		color: white;
+		background-color: white;
+		color: gray;
 	}
 	
 	.memberCount
@@ -128,7 +128,7 @@
 	function rateAllMember()
 	{
 		
-		window.open('rateAllMemberForm.jsp','rateAllMember',
+		window.open('RateAllMemberForm.jsp','rateAllMember',
         'left=500,top=300,width=1000,height=800,resizable=no,location=no');
 	
 	}
@@ -233,13 +233,13 @@
 					<td>프론트엔드</td>
 					<td><span class="prjStatus">완료(이탈)</span></td>
 					<td>
-						<button type="button" class="ingMember"
+						<button type="button" class="outMember" disabled="disabled"
 						onclick="moveToTeamSpace()">
 							이동
 						</button>
 					</td>
 					<td>
-						<button type="button" class="ingMember"
+						<button type="button" class="outMember" disabled="disabled"
 						onclick="rateAllMember()">
 							팀원 평가
 						</button>
