@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지 작성 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	#logoBox 					   /*로고 이미지*/
@@ -127,6 +127,7 @@
 	  text-decoration: none;
 	  text-align: center;
 	  margin: 10px;
+	  font-size: 20px;
 	}
 </style>
 <script type="text/javascript">
@@ -134,14 +135,14 @@
 	function regist()
 	{
 		alert("등록이 완료되었습니다.");
-		window.location.href="MainNoticeLists.jsp";
+		window.location.href="AdminMainNoticeLists.jsp";
 		
 	}
 	
 	function cancle()
 	{
 		
-		window.location.href="MainNoticeLists.jsp";
+		window.location.href="AdminMainNoticeLists.jsp";
 	}
 	
 </script>
@@ -149,13 +150,13 @@
 <body>
 			<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
-			<c:import url="UpperBar.jsp"></c:import>
+			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="MainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+			<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
 		</div>	
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
-			<c:import url="Bar.jsp"></c:import>
+			<c:import url="AdminBar.jsp"></c:import>
 		</div>
 		<!-- =========================================================== -->
 <div id="pageAllBox">
@@ -183,14 +184,14 @@
 		</p>
 		<textarea name="noticeContent" id="noticeContent" cols="70" rows="15"
 		placeholder="내용 입력" style="font-size:15pt;
-		width: 60%;">
-		</textarea>
+		width: 60%;"
+		></textarea>
 	</div>
 
 	<br />
 	<div class="btnContainer">
-		<button type="button" class="buttonToOtherPage" onclick="regist()" style="font-size: 20px;">등록</button>
-		<button type="button" class="buttonToOtherPage" onclick="cancle()" style="font-size: 20px;">취소</a></button>
+		<button type="button" class="buttonToOtherPage" onclick="regist()">등록</button>
+		<button type="button" class="buttonToOtherPage" onclick="cancle()">취소</a></button>
 	</div>
 	
 </form>
