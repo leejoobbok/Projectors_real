@@ -8,23 +8,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 모집 공고</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
-
+	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
 	{
 		text-align: center;
 		height: 100px;
 		padding-top: 20px;
 		/* border: 1px solid; */
-		
 	}
-	
 	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
 	{
 		text-align: right;
-		fon
 	}
 	#menuBar					/*메뉴바(메인|공지..)*/
 	{
@@ -33,53 +31,121 @@
 		padding-top: 32px;
 	    top: -32px;
 	}
-	
-	
-	.btnContainer 
+	/*==========================================================*/
+
+	/* 헤더 */
+	div>h1
 	{
-	  display: flex;
-	  align-items: flex-start;
-	  justify-content: center;
- 	  height: 30vh;
-      flex-direction: column; /* 수직으로 정렬 */
+		padding-left : 5%; 
+	}
+
+	/* ====================== 좌측바 ========================= */
+
+	#leftBar
+	{
+		float: left;
+		width: 20%;
+		height : 300px;
+		text-align: center;
 	}
 	
-	.moveProject
+	.btnHeight
 	{
-	  padding: 10px 20px;
-	  background-color: #f0f0f0;
-	  color: #fff;
-	  border: 1px solid black;
-	  border-radius: 4px;
-	  cursor: pointer;
-	  text-decoration: none;
-	  text-align: center;
-	  margin: 5px;
+		padding: 10px;
+		border-right: 3px solid black;
+	}
+	
+
+	/* ======================================================= */
+	
+	
+	/* ====================== 우측바 ========================= */
+
+	#rightBar
+	{
+		float: right;
+		width: 70%;
+		padding : 0% 5% 0% 5%;
+	}
+	
+	.blackBtn
+	{
+		font-size: x-small;
+		color: white;
+		background-color: black;
+		border: none;
+	}
+
+	.table
+	{
+		text-align: auto;
+		width: 90%;
+	}
+	
+	.right-left { width: 80%;}
+	.right-right { width: 10%;}
+	/* ======================================================= */
+	
+	
+	#prjMemberLists
+	{	
+		border-top: 1px solid black;
+		width: 100%;
+		text-align: auto;
+	}
+	
+	.projectInfo
+	{
+		padding-top: 10%;
 	}
 	
 	
-  #pageTitle 
-  {
-    width:100%;
-    text-align: left;
-    margin: 10px auto;
-    padding-left: 0%; 
-    border-radius: 5px;
-  }
-  
-  .buttonText 
-  {
- 	margin-left: 100px; /* 원하는 간격으로 조정 */
-  }
+	th, td
+	{	
+		border-bottom-style:ridge;
+		text-align: center;
+
+	}
+	
+	.out
+	{
+		color:red;
+	}
+	
+	.outMember
+	{
+		background-color: green;
+		color: white;
+	}
+	
+	.memberCount
+	{
+		font-weight: bolder;
+	}
 	
 </style>
-
 <script type="text/javascript">
+	// 모집공고 보러가기
+	function showRecruit()
+	{
+		window.location.href = "PostFormSample.jsp";
+	}
+	
+	// 지원서 보러가기
+	$(function() 
+	{
+		$(".showApply").click(function() 
+		{
+			//alert($(this).val());
+			window.open('ApplyArticle.jsp','applyArticle',
+		             'left=500,top=300,width=1000,height=1000,resizable=no,location=no');
+		});
+	});
 </script>
 </head>
 <body>
-
-		<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
+	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
+		
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="UpperBar.jsp"></c:import>
 		</div>	
@@ -89,53 +155,107 @@
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="Bar.jsp"></c:import>
 		</div>
-		<!-- =========================================================== -->
-
-
-
-<br />
-<br />
-<div id="pageTitle">
+		<!-- ============================================================= -->
+		
+<div>
 <h1>나의 프로젝트</h1>
-</div>
 <hr />
-
-<div class="btnContainer">
-	<button type="button" class="moveProject">
-		<a href="MyProjectHistory.jsp">
-			진행 중인 프로젝트
-		</a>
-	</button>
-	<button type="button" class="moveProject">
-		<a href="MyPastProjectHistory.jsp">
-			과거 프로젝트 이력
-		</a>
-	</button>
-	
-	<span class="buttonText">
-		버튼 옆 글자 테스트
-	</span>
 </div>
-
-<!-- 커밋  -->
-
-
-<div>
-	안녕
-</div>
-
-<div>
-<h2>현재 진행 중인 프로젝트</h2>
 <br />
-<a href="TeamSpace.jsp">프로젝트 번호 | 프로젝트 명| 나의 포지션 | 프로제트 기간 23.07.30 ~ 23.09.09 |  <a href="">평가</a> | <a href="">로그</a>
-</div>
 
 
-<hr />
+<div id="leftBar">
+	<div class="btnHeight">
+		<button type="button">
+			<a href="MyProjectHistory.jsp">진행 중인 프로젝트</a>
+		</button>
+	</div>
+	<div class="btnHeight">
+		<button type="button">
+			<a href="MyPastProjectHistory.jsp">과거 프로젝트 이력</a>
+		</button>
+	</div>
+</div><!-- end #leftBar -->
 
-<div>
- ※ 진행 중인 프로젝트가 없는 경우 "진행 중인 프로젝트다 없습니다." 출력
-</div>
+
+<div id="rightBar">
+	<div>
+		<h2>
+			프로젝트
+			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn"
+			onclick="showRecruit()"
+			>현재 프로젝트 공고 보러가기</button>
+		</h2> 
+		주차 시스템 프로젝트
+	</div>
+		<hr />
+
+	<div>	
+		<h2>
+			멤버 정보 & 평가
+		</h2>
+		
+		<div class="right-left">	
+			<p id="memberCount">프로젝트 인원  ▶ <b>2</b> / 3</p>		
+		</div>
+		<div id="projectInfo">
+			<table id="prjMemberLists">
+				<tr>
+					<th>멤버 번호</th>
+					<th>아이디</th>
+					<th>닉네임</th>
+					<th>포지션</th>
+					<th>상태</th>
+					<th>평가</th>
+				</tr>
+				<tr>
+					<td>1548211</td>
+					<td>김퉤퉤@naver.com</td>
+					<td>감자퉤김</td>
+					<td>프론트엔드</td>
+					<td><span class="ing">참여 중</span></td>
+					<td>
+						<button type="button" class="ingMember">
+							평가
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1524511</td>
+					<td>단호박@naver.com</td>
+					<td>단호박사</td>
+					<td>백엔드</td>
+					<td><span class="out">이탈</span></td>
+					<td>
+						<button type="button" class="outMember">
+							평가
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>2015611</td>
+					<td>치킨@naver.com</td>
+					<td>양념치킨</td>
+					<td>백엔드</td>
+					<td><span class="ing">참여 중</span></td>
+					<td>
+						<button type="button" class="ingMember">
+							평가
+						</button>
+					</td>
+				</tr>
+
+			</table>			
+				
+		</div>
+	</div>
+	<hr />
+	
+
+
+
+</div><!-- end #rightBar -->
+
 
 </body>
 </html>
