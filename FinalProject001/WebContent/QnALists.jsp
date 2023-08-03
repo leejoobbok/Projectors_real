@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ : Projectors</title>
+<title>1:1 문의 : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
@@ -86,6 +86,21 @@
 		text-align: auto;
 		width: 90%;
 	}
+	
+	#rightBar-left
+	{
+		float: left;
+		width: 80%;
+	}
+	#rightBar-right
+	{
+		float: right;
+		width: 20%;
+		right: 0px;
+		bottom: 0px;		
+	}
+	
+
 
 	/* ======================================================= */
 	
@@ -95,16 +110,10 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#returnList").click(function()
-		{
-			window.location.href="FAQLists.jsp";
-		});
-		
 		$("#WriteQnA").click(function()
 		{
 			window.location.href="QnAInsert.jsp";
 		});
-		
 	});
 </script>
 </head>
@@ -137,7 +146,7 @@
 	</div>
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="QnAQInsert.jsp">1:1문의</a>
+			<a href="QnALists.jsp">1:1문의</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -145,44 +154,57 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
+		<h2>	1 : 1 질문 </h2>
+	</div>
+	<div>
+		<div id="rightBar-left">
+			<h3>내 문의 내역</h3>
+		</div>
+		<br>
+		<div id="rightBar-right">
+			<button id="WriteQnA" class="blackBtn">글 작성하기</button>
+		</div>
 	</div>
 	<br>
 
 	<div>	
 		<table class="table">
 			<tr>
-				<th colspan="2"><hr /></th>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<th style="width: 80%;">내용</th>
+				<th style="width: 10%;">상태</th>
 			</tr>
 			<tr>
-				<td>10</td>
-				<td>지원한 내역이 안보여요</td>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<div>
-					<br>
-					여러분 많이 당황하셨죠<br>
-					네... 저희도 많이 당황했습니다. 멋슥^^<br>
-					하지만...! 이건 바로 프로젝트 올린 놈들이 삭튀한 것입니다!!!!!<br>
-					그르니까... 사람을 잘~ 만나야한다는 이 말입니다. 후후후후
-					</div>
-				</td>
+				<td>4</td>
+				<td><a href="FAQArticle.jsp">눈이 뻐근해요</a></td>
+				<td>답변대기</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: right;">
-					<button id="WriteQnA" class="blackBtn">1:1문의하러가기</button>
-				</td>
+				<td>3</td>
+				<td><a href="FAQArticle.jsp">졸려요</a></td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td><a href="FAQArticle.jsp">이메일 바꾸고싶어요</a></td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td><a href="FAQArticle.jsp">닉네임 변경 안돼요?</a></td>
+				<td>답변완료</td>
 			</tr>
 		</table>
 	</div>
 	<br>
-	<div style="text-align: center;">
-		<button id="returnList">목록으로</button>
+	<div>
+		[페이징처리]
 	</div>
 </div><!-- end #rightBar -->
 
