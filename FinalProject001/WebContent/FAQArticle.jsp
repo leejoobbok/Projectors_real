@@ -126,12 +126,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
+			<a href="">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="QnAQInsert.jsp">1:1문의</a>
+			<a href="">1:1문의</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
