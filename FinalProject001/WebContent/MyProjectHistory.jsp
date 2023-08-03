@@ -32,12 +32,15 @@
 	    top: -32px;
 	}
 	/*==========================================================*/
+
 	/* 헤더 */
 	div>h1
 	{
 		padding-left : 5%; 
 	}
+
 	/* ====================== 좌측바 ========================= */
+
 	#leftBar
 	{
 		float: left;
@@ -52,10 +55,12 @@
 		border-right: 3px solid black;
 	}
 	
+
 	/* ======================================================= */
 	
 	
 	/* ====================== 우측바 ========================= */
+
 	#rightBar
 	{
 		float: right;
@@ -70,6 +75,7 @@
 		background-color: black;
 		border: none;
 	}
+
 	.table
 	{
 		text-align: auto;
@@ -81,6 +87,46 @@
 	/* ======================================================= */
 	
 	
+	#prjMemberLists
+	{	
+		border-top: 1px solid black;
+		width: 100%;
+		text-align: auto;
+	}
+	
+	.projectInfo
+	{
+		padding-top: 10%;
+	}
+	
+	
+	th, td
+	{	
+		border-bottom-style:ridge;
+		text-align: center;
+
+	}
+	
+	.out
+	{
+		color:red;
+	}
+	
+	.outMember
+	{
+		background-color: green;
+		color: white;
+	}
+	
+	.memberCount
+	{
+		font-weight: bolder;
+	}
+	
+	#dDay
+	{
+		color: skyblue;
+	}
 	
 </style>
 <script type="text/javascript">
@@ -100,11 +146,30 @@
 		             'left=500,top=300,width=1000,height=1000,resizable=no,location=no');
 		});
 	});
+		
+	
+	function rateOneMember()
+	{
+		window.open('RateOneMemberForm.jsp','rateOneMbmer',
+        'left=500,top=300,width=1000,height=500,resizable=no,location=no');
+	}
+	
+	
+	// 팀 스페이스 이동
+	function moveToTeamSpace()
+	{
+		
+		window.open('TeamSpace.jsp','teamSpace',
+        'left=500,top=300,width=1400,height=800,resizable=no,location=no');
+	}
+	
+	
+	
 </script>
 </head>
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
-
+		
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="UpperBar.jsp"></c:import>
 		</div>	
@@ -115,9 +180,9 @@
 			<c:import url="Bar.jsp"></c:import>
 		</div>
 		<!-- ============================================================= -->
-
+		
 <div>
-<h1>나의 모집 이력</h1>
+<h1>나의 프로젝트</h1>
 <hr />
 </div>
 <br />
@@ -126,12 +191,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="MyPostLists.jsp">모집 중인 공고</a>
+			<a href="MyProjectHistory.jsp">진행 중인 프로젝트</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="PastRecruitmentLists.jsp">과거 모집 공고</a>
+			<a href="MyPastProjectHistory.jsp">과거 프로젝트 이력</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -140,104 +205,87 @@
 <div id="rightBar">
 	<div>
 		<h2>
-			모집 중인 공고 
+			프로젝트
 			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn"
-			onclick="showRecruit()"
-			>모집공고 보러가기</button>
+			onclick="showRecruit()"	>
+				현재 프로젝트 공고 보러가기
+			</button>
+			<button type="button" class="ingMember"
+			onclick="moveToTeamSpace()" style="background-color: yellow;">
+				팀 스페이스
+			</button>
 		</h2> 
-		프로젝트 명
+		주차 시스템 프로젝트 (<span id="dDay">D-14</span>)
+		<p>진행 기간 (2023.01.25 ~ 2023.08.17)</p>
+
 	</div>
+		
+	
 		<hr />
-		<br />
 
 	<div>	
 		<h2>
-			모집 마감일
+			멤버 정보 & 평가
 		</h2>
-		2023.07.31 (D-1)
-	</div>
-		<hr />
-		<br />
+		
+		<div class="right-left">	
+			<b><p>프론트엔드 1/1 | 백엔드 1/2 </p></b>
+			<p id="memberCount">프로젝트 인원  ▶ <b>2</b> / 3</p>		
+		</div>
+		<div id="projectInfo">
+			<table id="prjMemberLists">
+				<tr>
+					<th>멤버 번호</th>
+					<th>닉네임</th>
+					<th>포지션</th>
+					<th>상태</th>
+					<th>평가</th>
+				</tr>
+				<tr>
+					<td>1548211</td>
+					<td>감자퉤김</td>
+					<td>프론트엔드</td>
+					<td><span class="ing">참여 중</span></td>
+					<td>
+						<button type="button" class="ingMember"
+						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
+							평가
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1524511</td>
+					<td>단호박사</td>
+					<td>백엔드</td>
+					<td><span class="out">이탈</span></td>
+					<td>
+						<button type="button" class="outMember"
+						onclick="rateOneMember()">
+							평가
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>2015611</td>
+					<td>양념치킨</td>
+					<td>백엔드</td>
+					<td><span class="ing">참여 중</span></td>
+					<td>
+						<button type="button" class="ingMember" 
+						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
+							평가
+						</button>
+					</td>
+				</tr>
 
-	<div>
-		<h2>신규 지원자</h2>
-		<hr />
-		<br />
-		<form action="">
-			<table class="table">
-				<tr>
-					<th>지원포지션</th>
-					<th>지원자</th>
-					<th>사용가능언어</th>
-					<th>내용</th>
-					<th></th>
-				</tr>
-				<tr>
-					<td>웹프론트엔드A</td>
-					<td>말랑콩떡</td>
-					<td>JavaScript, JSTL ...</td>
-					<td>첫 프로젝트지만 잘...</td>
-					<td>
-						<button type="button" class="blackBtn showApply"
-						value="">지원서 보러가기</button>
-					</td>
-				</tr>
-				<tr>
-					<td>웹백엔드A</td>
-					<td>햄찌사랑</td>
-					<td>Java, Phython ...</td>
-					<td>백엔드만큼은 자부심 있슴다!</td>
-					<td>
-						<button type="button" class="blackBtn showApply" 
-						value="">지원서 보러가기</button>
-					</td>
-				</tr>
-			</table>
-		</form>
+			</table>			
+				
+		</div>
 	</div>
 	<hr />
-	<br />
-	<div>
-		<div class="right-left">	
-				<p>모집 현황 &nbsp;  1 / 4</p>
-		</div>
-		<div class="right-right">
-			<button class="blackBtn" style="background-color: red;">모집 취소하기</button>
-		</div>
-		<hr>
-		<br>
+	
 
-		<table class="table" style="text-align: left;">
-			<tr>
-				<th>UI/UX디자인A</th>
-				<th>
-					<button type="button" class="blackBtn" style="background-color: orange;">모집중</button>
-				</th>
-				<th>모집된 팀원이 없습니다.</th>
-			</tr>
-			<tr>
-				<th>웹프론트엔드A</th>
-				<th>
-					<button type="button" class="blackBtn" style="background-color: orange;">모집중</button>
-				</th>
-				<th>모집된 팀원이 없습니다.</th>
-			</tr>
-			<tr>
-				<th>웹백엔드A</th>
-				<th>
-					<button type="button" class="blackBtn" style="background-color: orange;">모집중</button>
-				</th>
-				<th>모집된 팀원이 없습니다.</th>
-			</tr>
-			<tr>
-				<th>기획A</th>
-				<th>
-					<button type="button" class="blackBtn" disabled="disabled">모집마감</button>
-				</th>
-				<th>담당자 : 캡틴</th>
-			</tr>
-		</table>
-	</div>
+
 
 </div><!-- end #rightBar -->
 

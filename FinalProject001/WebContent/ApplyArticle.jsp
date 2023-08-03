@@ -22,27 +22,27 @@ String cp = request.getContextPath();
 	{
 		padding-top: 100px;
 	}
+/* 	
 	
-	
-	#logoBox 					   /*로고 이미지*/
+	#logoBox 					   
 	{
 		text-align: center;
 		height: 100px;
 		padding-top: 20px;
-		/* border: 1px solid; */
+	
 	}
-	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
+	#upperBarBox 				
 	{
 		text-align: right;
 	}
-	#menuBar					/*메뉴바(메인|공지..)*/
+	#menuBar				
 	{
 		text-align: center;
 		position :sticky;  
 		padding-top: 32px;
 	    top: -32px;
 	}
-	
+ */
 	
 
   #pageTitle 
@@ -153,7 +153,7 @@ String cp = request.getContextPath();
 </head>
 <body>
 <div id="root">
-
+<%-- 
 			<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="UpperBar.jsp"></c:import>
@@ -166,7 +166,7 @@ String cp = request.getContextPath();
 		</div>
 		<!-- =========================================================== -->
 
-	
+ --%>
 		
 <div id="pageAllBox">
 

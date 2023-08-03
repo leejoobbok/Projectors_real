@@ -89,10 +89,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		text-align: left;
-		padding-left: 20%;
-		padding-right: 20%;
-		padding-bottom: 2%;
+		text-align: center;
 		
 	}
 	
@@ -115,13 +112,11 @@
 	{
 	  display: flex;
 	  align-items: center;
-	  justify-content: right;
-	  padding-left: 20%;
-	  padding-right: 20%;
+	  justify-content: center;
 	  height: 30vh;
 	}
 	
-	.buttonToLists, .buttonToUpate
+	.buttonToOtherPage 
 	{
 	  padding: 10px 20px;
 	  background-color: #bf5fe8;
@@ -136,16 +131,19 @@
 </style>
 <script type="text/javascript">
 	
-	function toLists()
+	function regist()
 	{
+		alert("등록이 완료되었습니다.");
+		window.location.href="MainNoticeLists.jsp";
+		
+	}
+	
+	function cancle()
+	{
+		
 		window.location.href="MainNoticeLists.jsp";
 	}
 	
-	function toUpdate()
-	{
-		window.location.href="MainNoticeUpdate.jsp"
-	}
-
 </script>
 </head>
 <body>
@@ -162,72 +160,37 @@
 		<!-- =========================================================== -->
 <div id="pageAllBox">
 		<div id="pageTitle">
-			<p id="categoryTitle">공지글</p>
+			<p id="categoryTitle">공지글 작성</p>
 		</div>
 
 
 
 <div id="MainNoticeInsert" name="MainNoticeInsert">
 <form action="mainNoticeArticle.jsp">
-	<div id="noticeTitleInsert" >
+	<div id="noticeTitleInsert">
 		<span id="noticeTitle">
 			제목  : 
 		</span>
-			<span id="noticeTitleInput" style="width: 55%; height: 30pt; font-size: 20pt;"/>
-				제목은 제목 제목은 제목 제목은 제목 제목은 제목
-			</span>
-	</div>
-	<div class="adminInfo" style="text-align: right; font-weight: bold;
-	padding-left: 20%; padding-right: 20%" >
-		<hr />
-	</div>
+			<input type="text" id="noticeTitleInput" name="noticeTitleInput"
+			 placeholder="제목"
+			 style="width: 55%; height: 30pt; font-size: 20pt;"/>
 	
-	<div class="adminInfo" style="text-align: right; font-weight: bold;
-	padding-left: 20%; padding-right: 20%" >
-
-	 	공지번호: 997512 | 작성자: 관리자159753  | 작성일: 2023-08-02
 	</div>
 	<div id="noticeContentInsert">
 		<p style="font-weight: bold; text-align:left; font-size: 20pt;
 		padding-left: 20%; padding-right: 20%; padding-bottom: 0%;" >
 			내용
 		</p>
-		<textarea name="noticeContent" id="noticeContent" cols="70" rows="20"
+		<textarea name="noticeContent" id="noticeContent" cols="70" rows="15"
 		placeholder="내용 입력" style="font-size:15pt;
-		width: 60%;" readonly="readonly">
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
+		width: 60%;">
 		</textarea>
-		
-		
 	</div>
 
 	<br />
 	<div class="btnContainer">
-		<button type="button" class="buttonToUpdate" style="font-size: 20px;"
-		onclick="toUpdate()">
-			수정
-		</button>
-		<button type="button" class="buttonToLists" style="font-size: 20px;"
-		onclick="toLists()">
-			목록으로
-		</button>
+		<button type="button" class="buttonToOtherPage" onclick="regist()" style="font-size: 20px;">등록</button>
+		<button type="button" class="buttonToOtherPage" onclick="cancle()" style="font-size: 20px;">취소</a></button>
 	</div>
 	
 </form>
