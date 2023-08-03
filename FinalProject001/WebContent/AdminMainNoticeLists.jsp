@@ -80,7 +80,7 @@
 	<div id="root">
 	
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
-				<c:import url="UpperBar.jsp"></c:import>
+				<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
 				<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
