@@ -123,6 +123,11 @@
 		font-weight: bolder;
 	}
 	
+	#dDay
+	{
+		color: skyblue;
+	}
+	
 </style>
 <script type="text/javascript">
 	// 모집공고 보러가기
@@ -141,6 +146,25 @@
 		             'left=500,top=300,width=1000,height=1000,resizable=no,location=no');
 		});
 	});
+		
+	
+	function rateOneMember()
+	{
+		window.open('RateOneMemberForm.jsp','rateOneMbmer',
+        'left=500,top=300,width=1000,height=500,resizable=no,location=no');
+	}
+	
+	
+	// 팀 스페이스 이동
+	function moveToTeamSpace()
+	{
+		
+		window.open('TeamSpace.jsp','teamSpace',
+        'left=500,top=300,width=1400,height=800,resizable=no,location=no');
+	}
+	
+	
+	
 </script>
 </head>
 <body>
@@ -183,11 +207,20 @@
 		<h2>
 			프로젝트
 			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn"
-			onclick="showRecruit()"
-			>현재 프로젝트 공고 보러가기</button>
+			onclick="showRecruit()"	>
+				현재 프로젝트 공고 보러가기
+			</button>
+			<button type="button" class="ingMember"
+			onclick="moveToTeamSpace()" style="background-color: yellow;">
+				팀 스페이스
+			</button>
 		</h2> 
-		주차 시스템 프로젝트
+		주차 시스템 프로젝트 (<span id="dDay">D-14</span>)
+		<p>진행 기간 (2023.01.25 ~ 2023.08.17)</p>
+
 	</div>
+		
+	
 		<hr />
 
 	<div>	
@@ -196,13 +229,13 @@
 		</h2>
 		
 		<div class="right-left">	
+			<b><p>프론트엔드 1/1 | 백엔드 1/2 </p></b>
 			<p id="memberCount">프로젝트 인원  ▶ <b>2</b> / 3</p>		
 		</div>
 		<div id="projectInfo">
 			<table id="prjMemberLists">
 				<tr>
 					<th>멤버 번호</th>
-					<th>아이디</th>
 					<th>닉네임</th>
 					<th>포지션</th>
 					<th>상태</th>
@@ -210,36 +243,36 @@
 				</tr>
 				<tr>
 					<td>1548211</td>
-					<td>김퉤퉤@naver.com</td>
 					<td>감자퉤김</td>
 					<td>프론트엔드</td>
 					<td><span class="ing">참여 중</span></td>
 					<td>
-						<button type="button" class="ingMember">
+						<button type="button" class="ingMember"
+						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
 							평가
 						</button>
 					</td>
 				</tr>
 				<tr>
 					<td>1524511</td>
-					<td>단호박@naver.com</td>
 					<td>단호박사</td>
 					<td>백엔드</td>
 					<td><span class="out">이탈</span></td>
 					<td>
-						<button type="button" class="outMember">
+						<button type="button" class="outMember"
+						onclick="rateOneMember()">
 							평가
 						</button>
 					</td>
 				</tr>
 				<tr>
 					<td>2015611</td>
-					<td>치킨@naver.com</td>
 					<td>양념치킨</td>
 					<td>백엔드</td>
 					<td><span class="ing">참여 중</span></td>
 					<td>
-						<button type="button" class="ingMember">
+						<button type="button" class="ingMember" 
+						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
 							평가
 						</button>
 					</td>
