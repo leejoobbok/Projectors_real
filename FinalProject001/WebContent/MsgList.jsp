@@ -9,11 +9,16 @@
 <head>
 <meta charset="UTF-8">
 
-<title>쪽지 : Projectors</title>
+<title> 나의 쪽지함 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
 	
+	a{text-decoration: none;}
+	a:hover
+	{	text-decoration: underline;
+		font-weight: bold;
+	}
 	#outerBox	/*전체 박스 영역*/
 	{
 		width: 800px;
@@ -101,7 +106,7 @@
 			<button onclick="window.close()" id="closeBtn" class="btn">X</button>
 			<div id="titleBox">
 				<img src="images/loveLetter.png" style="width: 40px; padding-top: 10px;">
-				<span id="title">쪽지</span>
+				<span id="title">나의 쪽지함</span>
 			</div> 
 			
 			<div id="btnArea"> 
@@ -119,49 +124,65 @@
 					<tr class="rows">
 						<td><img src="images/Closed.png" style="width:30px"></td>
 						<td>관리자</td>
-						<td>[안내] 이용 규칙 위반으로 계정이 7일간 정지됩니다. 상세 내용: 어쩌구..</td>
+						<td>
+							<a href="MsgRead.jsp">[안내] 이용 규칙 위반으로 계정이 7일간 정지됩니다. 상세 내용: 어쩌구..</a>
+						</td>
 						<td>2023.08.05 [10:35]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>진주는펄</td>
-						<td>안녕 나는 반짝이는 진주야~*^^* 나랑 프로젝트 할래?</td>
+						<td>
+							<a href="MsgRead.jsp">안녕 나는 반짝이는 진주야~*^^* 나랑 프로젝트 할래?</a>
+						</td>
 						<td>2023.08.03 [10:03]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Closed.png" style="width:30px"></td>
 						<td>송풍기</td>
-						<td>난 우주 최고 짐승돌 송풍기야 ^_6 내 유튜브 구독해줘♡</td>
+						<td>
+							<a href="MsgRead.jsp">난 우주 최고 짐승돌 송풍기야 ^_6 내 유튜브 구독해줘♡</a>
+						</td>
 						<td>2023.08.02 [14:01]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>운영자</td>
-						<td>[안내] 제출하신 지원서가 처리되었습니다. 결과를 확인해주세요!</td>
+						<td>
+							<a href="MsgRead.jsp">[안내] 제출하신 지원서가 처리되었습니다. 결과를 확인해주세요!</a>
+						</td>
 						<td>2023.08.01 [09:30]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>운영자</td>
-						<td>[안내] 등록하신 공고의 모집이 완료되었습니다! 26일 단 하루! 꼭 접속...</td>
+						<td>
+							<a href="MsgRead.jsp">[안내] 등록하신 공고의 모집이 완료되었습니다! 26일 단 하루! 꼭 접속...</a>
+						</td>
 						<td>2023.06.24 [11:29]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>운영자</td>
-						<td>[안내] 확인하지 않은 지원서가 2개 있습니다! </td>
+						<td>
+							<a href="MsgRead.jsp">[안내] 확인하지 않은 지원서가 2개 있습니다! </a>
+						</td>
 						<td>2023.06.12 [10:35]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>운영자</td>
-						<td>[안내] 모집글을 올리셨네요! 중요한 사항을 몇 가지 안내해드립니다..</td>
+						<td>
+							<a href="MsgRead.jsp">[안내] 모집글을 올리셨네요! 중요한 사항을 몇 가지 안내해드립니다..</a>
+						</td>
 						<td>2023.06.12 [09:30]</td>
 					</tr>
 					<tr class="rows">
 						<td><img src="images/Opened.png" style="width:30px"></td>
 						<td>운영자</td>
-						<td>새로운 프로젝터 한아둘셋 님! 만나서 반갑습니다 :)... </td>
+						<td>
+							<a href="MsgRead.jsp">새로운 프로젝터 한아둘셋 님! 만나서 반갑습니다 :)... </a>
+						</td>
 						<td>2023.06.12 [09:30]</td>
 					</tr>
 				</table>
@@ -175,5 +196,8 @@
 	</div>
 </body>
 </html>
+
+<!-- 내용 클릭 시 해당 쪽지 읽기 (MsgRead.jsp 로 이동)  -->
+
 
 
