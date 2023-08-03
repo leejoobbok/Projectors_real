@@ -121,7 +121,7 @@
 	  height: 30vh;
 	}
 	
-	.buttonToLists 
+	.buttonToLists, .buttonToUpate
 	{
 	  padding: 10px 20px;
 	  background-color: #bf5fe8;
@@ -139,6 +139,11 @@
 	function toLists()
 	{
 		window.location.href="MainNoticeLists.jsp";
+	}
+	
+	function toUpdate()
+	{
+		window.location.href="MainNoticeUpdate.jsp"
 	}
 
 </script>
@@ -215,8 +220,14 @@
 
 	<br />
 	<div class="btnContainer">
-		<button type="submit" class="buttonToLists" style="font-size: 20px;"
-		onclick="toLists()">목록으로</button>
+		<button type="button" class="buttonToUpdate" style="font-size: 20px;"
+		onclick="toUpdate()">
+			수정
+		</button>
+		<button type="button" class="buttonToLists" style="font-size: 20px;"
+		onclick="toLists()">
+			목록으로
+		</button>
 	</div>
 	
 </form>
