@@ -129,6 +129,22 @@
 	  margin: 10px;
 	}
 </style>
+<script type="text/javascript">
+	
+	function regist()
+	{
+		alert("등록이 완료되었습니다.");
+		window.location.href="MainNoticeLists.jsp";
+		
+	}
+	
+	function cancle()
+	{
+		
+		window.location.href="MainNoticeLists.jsp";
+	}
+	
+</script>
 </head>
 <body>
 			<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
@@ -167,13 +183,14 @@
 		</p>
 		<textarea name="noticeContent" id="noticeContent" cols="70" rows="15"
 		placeholder="내용 입력" style="font-size:15pt;
-		width: 60%;"></textarea>
+		width: 60%;">
+		</textarea>
 	</div>
 
 	<br />
 	<div class="btnContainer">
-		<button type="submit" class="buttonToOtherPage" style="font-size: 20px;">등록</button>
-		<button type="button" class="buttonToOtherPage" style="font-size: 20px;">취소</a></button>
+		<button type="button" class="buttonToOtherPage" onclick="regist()" style="font-size: 20px;">등록</button>
+		<button type="button" class="buttonToOtherPage" onclick="cancle()" style="font-size: 20px;">취소</a></button>
 	</div>
 	
 </form>
