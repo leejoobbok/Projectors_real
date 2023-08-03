@@ -112,7 +112,7 @@
 	{
 		$("#WriteQnA").click(function()
 		{
-			window.location.href="QnAInsert.jsp";
+			window.location.href="QnAQInsert.jsp";
 		});
 	});
 </script>
@@ -170,34 +170,39 @@
 	<div>	
 		<table class="table">
 			<tr>
-				<th colspan="3"><hr /></th>
+				<th colspan="4"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 10%;">번호</th>
-				<th style="width: 80%;">내용</th>
+				<th style="width: 5%;">번호</th>
+				<th style="width: 65%;">내용</th>
+				<th style="width: 20%;">작성일</th>
 				<th style="width: 10%;">상태</th>
 			</tr>
 			<tr>
-				<th colspan="3"><hr /></th>
+				<th colspan="4"><hr /></th>
 			</tr>
 			<tr>
 				<td>4</td>
-				<td><a href="FAQArticle.jsp">눈이 뻐근해요</a></td>
+				<td><a href="QnAArticle.jsp">눈이 뻐근해요</a></td>
+				<td>2023-08-02</td>
 				<td>답변대기</td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td><a href="FAQArticle.jsp">졸려요</a></td>
+				<td><a href="QnAArticle.jsp">졸려요</a></td>
+				<td>2023-07-25</td>
 				<td>답변완료</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td><a href="FAQArticle.jsp">이메일 바꾸고싶어요</a></td>
+				<td><a href="QnAArticle.jsp">이메일 바꾸고싶어요</a></td>
+				<td>2023-07-23</td>
 				<td>답변완료</td>
 			</tr>
 			<tr>
 				<td>1</td>
-				<td><a href="FAQArticle.jsp">닉네임 변경 안돼요?</a></td>
+				<td><a href="QnAArticle.jsp">닉네임 변경 안돼요?</a></td>
+				<td>2023-07-15</td>
 				<td>답변완료</td>
 			</tr>
 		</table>

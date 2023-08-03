@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ : Projectors</title>
+<title>1:1 문의 작성하기 : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
@@ -110,11 +110,15 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#writeQnA").click(function()
+		$("#insertQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			$("#insertForm").submit();
 		});
 		
+		$("#returnList").click(function()
+		{
+			window.location.href="QnALists.jsp";
+		});
 	});
 </script>
 </head>
@@ -155,50 +159,46 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
-	</div>
-	<div>
-		<div id="rightBar-left">
-			<h3>찾으시는 질문이 없으신가요?</h3>
-		</div>
-		<br>
-		<div id="rightBar-right">
-			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
-		</div>
+		<h2>	1 : 1 질문 </h2>
 	</div>
 	<br>
-
-	<div>	
+	
+	<div>
+	<form action="" id="insertForm">
 		<table class="table">
 			<tr>
 				<th colspan="2"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<th style="width: 20%;">제목</th>
+				<th style="width: 80%;">
+					<input type="text" id="title" width="100%;" />
+				</th>
 			</tr>
 			<tr>
-				<td>10</td>
-				<td><a href="FAQArticle.jsp">지원한 내역이 안보여요</a></td>
+				<th colspan="2"><hr /></th>
 			</tr>
 			<tr>
-				<td>9</td>
-				<td><a href="FAQArticle.jsp">상대방에게 쪽지를 보내고 싶어요</a></td>
+				<td colspan="2">
+					<textarea name="content" id="content" cols="30" rows="10"
+					>내용 작성 어쩌구</textarea>
+				</td>
 			</tr>
 			<tr>
-				<td>8</td>
-				<td><a href="FAQArticle.jsp">프로젝트를 삭제하고 싶어요</a></td>
+				<th colspan="2"><hr /></th>
 			</tr>
-			<tr>
-				<td>7</td>
-				<td><a href="FAQArticle.jsp">프로젝트 나가기 하고 싶어요</a></td>
+			<tr style="text-align: right;">
+				<td colspan="2">
+					<button id="insertQnA">작성하기</button>
+					<button id="returnList">돌아가기</button>
+				</td>
 			</tr>
 		</table>
+	</form>
 	</div>
+
 	<br>
-	<div>
-		[페이징처리]
-	</div>
+
 </div><!-- end #rightBar -->
 
 <!-- footer 넣을 자리	 -->

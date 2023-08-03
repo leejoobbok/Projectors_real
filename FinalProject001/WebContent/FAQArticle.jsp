@@ -100,9 +100,9 @@
 			window.location.href="FAQLists.jsp";
 		});
 		
-		$("#WriteQnA").click(function()
+		$("#writeQnA").click(function()
 		{
-			window.location.href="QnAInsert.jsp";
+			window.location.href="QnAQInsert.jsp";
 		});
 		
 	});
@@ -175,7 +175,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: right;">
-					<button id="WriteQnA" class="blackBtn">1:1문의하러가기</button>
+					<button id="writeQnA" class="blackBtn">1:1문의하러가기</button>
 				</td>
 			</tr>
 		</table>

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ : Projectors</title>
+<title>1:1 문의 작성하기 : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
@@ -110,11 +110,10 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#writeQnA").click(function()
+		$("#returnList").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="QnALists.jsp";
 		});
-		
 	});
 </script>
 </head>
@@ -155,50 +154,70 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
-	</div>
-	<div>
-		<div id="rightBar-left">
-			<h3>찾으시는 질문이 없으신가요?</h3>
-		</div>
-		<br>
-		<div id="rightBar-right">
-			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
-		</div>
+		<h2>	1 : 1 질문 </h2>
 	</div>
 	<br>
-
+	
 	<div>	
 		<table class="table">
 			<tr>
-				<th colspan="2"><hr /></th>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<th style="width: 5%;">번호</th>
+				<th style="width: 65%;">제목</th>
+				<th style="width: 20%;">작성일</th>
 			</tr>
 			<tr>
-				<td>10</td>
-				<td><a href="FAQArticle.jsp">지원한 내역이 안보여요</a></td>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
-				<td>9</td>
-				<td><a href="FAQArticle.jsp">상대방에게 쪽지를 보내고 싶어요</a></td>
+				<td style="width: 5%;">3</td>
+				<td style="width: 65%;">졸려요</td>
+				<td style="width: 20%;">2023-07-25</td>
 			</tr>
 			<tr>
-				<td>8</td>
-				<td><a href="FAQArticle.jsp">프로젝트를 삭제하고 싶어요</a></td>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
-				<td>7</td>
-				<td><a href="FAQArticle.jsp">프로젝트 나가기 하고 싶어요</a></td>
+				<td colspan="3">작성한 내용이 여기에 보여집니다.
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				가나다라마바사아자차카타파하아이우에오
+				</td>
+			</tr>
+			<tr>
+				<th colspan="4"><hr /></th>
+			</tr>
+		</table>
+	</div>
+	
+	<div>
+		<table class="table">
+			<tr>
+				<td>관리자</td>
+				<td>답변일자</td>
+			</tr>
+			<tr style="background-color: lightgray;">
+				<td>
+					침대에 들어가서 주무시면 됩니다.<br>
+					단, 할 일은 다 끝내셨겠죠?
+				</td>
+				<td>2023-07-27</td>
 			</tr>
 		</table>
 	</div>
 	<br>
-	<div>
-		[페이징처리]
+	
+	<div style="text-align: center;">
+		<button id="returnList">목록으로</button>
 	</div>
+	<br>
+
 </div><!-- end #rightBar -->
 
 <!-- footer 넣을 자리	 -->
