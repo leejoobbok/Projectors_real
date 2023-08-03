@@ -16,18 +16,19 @@
 	#allTextBox
 	{
 		border: 1px solid black;
-		width: 90%;
-		height: 800px;
+		width: 1550px;
+		height: 650px;
 	}
 
 	#feed
 	{
 		float: left;
-		margin-top: 250px;
+		margin-top: 50px;
 		margin-left: 50px;
 		text-align: center;
 		padding: 5px;
 		border: 3px ridge lightgreen;
+		margin-right: 100px;
 	}
 	
 	#feedTitle
@@ -45,7 +46,7 @@
 	#notice
 	{
 		text-align: left;
-		padding-left: 35%;		
+		padding-left: 35px;		
 		margin-top: 100px;
 	}
 	
@@ -66,21 +67,39 @@
 	
 	tr,th
 	{
+		text-align:center;
 		padding: 10px;
 		border-top: 1px solid black;
 		border-left: 1px solid black;
 		border-right: 1px solid black;
 	}
 	
-	li
-	{	
-		width:630;
-		border-bottom: 1px groove black;
-		border-bottom-width: 1px;
-		font-size: 15pt;
-		margin-bottom: 10px;
+	td
+	{
+		border-bottom: 1px solid black;
+	}
+	
+	#insertBtnContainer
+	{
+		padding-top: 20px;
+		width: 1000px;
+		display: flex;
+		align-content: right;
+		justify-content: right;
 	}
 
+	#outputList
+	{
+		width:1000px;
+	}
+	
+	#footer
+	{
+		text-align: center;
+		padding-top: 65px;
+	}
+	
+	
 	
 </style>
 <script type="text/javascript">
@@ -160,65 +179,80 @@
 	
 </div>
 
-<div id="notice" name="notice">
-	<div id="noticeTitle">
+<div id="meeting" name="meeting">
+	<div id="boardTitle">
 		<p id="title" style="font-weight: bold; text-align: left;
-					         font-size: 40px;">※ 팀 공지 게시판 ※</p>	
+					         font-size: 40px;">공지 게시판</p>	
 	</div>
-	<div>
-	<ul style="border:1px solid black; width: 800px; height:600px;">
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-		<li>
-			157894231| <a href="TeamNoticeArticle.jsp">회의록 관리 규정</a>2023.08.03<br />
-		</li>
-
-		
-	</ul>	
+	<div id="noticeLists">
+		<table id="outputList" style="width:1000px; height:200px;'">
+			<tr>
+				<th>공지 번호</th>
+				<th>제목</th>
+				<th>작성일</th>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			<tr>
+				<td>13289</td>
+				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>2003-08-31</td>
+			</tr>
+			
+		</table>
+		<div id="insertBtnContainer">
+			<button type="button" onclick="" id="insertTeamNotice">
+				등록하기
+			</button>
+		</div>
+		<div id="footer" >
+			◀  1  2  3  4  5  6  7  8  9  10  ▶
+		</div>
 	</div>
+	
 </div>
 </div> <!-- allTextBox close  -->
 
