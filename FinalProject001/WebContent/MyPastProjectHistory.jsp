@@ -133,11 +133,12 @@
 	
 	}
 	
+	// 팀 스페이스 이동
 	function moveToTeamSpace()
 	{
 		
 		window.open('TeamSpace.jsp','teamSpace',
-        'left=500,top=300,width=1400,height=800,resizable=no,location=no');
+        'left=500,top=300,width=1500,height=955,resizable=no,location=no');
 	}
 	
 </script>
