@@ -217,30 +217,30 @@
 				<span class="recPosition">디자인 A</span>
 				<span class="applyCnt">(모집완료)</span>
 				<button type="button" disabled="disabled">
-					<a href="ApplyFormSample.jsp">지원하기</a>
+					<a href="ApplyForm.jsp">지원하기</a>
 				</button> <br/>
 				
 				<span class="recPosition">디자인 B</span>
 				<span class="applyCnt">(현재 3명 지원 중)</span>
 				<button type="button">
-					<a href="ApplyFormSample.jsp">지원하기</a>
+					<a href="ApplyForm.jsp">지원하기</a>
 				</button><br><br>
 				
 				<span class="recPosition">프론트엔드 A </span>
 				<span class="applyCnt">(현재 99명 지원 중)</span>
 				<button type="button">
-					<a href="ApplyFormSample.jsp">지원하기</a>
+					<a href="ApplyForm.jsp">지원하기</a>
 				</button> <br><br>
 				
 				<span class="recPosition">백엔드 A</span>
 				<span class="applyCnt">(현재 1명 지원 중)</span>
 				<button type="button">
-					<a href="ApplyFormSample.jsp">지원하기</a>
+					<a href="ApplyForm.jsp">지원하기</a>
 				</button> <br>
 				<span class="recPosition">백엔드 B</span>
 				<span class="applyCnt">(모집완료)</span>
 				<button type="button" disabled="disabled">
-					<a href="ApplyFormSample.jsp">지원하기</a>
+					<a href="ApplyForm.jsp">지원하기</a>
 				</button> <br>
 			</div>
 			
