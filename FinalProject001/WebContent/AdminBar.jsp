@@ -31,13 +31,12 @@ a
 
 <body>
 <div id="menuBar">
-	<a href="AdminMainPage.jsp">메인</a>
-	<a href="AdminMainNoticeLists.jsp">공지</a>
-	<a href="UserManagement.jsp">유저관리</a>
-	<a href="RecruitMangement.jsp">모집공고관리</a>
-	<a href="TeamSpaceManagement.jsp">팀스페이스관리</a>
-	<a href="ReporManagement.jsp">신고</a>
-	<a href="FAQManagement.jsp">문의</a>
+	<a href="AdminMainPage.jsp">메인페이지</a>
+	<a href="AdminMainNoticeLists.jsp">공지사항</a>
+	<a href="FAQManagement.jsp">문의관리</a>
+	<a href="ReporManagement.jsp">신고관리</a>
+	<a href="ContentsManagement.jsp">컨텐츠관리</a>
+	<a href="UserManagement.jsp">회원관리</a>
 	<hr>
 </div>
 
