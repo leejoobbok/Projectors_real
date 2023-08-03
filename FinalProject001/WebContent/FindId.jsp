@@ -2,13 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 창</title>
+<title> 아이디 찾기 :Projectors </title>
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 
@@ -33,7 +34,7 @@ String cp = request.getContextPath();
 	#wrapper{margin: 10px 300px;}
 	/*==================================================*/
 	
-	#roginBox /* 로그인 박스 영역 */
+	#findIdBox /* 박스 영역 */
 	{	
 		width: 360px;
 		height:140px;
@@ -45,32 +46,63 @@ String cp = request.getContextPath();
 		
 		font-weight: bold;
 	}
-	#roginBox span		/* 아이디,비번 글씨길이 고정*/
+	#findIdBox span		/*  글씨길이 고정*/
 	{	
 		display: inline-block;
-		width: 100px;
-		margin: 2px;
+		width: 200px;
+		margin: 10px;
 	}
-	#roginBtn			/* 로그인 버튼*/
+	#idFindBtn			/* 검색 버튼*/
 	{	
-		width: 330px;
-		height: 40px;
+		width: 60px;
+		height: 30px;
+		display: inline;
 		background-color: black;
 		color: white;
+		border-radius: 12px;
 		
 		padding: 2px;
-		margin-top: 20px;
+		margin-left: 6px;
 		font-weight: bold;
 		
-		border-radius: 16px;
 	}
-	#joinFind		/*하단 메뉴영역 (가입, 비번찾기..)*/
+	
+	input::placeholder      /*플레이스 홀더*/
+	{
+	  color: gray;
+	  font-size: 8pt;
+	  text-align: center;
+	}
+	
+	#findIdInputBox		/* 검색값 입력 박스*/
+	{
+		display: inline;		
+		width:280px
+	}
+	
+	
+	#msg_false, #msg_true  		/* 메세지 공통*/
+	{
+		font-size: 8pt;
+	}
+	
+	#msg_false					/* 실패 메세지 */
+	{
+		color: red;
+		/* display: none; */
+	}
+	#msg_true					/* 성공 메세지 */
+	{
+		color: green;
+		/* display: none; */
+	}
+	#underMenu					/*하단 메뉴영역 (가입, 비번찾기..)*/
 	{
 		text-align: center;
 		width: 400px;
 		margin: auto;
 	}
-	#joinFind a			/* 하단메뉴 a태그 */
+	#underMenu a			/* 하단메뉴 a태그 */
 	{
 		text-decoration: none;
 		color: gray;
@@ -78,19 +110,7 @@ String cp = request.getContextPath();
 		font-weight: bold;
 		margin-left: 18px;
 	}
-	input::placeholder  /*플레이스 홀더*/
-	{
-	  color: gray;
-	  font-size: 10pt;
-	  text-align: center;
-	}
-	#adminCheck		/*관리자 체크*/
-	{
-	  float: right;
-	  color: gray;
-	  font-size: 10pt;
-	  font-weight: bold;
-	}
+
 	
 </style>
 
@@ -105,21 +125,21 @@ String cp = request.getContextPath();
 		
 		<div id="wrapper">
 		
-			<div id="roginBox">
-				<form action="MainPage.jsp">
-					<span>아이디</span> 
-					<input type="text" id="id" name="id" placeholder="이메일 전체를 입력해주세요."/><br>
-					<span>패스워드</span> 
-					<input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요."/><br>
-					<button id="roginBtn" type="submit">로그인</button>
-					<span id="adminCheck">관리자
-					<input type="checkbox" name="ManagerCheck" id="ManagerCheck"/>
-					</span>
+			<div id="findIdBox"><!-- 박스 영역  -->
+				
+				<form action="">
+					<span>아이디 찾기</span> 
+					<input type="text" id="findIdInputBox" name="findIdInputBox"
+					 placeholder="이메일 전체를 정확하게 입력해주세요."/><button id="idFindBtn" type="submit">검색</button>
+					<span id="msg_false">검색 결과가 없습니다.</span><br>
+					<span id="msg_true">아이디가 존재합니다.</span>
 				</form>
-			</div>
-			<div id="joinFind">
-				<a href="CreateAccount.jsp">회원가입 </a>
-				<a href="FindId.jsp">아이디 찾기 </a>
+				
+			</div><!-- end of #findIdBox div -->
+					
+			<div id="underMenu">
+				<a href="Login.jsp">로그인</a>
+				<a href="CreateAccount.jsp">회원가입</a>
 				<a href="FindPassword.jsp">비밀번호 찾기 </a>
 			</div>
 		</div><!-- end of #wrapper div -->

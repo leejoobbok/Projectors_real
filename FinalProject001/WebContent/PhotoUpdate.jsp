@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>프사 등록/수정 </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <style type="text/css">
 	
