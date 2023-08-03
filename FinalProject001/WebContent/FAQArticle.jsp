@@ -99,6 +99,12 @@
 		{
 			window.location.href="FAQLists.jsp";
 		});
+		
+		$("#WriteQnA").click(function()
+		{
+			window.location.href="QnAInsert.jsp";
+		});
+		
 	});
 </script>
 </head>
@@ -126,12 +132,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="">FAQ</a>
+			<a href="FAQLists.jsp">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="">1:1문의</a>
+			<a href="QnAQInsert.jsp">1:1문의</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -167,10 +173,15 @@
 					</div>
 				</td>
 			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right;">
+					<button id="WriteQnA" class="blackBtn">1:1문의하러가기</button>
+				</td>
+			</tr>
 		</table>
 	</div>
 	<br>
-	<div>
+	<div style="text-align: center;">
 		<button id="returnList">목록으로</button>
 	</div>
 </div><!-- end #rightBar -->
