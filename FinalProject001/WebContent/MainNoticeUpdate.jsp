@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지 수정 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	#logoBox 					   /*로고 이미지*/
@@ -135,12 +135,12 @@
 	function update()
 	{
 		alert("수정이 완료되었습니다.");
-		window.location.href="MainNoticeLists.jsp";
+		window.location.href="AdminMainNoticeArticle.jsp";
 	}
 	
 	function cancle()
 	{
-		window.location.href="MainNoticeLists.jsp";
+		window.location.href="AdminMainNoticeArticle.jsp";
 	}
 	
 </script>
@@ -152,15 +152,15 @@
 			<c:import url="UpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="MainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+			<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
 		</div>	
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
-			<c:import url="Bar.jsp"></c:import>
+			<c:import url="AdminBar.jsp"></c:import>
 		</div>
 		<!-- =========================================================== -->
 <div id="pageAllBox">
 		<div id="pageTitle">
-			<p id="categoryTitle">공지글 작성</p>
+			<p id="categoryTitle">공지글 수정</p>
 		</div>
 
 
