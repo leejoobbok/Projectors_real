@@ -74,19 +74,6 @@
 		border-right: 1px solid black;
 	}
 	
-	td
-	{
-		border-bottom: 1px solid black;
-	}
-	
-	#insertBtnContainer
-	{
-		padding-top: 20px;
-		width: 1000px;
-		display: flex;
-		align-content: right;
-		justify-content: right;
-	}
 
 	#outputList
 	{
@@ -97,6 +84,11 @@
 	{
 		text-align: center;
 		padding-top: 65px;
+	}
+	
+	#personal
+	{
+		float: inh
 	}
 	
 	
@@ -182,74 +174,18 @@
 <div id="meeting" name="meeting">
 	<div id="boardTitle">
 		<p id="title" style="font-weight: bold; text-align: left;
-					         font-size: 40px;">공지 게시판</p>	
+					         font-size: 40px;">작업실</p>	
 	</div>
 	<div id="noticeLists">
-		<table id="outputList" style="width:1000px; height:200px;'">
-			<tr>
-				<th>공지 번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			<tr>
-				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
-				<td>2003-08-31</td>
-			</tr>
-			
-		</table>
-		<div id="insertBtnContainer">
-			<button type="button" onclick="" id="insertTeamNotice">
-				등록하기
-			</button>
-		</div>
-		<div id="footer" >
-			◀  1  2  3  4  5  6  7  8  9  10  ▶
+		<div id="teamWorkSpace" style="width:1000px; height:200px;">
+			<div id="1" class="personal">
+				김학일 님의 작업
+				<p> Lastest | 게시물 쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라</p>
+			</div>
+			<div id="1" class="personal">
+				김학일 님의 작업
+				<p> Lastest | 게시물 쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라</p>
+			</div>
 		</div>
 	</div>
 	

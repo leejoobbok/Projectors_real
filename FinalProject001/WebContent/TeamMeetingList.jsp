@@ -182,66 +182,76 @@
 <div id="meeting" name="meeting">
 	<div id="boardTitle">
 		<p id="title" style="font-weight: bold; text-align: left;
-					         font-size: 40px;">공지 게시판</p>	
+					         font-size: 40px;">회의록 게시판</p>	
 	</div>
-	<div id="noticeLists">
+	<div id="meetingLists">
 		<table id="outputList" style="width:1000px; height:200px;'">
 			<tr>
-				<th>공지 번호</th>
+				<th>회의록 번호</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
 			<tr>
 				<td>13289</td>
-				<td><a href="TeamNoticeArticle.jsp">기획서 작성법</a></td>
+				<td>기획서 작성</td>
+				<td>김휘바휘바</td>
 				<td>2003-08-31</td>
 			</tr>
-			
 		</table>
 		<div id="insertBtnContainer">
 			<button type="button" onclick="" id="insertTeamNotice">
