@@ -108,7 +108,14 @@
 	
 </style>
 <script type="text/javascript">
-
+	$(function()
+	{
+		$("#writeQnA").click(function()
+		{
+			window.location.href="QnAQInsert.jsp";
+		});
+		
+	});
 </script>
 </head>
 <body>
@@ -156,7 +163,7 @@
 		</div>
 		<br>
 		<div id="rightBar-right">
-			<button class="blackBtn">1:1 문의하기</button>
+			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
 		</div>
 	</div>
 	<br>
