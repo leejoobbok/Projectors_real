@@ -160,7 +160,7 @@
 	{
 		
 		window.open('TeamSpace.jsp','teamSpace',
-        'left=500,top=300,width=1500,height=955,resizable=no,location=no');
+        'left=500,top=300,width=1570,height=850,resizable=no,location=no');
 	}
 	
 	
