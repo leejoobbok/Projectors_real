@@ -138,10 +138,29 @@ FROM REGION;
  
 --==>> 1 행 이(가) 삽입되었습니다. * 76
 
+
+--◆ 세부 지역이 없는 지역들에 대한 전체라는 세부지역 생성 SUB_REGION
+INSERT INTO SUB_REGION VALUES( 991 , 1,'전체');
+INSERT INTO SUB_REGION VALUES( 993 , 3,'전체');
+INSERT INTO SUB_REGION VALUES( 994 , 4,'전체');
+INSERT INTO SUB_REGION VALUES( 995 , 5,'전체');
+INSERT INTO SUB_REGION VALUES( 996 , 6,'전체');
+INSERT INTO SUB_REGION VALUES( 997 , 7,'전체');
+INSERT INTO SUB_REGION VALUES( 998 , 8,'전체');
+INSERT INTO SUB_REGION VALUES( 999 , 9,'전체');
+-- 1 행 이(가) 삽입되었습니다. * 8
+
 SELECT *
 FROM SUB_REGION;
---==>> 
 /*
+991	1	전체
+993	3	전체
+994	4	전체
+995	5	전체
+996	6	전체
+997	7	전체
+998	8	전체
+999	9	전체
 1	2	고양시
 2	2	과천시
 3	2	광명시
@@ -219,6 +238,7 @@ FROM SUB_REGION;
 75	17	제주시
 76	17	서귀포시
 */
+
 
 -- ○ 개인이탈사유 범례
 INSERT INTO MEM_OUT_REASON VALUES(1, '다른 프로젝트 참여');
