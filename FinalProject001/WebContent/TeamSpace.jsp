@@ -23,7 +23,6 @@
 		height:1000px;
 		margin: auto;
 		/* border: 2px solid #d1d7e0; */  /*영역 확인용*/
-		
 	}
 	#innerBox				
 	{
@@ -197,7 +196,6 @@
 
 </head>
 <body>
-
 	<div id="root">
 		<div id="innerBox">
 			
@@ -264,7 +262,6 @@
 		</div><!-- end of #innerBox div  -->
 		
 	</div><!-- end of #root div -->
-
 </body>
 </html>
 
