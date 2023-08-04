@@ -88,7 +88,10 @@
 	.right-left { width: 80%;}
 	.right-right { width: 10%;}
 	/* ======================================================= */
-	
+	#userSearch
+	{
+		text-align: center;
+	}
 	#paging
 	{
 		margin: auto;
@@ -146,6 +149,17 @@
 	</div>
 		<hr />
 		<br />
+	
+	<div id="userSearch">
+		신고 검색
+		<select id="searchKey" name="searchKey">
+			<option value="1">관리자번호</option>
+			<option value="2">닉네임</option>
+			<option value="3">신고번호</option>
+		</select>
+		<input type="text" style="width: 30%;"/>
+		<button>검색</button>
+	</div>
 
 	<div>
 		<table class="table">
