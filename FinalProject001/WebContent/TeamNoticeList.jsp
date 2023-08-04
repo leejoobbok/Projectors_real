@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스: 메인 - Projectors </title>
+<title>팀 스페이스 : 공지 - Projectors </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
@@ -23,6 +23,7 @@
 		height:1000px;
 		margin: auto;
 		/* border: 2px solid #d1d7e0; */  /*영역 확인용*/
+		
 	}
 	#innerBox				
 	{
@@ -42,7 +43,7 @@
 	{	
 		width: 600px;
 		height: 40px;
-		background-color: #fae896;
+		background-color: #fae896;		
 		margin-left: 80px;
 	}
 	.index					/*메뉴 인덱스 클래스 영역*/
@@ -127,15 +128,13 @@
 	}
 	
     /*===================================================*/
-	#lineNoticeBox 	/* 한 줄 공지 영역*/
+	#titleBox 	/* 타이틀 영역 */
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 30px;   /* 고정 top 마진 */
 	  right: 20px; /* 고정 우측 마진 */
-	  
 	  background-color: white;
 	  width: 920px;
-	  
 	  border: 2px solid;
 	  border-radius: 10px;
 	  
@@ -149,41 +148,41 @@
 	{
 		vertical-align: super;	/*베이스 라인을 위로.*/
 	}
-	#noticeDate  /* 공지 날짜 */
-	{
-		font-size: 10pt;
-		text-color: gray;
-		margin-left: 10px;
-	}
+
 	/*===================================================*/
-	#workSpaceBox			/* 작업실 미리보기 영역*/
-	{	
+	#workSpaceBox			/* 공지글 리스트 영역*/
+	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 90px;   		/* 고정 top 마진 */
 	  right: 20px; 		/* 고정 우측 마진 */
 	  
 	  background-color: white;
 	  width: 920px;
-	  height: 160px;
+	  height:520px;
+	  
 	  border: 2px solid;
 	  border-radius: 10px;
-	  
-	  font-size: 16px;
-	  font-weight: bold;
-	  text-align: left;
 	  padding: 10px;
 	}
+	#teamNoticeLists /* 공지글 테이블*/
+	{
+		border: solid 1px;
+		border-radius: 10px;
+		margin:auto;
+		font-size: 12pt;
+		text-align: center;
+	}
+	/*======================================================*/
+	
+	#pageNumBox				/* 페이지 넘버 영역*/
+	{
+		width: 300px;
+		margin: auto;
+		padding: 10px;
+	}
+
 </style>
 <script type="text/javascript">
-	
-	//○윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능
-	function setFixedSize() {
-	  window.resizeTo(1400, 1000); // #root 의 가로 세로
-	}
-	//페이지 최초 로드 또는 리사이징 시도 시 호출
-	window.onload = setFixedSize;
-	window.onresize = setFixedSize;
-	//-------------------------------> 적용이 안됨 ㅡㅡ;; 이거 되면 전체 페이지 어그러지는거 신경꺼도되는데..
 	
 	// 담벼락에 메세지 붙이기
     function sendFeed()
@@ -196,6 +195,7 @@
 
 </head>
 <body>
+
 	<div id="root">
 		<div id="innerBox">
 			
@@ -233,35 +233,112 @@
 					<button type="submit" id="feedBtn" name="feedBtn" onclick="sendFeed()">보내기</button>
 				</div>
 				
-				<!-- ===========[ 상단 한 줄 공지 ]=========== -->
-				<div id="lineNoticeBox">
+				<!-- ===========[ 타이틀 (공지게시판)  ]=========== -->
+				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
-					<span id="lineNotice"><a href="TeamNoticeArticle.jsp">공지: 새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a></span>
-					<span id="noticeDate">2023.08.04</span>
+					<span id="lineNotice">공지게시판</span>
 				</div>
 				
 				<!-- ==========[ 멤버별 작업실 미리보기(메인)]========== -->
 				<div id="workSpaceBox">
 					
-					여긴 아마도 작업실 관련 내용 간단히 보여주고(새 글 등)멤버별 작업실 이동 버튼..?
-				</div>
-				
-				<!-- ==========[ 메인에는 무슨 기능을 넣어야 할까]========== -->
-				<div>
+					<table id="teamNoticeLists">
+						<tr>
+							<th width="100px">글 번호</th>
+							<th width="500px">제목</th>
+							<th width="200px">작성일</th>
+						</tr>
+						<tr>
+							<td>20</td>
+							<td><!-- 공백 포함 28자 /30자 제한 -->
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+						<tr>
+							<td>19</td>
+							<td>
+								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+							</td>
+							<td>203.08.04</td>
+						</tr>
+					</table><!-- ==== 일단 한 페이지당 10개로 구성했음 ===== -->
 					
-					이부분은.. 머가 들어가야 할라나~~ <br>
-					기존 게시판에서 내용을 끌어와서 보여주든.. 디데이 같이 별도 기능이든.. <br>
-					메인 어떻게 구성할지는 나중에 논의해봅시돠 <br>
-					일단 레이아웃 대충 짰고
-					나중에 내부 영역 추가하거나 위치, 크기 조정하는건 다 파악해놨으니 금방할수잇서여<br>
+					
+					<div id="pageNumBox">
+						<span style="text-align: center"> ◀ 이전 1 2 3 4 5 다음 ▶</span>
+					</div>
+					
+					
+					<div><!-- ※ 팀장에게만 보이는 버튼 -->
+						<button type="button" ><a href="TeamNoticeInsert.jsp">공지 작성</a></button>
+					</div>
 				</div>
 				
-				<!-- ====================================================================================== -->
+				
+				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
 			
 		</div><!-- end of #innerBox div  -->
 		
 	</div><!-- end of #root div -->
+
 </body>
 </html>
 
