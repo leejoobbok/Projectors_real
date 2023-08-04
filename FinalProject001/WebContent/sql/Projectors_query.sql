@@ -115,12 +115,34 @@ VALUES
 --○ 보여줄 (정보를 출력하는데 사용될 쿼리문)
 /*
 -- 나의 프로필 클릭 시 보게 될 쿼리문
--- ① 평가 제외한 프로필 파트
-SELECT * 
+-- ① 프로필 파트(평가, 툴 제외)
+SELECT  * 
 FROM PROFILE
+WHERE PIN_NO = ?;
 
+-- ②  툴 파트
+SELECT TOOL_NAME
+FROM TOOL
+WHERE TOOL_NO = (SELECT TOOL_NO
+                FROM USER_TOOL
+                WHERE PROFILE_NO = (SELECT  PROFILE_NO 
+                                   FROM PROFILE
+                                   WHERE PIN_NO = ?));
 
--- ② +평가
+-- ③ 평가 파트
+--(1) 개인 이탈 총 평가 ( -> 평가 번호와 해당 평가가 몇 개인지)
+SELECT RATE_NUM, COUNT(RATE_NUM) AS OUT_RATE_TOT
+FROM MEM_OUT_RATE
+WHERE MEM_OUT_NO = (SELECT MEM_OUT_NO
+		    FROM MEMBER_OUT
+		    WHERE FINAL_NO = (SELECT FINAL_NO
+				      FROM FINAL
+ 			  	      WHERE FIRST_CK_NO = (SELECT FIRST CK_NO
+							   FROM FIRST_CK
+							   WHERE APPLY_NO = (SELECT APPLY_NO
+									     FROM APPLY
+									     WHERE PIN_NO =? ))));
+
 
 
 */
@@ -129,5 +151,7 @@ FROM PROFILE
 
 
 
-
+SELECT R.REGION_NAME, NVL(SR.SUB_REGION_NAME,'전체')
+FROM REGION R
+LEFT OUTER JOIN SUB_REGION SR ON R.REGION_NO = SR.REGION_NO;
 
