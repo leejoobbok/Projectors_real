@@ -176,7 +176,10 @@
 				</table>
 			</div>
 			
-			<p> ◀ 이전 1 2 3 4 5 다음 ▶</p>
+			<div id="pageNumBox">
+				<p> ◀ 이전 1 2 3 4 5 다음 ▶</p>
+			</div>
+			
 			
 		</div><!-- end of #wrapper div -->	
 		

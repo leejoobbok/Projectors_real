@@ -55,6 +55,8 @@
 	}
 </style>
 
+
+
 </head>
 <body>
 	<div id="ProfileContainer"> <!-- 프로필 전체 컨테이너 -->
@@ -70,8 +72,10 @@
 				  src="images/test_profile.JPG">
 			</div>
 			<div style="margin: 30px 16px;">
-				<button type="submit" onclick="location.href='ProfileUpdate.jsp'" >사진 등록/수정</button>
-			</div>
+				<button type="submit"
+				 onclick="window.open('<%= request.getContextPath()%>/PhotoUpdate.jsp','photoUpdate',
+				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>
+			</div><!-- location 주소창 보이기 속성은 오페라에서만 동작 -->
 		</div>
 				
 		<div id="ProfileTextBox">
@@ -79,8 +83,7 @@
 				<table>
 					<tr>
 						<td>
-							<button type="submit" id="updateBtn">
-							<a href="ProfileUpdate.jsp">프로필 수정</a>
+							<button type="submit" id="updateBtn"><a href="ProfileUpdate.jsp">프로필 수정</a>
 							</button>
 						</td>
 					</tr>
