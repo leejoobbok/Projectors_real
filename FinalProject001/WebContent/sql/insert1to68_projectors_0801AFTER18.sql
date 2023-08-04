@@ -1122,3 +1122,54 @@ CREATE TABLE RECRUIT_TOOL
 
 
 --==>> 모두 입력 완료
+
+               
+-- ERD 테이블 구조 변경
+-- FK 제약 조건을 가진 컬럼 삭제
+ALTER TABLE PROFILE
+DROP CONSTRAINT UTOOL_NO_FK;
+--==>> Table PROFILE이(가) 변경되었습니다.
+
+-- FK 되고있는 컬럼 삭제
+ALTER TABLE PROFILE
+DROP COLUMN UTOOL_NO;
+--==>>Table PROFILE이(가) 변경되었습니다.
+
+DESC PROFILE;
+--==>>
+/*
+이름            널?       유형           
+------------- -------- ------------ 
+PROFILE_NO    NOT NULL VARCHAR2(16) 
+PIN_NO        NOT NULL VARCHAR2(16) 
+POS_NO        NOT NULL NUMBER(2)    
+SUB_REGION_NO NOT NULL NUMBER(3)    
+PROFILE_DATE           DATE    
+*/
+
+DESC USER_TOOL;
+--==>>
+/*
+이름       널?       유형           
+-------- -------- ------------ 
+UTOOL_NO NOT NULL VARCHAR2(16) -- 왜래키로 지정하지 않는 식별을 위한 PK
+PIN_NO   NOT NULL VARCHAR2(16) --> PROFILE_NO 로 변경 후 FK 지정
+TOOL_NO  NOT NULL NUMBER(3)
+*/
+
+-- 문제되는 테이블 삭제
+DROP TABLE USER_TOOL CASCADE CONSTRAINTS PURGE;
+--==>> Table USER_TOOL이(가) 삭제되었습니다.
+
+-- 테이블 재생성
+CREATE TABLE USER_TOOL
+( UTOOL_NO   VARCHAR2(16)
+, PROFILE_NO VARCHAR2(16)   NOT NULL
+, TOOL_NO    NUMBER(3)      NOT NULL
+, CONSTRAINT UTOOL_NO_PK    PRIMARY KEY(UTOOL_NO)
+, CONSTRAINT PROFILE_NO_FK  FOREIGN KEY(PROFILE_NO)
+                            REFERENCES PROFILE(PROFILE_NO)
+, CONSTRAINT TOOL_NO_FK     FOREIGN KEY(TOOL_NO)
+                            REFERENCES TOOL(TOOL_NO)
+);
+--==>> Table USER_TOOL이(가) 생성되었습니다.
