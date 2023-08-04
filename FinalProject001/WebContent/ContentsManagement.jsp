@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고 관리 : Projectors</title>
+<title>공고리스트 관리 : Projectors</title>
 
 
 <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -22,7 +22,6 @@
 		text-align: center;
 		height: 100px;
 		padding-top: 20px;
-		/* border: 1px solid; */
 	}
 	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
 	{
@@ -91,7 +90,7 @@
 	#userSearch
 	{
 		text-align: center;
-	}
+	}	
 	#paging
 	{
 		margin: auto;
@@ -121,7 +120,7 @@
 		<!-- ============================================================= -->
 
 <div>
-<h1>신고 관리</h1>
+<h1>컨텐츠 관리</h1>
 <hr />
 </div>
 <br />
@@ -130,12 +129,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagement.jsp">신고 처리 대기</a>
+			<a href="ContentsManagement.jsp">공고리스트관리</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagementComplete.jsp">신고 처리 완료</a>
+			<a href="TeamSpaceManagement.jsp">팀스페이스관리</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -144,80 +143,43 @@
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 완료 
+			공고리스트관리 
 		</h2> 
 	</div>
 		<hr />
 		<br />
+
 	
 	<div id="userSearch">
-		신고 검색
+		공고 검색
 		<select id="searchKey" name="searchKey">
-			<option value="1">관리자번호</option>
+			<option value="1">제목</option>
 			<option value="2">닉네임</option>
-			<option value="3">신고번호</option>
+			<option value="3">공고번호</option>
 		</select>
 		<input type="text" style="width: 30%;"/>
 		<button>검색</button>
 	</div>
-
+	<br>
+	
 	<div>
 		<table class="table">
 			<tr>
-				<th>신고처리번호</th>
-				<th>신고번호</th>
-				<th>피신고자닉네임</th>
-				<th>재제사유</th>
-				<th>재제기간</th>
-				<th>재제일자</th>
-				<th>관리자번호</th>
+				<th>공고번호</th>
+				<th>제목</th>
+				<th>모집인원</th>
+				<th>지원자수</th>
+				<th>게시일</th>
+				<th>상태</th>
 			</tr>
 			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
+				<td>1234</td>
+				<td><a href="">어쩌구저쩌구 프로젝트</a></td><!-- 해당 프로젝트 공고 열기 -->
+				<td>1/5</td>
+				<td>999</td>
+				<td>2023-07-23</td>
+				<td>모집중</td>
 			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			
 		</table>	
 	</div>
 
