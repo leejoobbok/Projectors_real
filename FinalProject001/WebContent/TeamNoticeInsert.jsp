@@ -290,7 +290,8 @@
 					
 			
 				
-				<div class="buttonContainer"><!-- ※ 팀장에게만 보이는 버튼 -->
+				<div class="buttonContainer">
+				<!-- ※ 팀장에게만 보이는 버튼 -->
 					<button type="button" onclick="completeUpload()"><a href="TeamNoticeList.jsp">등록</a></button>
 					<button type="button" ><a href="TeamNoticeList.jsp">취소</a></button>
 				</div>
