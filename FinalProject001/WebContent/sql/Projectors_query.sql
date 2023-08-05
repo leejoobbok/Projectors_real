@@ -70,46 +70,23 @@ VALUES
 , (SELECT PROFILE_NO FROM PROFILE WHERE PIN_NO=?)
 , TOOL_NO);
 
--- 모집 포지션 지원을 위한 시퀀스 생성
-CREATE SEQUENCE APPLYSEQ
-NOCACHE;
-
--- 특정 공고의 특정 포시션에 대한 지원을 수행할 때
-INSERT INTO APPLY
-( APPLY_NO
-, RECRUIT_POS_NO
-, PIN_NO
-, CONTENT
-, ALLY_DATE)
-VALUES
-( APPLYSEQ.NEXTVAL
-, (SELECT RECRUIT_POS_NO
-   FROM RECRUIT_POS
-   WHERE (SELECT RECRUIT_NO 
-          FROM RECRUIT
-          WHERE PIN_NO=?))
-, ?
-, ??
-, SYSDATE);
-
-
--- 모집자가 특정 지원서(지원자)에 대해 수락을 클릭할 때 수행될 INSERT 쿼리문
--- 지원 후 모집자가 행하는 1차 수락시 수락 클릭 시 FIRST_CK 테이블에  그 사람의 APPLY_NO가 INSERT 된다.
-INSERT FIRST_CK
-( FIRST_CK_NO
-, APPLY_NO
-, PASS_DATE)
-VALUES
-( FIRSTSEQ.NEXTVAL
-, APPLY_NO FROM APPLY WHERE RECRUIT_POS_NO = (SELECT RECRUIT_POS_NO
-                                              FROM RECRUIT_POS
-                                              WHERE RECRUIT_NO = (SELECT RECRUIT_NO
-                                                                  FROM RECRUIT
-                                                            	  WHERE PIN_NO=?))
-, SYSDATE);
-
-
 */
+
+-- 평가 출력에 사용될 FINAL_NO 구하는 메소드
+/*
+SELECT FINAL_NO
+     FROM FINAL
+     WHERE FIRST_CK_NO = (SELECT FIRST CK_NO
+                          FROM FIRST_CK
+                          WHERE APPLY_NO = (SELECT APPLY_NO
+                                            FROM APPLY
+                                            WHERE PIB_NO =? ))));
+*/
+
+
+
+
+
 
 
 --○ 보여줄 (정보를 출력하는데 사용될 쿼리문)
@@ -131,27 +108,113 @@ WHERE TOOL_NO = (SELECT TOOL_NO
 
 -- ③ 평가 파트
 --(1) 개인 이탈 총 평가 ( -> 평가 번호와 해당 평가가 몇 개인지)
-SELECT RATE_NUM, COUNT(RATE_NUM) AS OUT_RATE_TOT
+SELECT RATE_NO, COUNT(RATE_NO) AS OUT_RATE_TOT
 FROM MEM_OUT_RATE
 WHERE MEM_OUT_NO = (SELECT MEM_OUT_NO
-		    FROM MEMBER_OUT
-		    WHERE FINAL_NO = (SELECT FINAL_NO
-				      FROM FINAL
- 			  	      WHERE FIRST_CK_NO = (SELECT FIRST CK_NO
-							   FROM FIRST_CK
-							   WHERE APPLY_NO = (SELECT APPLY_NO
-									     FROM APPLY
-									     WHERE PIN_NO =? ))));
+                    FROM MEMBER_OUT
+                    WHERE FINAL_NO = (SELECT FINAL_NO
+                                      FROM FINAL
+                                      WHERE FIRST_CK_NO = (SELECT FIRST CK_NO
+                                                          FROM FIRST_CK
+                                                          WHERE APPLY_NO = (SELECT APPLY_NO
+                                                                            FROM APPLY
+                                                                            WHERE PIB_NO =? ))));
+                                         
+--(2) 팀 닫기 총 평가                                         
+SELECT RATE_NO, COUNT COUNT(RATE_NO)
+FROM PROJECT_STOP_RATE
+WHERE RECEIVER_NO = (SELECT FINAL_NO
+                    FROM FINAL
+                    WHERE FIRST_CK_NO = (SELECT FIRST_CK_NO
+                                         FROM FIRST_CK
+                                         WHERE APPLY_NO = (SELECT APPLY_NO
+                                                           FROM APPLY
+                                                           WHERE PIN_NO=?)));
 
+--(3) 팀 완료 총 평가
+SELECT RATE_NO, COUNT COUNT(RATE_NO)
+FROM PROJECT_RATE
+WHERE RECEIVER_NO = (SELECT FINAL_NO
+                    FROM FINAL
+                    WHERE FIRST_CK_NO = (SELECT FIRST_CK_NO
+                                         FROM FIRST_CK
+                                         WHERE APPLY_NO = (SELECT APPLY_NO
+                                                           FROM APPLY
+                                                           WHERE PIN_NO=?)));
+
+-- 이 세 쿼리문에 나온 다 합쳐서 프로필에 보여주면됨
 
 
 */
 
 
+--
+/*
+
+-- 모집 포지션 지원을 위한 시퀀스 생성
+CREATE SEQUENCE APPLYSEQ
+NOCACHE;
+
+-- 특정 공고의 특정 포시션에 대한 지원을 수행할 때
+INSERT INTO APPLY
+( APPLY_NO
+, RECRUIT_POS_NO
+, PIN_NO
+, CONTENT
+, APPLY_DATE)
+VALUES
+( APPLYSEQ.NEXTVAL
+, (SELECT RECRUIT_POS_NO
+   FROM RECRUIT_POS
+   WHERE RECRUIT_NO = (SELECT RECRUIT_NO 
+                       FROM RECRUIT
+                       WHERE PIN_NO=?))  -- 모집 공고자 PIN_NO
+, ?
+, ??
+, SYSDATE);
+
+
+-- 모집자가 특정 지원서(지원자)에 대해 수락을 클릭할 때 수행될 INSERT 쿼리문
+-- 지원 후 모집자가 행하는 1차 수락시 수락 클릭 시 FIRST_CK 테이블에  그 사람의 APPLY_NO가 INSERT 된다.
+INSERT INTO FIRST_CK
+( FIRST_CK_NO
+, APPLY_NO
+, PASS_DATE)
+VALUES
+( FIRSTSEQ.NEXTVAL
+, APPLY_NO FROM APPLY WHERE RECRUIT_POS_NO = (SELECT RECRUIT_POS_NO
+                                              FROM RECRUIT_POS
+                                              WHERE RECRUIT_NO = (SELECT RECRUIT_NO
+                                                                  FROM RECRUIT
+                                                            	  WHERE PIN_NO=?))
+, SYSDATE);
+
+
+-- 프로젝트 모집자가 1차 수락 시킨 인원이 모집 인원과 동일한지 확인하는 쿼리문
+-- ※ 전제 조건 모집 공고 올릴 시 모집 인원은 모집자가 정한 인원의 +1 로 INSERT 되었을 때
+-> 모집자가 자동으로 모집 포지션 지원과 FIRST_CK 테이블로 이동해야 하기 때문
 
 
 
-SELECT R.REGION_NAME, NVL(SR.SUB_REGION_NAME,'전체')
-FROM REGION R
-LEFT OUTER JOIN SUB_REGION SR ON R.REGION_NO = SR.REGION_NO;
 
+
+-- 최종 합류 승낙을 누르면 INSERT될 테이블 (프로젝트 생성 여부와 상관없이)
+INSERT INTO FINAL(FINAL_NO, FIRST_CK_NO, FINAL_CK_DATE)
+VALUES
+( FINALSEQ.NEXTVAL
+, SELECT FIRST_CK_NO
+  FROM FIRST_CK
+  WHERE APPLY_NO = (SELECT APPLY_NO
+                    FROM APPLY
+                    WHERE PIN_NO=?)
+
+);
+
+
+
+
+
+
+*/
+SELECT *
+FROM POSITION;
