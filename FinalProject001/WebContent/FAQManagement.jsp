@@ -83,15 +83,12 @@
 	}
 	.FAQWriteBtn
 	{
-		font-size: medium;
-		color: white;
-		background-color: black;
-		border: none;
+		font-size: 11pt;
 		float: right;
-		width: 10%;
+		width: 120px;
 		margin-right: 11%;
-		right: 0px;
-		bottom: 0px;
+		font-weight: bold;
+		padding: 5px 10px
 	}
 	.table
 	{
@@ -119,10 +116,6 @@
 		bottom: 0px;		
 	}
 	
-	.footer
-	{
-		padding-bottom: 105px;
-	}
 
 	/* ======================================================= */
 	
@@ -134,7 +127,7 @@
 	{
 		$("#WriteQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="FAQInsert.jsp";
 		});
 	});
 </script>
@@ -193,7 +186,7 @@
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<th style="width: 90%;">제목</th>
 			</tr>
 			<tr>
 				<th colspan="2"><hr /></th>
@@ -274,14 +267,12 @@
 	<div style="text-align: center;">
 		&lt; [ 1 2 3 4 5 6 7 8 9 ] >
 	</div>
-</div><!-- end #rightBar -->
-
-<!-- footer 넣을 자리	 -->
-<div class="footer">
 	<br><br>
 	<hr>
 	<br><br><br><br><br><br><br>
-</div>
+</div><!-- end #rightBar -->
+
+<!-- footer 넣을 자리	 -->
 
 </body>
 </html>
