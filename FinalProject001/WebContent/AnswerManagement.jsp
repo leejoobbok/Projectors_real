@@ -119,7 +119,6 @@
 		right: 0px;
 		bottom: 0px;		
 	}
-	
 
 
 	/* ======================================================= */
@@ -218,7 +217,7 @@
 				<td class="leftTd"><a href="AnswerManagementArticle.jsp">프로젝트를 삭제하고 싶어요</a></td>
 				<td>말랑콩떡</td>
 				<td>2023.08.05</td>
-				<td><span style="color: red;">미답변</span></td>
+				<td>답변완료</td>
 			</tr>
 			<tr>
 				<th colspan="5"><hr style="width: 97%"/></th>
