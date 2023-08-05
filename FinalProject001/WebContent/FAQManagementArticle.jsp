@@ -89,20 +89,30 @@
 
 	/* ======================================================= */
 	
-	
+	.returnList
+	{
+		font-size: 11pt;
+		background-color: #CCCCCC;
+		border: none;
+		width: 120px;
+		border-radius: 10px;
+		padding: 4px 10px
+	}
+
 	
 </style>
 <script type="text/javascript">
 	$(function()
 	{
-		$("#returnList").click(function()
+
+		$("#updateFAQ").click(function()
 		{
-			window.location.href="FAQLists.jsp";
+			window.location.href="FAQUpdate.jsp";
 		});
 		
-		$("#writeQnA").click(function()
+		$("#returnList").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="FAQManagement.jsp";
 		});
 		
 	});
@@ -131,12 +141,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
+			<a href="FAQManagement.jsp">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="QnAQInsert.jsp">1:1문의</a>
+			<a href="AnswerManagement.jsp">1:1문의</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -144,7 +154,7 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
+		<h2>	FAQ 관리</h2>
 	</div>
 	<br>
 
@@ -155,34 +165,43 @@
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<td style="width: 90%;">29</td>
 			</tr>
 			<tr>
-				<td>10</td>
-				<td>지원한 내역이 안보여요</td>
+				<th colspan="2"><hr style="width: 97%"/></th>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<th style="width: 10%;">제목</th>
+				<td style="width: 90%;">지원한 내역이 안보여요</td>
+			</tr>
+			<tr>
+				<th colspan="2"><hr /></th>
+			</tr>
+			<tr>
+				<th style="vertical-align: top;">내용</th>
+				<td>
 					<div>
-					<br>
-					여러분 많이 당황하셨죠<br>
-					네... 저희도 많이 당황했습니다. 멋슥^^<br>
-					하지만...! 이건 바로 프로젝트 올린 놈들이 삭튀한 것입니다!!!!!<br>
-					그르니까... 사람을 잘~ 만나야한다는 이 말입니다. 후후후후
+					안녕하세요 회원님.<br>
+					지원하신 내역이 사라져서 많이 놀라셨죠.<br>
+					지원하신 내역이 삭제된 이유는 아래와 같은 상황일 때 발생할 수 있습니다.<br>
+					&nbsp; 1. 모집자가 모집공고를 삭제한 경우<br>
+					&nbsp; 2. ....<br><br>
+					사이트를 이용해주셔서 감사합니다. <br>
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: right;">
-					<button id="writeQnA" class="blackBtn">1:1문의하러가기</button>
-				</td>
+				<th colspan="2"><hr /></th>
 			</tr>
 		</table>
 	</div>
 	<br>
 	<div style="text-align: center;">
-		<button id="returnList">목록으로</button>
+		<button class="returnList" id="updateFAQ">수정하기</button>
+		<button class="returnList" id="returnList">목록으로</button>
 	</div>
+	<br><br>
+	<br><br><br><br><br><br><br>
 </div><!-- end #rightBar -->
 
 <!-- footer 넣을 자리	 -->
