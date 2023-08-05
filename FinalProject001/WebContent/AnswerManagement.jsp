@@ -102,6 +102,11 @@
 		margin-left: 0%
 	}
 	
+	.leftTd
+	{
+		text-align: left;
+	}
+	
 	#rightBar-left
 	{
 		float: left;
@@ -171,50 +176,122 @@
 	<div>
 		<h2>	1:1 문의 관리 </h2>
 	</div>
-	<div>
-		<div>
-			<button id="WriteQnA" class="FAQWriteBtn">FAQ 작성하기</button>
-		</div>
-	</div>
 	<br>
 
 	<div>	
 		<table class="table">
 			<tr>
-				<th colspan="4"><hr /></th>
+				<th colspan="5"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 5%;">번호</th>
-				<th style="width: 65%;">내용</th>
-				<th style="width: 20%;">작성일</th>
-				<th style="width: 10%;">상태</th>
+				<th style="width: 10%;">번호</th>
+				<th style="width: 60%;">제목</th>
+				<th style="width: 10%;">작성자</th>
+				<th style="width: 10%;">작성일</th>
+				<th style="width: 10%;">답변상태</th>
 			</tr>
 			<tr>
-				<th colspan="4"><hr /></th>
+				<th colspan="5"><hr /></th>
 			</tr>
 			<tr>
-				<td>4</td>
-				<td><a href="QnAArticle.jsp">눈이 뻐근해요</a></td>
-				<td>2023-08-02</td>
-				<td>답변대기</td>
+				<td>29</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">지원한 내역이 안보여요</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td><span style="color: red;">미답변</span></td>
 			</tr>
 			<tr>
-				<td>3</td>
-				<td><a href="QnAArticle.jsp">졸려요</a></td>
-				<td>2023-07-25</td>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>28</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">상대방에게 쪽지를 보내고 싶어요</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td><span style="color: red;">미답변</span></td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>27</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">프로젝트를 삭제하고 싶어요</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td><span style="color: red;">미답변</span></td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>26</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">프로젝트에 어떻게 참여하나요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
 				<td>답변완료</td>
 			</tr>
 			<tr>
-				<td>2</td>
-				<td><a href="QnAArticle.jsp">이메일 바꾸고싶어요</a></td>
-				<td>2023-07-23</td>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>25</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">프로젝트의 진행 방식은 어떤가요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
 				<td>답변완료</td>
 			</tr>
 			<tr>
-				<td>1</td>
-				<td><a href="QnAArticle.jsp">닉네임 변경 안돼요?</a></td>
-				<td>2023-07-15</td>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>24</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">제3자가 이 프로젝트를 열람할 수 있을까요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
 				<td>답변완료</td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>23</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">기술적인 도움을 받을 수 있는 방법은 무엇인가요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>22</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">버그 리포트는 어떻게 제출하나요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>21</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">개발 가이드나 설명서는 제공하나요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style="width: 97%"/></th>
+			</tr>
+			<tr>
+				<td>20</td>
+				<td class="leftTd"><a href="AnswerManagementArticle.jsp">추가 기능이나 업데이트 예정인 내용이 있을까요?</a></td>
+				<td>말랑콩떡</td>
+				<td>2023.08.05</td>
+				<td>답변완료</td>
+			</tr>
+			<tr>
+				<th colspan="5"><hr style=""/></th>
 			</tr>
 		</table>
 	</div>
