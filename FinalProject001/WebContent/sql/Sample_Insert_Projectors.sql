@@ -53,6 +53,10 @@ NOCACHE;
 CREATE SEQUENCE RTOOLNOSEQ
 NOCACHE;
 --==>> Sequence RTOOLNOSEQ이(가) 생성되었습니다.
+
+CREATE SEQUENCE ADMINNOSEQ
+NOCACHE;
+--==>> Sequence ADMINNOSEQ이(가) 생성되었습니다.
 */
 --==================================================================
 
@@ -1655,6 +1659,49 @@ PRJ_DATE            DATE
 COMMIT;
 --==>> 커밋 완료.
 
+--========================================================================
+--=============================수인===========================================
+-- ※ 관리자 관련 INSERT 구문
+
+-- 회원 식별번호 생성
+
+SELECT * FROM USER_PIN;
+-- ⓞ
+
+INSERT INTO USER_PIN(PIN_NO, JOIN_DATE) VALUES('UP'||TO_CHAR(USERPINSEQ.NEXTVAL),SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다.
+--==>> UP16	2023-08-06
+INSERT INTO USER_PIN(PIN_NO, JOIN_DATE) VALUES('UP'||TO_CHAR(USERPINSEQ.NEXTVAL),SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다.
+--==>> UP17
+
+-- 관리자 시퀀스 생성
+CREATE SEQUENCE ADMINNOSEQ
+NOCACHE;
+--==>> Sequence ADMINNOSEQ이(가) 생성되었습니다.
+
+-- 관리자 INSERT 구문 ⓞ 번 실행 후에 번호 INSERT 구문 실행하기
+-- ①
+INSERT INTO ADMIN(ADMIN_NO, ADMIN_ID, ADMIN_PW, REG_DATE, PIN_NO) 
+VALUES ('AD'||TO_CHAR(ADMINNOSEQ.NEXTVAL), 'admin001@gmail.com'
+, 'admin001', SYSDATE, 'UP16');
+--==>> 1 행 이(가) 삽입되었습니다.
+
+--②
+INSERT INTO ADMIN(ADMIN_NO, ADMIN_ID, ADMIN_PW, REG_DATE, PIN_NO) 
+VALUES ('AD'||TO_CHAR(ADMINNOSEQ.NEXTVAL), 'admin002@gmail.com'
+, 'admin002', SYSDATE, 'UP17');
+--==>> 1 행 이(가) 삽입되었습니다.
+
+SELECT * FROM ADMIN;
+--==>>
+/*
+AD1	admin001@gmail.com	admin001	2023-08-06	UP16
+AD2	admin002@gmail.com	admin002	2023-08-06	UP17
+*/
+
+COMMIT;
+--==>> 커밋 완료.
 
 
 
