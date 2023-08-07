@@ -58,5 +58,4 @@ public class QnaQController
 		return result; 
 	}
 	
-	
 }

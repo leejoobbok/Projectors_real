@@ -7,10 +7,9 @@ public class AdminDTO
 	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
 	private int newReportCnt, newQCnt, todayMemberCnt;
 	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
-	
-	
+
 	// getter / setter 구성
-	
+
 	public String getAdminNo()
 	{
 		return adminNo;
