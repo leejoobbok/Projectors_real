@@ -8,7 +8,6 @@ public class AdminDTO
 	private int newReportCnt, newQCnt, todayMemberCnt;
 	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
 
-
 	// getter / setter 구성
 
 	public String getAdminNo()
