@@ -5,21 +5,17 @@ public interface ILoginDAO
 	public int count();
 	
 	//-- 유저 로그인
-	public int userLogin(String userId, String userPw);
+	public int userLogin(LoginDTO loginDTO);
 
-	public String getUserPin(String userId, String userPw);
+	public String getUserPin(LoginDTO loginDTO);
 	
-	public int checkWDUser(String pinNo);
-	
-
 	
 	//-- 관리자 로그인
-	public int adminLogin(String adminId, String adminPw);	
+	public int adminLogin(LoginDTO loginDTO);	
 	
-	public String getAdminPin(String adminId, String adminPw);
+	public String getAdminPin(LoginDTO loginDTO);
 	
-	public int checkQuitAdmin(String pinNo);
-	
+
 
 	
 	//-- 로그인 기록
