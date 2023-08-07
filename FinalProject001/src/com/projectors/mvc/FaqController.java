@@ -42,7 +42,7 @@ public class FaqController
 		model.addAttribute("faqArticle", dao.viewFaqDetail(faqNo));
 		
 		/* result = "/WEB-INF/view/FaqArticle.jsp"; */
-		result = "/FaqArticle.jsp";
+		result = "/FAQArticle.jsp";
 		return result; 
 	}
 
