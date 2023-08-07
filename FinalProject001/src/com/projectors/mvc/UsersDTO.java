@@ -5,7 +5,6 @@ public class UsersDTO
 	// 유저 속성 구성
 	private String user_no, pin_no, id, pw, nickname, photourl;
 	
-	
 	// getter / setter
 	public String getUser_no()
 	{
