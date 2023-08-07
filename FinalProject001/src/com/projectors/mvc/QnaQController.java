@@ -1,6 +1,6 @@
 /*==================================
  	QnaQController.java
- - mybatis 객체 활용/ 문의 컨트롤러 (아직 작성중) 
+ - mybatis 객체 활용/ 문의 컨트롤러 
 ===================================*/
 package com.projectors.mvc;
 
@@ -43,7 +43,19 @@ public class QnaQController
 		result = "MyQuestionLists.jsp";
 		return result; 
 	}
-	// 특정 질문글 출력 
 	
+	// 특정 질문글 출력 (QnAArticle.jsp)
+	@RequestMapping(value="/questionarticle.action", method = RequestMethod.GET)
+	public String questionArticle(String questionNo, Model model)
+	{	
+		String result = "";
+		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
+	
+		model.addAttribute("questionArticle", dao.viewQuestionDetail(questionNo));
+		
+		/* result = "/WEB-INF/view/QnAArticle.jsp"; */
+		result = "QnAArticle.jsp";
+		return result; 
+	}
 	
 }
