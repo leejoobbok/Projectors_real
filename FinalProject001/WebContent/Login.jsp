@@ -106,11 +106,11 @@ String cp = request.getContextPath();
 		<div id="wrapper">
 		
 			<div id="roginBox">
-				<form action="MainPage.jsp">
+				<form action="login.action" method="post">
 					<span>아이디</span> 
 					<input type="text" id="id" name="id" placeholder="이메일 전체를 입력해주세요."/><br>
 					<span>패스워드</span> 
-					<input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요."/><br>
+					<input type="password" id="pw" name="pw" placeholder="비밀번호를 입력해주세요."/><br>
 					<button id="roginBtn" type="submit">로그인</button>
 					<span id="adminCheck">관리자
 					<input type="checkbox" name="ManagerCheck" id="ManagerCheck"/>
