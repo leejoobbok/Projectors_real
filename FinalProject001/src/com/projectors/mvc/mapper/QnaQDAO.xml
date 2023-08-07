@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IQnaQDAO">
+
+	<insert id="insert">
+		INSERT INTO QUESTION (QUESTION_NO, PIN_NO, TITLE, CONTENT, CREATED_DATE)
+		VALUES(#{questionNo}, #{questionPinNo}, #{questionTitle}, #{questionContent}, #{quesstionCreatedDate})
+	</insert>
+	
+	<select id="getQuestionList" resultType="com.projectors.mvc.QnaQDTO">
+		SELECT TITLE, CREATED_DATE
+		FROM XXXXXVIEW <!--  뷰 이름  -->
+		WHERE PIN_NO = #{questionPinNo}
+	</select>
+
+	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">
+		SELECT TITLE, CONTENT, CREATED_DATE
+		FROM XXXXVIEW <!--  뷰 이름  -->
+		WHERE QUESTION_NO = #{questionNo}
+	</select>
+	
+</mapper>

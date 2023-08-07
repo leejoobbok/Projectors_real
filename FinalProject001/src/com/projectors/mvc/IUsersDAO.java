@@ -21,7 +21,7 @@ public interface IUsersDAO
 	
 	public int remove(String user_no);
 	
-	public int login(String id, String pw);
+	public int login(UsersDTO usersDTO);
 		
 	public String getPinNo(String id, String pw);
 	

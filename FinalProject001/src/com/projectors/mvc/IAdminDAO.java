@@ -2,10 +2,9 @@ package com.projectors.mvc;
 
 public interface IAdminDAO
 {
-	public int showLoginCnt();
+	public int todayMemberCnt();
 
-	public int showNewReportCnt();
+	public int newReportCnt();
 
-	public int showNewQuestionCnt();
-	
+	public int newQuestionCnt();
 }

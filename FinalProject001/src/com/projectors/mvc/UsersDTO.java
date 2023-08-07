@@ -2,48 +2,49 @@ package com.projectors.mvc;
 
 public class UsersDTO
 {
-	// 유저 속성 구성
-	private String user_no, pin_no, id, pw, nickname, photourl;
+	// 유저 속성 구성  유저번호 
+	private String userNo, pinNo, userId, userPw, nickname, photourl;
+
 	
 	// getter / setter
-	public String getUser_no()
+	public String getUserNo()
 	{
-		return user_no;
+		return userNo;
 	}
 
-	public void setUser_no(String user_no)
+	public void setUserNo(String userNo)
 	{
-		this.user_no = user_no;
+		this.userNo = userNo;
 	}
 
-	public String getPin_no()
+	public String getPinNo()
 	{
-		return pin_no;
+		return pinNo;
 	}
 
-	public void setPin_no(String pin_no)
+	public void setPinNo(String pinNo)
 	{
-		this.pin_no = pin_no;
+		this.pinNo = pinNo;
 	}
 
-	public String getId()
+	public String getUserId()
 	{
-		return id;
+		return userId;
 	}
 
-	public void setId(String id)
+	public void setUserId(String userId)
 	{
-		this.id = id;
+		this.userId = userId;
 	}
 
-	public String getPw()
+	public String getUserPw()
 	{
-		return pw;
+		return userPw;
 	}
 
-	public void setPw(String pw)
+	public void setUserPw(String userPw)
 	{
-		this.pw = pw;
+		this.userPw = userPw;
 	}
 
 	public String getNickname()
@@ -65,5 +66,12 @@ public class UsersDTO
 	{
 		this.photourl = photourl;
 	}
+
+	
+
+
+	
+
+	
 	
 }

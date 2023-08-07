@@ -1,0 +1,173 @@
+/* @charset "UTF-8"; */
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.inline
+{
+	display: inline;
+}
+
+.filter
+{
+	text-align: center;
+	margin-left: -530px;
+}
+
+.searchTag
+{	
+	border: none;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	
+	padding: 1px 3px 1px 6px;
+	
+	background-color: orange;
+	color: white;
+	
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.SearchDelBtn
+{
+	border: none;
+	border-radius: 8px;
+	
+	padding-top: 4px;
+	vertical-align: text-top;
+	
+	background-color: orange;
+	color: white;
+}
+
+.SearchDelBtn:hover
+{
+	color: black;
+	transition: 0.5s;
+}
+
+.search
+{	
+	text-align: center;
+	margin-top: 6px;
+	font-size: 13pt;
+	font-weight: bold;
+	
+}
+
+.search li
+{
+ 	display: inline;
+ 	margin: 0px 10px;
+	padding: 2px;
+	list-style-type: none;
+}
+
+.select {
+	width: 108px;
+	height: 28px;
+	border-radius: 5px;
+	border: 2px solid orange;
+	transition: 0.3s;
+	font-family: 'Pretendard-Regular';
+}
+
+.select option {
+	background-color: #ffb324;
+	color: white;
+	font-family: 'Pretendard-Regular';
+}
+
+.searchBtn {
+	font-size: 14pt;
+	font-family: 'Pretendard-Regular';
+	border-radius: 10px;
+	margin-left: 20px;
+	padding: 5px 15px;
+	color: white;
+	background-color: orange;
+	border: none;
+}
+
+.searchBtn:hover {
+	color: black;
+	transition: 0.5s;
+}
+
+.recruitLists {
+	width: 1150px;
+	margin: auto;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.recruitList {
+	margin-top: 30px;
+	border: solid 1px;
+	border-radius: 12px;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+}
+
+.recruitList ul {
+	text-align: left;
+}
+
+.recruitList li {
+	list-style-type: none;
+}
+
+.recruitList li:first-child {
+	font-weight: bold;
+	font-size: 11pt;
+	margin-bottom: 10px;
+}
+
+.recruitList li:nth-child(2) {
+	font-size:14pt;
+}
+
+.recruitList li:nth-child(3) {
+	font-size:11pt; 
+	font-weight:bold;
+}
+
+.recruitList li:nth-child(4) span {
+	background-color: lightgray;
+	font-size: 11pt;
+	border-radius: 9px;
+	
+	margin: 2px 2px 2px 2px;
+	padding: 3px 8px 3px 8px;
+}
+
+.recruitTitle a {
+	text-decoration: none;
+	color: black;
+	font-family: 'Pretendard-Regular';
+	font-size: 18pt;
+}
+
+.recruitStatus {
+	background-color: #f58442;
+	color: white;
+	font-size: 9pt;
+	border-radius: 8px;
+	padding: 2px 6px 2px 6px;
+	
+	vertical-align: baseline;
+}
+
+.endStatus {
+	background-color: #f58442;
+	color: white;
+	font-size: 9pt;
+	border-radius: 8px;
+	padding: 0px 8px 5px;
+}
