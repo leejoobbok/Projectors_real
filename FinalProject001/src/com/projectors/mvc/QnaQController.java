@@ -18,7 +18,7 @@ public class QnaQController
 	private SqlSession sqlSession;
 	
 	// 문의글 인서트 (QnAQInsert.jsp) 
-	@RequestMapping(value="/questioninsertform.action", method = RequestMethod.GET )
+	@RequestMapping(value="/question-insert-form.action", method = RequestMethod.GET )
 	public String qnaQInsert(QnaQDTO dto)
 	{
 		String result = "";
@@ -31,7 +31,7 @@ public class QnaQController
 	}
 	
 	// 나의 질문 리스트 출력 (MyQuestionLists.jsp) 
-	@RequestMapping(value="/questionlist.action", method = RequestMethod.GET)
+	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
 	public String questionList(String questionPinNo, Model model)
 	{	
 		String result = "";
@@ -45,7 +45,7 @@ public class QnaQController
 	}
 	
 	// 특정 질문글 출력 (QnAArticle.jsp)
-	@RequestMapping(value="/questionarticle.action", method = RequestMethod.GET)
+	@RequestMapping(value="/question-article.action", method = RequestMethod.GET)
 	public String questionArticle(String questionNo, Model model)
 	{	
 		String result = "";
@@ -57,5 +57,4 @@ public class QnaQController
 		result = "QnAArticle.jsp";
 		return result; 
 	}
-	
 }
