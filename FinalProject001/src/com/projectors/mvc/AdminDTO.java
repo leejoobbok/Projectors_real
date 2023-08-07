@@ -3,58 +3,92 @@ package com.projectors.mvc;
 public class AdminDTO
 {
 	// 관리자 속성 구성
-	private String admin_no, admin_id, admin_pw, reg_date, pin_no;
+
+	private String adminNo, adminId, adminPw, pinNo, regDate;
+	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
+	private int newReportCnt, newQCnt, todayMemberCnt;
+	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
 	
-	// getter / setter 구성
-
-	public String getAdmin_no()
+	// getter / setter
+	public String getAdminNo()
 	{
-		return admin_no;
+		return adminNo;
 	}
 
-	public void setAdmin_no(String admin_no)
+	public void setAdminNo(String adminNo)
 	{
-		this.admin_no = admin_no;
+		this.adminNo = adminNo;
 	}
 
-	public String getAdmin_id()
+	public String getAdminId()
 	{
-		return admin_id;
+		return adminId;
 	}
 
-	public void setAdmin_id(String admin_id)
+	public void setAdminId(String adminId)
 	{
-		this.admin_id = admin_id;
+		this.adminId = adminId;
 	}
 
-	public String getAdmin_pw()
+	public String getAdminPw()
 	{
-		return admin_pw;
+		return adminPw;
 	}
 
-	public void setAdmin_pw(String admin_pw)
+	public void setAdminPw(String adminPw)
 	{
-		this.admin_pw = admin_pw;
+		this.adminPw = adminPw;
 	}
 
-	public String getReg_date()
+	public String getPinNo()
 	{
-		return reg_date;
+		return pinNo;
 	}
 
-	public void setReg_date(String reg_date)
+	public void setPinNo(String pinNo)
 	{
-		this.reg_date = reg_date;
+		this.pinNo = pinNo;
 	}
 
-	public String getPin_no()
+	public String getRegDate()
 	{
-		return pin_no;
+		return regDate;
 	}
 
-	public void setPin_no(String pin_no)
+	public void setRegDate(String regDate)
 	{
-		this.pin_no = pin_no;
+		this.regDate = regDate;
 	}
-	
+
+	public int getNewReportCnt()
+	{
+		return newReportCnt;
+	}
+
+	public void setNewReportCnt(int newReportCnt)
+	{
+		this.newReportCnt = newReportCnt;
+	}
+
+	public int getNewQCnt()
+	{
+		return newQCnt;
+	}
+
+	public void setNewQCnt(int newQCnt)
+	{
+		this.newQCnt = newQCnt;
+	}
+
+	public int getTodayMemberCnt()
+	{
+		return todayMemberCnt;
+	}
+
+	public void setTodayMemberCnt(int todayMemberCnt)
+	{
+		this.todayMemberCnt = todayMemberCnt;
+	}
+
+
 }

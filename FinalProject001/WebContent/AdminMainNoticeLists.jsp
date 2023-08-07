@@ -47,7 +47,7 @@
 	
 	#wrapper
 	{
-		margin: 50px 400px;
+		margin: 50px 150px;
 		border: solid 2px;
 		border-radius: 20px;
 		padding: 60px 100px;
@@ -83,7 +83,7 @@
 				<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-				<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+				<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>	
 		<div id="menuBar">			<!-- 메뉴바( 메인 | 공지..) -->
 				<c:import url="AdminBar.jsp"></c:import>
@@ -105,74 +105,16 @@
 						<th width="120px">글 번호</th>
 						<th width="800px">제목</th>
 						<th width="100px">작성자</th>
-						<th width="200px">작성일</th>
 					</tr>
-					<tr>
-						<td>11</td>
-						<td><a href="MainNoticeArticle.jsp">더워요</a></td>
-						<td>관리자2</td>
-						<td>2023.08.01</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td><a href="MainNoticeArticle.jsp">살려주쇼</a></td>
-						<td>관리자1</td>
-						<td>2023.07.31</td>
-					</tr>
-					<tr>
-						<td >9</td>
-						<td >7월 이용 정지 회원 명단 안내 </td>
-						<td >관리자2</td>
-						<td >2023.07.31</td>
-					</tr>
-					<tr>
-						<td >8</td>
-						<td >안녕하세요 저는 관리자입니다. 멋지죠? </td>
-						<td >관리자3</td>
-						<td >2023.07.30</td>
-					</tr>
-					<tr>
-						<td >7</td>
-						<td >이달의 우수 프로젝터를 소개합니다~! </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >6</td>
-						<td >저는 마라탕을 정말 좋아해요. </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >5</td>
-						<td >이달의 우수 프로젝터를 소개합니다~! </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >4</td>
-						<td >FAQ 가 업데이트되었습니다. </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >3</td>
-						<td >이용 수칙 안내. 서로 배려하며 활동해요~! </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >2</td>
-						<td >프로젝터스 이용 가이드! </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
-					<tr>
-						<td >1</td>
-						<td >사이트 정식 오픈~! 안녕하세요 프로젝터스입니다. </td>
-						<td >관리자1</td>
-						<td >2023.07.29</td>
-					</tr>
+					<c:forEach var="notice"  items="${lists }">
+						<tr>
+							<td>${notice.adminNoticeNo }</td>
+							<td>
+							<a href="adminNoticeArticle.action?adminNoticeNo="+${notice.adminNoticeNo }>
+							${notice.title }</a></td>
+							<td>관리자${notice.adminNo }</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 			

@@ -172,7 +172,9 @@
 				<td>쪽지</td>
 				<td><a href="">욕설</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
 				<td>2023-08-01</td>
-				<td><button type="button" id="manageReport" name="manageReoprt">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
+				<td><button type="button" id="manageReport" name="manageReoprt">제재</button>
+				<button type="button" id="cancelReport" name="cancelReport">미처벌</button>
+				</td><!-- 클릭 시 제재하는 미니 창 -->
 			</tr>
 			<tr>
 				<td>1233</td>

@@ -163,8 +163,11 @@
 			<br>
 			<h2 class="smallTitile">오늘의 할일</h2>
 			<hr style="width: 100%">
-			<p class="smallTitile" style="font-size: 13pt;"><a href="FAQManagement.jsp">문의 0건</a>
-			  &nbsp;&nbsp;  <a href="ReportManagement.jsp">신고 3건</a></p>
+			<p class="smallTitile" style="font-size: 13pt;">
+				<a href="AnswerManagement.jsp">문의 ${newQuestionCnt }건</a>
+				<br>
+				<a href="ReportManagement.jsp">신고 ${newReportCnt }건</a>
+			</p>
 			
 		</div><!-- end of #wrapper div -->
 		
@@ -172,7 +175,7 @@
 			<br><br>
 			<h2 class="smallTitile">사이트 현황</h2>
 			<hr style="width: 100%">
-			오늘 방문자 0명!!!! 다 나가주세용
+			오늘 방문자 ${todayMemberCnt }명!!!! 다 나가주세용
 			
 		</div><!-- end of #wrapper div -->
 		
@@ -180,12 +183,3 @@
 
 </body>
 </html>
-
-<!-- 
-	미로그인자 -> 로그인창  + Bar 중에 공지게시판만 보이게
-	아무 활동이 없는 회원 -> 배너 안 보이게
-	지원 중인 회원 -> 나의 현재 지원 + 자세히 보기 버튼(Bar 내 링크랑 동일)
-	모집 중인 회원 -> 나의 모집 현황 + 자세히 보기 버튼(Bar 내 링크랑 동일)
-	프로젝트 진행 중인 회원 -> 멤버/프로젝트 종료 d-day/프로젝트 기간 자세히 보기 버튼(Bar 내 링크랑 동일) 
-	 -->
-
