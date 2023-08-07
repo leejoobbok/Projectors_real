@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ : Projectors</title>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
@@ -170,6 +171,36 @@
 
 	<div>	
 		<table class="table">
+	        	<thead>
+	            	<tr>
+	                	<th>번호</th>
+	                     <th>제목</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                  <c:forEach var="faq" items="${faqList}">
+	              	  <tr>
+	            		  <td>${faq.faqNo}</td>
+	            		  <td>${faq.title}</td>
+	              	  </tr>
+	                  </c:forEach>
+	             </tbody>
+	           </table>
+	</div>
+	<br>
+	<div>
+		[페이징처리]
+	</div>
+</div><!-- end #rightBar -->
+
+<!-- footer 넣을 자리	 -->
+
+</body>
+</html>
+
+
+<!--  정적 구성 
+		<table class="table">
 			<tr>
 				<th colspan="2"><hr /></th>
 			</tr>
@@ -193,15 +224,4 @@
 				<td>7</td>
 				<td><a href="FAQArticle.jsp">프로젝트 나가기 하고 싶어요</a></td>
 			</tr>
-		</table>
-	</div>
-	<br>
-	<div>
-		[페이징처리]
-	</div>
-</div><!-- end #rightBar -->
-
-<!-- footer 넣을 자리	 -->
-
-</body>
-</html>
+		</table> -->
