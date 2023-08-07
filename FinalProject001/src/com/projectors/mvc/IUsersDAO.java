@@ -14,13 +14,16 @@ public interface IUsersDAO
 	
 	public  ArrayList<UsersDTO> list();
 	
-	public int add(UsersDTO users);
+	public int addPin(UsersDTO users);
+	public int addUsers(UsersDTO users);
 	
 	public int modify(UsersDTO users);
 	
 	public int remove(String user_no);
 	
 	public int login(String id, String pw);
+		
+	public String getPinNo(String id, String pw);
 	
 	public UsersDTO get(String pin_no);
 	

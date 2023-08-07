@@ -57,6 +57,14 @@ NOCACHE;
 CREATE SEQUENCE ADMINNOSEQ
 NOCACHE;
 --==>> Sequence ADMINNOSEQ이(가) 생성되었습니다.
+
+CREATE SEQUENCE LOGINRECSEQ
+NOCACHE;
+--==>> Sequence LOGINRECSEQ이(가) 생성되었습니다.
+CREATE SEQUENCE LOGOUTRECSEQ
+NOCACHE;
+--==>> Sequence LOGOUTRECSEQ이(가) 생성되었습니다.
+
 */
 --==================================================================
 
