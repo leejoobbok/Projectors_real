@@ -295,5 +295,8 @@ INSERT INTO PROJECT (PRJ_NO, RECRUIT_NO, PRJ_DATE)
 VALUES('PJ'||TO_CHAR(PROJECTSEQ.NEXTVAL)
     , '공고2의 공고번호'
     , TO_DATE('2023-08-06', 'YYYY-MM-DD')); -- 합류 체크 완료일 (원래는 SYSDATE)
-
+    
+    
+--------------------------------------------------------------------------------
+--==>> 여기까지 전달, 반영완료.
 
