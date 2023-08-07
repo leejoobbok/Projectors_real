@@ -8,6 +8,20 @@ public class LoginDTO
 	//-- 유저 아이디, 유저 패스워드
    	private int count;
    	//-- 로그인 시 데이터 조회 되었는지 확인하는 COUNT (0 또는 1)
+   	
+   	private String managerCheck;
+
+   	
+
+
+	public String getManagerCheck()
+	{
+		return managerCheck;
+	}
+	public void setManagerCheck(String managerCheck)
+	{
+		this.managerCheck = managerCheck;
+	}
 	public String getAdminNo()
 	{
 		return adminNo;
