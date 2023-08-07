@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>FAQ : Projectors</title>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
@@ -171,21 +171,21 @@
 
 	<div>	
 		<table class="table">
-	        	<thead>
-	            	<tr>
-	                	<th>번호</th>
-	                     <th>제목</th>
-	                </tr>
-	            </thead>
-	            <tbody>
-	                  <c:forEach var="faq" items="${faqList}">
-	              	  <tr>
-	            		  <td>${faq.faqNo}</td>
-	            		  <td>${faq.title}</td>
-	              	  </tr>
-	                  </c:forEach>
-	             </tbody>
-	           </table>
+        	<thead>
+            	<tr>
+                	<th>번호</th>
+                     <th>제목</th>
+                </tr>
+            </thead>
+            <tbody>
+                  <c:forEach var="faq" items="${faqList}">
+              	  <tr>
+            		  <td>${faq.faqNo}</td>
+            		  <td>${faq.title}</td>
+              	  </tr>
+                  </c:forEach>
+             </tbody>
+	     </table>
 	</div>
 	<br>
 	<div>
