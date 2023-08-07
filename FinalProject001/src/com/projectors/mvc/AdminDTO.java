@@ -5,7 +5,7 @@ public class AdminDTO
 	// 관리자 속성 구성
 	private String adminNo, adminId, adminPw, pinNo, regDate;
 	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
-	private int newReportCnt, newQCnt, todayMemberCnt;
+	private int newReportCnt, newQuestionCnt, todayMemberCnt;
 	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
 
 	// getter / setter 구성
@@ -70,14 +70,14 @@ public class AdminDTO
 		this.newReportCnt = newReportCnt;
 	}
 
-	public int getNewQCnt()
+	public int getNewQuestionCnt()
 	{
-		return newQCnt;
+		return newQuestionCnt;
 	}
 
-	public void setNewQCnt(int newQCnt)
+	public void setNewQuestionCnt(int newQuestionCnt)
 	{
-		this.newQCnt = newQCnt;
+		this.newQuestionCnt = newQuestionCnt;
 	}
 
 	public int getTodayMemberCnt()
