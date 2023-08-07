@@ -35,9 +35,7 @@
 
 	/* 헤더 */
 	div>h1
-	{
-		padding-left : 5%; 
-	}
+	{padding-left : 5%; }
 
 	/* ====================== 좌측바 ========================= */
 
@@ -122,6 +120,9 @@
 	});
 </script>
 </head>
+
+
+
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		
@@ -136,11 +137,11 @@
 		</div>
 		<!-- ============================================================= -->
 		
-<div>
-<h1>FAQ / 문의</h1>
-<hr />
-</div>
-<br />
+	<div>
+		<h1>FAQ / 문의</h1>
+		<hr />
+	</div>
+	<br />
 
 
 <div id="leftBar">
@@ -159,7 +160,7 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	1 : 1 질문 </h2>
+		<h2>	1 : 1 문의하기 </h2>
 	</div>
 	<br>
 	
@@ -172,7 +173,7 @@
 			<tr>
 				<th style="width: 20%;">제목</th>
 				<th style="width: 80%;">
-					<input type="text" id="title" width="100%;" />
+					<input type="text" id="questionTitle" width="100%;" />
 				</th>
 			</tr>
 			<tr>
@@ -180,7 +181,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea name="content" id="content" cols="30" rows="10"
+					<textarea name="content" id="questionContent" cols="30" rows="10"
 					>내용 작성 어쩌구</textarea>
 				</td>
 			</tr>
@@ -205,3 +206,37 @@
 
 </body>
 </html>
+
+<!-- 아현// 예시용으로 작성했다가 일단 보류한거
+
+	[ css ]
+	
+	#QnAQuestion /* 문의글 제목,본문 묶는 전체 영역*/
+	{
+		text-align: center;
+	}
+	#questionTitle /* 문의 제목*/
+	{	
+		padding: 4px;
+		margin: 10px 0px;
+		
+	}
+
+	[ html ]
+
+
+<div id="QnAQuestion" name="QnAQuestion">
+	<form action="QnALists.jsp" method="POST">
+		제목 : 
+		<input type="text" id="questionTitle" name="questionTitle" style="width:460px;"
+			   placeholder="제목을 입력해주세요." />
+		<br />
+		<textarea name="" id="" cols="80" rows="10" placeholder=" 문의 내용을 입력해주세요. (최대 xx자)"></textarea>
+		<br />
+		<button type="submit">완료</button>
+		<button type="button"><a href="FAQLists.jsp">취소</a></button>
+	</form>
+</div>
+
+
+ -->
