@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IAdminDAO">
+
+<select id="showLoginCnt" resultType="java.lang.Integer">
+	SELECT COUNT(*)
+	FROM LOGIN_REC
+	WHERE TO_CHAR(LOGIN_DATE, 'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD');
+</select>
+
+<select id="showNewReportCnt()" resultType="java.lang.Integer">
+	
+</select>
+
+<select id="showNewQuestionCnt()" resultType="java.lang.Integer">
+
+</select>
+
+</mapper>
