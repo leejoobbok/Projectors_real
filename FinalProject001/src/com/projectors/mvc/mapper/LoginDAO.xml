@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.projectors.mvc.IUsersDAO">
+<mapper namespace="com.projectors.mvc.ILoginDAO">
 
 	<!-- 사용자 로그인
 	결과값이 0보다 크면 아이디 비밀번호 일치   -->
-	<select id="userLogin" resultType="com.projectors.mvc.LoginDTO">
+	<select id="userLogin" resultType="java.lang.Integer">
 		SELECT COUNT(PIN_NO) AS COUNT
 		FROM USERS
-		WHERE ID=#{userId} AND PW=#{userPw}
+		WHERE ID=#{usersId} AND PW=#{usersPw}
 	</select>
 	
 	<!-- 아이디와 비밀번호로 사용자 핀을 추출
@@ -17,15 +17,15 @@
 	<select id="getUserPin" resultType="java.lang.String">
 		SELECT PIN_NO
 		FROM USERS
-		WHERE ID=#{userId} AND PW=#{userPw}
+		WHERE ID=#{usersId} AND PW=#{usersId}
 	</select>
 		
 	<!-- 관리자 로그인
 	결과값이 0보다 크면 아이디 비밀번호 일치 -->
-	<select id="adminLogin" resultType="com.projectors.mvc.LoginDTO">
+	<select id="adminLogin" resultType="java.lang.Integer">
 		SELECT COUNT(PIN_NO) AS COUNT
 		FROM ADMIN
-		WHERE ID=#{adminId} AND PW=#{adminPw}
+		WHERE ADMIN_ID=#{adminId} AND ADMIN_PW=#{adminPw}
 	</select>
 	
 	<!-- 아이디와 비밀번호로 관리자 핀을 추출 
@@ -33,7 +33,7 @@
 	<select id="getAdminPin" resultType="java.lang.String">
 		SELECT PIN_NO
 		FROM ADMIN
-		WHERE ID=#{adminId} AND PW=#{adminPw}
+		WHERE ADMIN_ID=#{adminId} AND ADMIN_PW=#{adminPw}
 	</select>
 	
 	
