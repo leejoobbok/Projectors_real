@@ -9,13 +9,13 @@
 		VALUES(#{questionNo}, #{questionPinNo}, #{questionTitle}, #{questionContent}, #{quesstionCreatedDate})
 	</insert>
 	
-	<select id="getQuestionList" resultType="com.test.mybatis.QnaQDTO">
+	<select id="getQuestionList" resultType="com.projectors.mvc.QnaQDTO">
 		SELECT TITLE, CREATED_DATE
 		FROM XXXXXVIEW <!--  뷰 이름  -->
 		WHERE PIN_NO = #{questionPinNo}
 	</select>
 
-	<select id="viewQuestionDetail" >
+	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">
 		SELECT TITLE, CONTENT, CREATED_DATE
 		FROM XXXXVIEW <!--  뷰 이름  -->
 		WHERE QUESTION_NO = #{questionNo}
