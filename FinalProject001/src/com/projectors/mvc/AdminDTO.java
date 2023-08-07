@@ -3,16 +3,7 @@ package com.projectors.mvc;
 public class AdminDTO
 {
 	// 관리자 속성 구성
-<<<<<<< HEAD
-	private String adminNo, adminId, adminPw, regDate, pin_no;
 
-	
-	// getter / setter 구성
-
-
-
-	
-=======
 	private String adminNo, adminId, adminPw, pinNo, regDate;
 	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
 	private int newReportCnt, newQCnt, todayMemberCnt;
@@ -99,5 +90,5 @@ public class AdminDTO
 		this.todayMemberCnt = todayMemberCnt;
 	}
 
->>>>>>> develop
+
 }
