@@ -4,13 +4,16 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.projectors.mvc.IAdminDAO">
 
-<select id="showLoginCnt" resultType="java.lang.Integer">
-	SELECT COUNT(*)
+
+<select id="todayMemberCnt" resultType="java.lang.Integer">
+	SELECT COUNT(*) AS COUNT
 	FROM LOGIN_REC
-	WHERE TO_CHAR(LOGIN_DATE, 'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD');
+	WHERE TO_CHAR(LOGIN_DATE, 'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD')
 </select>
 
-<select id="showNewReportCnt()" resultType="java.lang.Integer">
+
+
+<select id="newReportCnt" resultType="java.lang.Integer">
   SELECT
   (
     SELECT COUNT(CASE WHEN RCR.REGU_DATE IS NULL THEN 1 END) AS NULL_COUNT
@@ -35,12 +38,15 @@
     FROM REP_NOTE_RESULT RNR
     JOIN REPORT_NOTE RN
     ON RNR.REP_NOTE_NO = RN.REP_NOTE_NO
-  ) AS TOTAL_REPORT_COUNT
-  FROM DUAL;
+  ) AS newReportCnt
+  FROM DUAL
 </select>
 
-<select id="showNewQuestionCnt()" resultType="java.lang.Integer">
-
+<select id="newQuestionCnt" resultType="java.lang.Integer">
+	SELECT COUNT(CASE WHEN A.CREATED_DATE IS NULL THEN 1 END)AS newQuestionCnt
+	FROM QUESTION Q
+	JOIN ANSWER A
+	ON Q.QUESTION_NO = A.QUESTION_NO
 </select>
 
 </mapper>
