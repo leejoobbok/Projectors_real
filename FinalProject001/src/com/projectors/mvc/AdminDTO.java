@@ -3,13 +3,13 @@ package com.projectors.mvc;
 public class AdminDTO
 {
 	// 관리자 속성 구성
+
 	private String adminNo, adminId, adminPw, pinNo, regDate;
 	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
-	private int newReportCnt, newQuestionCnt, todayMemberCnt;
+	private int newReportCnt, newQCnt, todayMemberCnt;
 	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
-
-	// getter / setter 구성
-
+	
+	// getter / setter
 	public String getAdminNo()
 	{
 		return adminNo;
@@ -70,14 +70,14 @@ public class AdminDTO
 		this.newReportCnt = newReportCnt;
 	}
 
-	public int getNewQuestionCnt()
+	public int getNewQCnt()
 	{
-		return newQuestionCnt;
+		return newQCnt;
 	}
 
-	public void setNewQuestionCnt(int newQuestionCnt)
+	public void setNewQCnt(int newQCnt)
 	{
-		this.newQuestionCnt = newQuestionCnt;
+		this.newQCnt = newQCnt;
 	}
 
 	public int getTodayMemberCnt()
@@ -89,5 +89,6 @@ public class AdminDTO
 	{
 		this.todayMemberCnt = todayMemberCnt;
 	}
+
 
 }
