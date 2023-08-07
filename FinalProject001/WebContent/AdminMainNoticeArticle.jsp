@@ -35,7 +35,7 @@
 	
 	#mainNoticeInsert
 	{
-		  display: flex;
+		display: flex;
 	    flex-direction: column;
 	    justify-content: center;
 	    align-items: center;
@@ -154,7 +154,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>	
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
