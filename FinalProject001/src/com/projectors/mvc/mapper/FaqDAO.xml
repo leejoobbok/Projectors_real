@@ -5,8 +5,9 @@
 <mapper namespace="com.projectors.mvc.IFaqDAO">
 
 	<select id="getFaqList" resultType="com.projectors.mvc.FaqDTO">
-		SELECT FAQ_NO, TITLE, CONTENT
-		FROM XXXXXVIEW <!--  뷰 이름  -->
+		SELECT FAQ_NO, TITLE FROM FAQ 
 	</select>
 	
 </mapper>
+
+<!--  뷰 이름 써야하는데 일단 테이블명으로   -->
