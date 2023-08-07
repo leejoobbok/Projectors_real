@@ -65,7 +65,37 @@ CREATE SEQUENCE LOGOUTRECSEQ
 NOCACHE;
 --==>> Sequence LOGOUTRECSEQ이(가) 생성되었습니다.
 
+
+
+CREATE SEQUENCE QUITADMINNOSEQ
+NOCACHE;
+--==>> Sequence WDUSERNOSEQ이(가) 생성되었습니다.
+
+CREATE SEQUENCE WDUSERNOSEQ;
+NOCACHE;
+--==>> Sequence WDUSERNOSEQ이(가) 생성되었습니다.
+
+
+CREATE SEQUENCE REPRECNOSEQ
+NOCACHE;
+--==>> Sequence REPRECNOSEQ이(가) 생성되었습니다.
+
+
+CREATE SEQUENCE RECRUITRESULTNOSEQ
+NOCACHE;
+--==>> Sequence RECRUITRESULTNOSEQ이(가) 생성되었습니다.
+
+
+CREATE SEQEUNCE WDUSERNOSEQ
+NOCACHE;
+--==>> Sequence RECRUITRESULTNOSEQ이(가) 생성되었습니다.
+
+
+COMMIT;
+--==>> 커밋 완료.
+
 */
+
 --==================================================================
 
 --==[1. 한아현]

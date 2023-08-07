@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class UsersController
 {
-	@Autowired
-	private SqlSession sqlSession;
+//	@Autowired
+	//private SqlSession sqlSession;
 	
-	/* @RequestMapping(value="/login.action", method=RequestMethod.GET) */
+//	@RequestMapping(value="/login.action", method=RequestMethod.GET)
 	
 	
 	
