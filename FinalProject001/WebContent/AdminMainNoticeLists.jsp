@@ -47,7 +47,7 @@
 	
 	#wrapper
 	{
-		margin: 50px 400px;
+		margin: 50px 150px;
 		border: solid 2px;
 		border-radius: 20px;
 		padding: 60px 100px;
@@ -83,7 +83,7 @@
 				<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-				<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+				<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>	
 		<div id="menuBar">			<!-- 메뉴바( 메인 | 공지..) -->
 				<c:import url="AdminBar.jsp"></c:import>
@@ -109,13 +109,13 @@
 					</tr>
 					<tr>
 						<td>11</td>
-						<td><a href="MainNoticeArticle.jsp">더워요</a></td>
+						<td><a href="AdminMainNoticeArticle.jsp">더워요</a></td>
 						<td>관리자2</td>
 						<td>2023.08.01</td>
 					</tr>
 					<tr>
 						<td>10</td>
-						<td><a href="MainNoticeArticle.jsp">살려주쇼</a></td>
+						<td><a href="AdminMainNoticeArticle.jsp">살려주쇼</a></td>
 						<td>관리자1</td>
 						<td>2023.07.31</td>
 					</tr>
