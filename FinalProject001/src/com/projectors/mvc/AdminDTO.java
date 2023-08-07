@@ -3,8 +3,10 @@ package com.projectors.mvc;
 public class AdminDTO
 {
 	// 관리자 속성 구성
-	private String adminNo, adminId, adminPw, pinNo, regDate, loginRec, logoutRec;
-	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일, 로그인 기록, 로그아웃 기록
+	private String adminNo, adminId, adminPw, pinNo, regDate;
+	//-- 관리자번호, 관리자아이디, 관리자패스워드, 식별번호, 등록일
+	private int newReportCnt, newQCnt, todayMemberCnt;
+	//-- 새 신고건수, 새 문의건수, 금일 접속자 조회
 	
 	// getter / setter
 	public String getAdminNo()
@@ -57,26 +59,34 @@ public class AdminDTO
 		this.regDate = regDate;
 	}
 
-	public String getLoginRec()
+	public int getNewReportCnt()
 	{
-		return loginRec;
+		return newReportCnt;
 	}
 
-	public void setLoginRec(String loginRec)
+	public void setNewReportCnt(int newReportCnt)
 	{
-		this.loginRec = loginRec;
+		this.newReportCnt = newReportCnt;
 	}
 
-	public String getLogoutRec()
+	public int getNewQCnt()
 	{
-		return logoutRec;
+		return newQCnt;
 	}
 
-	public void setLogoutRec(String logoutRec)
+	public void setNewQCnt(int newQCnt)
 	{
-		this.logoutRec = logoutRec;
+		this.newQCnt = newQCnt;
 	}
-	
-	
+
+	public int getTodayMemberCnt()
+	{
+		return todayMemberCnt;
+	}
+
+	public void setTodayMemberCnt(int todayMemberCnt)
+	{
+		this.todayMemberCnt = todayMemberCnt;
+	}
 
 }
