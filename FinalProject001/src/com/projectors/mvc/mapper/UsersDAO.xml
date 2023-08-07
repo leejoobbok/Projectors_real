@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IUsersDAO">
+
+<!-- 로그인 컨트롤러 합칠 예정  -->
+	<select id="login" resultType="com.projectors.mvc.UsersDTO">
+		SELECT COUNT(PIN_NO) AS COUNT
+		FROM USERS
+		WHERE ID=#{id} AND PW=#{pw}
+	</select>
+
+	
+	<select id="getPinNo" resultType="com.projectors.mvc.UsersDTO">
+		SELECT PIN_NO
+		FROM USERS
+		WHERE ID=${id} AND PW=#{pw}
+	</select>
+
+	
+	
+	<select id="addPin" >
+		INSERT INTO USER_PIN
+		(PIN_NO, JOIN_DATE)
+		VALUES
+		('UP'||TO_CHAR(USERPINSEQ.NEXTVAL), SYSDATE)
+
+	</select>
+	
+	<select id="addUsers">
+		INSERT INTO USERS
+		( USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
+		VALUES
+		('US'||TO_CHAR(USERNOSEQ.NEXTVAL)
+		,(SELECT PIN_NO
+		  FROM (SELECT PIN_NO
+		         FROM USER_PIN
+		         ORDER BY JOIN_DATE DESC)
+		   WHERE ROWNUM = 1)
+		,${id} ,${pw} ,${nickname} ,${photourl})
+	</select>
+	
+	
+	
+	
+</mapper>

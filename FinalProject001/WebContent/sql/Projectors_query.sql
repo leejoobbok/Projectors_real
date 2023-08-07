@@ -52,10 +52,16 @@ CREATE SEQUENCE PROJECTNOSEQ
 NOCACHE;
 
 
+CREATE SEQUENCE LOGINRECSEQ
+NOCACHE;
+--==>> Sequence LOGINRECSEQ이(가) 생성되었습니다.
+CREATE SEQUENCE LOGOUTRECSEQ
+NOCACHE;
+--==>> Sequence LOGOUTRECSEQ이(가) 생성되었습니다.
+
 */
 
 --○ 시퀀스 생성 및 INSERT 동작 쿼리문
-
 /*
 -- 회원 가입 시 식별 번호 발생
 -- 회원 식별 번호 시퀀스 생성
@@ -328,12 +334,99 @@ VALUES
 --=================================================================================================================================================
 
 
+--== 입력할 쿼리문(UsersDAO.xml)
+
+SELECT *
+FROM USERS;
+
+-- (1) 로그인
+SELECT COUNT(PIN_NO)
+FROM USERS
+WHERE ID='도라에몽@naver.com' AND PW='java002$';
+--▼
+
+
+--★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+-- 1. 회원 가입
+SELECT COUNT(PIN_NO)
+FROM USERS
+WHERE ID=? AND PW=?;
+--★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+-- 로그인 이후 핀번호를 세션하기 위해 getPin_no()
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
 
 
 
 
+--== 회원 가입 클릭스 동시에 동작할 메소드 =========================
+INSERT INTO USER_PIN
+( PIN_NO
+, JOIN_DATE)
+VALUES
+( 'UP'||TO_CHAR(USERPINSEQ.NEXTVAL)
+ , SYSDATE);
+
+INSERT INTO USERS
+( USER_NO
+, PIN_NO
+, ID
+, PW
+, NICKNAME
+, PHOTOURL)
+VALUES
+( 'US'||TO_CHAR(USERNOSEQ.NEXTVAL)
+, (SELECT PIN_NO
+   FROM (SELECT PIN_NO
+         FROM USER_PIN
+         ORDER BY JOIN_DATE DESC)
+   WHERE ROWNUM = 1)
+,'spb@naver.com'
+,'java002'
+,'스폰지밥'
+,'images/defaulfPhoto.jpg');
+
+SELECT *
+FROM USERS;
+--==>> US16	UP18	spb@naver.com	java002	스폰지밥	images/defaulfPhoto.jpg
 
 
+--★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+--1. 우선 핀 생성
+INSERT INTO USER_PIN
+( PIN_NO
+, JOIN_DATE)
+VALUES
+( 'UP'||TO_CHAR(USERPINSEQ.NEXTVAL)
+ , SYSDATE);
+--2. 생성된 핀에 회원가입 실행
+INSERT INTO USERS
+( USER_NO
+, PIN_NO
+, ID
+, PW
+, NICKNAME
+, PHOTOURL)
+VALUES
+( 'US'||TO_CHAR(USERNOSEQ.NEXTVAL)
+, (SELECT PIN_NO
+   FROM (SELECT PIN_NO
+         FROM USER_PIN
+         ORDER BY JOIN_DATE DESC)
+   WHERE ROWNUM = 1)
+,?
+,?
+,?
+,?);
+--★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+--=================================================
+
+
+-- 회원정보 수정
+UPDATE USERS
+SET PW=?
+WHERE PIN_NO = 
 
 
 
