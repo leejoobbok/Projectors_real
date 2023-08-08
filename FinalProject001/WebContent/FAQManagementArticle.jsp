@@ -107,12 +107,20 @@
 
 		$("#updateFAQ").click(function()
 		{
-			window.location.href="FAQUpdate.jsp";
+			window.location.href="faqUpdateForm.action?faqNo="+$("#updateFAQ").val();
+		});
+		
+		$("#deleteFAQ").click(function()
+		{
+			if (confirm("정말 삭제하시겠습니까?\n삭제하시면 복구가 불가능합니다."))
+			{
+				window.location.href="faqDelete.action?faqNo="+$("#deleteFAQ").val();
+			}
 		});
 		
 		$("#returnList").click(function()
 		{
-			window.location.href="FAQManagement.jsp";
+			window.location.href="faqManagement.action";
 		});
 		
 	});
@@ -124,7 +132,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -141,7 +149,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
+			<a href="faqManagement.action">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -158,21 +166,21 @@
 	</div>
 	<br>
 
-	<div>	
+	<div>
 		<table class="table">
 			<tr>
 				<th colspan="2"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<td style="width: 90%;">29</td>
+				<td style="width: 90%;">${article.faqNo }</td>
 			</tr>
 			<tr>
 				<th colspan="2"><hr style="width: 97%"/></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">제목</th>
-				<td style="width: 90%;">지원한 내역이 안보여요</td>
+				<td style="width: 90%;">${article.title }</td>
 			</tr>
 			<tr>
 				<th colspan="2"><hr /></th>
@@ -181,12 +189,7 @@
 				<th style="vertical-align: top;">내용</th>
 				<td>
 					<div>
-					안녕하세요 회원님.<br>
-					지원하신 내역이 사라져서 많이 놀라셨죠.<br>
-					지원하신 내역이 삭제된 이유는 아래와 같은 상황일 때 발생할 수 있습니다.<br>
-					&nbsp; 1. 모집자가 모집공고를 삭제한 경우<br>
-					&nbsp; 2. ....<br><br>
-					사이트를 이용해주셔서 감사합니다. <br>
+					${article.content }
 					</div>
 				</td>
 			</tr>
@@ -197,9 +200,11 @@
 	</div>
 	<br>
 	<div style="text-align: center;">
-		<button class="returnList" id="updateFAQ">수정하기</button>
+		<button class="returnList" id="updateFAQ" value="${article.faqNo }">수정하기</button>
+		<button class="returnList" id="deleteFAQ" value="${article.faqNo }">삭제하기</button>
 		<button class="returnList" id="returnList">목록으로</button>
 	</div>
+	
 	<br><br>
 	<br><br><br><br><br><br><br>
 </div><!-- end #rightBar -->

@@ -142,3 +142,23 @@ VALUES('AN'||ADMINNOTICENOSEQ.NEXTVAL, '이용수칙', '본 사이트는 웹 개발 프로젝트
 기존의 유저들께 불편을 끼치지 않으면서 악용유저들의 이용을 제한하고자 아래와 같은 수칙들을 안내드리니, 확인 부탁드립니다.', 'UP16')
 ;
 --==>> 1 행 이(가) 삽입되었습니다.
+
+commit;
+
+-- FAQ  FAQ_NO 받아와서 수정 수정할 구문
+UPDATE FAQ
+SET TITLE = ? , CONTENT = ?
+WHERE FAQ_NO = ?
+;
+
+-- FAQ FAQ_NO 받아와서 삭제 할 구문
+DELETE
+FROM FAQ
+WHERE FAQ_NO = ? ;
+
+-- FAQ 가장 최근에 insert 한 FAQ_NO 값 찾아오는 구문 -- insert 후 해당 페이지 띄워주기 위해서
+SELECT TO_CHAR(MAX(FAQ_NO)) AS faqNo
+FROM FAQ
+;
+
+-- FAQ Insert
