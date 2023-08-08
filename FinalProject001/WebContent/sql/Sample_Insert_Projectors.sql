@@ -1805,5 +1805,21 @@ COMMIT;
 
 
 
+- 아이디 중복검사를 뷰 생성
+
+
+CREATE OR REPLACE VIEW IDCHECK
+AS
+SELECT ID
+FROM USERS 
+UNION ALL 
+SELECT ADMIN_ID AS ID
+FROM ADMIN;
+
+--==>> View IDCHECK이(가) 생성되었습니다.
+
+
+
+
 
 
