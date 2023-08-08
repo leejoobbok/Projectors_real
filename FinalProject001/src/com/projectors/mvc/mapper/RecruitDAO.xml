@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IRecruitDAO">
+
+	<select resultType="com.projectors.mvc.RecruitDTO" id="lists">
+		SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
+		        , DOTYPENAME, REGIONNAME, SUBREGIONNAME
+		FROM RECRUITVIEW
+		WHERE DDAY >= 0
+	</select>
+
+	<select resultType="java.lang.String" id="showTool">
+		SELECT TOOL_NAME
+		FROM TOOL
+		WHERE TOOL_NO IN (SELECT TOOL_NO
+		                 FROM RECRUIT_TOOL
+		                 WHERE RECRUIT_NO = #{recruitNo })
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="optionRegion">
+		SELECT REGION_NAME AS REGIONNAME
+			 , REGION_NO AS REGIONNO
+		FROM REGION
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="optionDoType">
+		SELECT DO_TYPE_NAME AS DOTYPENAME
+			 , DO_TYPE_NO AS DOTYPENO
+		FROM DO_TYPE
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="optionPos">
+		SELECT POS_NAME AS POSNAME
+			 , POS_NO AS POSNO
+		FROM POSITION
+	</select>
+	
+	<select resultType="java.lang.String" id="subRegionList">
+		SELECT SUB_REGION_NAME
+		FROM SUB_REGION
+		WHERE REGION_NO = #{regionNo }
+	</select>
+	
+	
+	<!--
+	private int regionNo, subRegionNo, posNo, toolNo;
+	private String regionName, subRegionName, posName, toolName;
+	private int countAll, countPos;
+	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
+	-->
+	
+</mapper>
