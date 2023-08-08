@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의 작성하기 : Projectors</title>
+<title>1:1 문의 작성 : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
@@ -47,18 +47,12 @@
 		text-align: center;
 	}
 	
-	.btnHeight
-	{
-		padding: 10px;
+	.btn
+	{	
+		width: 200px;
+		padding: 4px;
 		border-right: 3px solid black;
 	}
-	
-	.btn
-	{
-		width: 150px;
-	}
-	
-
 	/* ======================================================= */
 	
 	
@@ -144,18 +138,14 @@
 	<br />
 
 
-<div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="QnALists.jsp">1:1문의</a>
-		</button>
-	</div>
-</div><!-- end #leftBar -->
+	<div id="leftBar">
+		<a href="FAQLists.jsp">
+			<button type="button" class="btnHeight">FAQ</button>
+		</a>
+		<a href="QnALists.jsp">	
+			<button type="button" class="btnHeight">1:1문의</button>
+		</a>
+	</div><!-- end #leftBar -->
 
 
 <div id="rightBar">
@@ -173,7 +163,7 @@
 			<tr>
 				<th style="width: 20%;">제목</th>
 				<th style="width: 80%;">
-					<input type="text" id="questionTitle" width="100%;" />
+					<input type="text" name="title" id="questionTitle" width="100%;" />
 				</th>
 			</tr>
 			<tr>
@@ -191,7 +181,9 @@
 			<tr style="text-align: right;">
 				<td colspan="2">
 					<button id="insertQnA">작성하기</button>
-					<button id="returnList">돌아가기</button>
+					<a href="QnALists.jsp">
+						<button id="returnList">취소하기</button>
+					</a>
 				</td>
 			</tr>
 		</table>
