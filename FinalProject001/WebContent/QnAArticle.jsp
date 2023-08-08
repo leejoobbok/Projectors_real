@@ -135,12 +135,12 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<a href="FAQLists.jsp">
+		<a href="faq-list.action">
 			<button type="button" class="btn">FAQ</button>
 		</a>
 	</div>
 	<div class="btnHeight">
-		<a href="QnALists.jsp">
+		<a href="question-list.action">
 			<button type="button" class="btn">1:1문의</button>
 		</a>
 	</div>
@@ -184,15 +184,13 @@
 		<table class="table">
 			<tr>
 				<td>관리자</td>
-				<td>답변일자</td>
+				<td>답변일시</td>
 			</tr>
+			<c:set var="aArticle" value="${answerArticle}"/>
 			<tr style="background-color: lightgray;">
-				<td>
-					침대에 들어가서 주무시면 됩니다.<br>
-					단, 할 일은 다 끝내셨겠죠?
-				</td>
-				<td>2023-07-27</td>
-			</tr>
+				<td>${aArticle.answerContent}</td>
+				<td>${aArticle.answerCreatedDate}</td>
+			</tr>			
 		</table>
 	</div>
 	<br>
