@@ -151,7 +151,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -175,7 +175,7 @@
 			<br><br>
 			<h2 class="smallTitile">사이트 현황</h2>
 			<hr style="width: 100%">
-			오늘 방문자 ${todayMemberCnt }명!!!! 다 나가주세용
+			오늘 방문자 ${todayMemberCnt }명
 			
 		</div><!-- end of #wrapper div -->
 		

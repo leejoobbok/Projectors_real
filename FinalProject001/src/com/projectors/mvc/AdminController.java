@@ -49,7 +49,7 @@ public class AdminController
 	
 	//-- 공지사항 아티클 들어가기
 	@RequestMapping (value = "/adminNoticeArticle.action", method = RequestMethod.GET)
-	public String noticeInsert(Model model)
+	public String noticeInsert(Model model, String adminNoticeNo)
 	{
 		String result = "";
 		
@@ -58,6 +58,8 @@ public class AdminController
 		// 이 부분 부터 작성하면 됨
 		// AdminNoticeDTO, IAdminNoticeDAO, AdminNoticeDAO.xml 사용 예정
 		//-- 이전 페이지 get 방식으로 수신해온 AdminNoticeNo 받아오는 법 확인하기.
+		
+		model.addAttribute("article", dao.article(adminNoticeNo));
 		
 		result = "/AdminMainNoticeArticle.jsp";
 		
