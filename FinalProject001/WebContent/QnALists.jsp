@@ -106,7 +106,7 @@
 		$("#WriteQnA").click(function()
 		{
 			/* window.location.href="QnAQInsert.jsp"; */
-			window.location.href="question-insert-form.action";
+			window.location.href="QnAQInsert.jsp";
 		});
 	});
 </script>
