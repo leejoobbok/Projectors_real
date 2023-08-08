@@ -171,6 +171,14 @@
 			<tr>
 				<th colspan="3"><hr /></th>
 			</tr>
+			<c:forEach var="qArticle" items="${questionArticle}">
+				<tr>
+					<td style="width: 5%;">${qArticle.questionNo}</td>
+					<td style="width: 65%;">${qArticle. }</td>
+					<td style="width: 20%;">2023-07-25</td>
+				</tr>
+			</c:forEach>
+			
 			<!--  문의 상세: 번호, 제목, 날짜  정적구성 
 			<tr>
 				<td style="width: 5%;">3</td>
