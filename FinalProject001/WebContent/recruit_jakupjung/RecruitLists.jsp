@@ -11,6 +11,113 @@
 <title>모집공고 :projectors</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxOne.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/recruitLists.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	/*
+	function changeRegionSelect()
+	{
+		var regionSelect = document.getElementById("region").value;
+		
+		var inlineTag = document.querySelector(".inlineTagReg");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+
+		if (regionSelect !== prevRegionValue && regionSelect !== "default" && regionSelect !== "")
+		{
+			var regionSelectValue = document.getElementById("region").querySelector('option[value="' + regionSelect + '"]').textContent;
+	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        inlineTag.appendChild(newSpan);
+		}
+	}
+	
+	
+	function changePosSelect()
+	{
+		var posSelect = document.getElementById("position").value;
+		
+		var inlineTag = document.querySelector(".inlineTagPos");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+
+		if (posSelect !== "default" && posSelect !== "")
+		{
+			var posSelectValue = document.getElementById("position").querySelector('option[value="' + posSelect + '"]').textContent;
+	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        inlineTag.appendChild(newSpan);
+		}
+	}
+	
+	function changeDoTypeSelect()
+	{
+		var doTypeSelect = document.getElementById("doType").value;
+		
+		var inlineTag = document.querySelector(".inlineTagDo");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+
+		if (doTypeSelect !== "default" && doTypeSelect !== "")
+		{
+			var doTypeSelectValue = document.getElementById("doType").querySelector('option[value="' + doTypeSelect + '"]').textContent;
+	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        inlineTag.appendChild(newSpan);
+		}
+	}
+	*/
+	
+	
+	$(function() {
+		$("#region").change(function()
+		{
+			var regionNo = $.trim($(this).val());
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"getsubregion.action"
+				, data:{ regionNo: regionNo }
+				, success:function(result)
+				{
+					var out = "";
+					
+					for (var i = 0; i < result.length; i++)
+					{
+						out += "<option value='" + result[i] + "'>";
+						out += result[i];
+						out += "</option>";
+					}
+					
+					$('#subRegion').html(out);
+					
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+	});
+	
+
+</script>
+
+
 </head>
 
 <body>
@@ -42,58 +149,45 @@
 		<div class="container">
 			
 			<div class="filter">
-				<h3 class="inline">조건 검색</h3>
-				<span class="searchTag">서울
-					<button type="submit" class="SearchDelBtn">x</button>
-				</span>
-				<span class="searchTag">서울
-					<button type="submit" class="SearchDelBtn">x</button>
-				</span>
-				<span class="searchTag">서울
-					<button type="submit" class="SearchDelBtn">x</button>
-				</span>
+				<h3 class="inlineTitle">조건 검색</h3>
+				<div class="inlineTagReg"></div>
+				<div class="inlineTagPos"></div>
+				<div class="inlineTagDo"></div>
 			</div> <!-- end.filter -->
 			
 			<div class="search">
 				<ul>
 					<li>
 						<span>지역</span>
-						<select class="select" id="region" name="region">
-							<option value="">전체</option>
-							<option value="">서울</option>
-							<option value="">경기</option>
-							<option value="">인천</option>
-							<option value="">:</option>
+						<select class="select" id="region" name="region" onchange="changeRegionSelect()">
+							<option>-</option>
+						<c:forEach var="regions" items="${regions }">
+							<option value="${regions.regionNo }">${regions.regionName }</option>
+						</c:forEach>
 						</select>
 					</li>
 					<li>
 						<span>상세 지역</span>
-						<select class="select" id="subRegion" name="subRegion">
-							<option value="">전체</option>
-							<option value="">수원</option>
-							<option value="">안산</option>
-							<option value="">안양</option>
-							<option value="">:</option>
+						<select class="select" id="subRegion" name="subRegion" onchange="changeSubregionSelect()">
+							<option>-</option>
 						</select>
 					</li>
 					<li>
 						<span>포지션</span>
-						<select class="select" id="position" name="position">
-							<option value="">전체</option>		
-							<option value="">프론트엔드</option>
-							<option value="">백엔드</option>
-							<option value="">풀스택</option>
-							<option value="">퍼블리싱</option>
-							<option value="">디자인</option>
-							<option value="">기획</option>
+						<select class="select" id="position" name="position" onchange="changePosSelect()">
+							<option>-</option>
+						<c:forEach var="poss" items="${poss }">
+							<option value="${poss.posNo }">${poss.posName }</option>
+						</c:forEach>
 						</select>
 					</li>
 					<li>
 						<span>진행방식</span>
-						<select class="select" id="doType" name="doType">
-							<option value="">전체</option>
-							<option value="">대면</option>
-							<option value="">비대면</option>
+						<select class="select" id="doType" name="doType" onchange="changeDoTypeSelect()">
+							<option>-</option>
+						<c:forEach var="dotypes" items="${dotypes }">
+							<option value="${dotypes.doTypeNo }">${dotypes.doTypeName }</option>
+						</c:forEach>
 						</select>
 					</li>
 					<li>
@@ -104,6 +198,39 @@
 			</div> <!-- end.search -->
 			
 			<div class="recruitLists">
+				
+				<c:forEach var="recruit" items="${lists }" varStatus="status">
+					<div class="recruitList">
+					<ul>
+					
+						<li>
+							<span>모집 마감일  ${recruit.deadlineDate } (D-${recruit.dDay })</span>
+							<span style="margin-left:60px;">프로젝트 기간 ${recruit.prjStart } ~ ${recruit.prjEnd } </span>
+							<span style="margin-left:60px;">모집 인원  5 / 6 </span>
+						</li>
+						<li>
+							<span class="recruitTitle"><a href="PostFormSample.jsp">${recruit.title } </a></span>
+							<span class="recruitStatus">모집중</span>
+							<!-- <span class="endStatus">모집마감</span> -->
+						</li>
+						<li>
+							<p>${recruit.content }
+						    </p>
+						</li>
+						<li>
+							<c:forEach var="tool" items="${tools[status.index] }">
+								<span>${tool }</span>
+							</c:forEach>
+							<span>${recruit.doTypeName }</span>
+							<span>${recruit.regionName }</span>
+							<span>${recruit.subRegionName }</span>
+						</li>
+						
+					</ul>
+					</div> <!-- end.recruitList -->
+				</c:forEach>
+				
+				<!-- 
 				<div class="recruitList">
 					<ul>
 						<li>
@@ -114,7 +241,7 @@
 						<li>
 							<span class="recruitTitle"><a href="PostFormSample.jsp">주차 시스템 프로젝트</a></span>
 							<span class="recruitStatus">모집중</span>
-							<!-- <span class="endStatus">모집마감</span> -->
+							<span class="endStatus">모집마감</span>
 						</li>
 						<li>
 							<p>안녕하세요. 취업 전 이력서에 작성할 포트폴리오를 만드려고 합니다. 상세 기획은 완성되지 않았기에
@@ -129,7 +256,8 @@
 							<span>서울</span>
 						</li>
 					</ul>
-				</div> <!-- end.recruitList -->
+				</div> end.recruitList
+				 -->
 			</div> <!-- end.recruitLists -->
 			
 			

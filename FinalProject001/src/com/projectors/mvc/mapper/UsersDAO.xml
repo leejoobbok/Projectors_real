@@ -32,7 +32,7 @@
 		         FROM USER_PIN
 		         ORDER BY JOIN_DATE DESC)
 		   WHERE ROWNUM = 1)
-		,${userId} ,${userPw} ,${nickname} ,${photourl})
+		,#{userId} ,#{userPw} ,#{nickname} ,#{photourl})
 	</select>
 	
 	

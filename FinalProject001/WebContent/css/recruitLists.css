@@ -7,15 +7,19 @@
     font-style: normal;
 }
 
-.inline
-{
+.inlineTitle {
 	display: inline;
+}
+
+.inlineTagReg, .inlineTagPos, .inlineTagDo {
+    display: inline;
+    text-align: center;
 }
 
 .filter
 {
-	text-align: center;
-	margin-left: -530px;
+	display: inline-block;
+	margin-left: 27.5%;
 }
 
 .searchTag
@@ -39,7 +43,7 @@
 	border: none;
 	border-radius: 8px;
 	
-	padding-top: 4px;
+	padding-bottom: -3px;
 	vertical-align: text-top;
 	
 	background-color: orange;

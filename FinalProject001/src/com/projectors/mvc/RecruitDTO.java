@@ -2,8 +2,8 @@ package com.projectors.mvc;
 
 public class RecruitDTO
 {
-	private int regionNo, subRegionNo, posNo, toolNo;
-	private String regionName, subRegionName, posName, toolName;
+	private int regionNo, subRegionNo, posNo, toolNo, doTypeNo;
+	private String regionName, subRegionName, posName, toolName, doTypeName;
 	private int countAll, countPos;
 	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
 	
@@ -41,6 +41,14 @@ public class RecruitDTO
 	{
 		this.toolNo = toolNo;
 	}
+	public int getDoTypeNo()
+	{
+		return doTypeNo;
+	}
+	public void setDoTypeNo(int doTypeNo)
+	{
+		this.doTypeNo = doTypeNo;
+	}
 	public String getRegionName()
 	{
 		return regionName;
@@ -72,6 +80,14 @@ public class RecruitDTO
 	public void setToolName(String toolName)
 	{
 		this.toolName = toolName;
+	}
+	public String getDoTypeName()
+	{
+		return doTypeName;
+	}
+	public void setDoTypeName(String doTypeName)
+	{
+		this.doTypeName = doTypeName;
 	}
 	public int getCountAll()
 	{
@@ -153,4 +169,5 @@ public class RecruitDTO
 	{
 		this.content = content;
 	}
+	
 }
