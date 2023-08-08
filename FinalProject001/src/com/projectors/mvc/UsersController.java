@@ -4,8 +4,10 @@
 
 package com.projectors.mvc;
 
-import javax.annotation.PostConstruct;
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,11 +15,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import com.sun.javafx.sg.prism.NGShape.Mode;
@@ -38,23 +37,102 @@ public class UsersController
 		return result;
 
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/idcheck.action", method = RequestMethod.GET)
-	public int idCheck(@RequestParam String userId) 
+	
+	
+	@RequestMapping(value = "/toidcheck.action", method = RequestMethod.GET)
+	public void toCheckId(HttpServletRequest request, HttpServletResponse response)
 	{
+		
+		
+	}
+	
+	
 
+	@RequestMapping(value = "/idcheck.action", method = RequestMethod.GET)
+	public void CheckId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+	
 		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		String userId = (request.getParameter("userId")).trim();
+		
+		int result = 0;
+		
+		if (dao.checkId(userId) > 0 || userId.equals(""))
+		{
+			result = 1;
+		}
+		else /*중복된 아이디가 없을 때*/
+		{
+			result = 0;
+		}
 	
 		
-		System.out.println(dao.checkId(userId));
+		/* System.out.println(userId); */
 		
-		System.out.println("구분선");
+		request.setAttribute("result", result);
 		
-		return dao.checkId(userId);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("id_ck_ajax.jsp");
+		dispatcher.forward(request, response);
 		
 		
-
 	}
-
+	
+	
+	@RequestMapping(value="/nicknamecheck.action", method=RequestMethod.GET)
+	public void CheckNickname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		String nickname = (request.getParameter("nickname")).trim();
+		
+		System.out.println("닉네임 중복 확인 버큰 작동");
+		
+		
+		int result=0;
+		
+		if(dao.checknickname(nickname) > 0 || nickname.equals(""))
+		{
+			result=3;
+		}
+		else
+		{
+			result=2;
+		}
+		
+		request.setAttribute("result", result);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("nickname_ck_ajax.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+/*checkrepw.action*/	
+	@RequestMapping(value="/checkrepw.action", method=RequestMethod.GET)
+	public void CheckRePw(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String userPw = (request.getParameter("userPw")).trim();
+		String userPwCk = (request.getParameter("userPwCk")).trim();
+		
+		int result = 0;
+		
+		if (userPw.equals(userPwCk))
+		{
+			result = 10;
+		}
+		else
+		{
+			result = 11;
+		}
+		
+		
+		request.setAttribute("result", result);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("repw_ck_ajax.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+	
+	
+	
 }

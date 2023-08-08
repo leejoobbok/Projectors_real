@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,13 +69,13 @@ String cp = request.getContextPath();
 		font-size: 8pt;
 		margin-left: 150px;
 	}
-	
-	#checkId				/* 중복 체그 메세지 */
+/* 	
+	#idCheckResult				/* 중복 체크 메세지 */
 	{
 		color: red;
-	    /* display: none; */
+	    display: none;
 	}
-	
+*/
 	#sendPinBtn					/*인증번호 발송 버튼*/
 	{
 		margin-left: 150px;
@@ -95,27 +96,173 @@ String cp = request.getContextPath();
 		margin: 30px 200px 0px 180px;
 	}
 	
+	#idCheckResult, #pwReCheckResult, #nicknameCheckResult
+	{
+		color:red;
+		float:none;
+		font-size: xx-small;
+	}
+	
 </style>
+<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 <script type="text/javascript">
-    function checkId() {
-        $.ajax({
-            url: "idcheck.action",
-            method: "GET",
-            dataType: "JSON",
-            data: { "userId": $("#userId").val() },
-            success: function(data) {
-                if (data.exists) {
-                    $("#checkId").text("이미 사용중인 아이디입니다.");
-                    $("#checkId").css("display", "block");
-                } else {
-                    $("#checkId").text("사용 가능한 아이디입니다.");
-                    $("#checkId").css("display", "block");
-                }
-            }
-        });
+    function checkId() 
+    {
+    	
+		var userId = document.getElementById("userId").value;
+		
+		var url = "idcheck.action?userId="+userId;
+		
+		ajax = createAjax();
+		
+		ajax.open("GET", url, true);
+		
+		ajax.onreadystatechange = function()
+		{
+			
+			
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				
+				callBack();
+			}
+		};
+		
+		ajax.send("");
     }
+    
+    function checkNickname()
+    {
+    	
+    	var nickname = document.getElementById("nickname").value;
+    	
+    	var url="nicknamecheck.action?nickname="+nickname;
+    	
+		ajax = createAjax();
+		
+		ajax.open("GET", url, true);
+    	
+		ajax.onreadystatechange = function()
+		{
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				callBack();
+				
+			}
+		};
+		ajax.send("");
+    }
+    
+    
+    function checkRePw()
+    {
+    	
+    	var userPw = document.getElementById("userPw").value;
+    	var userPwCk = document.getElementById("userPwCk").value;
+    	
+    	var url="checkrepw.action?userPw="+userPw+"&userPwCk="+userPwCk;
+    	
+		ajax = createAjax();
+		
+		ajax.open("GET", url, true);
+    	
+		ajax.onreadystatechange = function()
+		{
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				callBack();
+				
+			}
+		};
+		ajax.send("");
+    }
+    
+    
+		
+	function callBack()
+	{
+		var data = ajax.responseText;
+		
+		data = parseInt(data);
+		
+		// 아이디 중복 x
+		if (data == 0)
+		{
+			document.getElementById("idCheckResult").innerText="사용 가능한 아이디입니다.";
+		}
+		// 아이디 중복 o
+		else if (data == 1)
+		{
+			document.getElementById("idCheckResult").innerText="이미 사용중인 아이디입니다.";
+		}
+		// 닉네임 중복 x
+		else if (data == 2)
+		{
+			document.getElementById("nicknameCheckResult").innerText="사용 가능한 닉네임입니다.";			
+		}
+		// 닉네임 중복 o
+		else if (data == 3)
+		{
+			document.getElementById("nicknameCheckResult").innerText="이미 사용 중인 닉네임입니다.";			
+		}
+		// 비밀번호 확인 일치
+		else if (data == 10)
+		{
+			document.getElementById("pwReCheckResult").innerText="비밀번호 확인 완료.";
+		}
+		// 비밀번호 확인 불일치
+		else if (data == 11)
+		{
+			document.getElementById("pwReCheckResult").innerText="비밀번호 확인이 일치하지 않습니다.";
+		}
+		
+		
+	}
+	$(document).ready(function()
+	{
+		$("#userPw").change(function()
+		{
+		    checkPassword($('#userPw').val(),$('#userId').val());
+		});
+		
+		function checkPassword(userPw, userId){
+		    
+		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(userPw)){            
+		        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
+		        $('#userPw').val('').focus();
+		        return false;
+		    }    
+		    var checkNumber = password.search(/[0-9]/g);
+		    var checkEnglish = password.search(/[a-z]/ig);
+		    if(checkNumber <0 || checkEnglish <0){
+		        alert("숫자와 영문자를 혼용하여야 합니다.");
+		        $('#userPw').val('').focus();
+		        return false;
+		    }
+		    if(/(\w)\1\1\1/.test(userPw)){
+		        alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+		        $('#userPw').val('').focus();
+		        return false;
+		    }
+		        
+		    if(userPw.search(id) > -1){
+		        alert("비밀번호에 아이디가 포함되었습니다.");
+		        $('#userPw').val('').focus();
+		        return false;
+		    }
+		    return true;
+		}
+	});
+	
+
+	
+	
+
+    
 </script>
+
 
 </head>
 
@@ -136,10 +283,12 @@ String cp = request.getContextPath();
 			<div id="joinBox">
 				<form action="createAccount.action">
 					<span>이메일(ID)</span>
-					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"/>
+					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
+					required="required"/>
 					<button type="button" onclick="checkId()">아이디 확인</button><br>
 					
-					<span id="checkId"></span>
+			
+					<p id="idCheckResult"></p>
 					<!--
 					<p id="msg_false">이미 사용중이거나 사용 불가한 아이디입니다.</p>
 					<p id="msg_true">사용 가능한 아이디입니다. 인증번호 발송 버튼을 눌러 인증을 완료해주세요.</p>
@@ -156,30 +305,32 @@ String cp = request.getContextPath();
 					<p id="msg_false">인증번호가 틀렸습니다. 정확하게 입력해주세요.</p>
 					<p id="msg_true">이메일 인증이 완료되었습니다.</p>
 					-->
-					
+					<br />
 					<span>비밀번호 </span>
-					<input type="text" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"/>
+					<input type="password" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"
+					required="required"/>
 					<button type="button">비밀번호 확인</button><br>
-					<p id="msg_false">잘못된 비밀번호입니다. 8~16자 영문 숫자 조합으로 입력해주세요.</p>
-					<p id="msg_true">사용가능한 비밀번호입니다. 아래에도 동일하게 입력해주세요.</p>
 					
+					
+					<!--
+					<p id="msg_false">잘못된 비밀번호입니다. 8~16자 영문 숫자 조합으로 입력해주세요.</p>
+					<p id="msg_true">사용가능한 비밀번호입니다. 아래에도 동일하게 입력해주세요.</p> 
+					-->
 					
 					<span>비밀번호 재입력</span>
-					<input type="text" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."/>
-					<button type="button">재입력 확인</button><br>
-					
-					<p id="msg_false"> 위의 비밀번호와 같지 않습니다. 동일하게 입력해주세요.</p>
-					<p id="msg_true">비밀번호 확인이 완료되었습니다.</p>
-					
+					<input type="password" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
+					required="required" oninput="checkRePw()"/>
+					<!-- <button type="button" >재입력 확인</button><br> -->
+					<br />
+					<p id="pwReCheckResult"></p>
+					<br />
 					<span>닉네임</span>
-					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" />
-					<button type="button">중복 확인</button><br>
+					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
+					required="required"/>
+					<button type="button" onclick="checkNickname()">중복 확인</button><br>
 					
 					
-				
-					
-					<p id="msg_false">이미 사용중인 닉네임입니다.</p>
-					<p id="msg_true">사용 가능한 닉네임입니다.</p>
+					<p id="nicknameCheckResult"></p>
 					
 					<!-- == 가입하기 전송 / 유효성 ok → 가입완료 페이지로 ==== -->
 					<button type="submit" id="sendJoinBtn">

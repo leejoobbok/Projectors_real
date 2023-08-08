@@ -2,17 +2,13 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.projectors.mvc.IQnaADAO">
-
-	<insert id="insert">
-		INSERT INTO ANSWER (ANSWER_NO, QUESTION_NO, PIN_NO, CONTENT, CREATED_DATE)
-		VALUES(#{answerNo}, #{questionNo}, #{answerPinNo}, #{answerContent}, #{answerCreatedDate})
-	</insert>
+<mapper namespace="com.projectors.mvc.IqnaADAO">
 
 	<select id="viewAnswerDetail"  resultType="com.projectors.mvc.QnaADTO" >
-		SELECT ANSWER_NO, ANSWER_CONTENT, ANSWER_CREATED_DATE
-		FROM XXXXVIEW <!--  뷰 이름  -->
-		WHERE QUESTION_NO = #{questionNo}
+		SELECT CONTENT AS ANSWERCONTENT,CREATED_DATE AS ANSWERCREATEDDATE
+		FROM ANSWER
+		WHERE QUESTION_NO='QN1' <!-- 정적 구성 -->
+		<!-- WHERE QUESTION_NO = #{questionNo} -->
 	</select>
 	
 </mapper>
