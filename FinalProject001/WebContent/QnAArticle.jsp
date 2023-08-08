@@ -107,7 +107,7 @@
 	{
 		$("#returnList").click(function()
 		{
-			window.location.href="QnALists.jsp";
+			window.location.href="question-list.action";
 		});
 	});
 </script>
