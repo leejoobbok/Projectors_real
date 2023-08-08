@@ -184,12 +184,11 @@
 		<table class="table">
 			<tr>
 				<td>관리자</td>
-				<td>답변일자</td>
+				<td>답변일시</td>
 			</tr>
 			<tr style="background-color: lightgray;">
 				<td>
-					침대에 들어가서 주무시면 됩니다.<br>
-					단, 할 일은 다 끝내셨겠죠?
+					
 				</td>
 				<td>2023-07-27</td>
 			</tr>
