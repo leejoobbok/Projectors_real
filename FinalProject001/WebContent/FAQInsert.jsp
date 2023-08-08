@@ -103,14 +103,14 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$(".returnList").click(function()
+		$("#addFAQ").click(function()
 		{
-			window.location.href="FAQManagement.jsp";
+			$("#insertForm").submit();
 		});
 		
-		$("#writeQnA").click(function()
+		$("#cancel").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="faqManagement.action";
 		});
 		
 	});
@@ -122,7 +122,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -139,7 +139,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
+			<a href="faqManagement.action">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -155,7 +155,7 @@
 		<h2>	FAQ 작성하기</h2>
 	</div>
 	<br>
-
+	<form action="faqInsert.action" method="get" id="insertForm" name="insertForm">
 	<div>	
 		<table class="table">
 			<tr>
@@ -174,7 +174,7 @@
 				<th style="vertical-align: top;">내용</th>
 				<td>
 					<div>
-					<input type="text" id="title" name="title" style="width: 90%; height: 200px;">
+					<input type="text" id="content" name="content" style="width: 90%; height: 200px;">
 					</div>
 				</td>
 			</tr>
@@ -185,9 +185,10 @@
 	</div>
 	<br>
 	<div style="text-align: center;">
-	    <button class="returnList">등록하기</button>
-		<button class="returnList">취소하기</button>
+	    <button class="returnList" id="addFAQ" name="addFAQ">등록하기</button>
+		<button class="returnList" id="cancel" name="cancel">취소하기</button>
 	</div>
+	</form>
 	<br><br>
 	<br><br><br><br><br><br><br>
 </div><!-- end #rightBar -->

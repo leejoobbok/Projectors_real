@@ -103,14 +103,14 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$(".returnList").click(function()
+		$("#updateFaq").click(function()
 		{
-			window.location.href="FAQManagement.jsp";
+			$("#updateForm").submit();
 		});
 		
-		$("#writeQnA").click(function()
+		$("#returnArticle").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="faqManagementArticle.action?faqNo="+$("#faqNo").val;
 		});
 		
 	});
@@ -122,7 +122,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -152,20 +152,27 @@
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 작성하기</h2>
+		<h2>	FAQ 수정하기</h2>
 	</div>
 	<br>
-
+	<form action="faqUpdate.action" method="get" id="updateForm">
 	<div>	
 		<table class="table">
 			<tr>
 				<th colspan="2"><hr /></th>
 			</tr>
 			<tr>
+				<th style="width: 10%;">번호</th>
+				<td style="width: 90%;">
+					<input type="text" id="faqNo" name="faqNo" value="${article.faqNo }"
+					readonly="readonly" style="width: 90%; border: none;" />
+				</td>
+			</tr>
+			<tr>
 				<th style="width: 10%;">제목</th>
 				<td style="width: 90%;">
 					<input type="text" id="title" name="title" style="width: 90%;"
-					placeholder="가져온 title 내용">
+					value="${article.title} ">
 				</td>
 			</tr>
 			<tr>
@@ -175,8 +182,8 @@
 				<th style="vertical-align: top;">내용</th>
 				<td>
 					<div>
-					<input type="text" id="title" name="title" style="width: 90%; height: 200px;"
-					placeholder="가져온 content 내용">
+					<input type="text" id="content" name="content" style="width: 90%; height: 200px;"
+					value="${article.content }">
 					</div>
 				</td>
 			</tr>
@@ -187,9 +194,10 @@
 	</div>
 	<br>
 	<div style="text-align: center;">
-	    <button class="returnList">수정하기</button>
-		<button class="returnList">취소하기</button>
+	    <button class="returnList" value="${article.faqNo }" id="updateFaq">수정하기</button>
+		<button class="returnList" value="${article.faqNo }" id="returnArticle">취소하기</button>
 	</div>
+	</form>
 	<br><br>
 	<br><br><br><br><br><br><br>
 </div><!-- end #rightBar -->

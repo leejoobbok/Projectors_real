@@ -127,7 +127,7 @@
 	{
 		$("#WriteQnA").click(function()
 		{
-			window.location.href="FAQInsert.jsp";
+			window.location.href="faqInsertForm.action";
 		});
 	});
 </script>
@@ -139,7 +139,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -156,7 +156,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
+			<a href="faqManagement.action">FAQ</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -191,6 +191,14 @@
 			<tr>
 				<th colspan="2"><hr /></th>
 			</tr>
+			<c:forEach var="faq" items="${lists }">
+				<tr>
+					<td>${faq.faqNo }</td>
+					<td><a href="faqManagementArticle.action?faqNo=${faq.faqNo }">${faq.title }</a></td>
+				</tr>
+			</c:forEach>
+			
+			<!-- 
 			<tr>
 				<td>29</td>
 				<td class="leftTd"><a href="FAQManagementArticle.jsp">지원한 내역이 안보여요</a></td>
@@ -261,6 +269,7 @@
 			<tr>
 				<th colspan="2"><hr style=""/></th>
 			</tr>
+			 -->
 		</table>
 	</div>
 	<br>

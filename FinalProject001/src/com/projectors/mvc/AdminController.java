@@ -32,6 +32,8 @@ public class AdminController
 		return result;
 	}
 	
+	//==========================================공지===============================================
+	
 	//-- 공지사항으로 페이지 연결 - 리스트
 	@RequestMapping (value = "/mainNoticeList.action", method = RequestMethod.GET)
 	public String noticeLists(Model model)
@@ -104,4 +106,113 @@ public class AdminController
 		
 		return result;
 	}
+	//==========================================공지===============================================
+
+	//==========================================문의===============================================
+	
+	//-- 문의 카테고리 메인 FAQ 리스트 페이지
+	@RequestMapping (value = "/faqManagement.action", method = RequestMethod.GET)
+	public String adminFaq(Model model)
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		model.addAttribute("lists", dao.getFaqList());
+		
+		result = "/FAQManagement.jsp";
+		
+		return result;
+	}
+	
+	//-- 문의 카테고리 FAQ 아티클 확인 페이지
+	@RequestMapping	(value = "/faqManagementArticle.action", method = RequestMethod.GET)
+	public String adminFaqArticle(Model model, String faqNo)
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		model.addAttribute("article", dao.viewFaqDetail(faqNo));
+
+		result = "/FAQManagementArticle.jsp";
+		
+		return result;
+	}
+	
+	//-- 문의 아티클 작성 폼
+	@RequestMapping (value = "/faqInsertForm.action" , method = RequestMethod.GET)
+	public String faqInsertForm()
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		result = "/FAQInsert.jsp";
+		
+		return result;
+	}
+	
+	//-- 문의 아티클 작성
+	@RequestMapping (value = "/faqInsert.action", method = RequestMethod.GET)
+	public String faqInsert(FaqDTO dto)
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		dao.addFAQ(dto);
+		
+		result = "redirect:faqManagementArticle.action?faqNo="+dao.findFaqNo();
+		
+		return result;
+	}
+	
+	//-- 문의 아티클 수정 폼
+	@RequestMapping (value = "/faqUpdateForm.action", method = RequestMethod.GET)
+	public String faqUpdateForm(Model model, String faqNo)
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		model.addAttribute("article", dao.viewFaqDetail(faqNo));
+
+		result = "/FAQUpdate.jsp";
+		
+		return result;
+	}
+	
+	//-- 문의 아티클 수정
+	@RequestMapping (value = "/faqUpdate.action", method = RequestMethod.GET)
+	public String faqUpdate(FaqDTO dto)
+	{
+		String result = "";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+
+		dao.updateFAQ(dto);
+
+		result = "redirect:faqManagementArticle.action?faqNo="+dto.getFaqNo();
+		
+		return result;
+	}
+	
+	//-- 문의 아티클 삭제
+	@RequestMapping (value = "/faqDelete.action", method = RequestMethod.GET)
+	public String deleteFaq(String faqNo)
+	{
+		String result="";
+		
+		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
+		
+		dao.removeFAQ(faqNo);
+		
+		result = "redirect:faqManagement.action";
+		
+		return result;
+	}
+	
+	//==========================================문의===============================================
+
 }
