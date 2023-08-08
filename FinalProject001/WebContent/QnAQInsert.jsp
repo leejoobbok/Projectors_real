@@ -155,7 +155,7 @@
 	<br>
 	
 	<div>
-	<form action="" id="insertForm">
+	<form action="question-insert-form.action" id="insertForm" method="GET">
 		<table class="table">
 			<tr>
 				<th colspan="2"><hr /></th>
@@ -163,7 +163,7 @@
 			<tr>
 				<th style="width: 20%;">제목</th>
 				<th style="width: 80%;">
-					<input type="text" name="title" id="questionTitle" width="100%;" />
+					<input type="text" name="questionTitle" id="questionTitle" width="100%;" />
 				</th>
 			</tr>
 			<tr>
@@ -171,8 +171,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea name="content" id="questionContent" cols="30" rows="10"
-					>내용 작성 어쩌구</textarea>
+					<textarea name="questionContent" id="questionContent" cols="30" rows="10" placehoder="내용을 작성해주세요."></textarea>
 				</td>
 			</tr>
 			<tr>
