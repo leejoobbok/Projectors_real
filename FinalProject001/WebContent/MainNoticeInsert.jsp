@@ -134,15 +134,15 @@
 	
 	function regist()
 	{
-		alert("등록이 완료되었습니다.");
-		window.location.href="AdminMainNoticeLists.jsp";
+		var f = document.forms["insertForm"];
 		
+		f.submit();
 	}
 	
 	function cancle()
 	{
 		
-		window.location.href="AdminMainNoticeLists.jsp";
+		window.location.href="mainNoticeList.action";
 	}
 	
 </script>
@@ -153,7 +153,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo.JPG"/></a>
 		</div>	
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -167,7 +167,7 @@
 
 
 <div id="MainNoticeInsert" name="MainNoticeInsert">
-<form action="mainNoticeArticle.jsp">
+<form action="noticeInsert.action" method="post" name="insertForm">
 	<div id="noticeTitleInsert">
 		<span id="noticeTitle">
 			제목  : 

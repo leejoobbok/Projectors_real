@@ -6,7 +6,7 @@ public interface IAdminNoticeDAO
 {
 	public ArrayList<AdminDTO> lists();
 	
-	public int add(AdminDTO dto);
+	public int add(AdminNoticeDTO dto);
 	
 	public int remove(String adminNoticeNo);
 	
