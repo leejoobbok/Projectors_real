@@ -15,7 +15,7 @@ public interface ILoginDAO
 	
 	public String getAdminPin(LoginDTO loginDTO);
 	
-
+	public String getAdminNo(LoginDTO loginDTO);
 
 	
 	//-- 로그인 기록
