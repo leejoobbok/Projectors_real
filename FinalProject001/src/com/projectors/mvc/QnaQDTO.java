@@ -3,7 +3,7 @@ package com.projectors.mvc;
 public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO  
 {
 	private String questionNo, questionPinNo , questionTitle, questionContent, quesstionCreatedDate, isReply;
-	// 문의번호, (회원)식별번호, 문의제목, 문의내용, 등록일
+	// 문의번호, (회원)식별번호, 문의제목, 문의내용, 등록일, 답변 여부 
 	
 	// getter setter
 	
