@@ -37,7 +37,7 @@ public class QnaAController
 		String result = "";
 		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);	
 	
-		model.addAttribute("answerArticle", dao.viewAnswerDetail(answerNo));
+		model.addAttribute("answerArticle", dao.viewAnswerDetail());
 		
 		/* result = "/WEB-INF/view/QnAArticle.jsp"; */
 		result = "QnAArticle.jsp";
