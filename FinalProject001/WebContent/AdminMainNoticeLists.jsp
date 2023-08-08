@@ -92,7 +92,7 @@
 				<h2>공지 게시판</h2>
 			</div>
 			<div id="write">
-				<button type="button"><a href="MainNoticeInsert.jsp">공지 작성</a></button>
+				<button type="button"><a href="noticeInsertForm.action">공지 작성</a></button>
 			</div>
 			
 			
