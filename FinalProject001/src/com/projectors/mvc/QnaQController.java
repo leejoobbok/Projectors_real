@@ -37,7 +37,7 @@ public class QnaQController
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionList", dao.getQuestionList());
+		model.addAttribute("questionList", dao.getQuestionList(questionPinNo));
 		
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
 		result = "QnALists.jsp";
