@@ -1,5 +1,6 @@
 package com.projectors.mvc;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,17 +32,17 @@ public class LoginController
 	
 
 	@RequestMapping(value = "/login.action", method = RequestMethod.POST)
-	public String login(Model model, LoginDTO loginDTO)
+	public String login(Model model, LoginDTO loginDTO, HttpServletRequest request)
 	{
 		String result = "";
 		
 		ILoginDAO dao = sqlSession.getMapper(ILoginDAO.class);
 		
+		HttpSession session = request.getSession();
 		
+		/*관리자라면*/
 		if (loginDTO.getManagerCheck() != null)
 		{
-			loginDTO.setAdminId(loginDTO.getUsersId());
-			loginDTO.setAdminPw(loginDTO.getUsersPw());
 			
 			if (dao.adminLogin(loginDTO) == 1)
 			{
@@ -51,6 +52,13 @@ public class LoginController
 				/*관리자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
 				
+				System.out.println(dao.getAdminPin(loginDTO));
+				System.out.println(dao.getAdminNo(loginDTO));
+				
+				
+				/*세션에 관리자 pin 등록*/
+				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
+				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
 				
 			}
 			else
@@ -59,16 +67,24 @@ public class LoginController
 				result="redirect:loginForm.action";
 			}
 		}
+		/*일반 사용자라면 (관리자가 아니라면)*/
 		else 
 		{
 			if (dao.userLogin(loginDTO) == 1)
 			{
 				System.out.println("사용자 로그인 성공");
-				result="MainPage.jsp";
-				
 				
 				/*사용자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
+				
+				System.out.println(dao.getUserPin(loginDTO));
+				
+				/*세션에 사용자 pin 등록*/
+				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
+				
+				result="MainPage.jsp";
+				
+				
 			}
 			else
 			{
