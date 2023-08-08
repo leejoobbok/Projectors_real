@@ -140,9 +140,14 @@
 		window.location.href="mainNoticeList.action";
 	}
 	
-	function toDelete()
+	function toDelete(no)
 	{
-		window.location.href="mainNoticeDelete.action";
+		if (confirm("정말 삭제하시겠습니까?"))
+		{
+			window.location.href="mainNoticeDelete.action?adminNoticeNo="+no;
+		}
+		
+		return;
 	}
 
 </script>
@@ -206,7 +211,8 @@
 			목록으로
 		</button>
 		<button type="button" class="buttonToDelete" style="font-size: 20px;"
-		onclick="toDelete()">
+		value="${article.adminNoticeNo}"
+		onclick="toDelete(this.value)">
 			삭제
 		</button>
 	</div>

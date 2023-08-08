@@ -20,7 +20,7 @@
 <delete id="remove">
 	DELETE
 	FROM ADMIN_NOTICE
-	WHERE ADMIN_NOTICE = #{adminNoticeNo} 
+	WHERE ADMIN_NOTICE_NO = #{adminNoticeNo} 
 </delete>
 
 <select id="article" resultType="com.projectors.mvc.AdminNoticeDTO">
