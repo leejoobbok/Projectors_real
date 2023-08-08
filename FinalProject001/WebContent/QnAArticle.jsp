@@ -149,7 +149,7 @@
 
 <div id="rightBar">
 	<div>
-		<h2> 1 : 1 문의: 상세 보기 </h2>
+		<h2> 1 : 1 문의 상세 </h2>
 	</div>
 	<br>
 	
@@ -183,8 +183,8 @@
 	<div>
 		<table class="table">
 			<tr>
-				<td>관리자</td>
-				<td>답변일시</td>
+				<th>내용</th>
+				<th>답변일시</th>
 			</tr>
 			<c:set var="aArticle" value="${answerArticle}"/>
 			<tr style="background-color: lightgray;">
