@@ -175,10 +175,10 @@
 			</tr>
 			<c:forEach var="question" items="${questionList}">
 				<tr>
-					<td>${question.questionNo}<td> 				<!-- 문의 번호 -->
-					<td>${question.questionTitle}<td> 			<!-- 제목 -->
-					<td>${question.quesstionCreatedDate}<td> 	<!-- 작성일 -->
-					<td>${question.isReply}<td> 				<!-- 작성일 -->
+					<td>${question.questionNo}</td> 				<!-- 문의 번호 -->
+					<td>${question.questionTitle}</td> 			<!-- 제목 -->
+					<td>${question.quesstionCreatedDate}</td> 	<!-- 작성일 -->
+					<td>${question.isReply}</td> 				<!-- 작성일 -->
 				</tr>	
 			</c:forEach>
 			<!--  정적 구성 
