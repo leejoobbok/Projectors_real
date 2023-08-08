@@ -783,3 +783,70 @@ DESC REP_APPLY_RESULT;
 DESC REPORT_RESULT;
 
 SELECT * FROM USERS;
+
+DESC USERS;
+
+-- 아이디 중복검사를 뷰 생성
+
+
+CREATE OR REPLACE VIEW IDCHECK
+AS
+SELECT ID
+FROM USERS 
+UNION ALL 
+SELECT ADMIN_ID AS ID
+FROM ADMIN;
+
+--==>> View IDCHECK이(가) 생성되었습니다.
+
+SELECT ID
+FROM IDCHECK;
+/*
+bad@naver.com
+doolahyeon@gmail.com
+nedahyeon@gmail.com
+ohahyeon@gmail.com
+sedahyeon@gmail.com
+spb@naver.com
+test995@test.com
+test996@test.com
+test997@test.com
+test998@test.com
+test999@test.com
+tty@naver.com
+ugahyeon@gmail.com
+노진구@naver.com
+도라에몽@naver.com
+비실이@naver.com
+이슬이@naver.com
+퉁퉁이@naver.com
+admin001@gmail.com
+admin002@gmail.com
+*/
+
+--==>> 아이디 중복 체크용 COUNT
+SELECT COUNT(*) AS COUNT
+FROM IDCHECK
+WHERE ID='노진구@naver.com';
+--==>> 1
+
+--==>> 아이디 중복검사용
+SELECT COUNT(*) AS COUNT
+FROM IDCHECK
+WHERE ID='';
+
+
+SELECT COUNT(*) AS COUNT
+FROM USERS
+WHERE NICKNAME='스폰지밥';
+--==>> 1
+
+--==>> 닉네임 중복 검사용
+SELECT COUNT(*) AS COUNT
+FROM USERS
+WHERE NICKNAME='';
+
+
+SELECT *
+FROM FAQ;
+
