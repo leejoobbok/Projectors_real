@@ -62,12 +62,30 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 공지사항 아티클 작성하기
-	public String noticeInsert(Model model)
+	//-- 공지사항 아티클 작성하기 폼
+	@RequestMapping (value = "/noticeInsertForm.action", method = RequestMethod.GET)
+	public String noticeInsertForm()
 	{
 		String result = "";
 		
+		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
 		
+		result = "/MainNoticeInsert.jsp";
+		
+		return result;
+	}
+	
+	//-- 공지사항 작성
+	@RequestMapping (value = "/noticeInsert.action", method = RequestMethod.POST)
+	public String noticeInsert(AdminNoticeDTO dto)
+	{
+		String result = "";
+		
+		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		dao.add(dto);
+		
+		result = "redirect:mainNoticeList.action";
 		
 		return result;
 	}
