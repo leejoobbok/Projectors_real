@@ -30,17 +30,17 @@ public class QnaQController
 		return result; 
 	}
 	
-	// 나의 질문 리스트 출력 (MyQuestionLists.jsp) 
+	// 나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
 	public String questionList(String questionPinNo, Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionList", dao.getQuestionList(questionPinNo));
+		model.addAttribute("questionList", dao.getQuestionList());
 		
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
-		result = "MyQuestionLists.jsp";
+		result = "QnALists.jsp";
 		return result; 
 	}
 	
