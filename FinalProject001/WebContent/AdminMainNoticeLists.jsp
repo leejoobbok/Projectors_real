@@ -63,15 +63,12 @@
 	{
 		margin: 20px 0px;
 		font-size: 16pt;
+		
 	}
 	#mainNoticeLists /* 공지글 테이블*/
 	{
 		border: solid 1px;
 		font-size: 12pt;
-	}
-	#mainNoticeLists tr /* 테이블 row */
-	{
-		
 	}
 </style>
 </head>
@@ -83,7 +80,7 @@
 				<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-				<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+				<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>	
 		<div id="menuBar">			<!-- 메뉴바( 메인 | 공지..) -->
 				<c:import url="AdminBar.jsp"></c:import>
@@ -102,17 +99,17 @@
 			<div id="mainNoticeListBox" name="mainNoticeListBox"> <!-- 테이블 영역 -->
 				<table id="mainNoticeLists">
 					<tr>
-						<th width="120px">글 번호</th>
-						<th width="800px">제목</th>
-						<th width="100px">작성자</th>
+						<th style="width: 10%;">글 번호</th>
+						<th style="width: 75%;">제목</th>
+						<th style="width: 15%;">작성자</th>
 					</tr>
 					<c:forEach var="notice"  items="${lists }">
 						<tr>
 							<td>${notice.adminNoticeNo }</td>
 							<td>
-							<a href="adminNoticeArticle.action?adminNoticeNo="+${notice.adminNoticeNo }>
+							<a href="adminNoticeArticle.action?adminNoticeNo=${notice.adminNoticeNo }">
 							${notice.title }</a></td>
-							<td>관리자${notice.adminNo }</td>
+							<td><%-- 관리자번호들어갈 자리 --%></td>
 						</tr>
 					</c:forEach>
 				</table>

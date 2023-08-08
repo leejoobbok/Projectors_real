@@ -31,7 +31,7 @@ a
 
 <body>
 <div id="menuBar">
-	<a href="AdminMainPage.jsp">메인페이지</a>
+	<a href="adminMain.action">메인</a>
 	<a href="mainNoticeList.action">공지사항</a>
 	<a href="FAQManagement.jsp">문의관리</a>
 	<a href="ReportManagement.jsp">신고관리</a>

@@ -5,13 +5,11 @@
 <mapper namespace="com.projectors.mvc.IAdminNoticeDAO">
 
 <select id="lists" resultType="com.projectors.mvc.AdminNoticeDTO">
-		SELECT ADMIN_NOTICE_NO AS adminNoticeNo
-        , SUBSTR(( SELECT ADMIN_NO
-            FROM ADMIN
-            WHERE PIN_NO = AN.PIN_NO),3) AS ADMIN_NO
-        , TITLE
-        , CONTENT
-		FROM ADMIN_NOTICE AN
+	SELECT ADMIN_NOTICE_NO AS adminNoticeNo
+       , TITLE
+       , CONTENT
+	FROM ADMIN_NOTICE AN
+	ORDER BY adminNoticeNo DESC
 </select>
 
 <insert id="add">
@@ -24,5 +22,13 @@
 	FROM ADMIN_NOTICE
 	WHERE ADMIN_NOTICE = #{adminNoticeNo} 
 </delete>
+
+<select id="article" resultType="com.projectors.mvc.AdminNoticeDTO">
+	SELECT ADMIN_NOTICE_NO AS adminNoticeNo
+			, TITLE
+	        , CONTENT
+	FROM ADMIN_NOTICE
+	WHERE ADMIN_NOTICE_NO = #{adminNoticeNo}
+</select>
 
 </mapper>
