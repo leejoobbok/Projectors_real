@@ -119,6 +119,26 @@ WHERE ADMIN_NOTICE = ? ;
 
 
 -- pin_no 로 관리자번호 뒷자리 숫자만 조회
-SELECT TO_NUMBER(SUBSTR(ADMIN_NO, 3)) AS ADMIN_NO
+SELECT TO_NUMBER(SUBSTR(ADMIN_NO, 3)) AS adminNo
 FROM ADMIN
 WHERE PIN_NO = 'UP16';
+
+
+-- 공지 아티클 확인 구문
+SELECT ADMIN_NOTICE_NO AS adminNoticeNo
+        , TITLE
+        , CONTENT
+FROM ADMIN_NOTICE
+WHERE ADMIN_NOTICE_NO = 'AN1'
+;
+
+DESC ADMIN_NOTICE;
+
+--TEXTAREA 확인 용 공지글 삽입
+
+INSERT INTO ADMIN_NOTICE(ADMIN_NOTICE_NO, TITLE, CONTENT, PIN_NO)
+VALUES('AN'||ADMINNOTICENOSEQ.NEXTVAL, '이용수칙', '본 사이트는 웹 개발 프로젝트를 위한 사이트로, 많은 웹 개발자분들의 관심과 사랑으로 운영되고 있습니다. 
+다만, 일부 악용유저들의 무분별한 이용으로 인해, 본 사이트의 수칙을 강화하게 되었습니다.
+기존의 유저들께 불편을 끼치지 않으면서 악용유저들의 이용을 제한하고자 아래와 같은 수칙들을 안내드리니, 확인 부탁드립니다.', 'UP16')
+;
+--==>> 1 행 이(가) 삽입되었습니다.
