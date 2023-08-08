@@ -26,19 +26,18 @@ public class QnaQController
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
 		dao.insert(dto);
 		
-		result ="redirect:questioninsertform.action";
+		result ="QnAArticle.jsp";
 		return result; 
 	}
 	
 	// 나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
-	public String questionList(String questionPinNo, Model model)
+	public String questionList(Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionList", dao.getQuestionList(questionPinNo));
-		
+		model.addAttribute("questionList", dao.getQuestionList());
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
 		result = "QnALists.jsp";
 		return result; 
@@ -46,12 +45,12 @@ public class QnaQController
 	
 	// 특정 질문글 출력 (QnAArticle.jsp)
 	@RequestMapping(value="/question-article.action", method = RequestMethod.GET)
-	public String questionArticle(String questionNo, Model model)
+	public String questionArticle(Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionArticle", dao.viewQuestionDetail(questionNo));
+		model.addAttribute("questionArticle", dao.viewQuestionDetail());
 		
 		/* result = "/WEB-INF/view/QnAArticle.jsp"; */
 		result = "QnAArticle.jsp";

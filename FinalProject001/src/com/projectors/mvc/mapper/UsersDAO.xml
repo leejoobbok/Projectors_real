@@ -9,7 +9,7 @@
 	<select id="getPinNo" resultType="com.projectors.mvc.UsersDTO">
 		SELECT PIN_NO
 		FROM USERS
-		WHERE ID=${id} AND PW=#{pw}
+		WHERE ID=${userId} AND PW=#{userPw}
 	</select>
 
 	
@@ -32,9 +32,21 @@
 		         FROM USER_PIN
 		         ORDER BY JOIN_DATE DESC)
 		   WHERE ROWNUM = 1)
-		,${id} ,${pw} ,${nickname} ,${photourl})
+		,${userId} ,${userPw} ,${nickname} ,${photourl})
 	</select>
 	
+	
+	<select id="checkId" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM IDCHECK
+		WHERE ID=#{userId}
+	</select>
+	
+	<select id="checknickname" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM USERS
+		WHERE NICKNAME=#{nickname}
+	</select>
 	
 	
 	

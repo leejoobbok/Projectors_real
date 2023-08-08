@@ -10,16 +10,22 @@
 	</insert>
 	
 	<select id="getQuestionList" resultType="com.projectors.mvc.QnaQDTO">
-		SELECT QUESTION_NO, TITLE, CREATED_DATE, IS_REPLY
-		FROM MY_Q_LIST	 					<!-- 특정 회원의 질문만 모아서 보여줘야함 -->
+		SELECT Q.QUESTION_NO AS QUESTIONNO, Q.TITLE AS QUESTIONTITLE
+		, Q.CREATED_DATE AS QCREATEDDATE, NVL2(A.CREATED_DATE,'답변완료','답변대기중') AS ISREPLY
+		FROM QUESTION Q JOIN ANSWER A 
+		ON Q.PIN_NO = 'UP1'
+								<!-- 특정 회원의 질문만 출력. -->
 		<!-- WHERE PIN_NO = #{questionPinNo} -->
 	</select>
 
 	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">
-		SELECT TITLE, CONTENT, CREATED_DATE
-		FROM QUESTION 
-		WHERE QUESTION_NO = 'QN1' <!-- 임시 정적구성 -->
+		SELECT QUESTION_NO AS QUESTIONNO, TITLE AS QUESTIONTITLE, 
+		CONTENT AS QUESTIONCONTENT, CREATED_DATE AS QCREATEDDATE
+		FROM QUESTION
+		WHERE QUESTION_NO='QN1'					<!-- 임시 정적구성 -->
 		<!-- WHERE QUESTION_NO = #{questionNo} -->
 	</select>
 	
 </mapper>
+
+		<!-- questionNo, questionPinNo , questionTitle, questionContent, qCreatedDate, isReply -->

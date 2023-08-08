@@ -20,12 +20,13 @@ public interface IUsersDAO
 	public int modify(UsersDTO users);
 	
 	public int remove(String user_no);
-	
-	public int login(UsersDTO usersDTO);
 		
 	public String getPinNo(String id, String pw);
 	
 	public UsersDTO get(String pin_no);
 	
+	public int checkId(String userId);
+	
+	public int checknickname(String nickname);
 	
 }

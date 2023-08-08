@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>1:1 문의 : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
@@ -93,9 +94,7 @@
 		right: 0px;
 		bottom: 0px;		
 	}
-	
-
-
+	td{text-align: center;}
 	/* ======================================================= */
 	
 	
@@ -107,11 +106,13 @@
 		$("#WriteQnA").click(function()
 		{
 			/* window.location.href="QnAQInsert.jsp"; */
-			window.location.href="/question-insert-form.action";
+			window.location.href="question-insert-form.action";
 		});
 	});
 </script>
 </head>
+
+
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		
@@ -164,20 +165,20 @@
 				<th colspan="4"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 5%;">번호</th>
-				<th style="width: 65%;">내용</th>
+				<th style="width: 15%;">번호</th>
+				<th style="width: 55%;">제목</th>
 				<th style="width: 20%;">작성일</th>
-				<th style="width: 10%;">상태</th>
+				<th style="width: 10%;">답변여부</th>
 			</tr>
 			<tr>
 				<th colspan="4"><hr /></th>
 			</tr>
 			<c:forEach var="question" items="${questionList}">
 				<tr>
-					<td>${question.questionNo}<td> <!-- 문의 번호 -->
-					<td>${question.questionTitle}<td> <!-- 제목 -->
-					<td>${question.quesstionCreatedDate}<td> <!-- 작성일 -->
-					<td>${question.isReply}<td> <!-- 작성일 -->
+					<td>${question.questionNo}</td> 			<!-- 문의 번호 -->
+					<td><a href="question-article.action">${question.questionTitle}</a></td> 		<!-- 제목 -->
+					<td>${question.qCreatedDate}</td> 			<!-- 작성일 -->
+					<td>${question.isReply}</td> 				<!-- 답변여부 -->
 				</tr>	
 			</c:forEach>
 			<!--  정적 구성 
