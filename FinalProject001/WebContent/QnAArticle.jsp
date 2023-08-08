@@ -135,12 +135,12 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<a href="FAQLists.jsp">
+		<a href="faq-list.action">
 			<button type="button" class="btn">FAQ</button>
 		</a>
 	</div>
 	<div class="btnHeight">
-		<a href="QnALists.jsp">
+		<a href="question-list.action">
 			<button type="button" class="btn">1:1문의</button>
 		</a>
 	</div>
@@ -186,12 +186,11 @@
 				<td>관리자</td>
 				<td>답변일시</td>
 			</tr>
+			<c:set var="aArticle" value="${answerArticle}"/>
 			<tr style="background-color: lightgray;">
-				<td>
-					
-				</td>
-				<td>2023-07-27</td>
-			</tr>
+				<td>${aArticle.answerContent}</td>
+				<td>${aArticle.answerCreatedDate}</td>
+			</tr>			
 		</table>
 	</div>
 	<br>
