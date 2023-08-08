@@ -8,5 +8,5 @@ public interface IqnaADAO // 1:1 문의 답변 DAO 인터페이스
 	*/
 	
 	public int insert(QnaADTO answer);					// 관리자의 답변 등록
-	public QnaADTO viewAnswerDetail(String answerNo);	// 특정 답변 출력 ( 답변번호, 내용, 등록일) 
+	public QnaADTO viewAnswerDetail();	// 특정 답변 출력 ( 답변번호, 내용, 등록일) 
 }
