@@ -16,23 +16,10 @@ public class QnaAController
 {
 	@Autowired   
 	private SqlSession sqlSession;
-	
-	// 문의 답변 인서트 (QnAAInsert.jsp) 
-	@RequestMapping(value="/answer-insert-form.action", method = RequestMethod.GET )
-	public String qnaAInsert(QnaADTO dto)
-	{
-		String result = "";
-		
-		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);
-		dao.insert(dto);
-		
-		result ="redirect:answer-insertform.action";
-		return result; 
-	}
-	
+
 	// 특정 답변 글 출력 (QnAArticle.jsp)
 	@RequestMapping(value="/answer-article.action", method = RequestMethod.GET)
-	public String questionArticle(String answerNo, Model model)
+	public String questionArticle(Model model)
 	{	
 		String result = "";
 		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);	
