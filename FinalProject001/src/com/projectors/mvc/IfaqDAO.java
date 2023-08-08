@@ -8,5 +8,16 @@ public interface IfaqDAO
 	
 	public FaqDTO viewFaqDetail(String faqNo);	// 특정 FAQ 아티클 출력 (번호, 제목, 내용)  
 	
-	//--[참고] faq 등록/수정/삭제 등은 관리자 기능쪽에.
+	//--[참고] faq 등록/수정/삭제 등은 관리자 기능
+	// 등록
+	public int addFAQ(FaqDTO dto);
+	
+	// 수정
+	public int updateFAQ(FaqDTO dto);
+	
+	// 삭제
+	public int removeFAQ(String faqNo);
+	
+	// 가장 최근에 생성한 FAQ 넘버 가져오기
+	public String findFaqNo();
 }
