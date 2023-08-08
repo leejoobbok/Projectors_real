@@ -27,7 +27,7 @@ public class QnaQController
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
 		dao.insert(dto);
 		
-		result ="QnAArticle.jsp";
+		result ="question-list.action";
 		return result; 
 	}
 	
