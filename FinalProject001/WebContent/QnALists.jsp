@@ -94,7 +94,7 @@
 		right: 0px;
 		bottom: 0px;		
 	}
-
+	td{text-align: center;}
 	/* ======================================================= */
 	
 	
@@ -165,20 +165,20 @@
 				<th colspan="4"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 5%;">번호</th>
-				<th style="width: 65%;">내용</th>
+				<th style="width: 15%;">번호</th>
+				<th style="width: 55%;">제목</th>
 				<th style="width: 20%;">작성일</th>
-				<th style="width: 10%;">상태</th>
+				<th style="width: 10%;">답변여부</th>
 			</tr>
 			<tr>
 				<th colspan="4"><hr /></th>
 			</tr>
 			<c:forEach var="question" items="${questionList}">
 				<tr>
-					<td>${question.questionNo}</td> 				<!-- 문의 번호 -->
-					<td>${question.questionTitle}</td> 			<!-- 제목 -->
-					<td>${question.quesstionCreatedDate}</td> 	<!-- 작성일 -->
-					<td>${question.isReply}</td> 				<!-- 작성일 -->
+					<td>${question.questionNo}</td> 			<!-- 문의 번호 -->
+					<td><a href="question-article.action">${question.questionTitle}</a></td> 		<!-- 제목 -->
+					<td>${question.qCreatedDate}</td> 			<!-- 작성일 -->
+					<td>${question.isReply}</td> 				<!-- 답변여부 -->
 				</tr>	
 			</c:forEach>
 			<!--  정적 구성 

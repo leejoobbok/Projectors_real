@@ -54,13 +54,10 @@
 		padding: 10px;
 		border-right: 3px solid black;
 	}
-	
 	.btn
 	{
 		width: 150px;
 	}
-	
-
 	/* ======================================================= */
 	
 	
@@ -100,8 +97,6 @@
 		bottom: 0px;		
 	}
 	
-
-
 	/* ======================================================= */
 	
 	
@@ -140,14 +135,14 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
-		</button>
+		<a href="FAQLists.jsp">
+			<button type="button" class="btn">FAQ</button>
+		</a>
 	</div>
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="QnALists.jsp">1:1문의</a>
-		</button>
+		<a href="QnALists.jsp">
+			<button type="button" class="btn">1:1문의</button>
+		</a>
 	</div>
 </div><!-- end #leftBar -->
 
@@ -161,46 +156,24 @@
 	<div>	
 		<table class="table">
 			<tr>
-				<th colspan="3"><hr /></th>
+				<th colspan="4"><hr /></th>
 			</tr>
 			<tr>
-				<th style="width: 5%;">번호</th>
-				<th style="width: 65%;">제목</th>
+				<th style="width: 10%;">번호</th>
+				<th style="width: 30%;">제목</th>
+				<th style="width: 40%;">내용</th>
 				<th style="width: 20%;">작성일</th>
 			</tr>
 			<tr>
-				<th colspan="3"><hr /></th>
+				<th colspan="4"><hr /></th>
 			</tr>
-			<c:forEach var="qArticle" items="${questionArticle}">
-				<tr>
-					<td style="width: 5%;">${qArticle.questionNo}</td>
-					<td style="width: 65%;">${qArticle. }</td>
-					<td style="width: 20%;">2023-07-25</td>
-				</tr>
-			</c:forEach>
-			
-			<!--  문의 상세: 번호, 제목, 날짜  정적구성 
-			<tr>
-				<td style="width: 5%;">3</td>
-				<td style="width: 65%;">졸려요</td>
-				<td style="width: 20%;">2023-07-25</td>
-			</tr> -->
-			<tr>
-				<th colspan="3"><hr /></th>
-			</tr>
-			
-			<!-- 내용   정적구성 
-			<tr>
-				<td colspan="3">작성한 내용이 여기에 보여집니다.
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				가나다라마바사아자차카타파하아이우에오
-				</td>
-			</tr> -->
+			<c:set var="qArticle" value="${questionArticle}" />
+	        <tr>
+	            <td>${qArticle.questionNo}</td>
+	            <td>${qArticle.questionTitle}</td>
+	            <td>${qArticle.questionContent}</td>
+	            <td>${qArticle.qCreatedDate}</td>
+	        </tr>
 			<tr>
 				<th colspan="4"><hr /></th>
 			</tr>
