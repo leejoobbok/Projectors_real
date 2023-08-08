@@ -46,7 +46,6 @@
 	  {
 	  	
 	  	width: 90%;
-	  	border: 1px solid black;
 	  	padding-top: 5%;
 	  	padding-botton: 5%;
 	  	padding-left: 5%;
@@ -121,7 +120,7 @@
 	  height: 30vh;
 	}
 	
-	.buttonToLists, .buttonToUpate
+	.buttonToLists, .buttonToDelete
 	{
 	  padding: 10px 20px;
 	  background-color: #bf5fe8;
@@ -138,12 +137,17 @@
 	
 	function toLists()
 	{
-		window.location.href="AdminMainNoticeLists.jsp";
+		window.location.href="mainNoticeList.action";
 	}
 	
-	function toUpdate()
+	function toDelete(no)
 	{
-		window.location.href="MainNoticeUpdate.jsp"
+		if (confirm("정말 삭제하시겠습니까?"))
+		{
+			window.location.href="mainNoticeDelete.action?adminNoticeNo="+no;
+		}
+		
+		return;
 	}
 
 </script>
@@ -154,7 +158,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>	
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -168,13 +172,12 @@
 
 
 <div id="MainNoticeInsert" name="MainNoticeInsert">
-<form action="AdminMainNoticeArticle.jsp">
 	<div id="noticeTitleInsert" >
 		<span id="noticeTitle">
 			제목  : 
 		</span>
 			<span id="noticeTitleInput" style="width: 55%; height: 30pt; font-size: 20pt;"/>
-				제목은 제목 제목은 제목 제목은 제목 제목은 제목
+				${article.title }
 			</span>
 	</div>
 	<div class="adminInfo" style="text-align: right; font-weight: bold;
@@ -185,7 +188,7 @@
 	<div class="adminInfo" style="text-align: right; font-weight: bold;
 	padding-left: 20%; padding-right: 20%" >
 
-	 	공지번호: 997512 | 작성자: 관리자159753  | 작성일: 2023-08-02
+	 	공지번호: ${article.adminNoticeNo } | 작성자: 관리자번호들어갈위치
 	</div>
 	<div id="noticeContentInsert">
 		<p style="font-weight: bold; text-align:left; font-size: 20pt;
@@ -193,26 +196,9 @@
 			내용
 		</p>
 		<textarea name="noticeContent" id="noticeContent" cols="70" rows="20"
-		placeholder="내용 입력" style="font-size:15pt;
-		width: 60%;" readonly="readonly">
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
-		공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지 공지는 공지
+		style="font-size:15pt; border: none; background-color:lightgray;
+		width: 60%;" readonly="readonly"
+		>${article.content }
 		</textarea>
 		
 		
@@ -220,17 +206,17 @@
 
 	<br />
 	<div class="btnContainer">
-		<button type="button" class="buttonToUpdate" style="font-size: 20px;"
-		onclick="toUpdate()">
-			수정
-		</button>
 		<button type="button" class="buttonToLists" style="font-size: 20px;"
 		onclick="toLists()">
 			목록으로
 		</button>
+		<button type="button" class="buttonToDelete" style="font-size: 20px;"
+		value="${article.adminNoticeNo}"
+		onclick="toDelete(this.value)">
+			삭제
+		</button>
 	</div>
 	
-</form>
 </div>
 </div>
 

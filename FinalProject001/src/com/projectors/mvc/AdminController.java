@@ -49,20 +49,59 @@ public class AdminController
 	
 	//-- 공지사항 아티클 들어가기
 	@RequestMapping (value = "/adminNoticeArticle.action", method = RequestMethod.GET)
-	public String noticeInsert(Model model)
+	public String noticeArticle(Model model, String adminNoticeNo)
 	{
 		String result = "";
 		
 		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
 		
-		// 이 부분 부터 작성하면 됨
-		// AdminNoticeDTO, IAdminNoticeDAO, AdminNoticeDAO.xml 사용 예정
-		//-- 이전 페이지 get 방식으로 수신해온 AdminNoticeNo 받아오는 법 확인하기.
+		model.addAttribute("article", dao.article(adminNoticeNo));
 		
 		result = "/AdminMainNoticeArticle.jsp";
 		
 		return result;
 	}
 	
-	//-- 공지사항 아티클 작성하기
+	//-- 공지사항 아티클 작성하기 폼
+	@RequestMapping (value = "/noticeInsertForm.action", method = RequestMethod.GET)
+	public String noticeInsertForm()
+	{
+		String result = "";
+		
+		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		result = "/MainNoticeInsert.jsp";
+		
+		return result;
+	}
+	
+	//-- 공지사항 작성
+	@RequestMapping (value = "/noticeInsert.action", method = RequestMethod.POST)
+	public String noticeInsert(AdminNoticeDTO dto)
+	{
+		String result = "";
+		
+		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		dao.add(dto);
+		
+		result = "redirect:mainNoticeList.action";
+		
+		return result;
+	}
+	
+	//-- 공지사항 삭제 하기
+	@RequestMapping (value = "/mainNoticeDelete.action", method = RequestMethod.GET)
+	public String remove(Model model, String adminNoticeNo)
+	{
+		String result = "";
+		
+		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		dao.remove(adminNoticeNo);
+		
+		result = "redirect:adminMain.action";
+		
+		return result;
+	}
 }
