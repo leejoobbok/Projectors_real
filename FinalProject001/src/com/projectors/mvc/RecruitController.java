@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 @Controller
 public class RecruitController
 {
@@ -45,19 +43,26 @@ public class RecruitController
 
 	@RequestMapping(value = "/getsubregion.action")
 	@ResponseBody
-	public List<String> getsubregion(int regionNo)
+	public String getsubregion(int regionNo)
 	{
+		System.out.println(regionNo);
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
-		ArrayList<String> subRegList = dao.subRegionList(regionNo);
+		// ArrayList<String> subRegList = dao.subRegionList(regionNo);
+		
+		// ArrayList<String> subRegList = new ArrayList<String>();
+		
+		String result = "";
+		for (String lists : dao.subRegionList(regionNo))
+			result += "<option value='" + lists + "'>" + lists + "</option>";
+		
+		System.out.println(result);
 		/*
-		ArrayList<String> subRegList = new ArrayList<String>();
-		
-		for (String temp : dao.subRegionList(regionNo))
-			subRegList.add(temp);
-		*/
-		System.out.println(subRegList);
-		
-		return subRegList;
+		StringBuilder result = new StringBuilder();
+	    for (String item : subRegList) {
+	        result.append("<option value='").append(item).append("'>").append(item).append("</option>");
+	    }
+	    */
+		return result;
 	}
 	
 	

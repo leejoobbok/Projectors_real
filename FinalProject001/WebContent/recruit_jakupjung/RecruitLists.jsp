@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
-	/*
+	
 	function changeRegionSelect()
 	{
 		var regionSelect = document.getElementById("region").value;
@@ -28,14 +29,30 @@
             inlineTag.removeChild(inlineTag.firstChild);
         }
 
-		if (regionSelect !== prevRegionValue && regionSelect !== "default" && regionSelect !== "")
+		if (regionSelect !== "default" && regionSelect !== "")
 		{
 			var regionSelectValue = document.getElementById("region").querySelector('option[value="' + regionSelect + '"]').textContent;
 	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
 	        inlineTag.appendChild(newSpan);
 		}
+		
 	}
 	
+	function changeSubregionSelect()
+	{
+		var posSelect = document.getElementById("subRegion").value;
+		
+		var inlineTag = document.querySelector(".inlineTagReg");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+		if (posSelect !== "default" && posSelect !== "")
+		{
+			var posSelectValue = document.getElementById("subRegion").querySelector('option[value="' + posSelect + '"]').textContent;
+	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        inlineTag.appendChild(newSpan);
+		}
+	}
 	
 	function changePosSelect()
 	{
@@ -78,7 +95,6 @@
 	        inlineTag.appendChild(newSpan);
 		}
 	}
-	*/
 	
 	
 	$(function() {
@@ -91,20 +107,13 @@
 				type:"POST"
 				, url:"getsubregion.action"
 				, data:{ regionNo: regionNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
 				, success:function(result)
 				{
-					var out = "";
-					
-					for (var i = 0; i < result.length; i++)
-					{
-						out += "<option value='" + result[i] + "'>";
-						out += result[i];
-						out += "</option>";
-					}
-					
-					$('#subRegion').html(out);
-					
+					// alert(result);
+					$('#subRegion').html(result);
 				}
+				, complete:changeRegionSelect
 				, error:function(e)
 				{
 					alert(e.responseText);
@@ -113,6 +122,14 @@
 			});
 		});
 	});
+	
+	
+	
+	function searchRecruit()
+	{
+		
+	}
+
 	
 
 </script>
@@ -159,7 +176,7 @@
 				<ul>
 					<li>
 						<span>지역</span>
-						<select class="select" id="region" name="region" onchange="changeRegionSelect()">
+						<select class="select" id="region" name="region">
 							<option>-</option>
 						<c:forEach var="regions" items="${regions }">
 							<option value="${regions.regionNo }">${regions.regionName }</option>
@@ -191,7 +208,7 @@
 						</select>
 					</li>
 					<li>
-						<button type="submit" class="searchBtn" id="searchBtn">검색</button>
+						<button type="button" class="searchBtn" id="searchBtn" onclick="searchRecruit()">검색</button>
 					</li>
 				</ul>
 				<hr style="width: 70%">

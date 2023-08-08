@@ -59,4 +59,22 @@
 		<!-- >> 생성자-인자 리스트의 0번째에 ref 를 넘기며 구성하겠다.// arg = argument -->
 	</bean>	
 	
+	
+	
+	<!-- 한글깨짐 @어노테이션 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+	 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	 			</bean>
+			</list>
+		</property>
+
+	</bean>
+	
 </beans>	
