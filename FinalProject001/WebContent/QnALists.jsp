@@ -48,19 +48,13 @@
 		height : 300px;
 		text-align: center;
 	}
-	
-	.btnHeight
-	{
-		padding: 10px;
-		border-right: 3px solid black;
-	}
-	
+
 	.btn
 	{
 		width: 150px;
+		padding: 10px;
+		border-right: 3px solid black;
 	}
-	
-
 	/* ======================================================= */
 	
 	
@@ -112,7 +106,8 @@
 	{
 		$("#WriteQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			/* window.location.href="QnAQInsert.jsp"; */
+			window.location.href="/question-insert-form.action";
 		});
 	});
 </script>
@@ -139,16 +134,12 @@
 
 
 <div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="QnALists.jsp">1:1문의</a>
-		</button>
-	</div>
+		<a href="FAQLists.jsp">
+			<button type="button" class="btn">FAQ</button>
+		</a>	
+		<a href="QnALists.jsp">
+			<button type="button" class="btn">1:1문의</button>
+		</a>
 </div><!-- end #leftBar -->
 
 
@@ -181,6 +172,15 @@
 			<tr>
 				<th colspan="4"><hr /></th>
 			</tr>
+			<c:forEach var="question" items="${questionList}">
+				<tr>
+					<td>${question.questionNo}<td> <!-- 문의 번호 -->
+					<td>${question.questionTitle}<td> <!-- 제목 -->
+					<td>${question.quesstionCreatedDate}<td> <!-- 작성일 -->
+					<td>${question.isReply}<td> <!-- 작성일 -->
+				</tr>	
+			</c:forEach>
+			<!--  정적 구성 
 			<tr>
 				<td>4</td>
 				<td><a href="QnAArticle.jsp">눈이 뻐근해요</a></td>
@@ -204,7 +204,7 @@
 				<td><a href="QnAArticle.jsp">닉네임 변경 안돼요?</a></td>
 				<td>2023-07-15</td>
 				<td>답변완료</td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 	<br>
