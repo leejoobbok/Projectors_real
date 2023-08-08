@@ -6,7 +6,9 @@
 
 	<insert id="insert">
 		INSERT INTO QUESTION (QUESTION_NO, PIN_NO, TITLE, CONTENT, CREATED_DATE)
-		VALUES(QUESTIONO_SEQ.NEXTVAL(), 'UP2', ${title}, ${content}, SYSDATE)
+		VALUES ('QN'||TO_CHAR(QUESTIONNOSEQ.NEXTVAL)
+		, 'UP2' <!-- 유저 핀번호 정적구성 (임시) -->
+		,#{questionTitle}, #{questionContent}, SYSDATE)
 	</insert>
 	
 	<select id="getQuestionList" resultType="com.projectors.mvc.QnaQDTO">
