@@ -9,4 +9,7 @@ public interface IAdminNoticeDAO
 	public int add(AdminDTO dto);
 	
 	public int remove(String adminNoticeNo);
+	
+	public AdminNoticeDTO article(String adminNoticeNo);
+	
 }
