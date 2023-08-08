@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,13 +69,13 @@ String cp = request.getContextPath();
 		font-size: 8pt;
 		margin-left: 150px;
 	}
-	
-	#checkId				/* 중복 체그 메세지 */
+/* 	
+	#idCheckResult				/* 중복 체크 메세지 */
 	{
 		color: red;
 	    /* display: none; */
 	}
-	
+	 */
 	#sendPinBtn					/*인증번호 발송 버튼*/
 	{
 		margin-left: 150px;
@@ -96,26 +97,66 @@ String cp = request.getContextPath();
 	}
 	
 </style>
+<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 <script type="text/javascript">
-    function checkId() {
-        $.ajax({
-            url: "idcheck.action",
-            method: "GET",
-            dataType: "JSON",
-            data: { "userId": $("#userId").val() },
-            success: function(data) {
-                if (data.exists) {
-                    $("#checkId").text("이미 사용중인 아이디입니다.");
-                    $("#checkId").css("display", "block");
-                } else {
-                    $("#checkId").text("사용 가능한 아이디입니다.");
-                    $("#checkId").css("display", "block");
-                }
-            }
-        });
+    function checkId() 
+    {
+    	
+    	
+		var userId = document.getElementById("userId").value;
+		
+		
+		var url = "idcheck.action?userId="+userId;
+		
+		ajax = createAjax();
+		
+		ajax.open("GET", url, true);
+		
+		ajax.onreadystatechange = function()
+		{
+			
+			
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				
+				callBack();
+				
+				
+			}
+			
+			
+			
+		};
+		
+		ajax.send("");
     }
+		
+		function callBack()
+		{
+			var data = ajax.responseText;
+			
+			data = parseInt(data);
+			
+			if (data == 0)
+			{
+				document.getElementById("idCheckResult").innerText="사용 가능한 아이디입니다.";
+				
+			}
+			else
+			{
+				document.getElementById("idCheckResult").innerText="이미 사용중인 아이디입니다.";
+			
+			}
+			
+		}
+		
+	
+
+    
 </script>
+
 
 </head>
 
@@ -136,10 +177,12 @@ String cp = request.getContextPath();
 			<div id="joinBox">
 				<form action="createAccount.action">
 					<span>이메일(ID)</span>
-					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"/>
+					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
+					required="required"/>
 					<button type="button" onclick="checkId()">아이디 확인</button><br>
 					
-					<span id="checkId"></span>
+			
+					<span id="idCheckResult"></span>
 					<!--
 					<p id="msg_false">이미 사용중이거나 사용 불가한 아이디입니다.</p>
 					<p id="msg_true">사용 가능한 아이디입니다. 인증번호 발송 버튼을 눌러 인증을 완료해주세요.</p>
@@ -156,23 +199,26 @@ String cp = request.getContextPath();
 					<p id="msg_false">인증번호가 틀렸습니다. 정확하게 입력해주세요.</p>
 					<p id="msg_true">이메일 인증이 완료되었습니다.</p>
 					-->
-					
+					<br />
 					<span>비밀번호 </span>
-					<input type="text" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"/>
+					<input type="text" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"
+					required="required"/>
 					<button type="button">비밀번호 확인</button><br>
 					<p id="msg_false">잘못된 비밀번호입니다. 8~16자 영문 숫자 조합으로 입력해주세요.</p>
 					<p id="msg_true">사용가능한 비밀번호입니다. 아래에도 동일하게 입력해주세요.</p>
 					
 					
 					<span>비밀번호 재입력</span>
-					<input type="text" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."/>
+					<input type="text" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
+					required="required"/>
 					<button type="button">재입력 확인</button><br>
 					
 					<p id="msg_false"> 위의 비밀번호와 같지 않습니다. 동일하게 입력해주세요.</p>
 					<p id="msg_true">비밀번호 확인이 완료되었습니다.</p>
 					
 					<span>닉네임</span>
-					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" />
+					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
+					required="required"/>
 					<button type="button">중복 확인</button><br>
 					
 					
@@ -183,7 +229,7 @@ String cp = request.getContextPath();
 					
 					<!-- == 가입하기 전송 / 유효성 ok → 가입완료 페이지로 ==== -->
 					<button type="submit" id="sendJoinBtn">
-					<a href="AfterCreateAccount.jsp">가입하기</a>
+					<!-- <a href="AfterCreateAccount.jsp">가입하기</a> -->
 					</button>
 					
 					
