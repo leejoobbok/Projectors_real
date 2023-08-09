@@ -82,7 +82,7 @@ public class QnaQController
 		return result;
 	}
 	
-	// [관리자 ] 특정 질문 아티클 출력 (답변 작성란 포함 ) (AnswerManagementArticle.jsp)
+	// [관리자 ] 특정 질문 아티클 출력 (등록된 답변 포함) (AnswerManagementArticle.jsp)
 		@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
 		public String adAnswerWrite(String questionNo, Model model) 
 		{	
