@@ -5,12 +5,20 @@
 <mapper namespace="com.projectors.mvc.IqnaADAO">
 	
 	
-	<select id="viewAnswerDetail"  resultType="com.projectors.mvc.QnaADTO" >
+	<insert id="addAnswer" >							<!-- 답변 등록 쿼리 -->
+		INSERT INTO ANSWER (ANSWER_NO, CONTENT, QUESTION_NO, CREATED_DATE, PIN_NO) 
+		VALUES ('AN'||TO_CHAR(ANSWERNOSEQ.NEXTVAL)
+        , #{answerContent}
+        , #{questionNo}
+        , SYSDATE
+        , 'UP16')  <!-- 관리자 핀 번호만 정적 구성 -->
+	</insert>
+	
+	<select id="answerView" resultType="com.projectors.mvc.QnaADTO"> <!-- 등록한 답변 조회 쿼리  -->
 		SELECT CONTENT AS ANSWERCONTENT,CREATED_DATE AS ANSWERCREATEDDATE
 		FROM ANSWER
-		WHERE QUESTION_NO = #{questionNo} 
+		WHERE QUESTION_NO=#{questionNo}
 	</select>
-	
 </mapper>
 
 <!--  QnaADTO 의 속성들 
