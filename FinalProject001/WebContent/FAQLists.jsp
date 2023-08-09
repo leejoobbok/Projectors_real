@@ -166,7 +166,7 @@
 		</a>
 	</div>
 	<div class="btnHeight">
-		<a href="question-list.action?questionPinNo='UP1'">
+		<a href="question-list.action?pinNo=UP2"> <!-- 정적 구성 -->
 			<button type="button" class="btn">1:1문의</button>
 		</a>
 	</div>
