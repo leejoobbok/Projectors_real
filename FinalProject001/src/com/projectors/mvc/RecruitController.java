@@ -18,20 +18,23 @@ public class RecruitController
 	private SqlSession sqlsession;
 	
 	@RequestMapping(value = "/recruitlist.action", method = RequestMethod.GET)
-	public String recruitlist(Model model, String sid)
+	public String recruitlist(Model model, String recruitNo)
 	{
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
 		List<ArrayList<String>> tools = new ArrayList<ArrayList<String>>();
+		List<ArrayList<RecruitDTO>> members = new ArrayList<ArrayList<RecruitDTO>>();
 		
 		model.addAttribute("lists", dao.lists());
 		
 		for (int i=0; i < dao.lists().size(); i++)
 		{
-			sid = dao.lists().get(i).getRecruitNo();
-			tools.add(dao.showTool(sid));
+			recruitNo = dao.lists().get(i).getRecruitNo();
+			tools.add(dao.showTool(recruitNo));
+			members.add(dao.countRecruitMember(recruitNo));
 		}
 		
 	    model.addAttribute("tools", tools);
+	    model.addAttribute("members", members);
 		
 	    model.addAttribute("regions", dao.optionRegion());
 	    model.addAttribute("dotypes", dao.optionDoType());
@@ -58,5 +61,18 @@ public class RecruitController
 		return result;
 	}
 	
+	@RequestMapping(value = "/recruitarticle.action", method = RequestMethod.GET)
+	public String recruitarticle(Model model, String recruitNo)
+	{
+		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+		
+		model.addAttribute("article", dao.article(recruitNo));
+		model.addAttribute("tools", dao.showTool(recruitNo));
+		model.addAttribute("countPos", dao.countPosRecruitMember(recruitNo));
+		model.addAttribute("recruitMember", dao.recruitMember(recruitNo));
+		
+		String result = "/recruit_jakupjung/RecruitArticle.jsp";
+		return result;
+	}
 	
 }
