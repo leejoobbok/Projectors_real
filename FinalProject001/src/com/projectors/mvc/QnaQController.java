@@ -51,23 +51,6 @@ public class QnaQController
 	}
 	
 	
-	// 특정 질문글 출력 (QnAArticle.jsp)
-	//-- 답변이랑 같이 출력하려면 매핑을 묶어야 할 것 같아서 아래처럼 ..
-	/*
-	@RequestMapping(value="/question-article.action", method = RequestMethod.GET)
-	public String questionArticle(Model model)
-	{	
-		String result = "";
-		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
-	
-		model.addAttribute("questionArticle", dao.viewQuestionDetail());
-		
-		//result = "/WEB-INF/view/QnAArticle.jsp"; 
-		result = "QnAArticle.jsp";
-		return result; 
-	}
-	*/
-	
 	// (유저) 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
 	@RequestMapping(value = "/question-article.action", method = RequestMethod.GET)
 	public String combinedData(String questionNo, Model model) {
@@ -81,6 +64,22 @@ public class QnaQController
 		model.addAttribute("answerArticle", answerArticle); 
 
 	    return "QnAArticle.jsp";
+	}
+	//=========================================================================
+	
+	
+	// [관리자 ]모든 유저의 문의글 리스트로 가져오기 getAllQList (질문 관련 세션 )
+	@RequestMapping(value = "/q-list-4admin.action", method = RequestMethod.GET)
+	public String getAllQList(Model model)
+	{
+		String result = "";
+		
+		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
+		
+		model.addAttribute("qListForAdmin", dao.getAllQList());
+		//result = "/WEB-INF/view/AnswerManagement.jsp";
+		result = "AnswerManagement.jsp";
+		return result;
 	}
 }
 

@@ -1,5 +1,6 @@
 package com.projectors.mvc;
 
+
 public interface IqnaADAO // 1:1 문의 답변 DAO 인터페이스
 {	
 	
@@ -7,6 +8,9 @@ public interface IqnaADAO // 1:1 문의 답변 DAO 인터페이스
 	
 	//========[관리자 기능] 답변 등록,수정,삭제, 최근답변 번호 찾기 ==========
 	
+	// 유저의 전체 질문 리스트 조회 기능은 QDAO 쪽에 있음 
+	// 특정 질문글 아티클 - 답변 등록란 같이 뜨는 관리자용 아티클 페이지도 QDAO쪽에.
+ 
 	// 등록
 	public int addAnswer(QnaADTO dto);
 	
