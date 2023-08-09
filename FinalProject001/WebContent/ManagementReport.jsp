@@ -1,3 +1,5 @@
+<%@page import="com.projectors.mvc.ReportDTO"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -38,9 +40,11 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#reportComplete").click(function()
+		$("#reportComplete").click(function() 
 		{
-			$("#reportForm").submit();
+		    window.opener.reguNo = $("#reason").val();
+		    window.opener.reguPeriodNo = $("#period").val();
+		    window.close();
 		});
 		
 		$("#closeReport").click(function()
@@ -52,7 +56,7 @@
 </head>
 <body>
 		<div id="logoBox"> 
-			<img src="images/tmp_logo.JPG"/>
+			<img src="images/tmp_logo_admin.jpg"/>
 		</div>	
 
 		<div id="reportBox">
@@ -66,18 +70,16 @@
 					</tr>					
 					<tr>
 						<th>재제대상</th>
-						<td><input type="text" readonly="readonly" value="닉네임"/></td>						
+						<td><input type="text" readonly="readonly" value="${reportedNickName }"/></td>						
 					</tr>
 					<tr>
 						<th>재제사유</th>
 						<td>
 							<select name="reason" id="reason">
 								<option selected="selected">-- 사유 선택 --</option>
-								<option value="1">욕설/비방</option>
-								<option value="2">관련없는 내용</option>
-								<option value="3">...</option>
-								<option value="4">...</option>
-								<option value="5">...</option>
+							<c:forEach var="content" items="${punishContent }">
+								<option value="${content.reguNo }">${content.content }</option>
+							</c:forEach>
 							</select>
 						</td>
 					</tr>
@@ -86,10 +88,11 @@
 						<td>
 							<select name="period" id="period">
 								<option selected="selected">-- 기간 선택 --</option>
-								<option value="1">7일</option>
-								<option value="2">14일</option>
-								<option value="3">200년</option>
+							<c:forEach var="peri" items="${periods }">
+								<option value="${peri.reguPeriodNo }">${peri.period }</option>
+							</c:forEach>
 							</select>
+							일
 						</td>
 					</tr>
 					<tr style="text-align: center;">
@@ -102,7 +105,7 @@
 					</tr>					
 					<tr style="text-align: center;">
 						<td colspan="2">
-							<button id="reportComplete" >재제하기</button>
+							<button id="reportComplete" >제재하기</button>
 							<button id="closeReport">취소하기</button>
 						</td>
 					</tr>

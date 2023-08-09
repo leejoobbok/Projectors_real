@@ -2,8 +2,8 @@ package com.projectors.mvc;
 
 public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO  
 {
-	private String questionNo, questionPinNo , questionTitle, questionContent, qCreatedDate, isReply;
-	// 문의번호, (회원)식별번호, 문의제목, 문의내용, 등록일, 답변 여부 
+	private String questionNo, pinNo, nickName, questionTitle, questionContent, qCreatedDate, isReply;
+	// 문의번호, (회원)식별번호, 닉네임, 제목, 내용, 등록일, 답변 여부 
 
 	public String getQuestionNo()
 	{
@@ -15,14 +15,24 @@ public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO
 		this.questionNo = questionNo;
 	}
 
-	public String getQuestionPinNo()
+	public String getPinNo()
 	{
-		return questionPinNo;
+		return pinNo;
 	}
 
-	public void setQuestionPinNo(String questionPinNo)
+	public void setPinNo(String pinNo)
 	{
-		this.questionPinNo = questionPinNo;
+		this.pinNo = pinNo;
+	}
+
+	public String getNickName()
+	{
+		return nickName;
+	}
+
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
 	}
 
 	public String getQuestionTitle()
@@ -65,6 +75,5 @@ public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO
 		this.isReply = isReply;
 	}
 	
-	// getter setter
-
+	
 }

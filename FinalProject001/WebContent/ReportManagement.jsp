@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고 관리 : Projectors</title>
+<title>신고처리대기-공고 : Projectors</title>
 
 
 <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -36,6 +36,22 @@
 	    top: -32px;
 	}
 	/*==========================================================*/
+	/*=========================서브메뉴바=========================*/
+	a 
+	{
+		text-decoration: none;
+		padding: 4px 14px 4px 14px;
+	}
+	
+	#subMenuBar
+	{
+		text-align: left;
+		font-size: 12pt;
+		font-weight: bold;
+		background-color: white;
+	}
+	/*==========================================================*/
+
 	/* ====================== 좌측바 ========================= */
 	#leftBar
 	{
@@ -100,11 +116,38 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#manageReport").click(function()
-		{
-			window.open('ManagementReport.jsp','manageReport',
-            'left=500,top=300,width=400,height=400,resizable=no'); 
+		$("#manageReport").click(function(event) {
+		    event.preventDefault();
+
+		    var newWindow = window.open('managementReport.action?reportedNickName='+$("#reportedNickName").val()
+		    				, 'manageReport', 'left=500,top=300,width=600,height=500,resizable=no');
+		    
+		    newWindow.onbeforeunload = function() 
+		    {
+		        var reguNo = newWindow.reguNo; // 첫 번째 int 값
+		        var reguPeriodNo = newWindow.reguPeriodNo; // 두 번째 int 값
+		        
+		        if (reguPeriodNo !== undefined && reguPeriodNo !== undefined) 
+		        {
+		        	$('#reguNo').val(reguNo);
+		        	$('#reguPeriodNo').val(reguPeriodNo);
+		        	
+		            $('#reportForm').attr('action', 'clearManageReport.action');
+		            $('#reportForm').submit(); // 폼 제출
+		    	}
+		        
+		    };
 		});
+
+		
+		$("#cancelReport").click(function()
+		{
+			if (confirm("신고처리를 반려하시겠습니까?"))
+			{
+				$('#reportForm').attr('action', 'rejectReport.action');
+			}
+		});
+		
 	});
 </script>
 </head>
@@ -117,7 +160,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
@@ -134,7 +177,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagement.jsp">신고 처리 대기</a>
+			<a href="reportRecruit.action">신고 처리 대기</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -148,80 +191,63 @@
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 대기 
+			신고 처리 대기 - 공고
 		</h2> 
 	</div>
-		<hr />
-		<br />
+	<div id="subMenuBar">
+		<a href="reportRecruit.action" style="background-color: gray; color: white; border-radius: 5px;">공고</a>
+		<a href="reportApply.action">지원서</a>
+		<a href="reportComm.action">댓글</a>
+		<a href="reportNote.action">쪽지</a>
+		<!-- <a href="reportTeamSpace.action">팀스페이스</a> -->
+		<hr>
+	</div>
+	<br />
 
 	<div>
+	<form action="" method="get" id="reportForm" name="reportForm">
 		<table class="table">
 			<tr>
 				<th>신고번호</th>
-				<th>신고자아이디?닉네임?</th>
-				<th>닉네임</th>
-				<th>유형</th>
+				<th>공고번호</th><!-- 클릭시 해당 게시물 이동 -->
+				<th>피신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
+				<th>신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
 				<th>사유</th>
 				<th>신고일자</th>
-				<th></th>
+				<th>신고처리</th><!-- 버튼에 따라 처리결과 value 넘김 -->
 			</tr>
-			<tr>
-				<td>1234</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">말랑콩떡</a></td><!-- 피신고자 프로필 -->
-				<td>쪽지</td>
-				<td><a href="">욕설</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-08-01</td>
-				<td><button type="button" id="manageReport" name="manageReoprt">제재</button>
-				<button type="button" id="cancelReport" name="cancelReport">미처벌</button>
-				</td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-			<tr>
-				<td>1233</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">콩떡말랑</a></td><!-- 피신고자 프로필 -->
-				<td>공고</td>
-				<td><a href="">비방</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-07-31</td>
-				<td><button type="button">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-			<tr>
-				<td>1233</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">콩떡말랑</a></td><!-- 피신고자 프로필 -->
-				<td>공고</td>
-				<td><a href="">비방</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-07-31</td>
-				<td><button type="button">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-			<tr>
-				<td>1233</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">콩떡말랑</a></td><!-- 피신고자 프로필 -->
-				<td>공고</td>
-				<td><a href="">비방</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-07-31</td>
-				<td><button type="button">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-			<tr>
-				<td>1233</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">콩떡말랑</a></td><!-- 피신고자 프로필 -->
-				<td>공고</td>
-				<td><a href="">비방</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-07-31</td>
-				<td><button type="button">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-			<tr>
-				<td>1233</td>
-				<td><a href="">피망</a></td><!-- 신고자 프로필 -->
-				<td><a href="">콩떡말랑</a></td><!-- 피신고자 프로필 -->
-				<td>공고</td>
-				<td><a href="">비방</a></td><!-- 클릭하면 신고당한 컨텐츠?확인 가능 -->
-				<td>2023-07-31</td>
-				<td><button type="button">제재</button></td><!-- 클릭 시 제재하는 미니 창 -->
-			</tr>
-		</table>	
+			<c:forEach var="report" items="${lists }">
+				<tr>
+					<td>${report.repNo }</td>
+					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
+					<td>
+						${report.reportedNickName }
+						<input type="hidden" id="reportedNickName" name="reportedUserPinNo" 
+							value="${report.reportedNickName }" />
+						<input type="hidden" id="reportedUserPinNo" name="reportedUserPinNo" 
+							value="${report.reportedUserPinNo }" />
+					</td>
+					<td>
+						${report.reportNickName }
+						<input type="hidden" id="reportUserPinNo" name="reportUserPinNo" 
+							value="${report.reportUserPinNo }" />					
+					</td>
+					<td>
+						${report.repReason } 
+						<input type="hidden" id="reguNo" name="reguNo"/>
+						<input type="hidden" id="reguPeriodNo" name="reguPeriodNo"/>
+					</td>
+					<td>
+						${report.reportDate }
+					</td>
+					<td>
+						<button type="button" id="manageReport" name="repResultNo" value="1">처리</button>
+						<button type="button" id="cancelReport" name="repResultNo" value="0">반려</button>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form>
 	</div>
 
 	<div id="paging">
