@@ -190,7 +190,7 @@
 			<tr>
 				<td>${userQ.questionNo}</td>
 				<td>
-					<a href="q-article-4admin.action">${userQ.questionTitle}</a>
+					<a href="q-article-4admin.action?questionNo=${userQ.questionNo}">${userQ.questionTitle}</a>
 				</td>
 				<td>${userQ.nickName}</td>
 				<td>${userQ.qCreatedDate}</td>

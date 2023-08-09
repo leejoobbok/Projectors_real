@@ -21,7 +21,7 @@
 		WHERE Q.PIN_NO = #{pinNo}
 	</select>
 	
-	<select id="getAllQList"  resultType="com.projectors.mvc.QnaQDTO" > <!-- 관리자가 보는 모든 유저의 문의목록 (질문번호, 닉네임, 제목, 작성일. 상태) 날짜 최신순 정렬 -->
+	<select id="getAllQList"  resultType="com.projectors.mvc.QnaQDTO" > <!-- [관리자]가 보는 모든 유저 문의목록 (질문번호, 닉네임, 제목, 작성일. 상태) 날짜 최신순 정렬 -->
 		SELECT Q.QUESTION_NO AS QUESTIONNO
 		, U.NICKNAME AS NICKNAME
 		, Q.TITLE AS QUESTIONTITLE
@@ -33,10 +33,21 @@
 		ORDER BY Q.CREATED_DATE DESC 
 	</select>
 	
-	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">
+	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">	<!-- 유저가 보는 아티클 페이지  -->
 		SELECT QUESTION_NO AS QUESTIONNO, TITLE AS QUESTIONTITLE, 
 		CONTENT AS QUESTIONCONTENT, CREATED_DATE AS QCREATEDDATE
 		FROM QUESTION
+		WHERE QUESTION_NO = #{questionNo}
+	</select>
+	
+	
+	<select id="adAnswerWrite" resultType="com.projectors.mvc.QnaQDTO"><!-- 관리자가 보는 아티클 페이지 (답변 작성란 포함)  -->
+		SELECT Q.QUESTION_NO AS QUESTIONNO
+	    ,Q.TITLE AS QUESTIONTITLE
+	    ,U.NICKNAME AS NICKNAME
+	    ,Q.CONTENT AS QUESTIONCONTENT, Q.CREATED_DATE AS QCREATEDDATE
+		FROM QUESTION Q LEFT JOIN USERS U 
+		ON Q.PIN_NO= U.PIN_NO
 		WHERE QUESTION_NO = #{questionNo}
 	</select>
 	
