@@ -44,7 +44,7 @@
 		</div>
 		<!-- ===================================== -->
 		
-		<a href="FAQLists.jsp">FAQ/문의</a>
+		<a href="faq-list.action">FAQ/문의</a>
 	</div>
 </body>
 </html>
