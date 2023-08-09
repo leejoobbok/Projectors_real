@@ -114,7 +114,7 @@
 </style>
 
 <script type="text/javascript">
-	$(function()
+	/* $(function()
 	{
 		$(".manageReport").click(function(event) {
 		    event.preventDefault();
@@ -149,6 +149,8 @@
 		});
 		
 	});
+	 */
+
 </script>
 </head>
 
@@ -216,33 +218,33 @@
 				<th>신고일자</th>
 				<th>신고처리</th><!-- 버튼에 따라 처리결과 value 넘김 -->
 			</tr>
-			<c:forEach var="report" items="${lists }">
-				<tr>
+			<c:forEach var="report" items="${lists }" varStatus="i">
+				<tr class="${i.count }">
 					<td>${report.repNo }</td>
 					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
 						${report.reportedNickName }
-						<input type="hidden" id="reportedNickName" name="reportedUserPinNo" 
+						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
 							value="${report.reportedNickName }" />
-						<input type="hidden" id="reportedUserPinNo" name="reportedUserPinNo" 
+						<input type="hidden" class="reportedUserPinNo" name="reportedUserPinNo" 
 							value="${report.reportedUserPinNo }" />
 					</td>
 					<td>
 						${report.reportNickName }
-						<input type="hidden" id="reportUserPinNo" name="reportUserPinNo" 
+						<input type="hidden" class="reportUserPinNo" name="reportUserPinNo" 
 							value="${report.reportUserPinNo }" />					
 					</td>
 					<td>
 						${report.repReason } 
-						<input type="hidden" id="reguNo" name="reguNo"/>
-						<input type="hidden" id="reguPeriodNo" name="reguPeriodNo"/>
+						<input type="hidden" class="reguNo" name="reguNo"/>
+						<input type="hidden" class="reguPeriodNo" name="reguPeriodNo"/>
 					</td>
 					<td>
 						${report.reportDate }
 					</td>
 					<td>
-						<button type="button" class="manageReport" name="repResultNo" value="1">처리</button>
-						<button type="button" class="cancelReport" name="repResultNo" value="0">반려</button>
+						<button type="button" class="manageReport" name="repResultNo" value="1" onclick="manageReport(this)">처리</button>
+						<button type="button" class="cancelReport" name="repResultNo" value="0" onclick="cancelReport(this)">반려</button>
 					</td>
 				</tr>
 			</c:forEach>
