@@ -58,7 +58,7 @@ public class QnaQController
 		IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
 
 	    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
-		QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
+		QnaADTO answerArticle = aDAO.answerView(questionNo);
 
 	    model.addAttribute("questionArticle", questionArticle);
 		model.addAttribute("answerArticle", answerArticle); 
@@ -89,14 +89,14 @@ public class QnaQController
 			String result = "";
 			
 		    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-			/* IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); */ //-- 세션 다름! 
+			IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class);  //-- 세션 다름! 
 
-		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);
-			/* QnaADTO aArticleForAdmin = aDAO.viewAnswerDetail(questionNo); */
+		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);	 //-- 질문 조회
+			QnaADTO aArticleForAdmin = aDAO.answerView(questionNo); 		//-- 답변 조회
 
 		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
 		    model.addAttribute("nickName", qArticleForAdmin.getNickName());
-			/* model.addAttribute("aArticleForAdmin", aArticleForAdmin); */
+			model.addAttribute("aArticleForAdmin", aArticleForAdmin);
 			
 			result = "AnswerManagementArticle.jsp";
 			
