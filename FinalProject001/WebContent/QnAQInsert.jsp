@@ -115,7 +115,7 @@
 		
 		$("#returnList").click(function()
 		{
-			window.location.href="question-list.action";
+			window.location.href="question-list.action?pinNo=UP2";  // 정적 구성 
 		});
 	});
 </script>
@@ -148,7 +148,7 @@
 		<a href="faq-list.action">
 			<button type="button" class="btnHeight">FAQ</button>
 		</a>
-		<a href="question-list.action">	
+		<a href="question-list.action?pinNo=UP2">	<!-- 정적 구성 -->
 			<button type="button" class="btnHeight">1:1문의</button>
 		</a>
 	</div><!-- end #leftBar -->
@@ -177,6 +177,9 @@
 					<td>
 						<textarea name="questionContent" id="questionContent" cols="100" rows="10" placeholder="내용을 작성해주세요."></textarea>
 					</td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="pinNo" id="pinNo" value="UP2"></td> <!-- 정적 구성 -->
 				</tr>
 			</table>
 		</form>
