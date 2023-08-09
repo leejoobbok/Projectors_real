@@ -59,15 +59,31 @@ public class AdminReportController
 		
 		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 		
-		dao.clearManageReport(dto);
+		int out = dao.clearManageReport(dto);
+
+		System.out.println("처리 결과 : " + out);
 		
 		result = "redirect:reportRecruit.action";
 		
 		return result;
 	}
 	
-	
 	//-- 공고신고 반려
+	@RequestMapping (value = "/rejectManageReport.action", method = RequestMethod.GET)
+	public String rejectManageReport(ReportDTO dto)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		int out = dao.rejectManageReport(dto);
+		
+		System.out.println("반려 결과 : " + out);
+		
+		result = "redirect:reportRecruit.action";
+		return result;
+	}
+	
 	
 	//-------------------------------------------------
 	
