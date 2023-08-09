@@ -9,9 +9,12 @@
 <head>
 <meta charset="UTF-8">
 <title> 1:1 문의 관리 : Projectors</title>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
+
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
 	{
@@ -127,6 +130,8 @@
 		});
 	});
 </script>
+
+
 </head>
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
@@ -185,7 +190,7 @@
 			<tr>
 				<td>${userQ.questionNo}</td>
 				<td>
-					<a href="AnswerManagementArticle.jsp">${userQ.questionTitle}</a>
+					<a href="q-article-4admin.action?questionNo=${userQ.questionNo}">${userQ.questionTitle}</a>
 				</td>
 				<td>${userQ.nickName}</td>
 				<td>${userQ.qCreatedDate}</td>

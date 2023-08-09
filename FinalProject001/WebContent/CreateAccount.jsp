@@ -132,10 +132,69 @@
 		
 		ajax.send("");
     }
+/*     
+    function checkEmail()
+    {
+        var userEmail = document.getElementById("userId").value;
+        
+        var url = "emailcheck.action?userEmail="+userEmail
+		
+        ajax.open("GET",url,true);
+        
+		ajax.onreadystatechange = function()
+		{
+			
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				var data = ajax.responseText;
+				
+				document.getElementById("hiddenEmailCk").value = data;
+				
+				alert("이메일이 전송되었습니다 인증번호 입력란에 올바른 인증번호를 입력해주세요.");
+				alert(data);
+			}
+			
+		};
+		
+		ajax.send("");
+    } 
+*/
+        
+        
+/* 
+    function inputCkEmail()
+    {
+    	var inputCkEmail = document.getElementById("inputCkEmail").value;
+    	
+    	var url="inputCkEmail.action?"+inputCkEmail
+    		
+    	ajax = createAjax();
+    	
+		ajax.open("GET", url, true);
+    	
+		ajax.onreadystatechange = function()
+		{
+			if(ajax.readyState == 4 && ajax.status == 200)
+			{
+				var data = ajax.responseText;
+				
+				data = parseInt(data);
+
+				if (data == document.getEmelementById("hiddenEmailCk").value)
+				{	
+					document.getElementById("EmailCkResult").value="1";
+				
+					document.getElementById("emailCheckResult").innerText="인증이 완료되었습니다..";
+				}
+			}
+		};
+		ajax.send("");
+    	
+    }
+     */
     
     function checkNickname()
     {
-    	
     	var nickname = document.getElementById("nickname").value;
     	
     	var url="nicknamecheck.action?nickname="+nickname;
@@ -154,6 +213,7 @@
 		};
 		ajax.send("");
     }
+    
     
     
     function checkRePw()
@@ -178,7 +238,7 @@
 		};
 		ajax.send("");
     }
-    
+
     
 		
 	function callBack()
@@ -187,39 +247,48 @@
 		
 		data = parseInt(data);
 		
+		
+		
 		// 아이디 중복 x
 		if (data == 0)
 		{
 			document.getElementById("idCheckResult").innerText="사용 가능한 아이디입니다.";
+			document.getElementById("finalId").value="1";
 		}
 		// 아이디 중복 o
 		else if (data == 1)
 		{
 			document.getElementById("idCheckResult").innerText="이미 사용중인 아이디입니다.";
+			document.getElementById("finalId").value="0";
 		}
 		// 닉네임 중복 x
 		else if (data == 2)
 		{
 			document.getElementById("nicknameCheckResult").innerText="사용 가능한 닉네임입니다.";			
+			document.getElementById("finalNickname").value="1";
+		
 		}
 		// 닉네임 중복 o
 		else if (data == 3)
 		{
-			document.getElementById("nicknameCheckResult").innerText="이미 사용 중인 닉네임입니다.";			
+			document.getElementById("nicknameCheckResult").innerText="이미 사용 중인 닉네임입니다.";	
+			document.getElementById("finalNickname").value="0";
 		}
 		// 비밀번호 확인 일치
 		else if (data == 10)
 		{
 			document.getElementById("pwReCheckResult").innerText="비밀번호 확인 완료.";
+			document.getElementById("finalPw").value="1";
 		}
 		// 비밀번호 확인 불일치
 		else if (data == 11)
 		{
 			document.getElementById("pwReCheckResult").innerText="비밀번호 확인이 일치하지 않습니다.";
+			document.getElementById("finalPw").value="0";
 		}
-		
-		
 	}
+	
+	
 	$(document).ready(function()
 	{
 		$("#userPw").change(function()
@@ -227,10 +296,14 @@
 		    checkPassword($('#userPw').val(),$('#userId').val());
 		});
 		
-		function checkPassword(userPw, userId){
+		function checkPassword(userPw, userId)
+		{
 		    
-		    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(userPw)){            
-		        alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.');
+		    /*if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(userPw))*/
+		    if(!/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/.test(userPw))
+		    {            
+		        /* alert('숫자+영문자+특수문자 조합으로 8자리 이상 사용해야 합니다.'); */
+		        alert('숫자+영문자 조합으로 8자리 이상 사용해야 합니다.');
 		        $('#userPw').val('').focus();
 		        return false;
 		    }    
@@ -254,12 +327,31 @@
 		    }
 		    return true;
 		}
+		
+		
+
 	});
 	
+	
+	function submitJoin()
+	{
+		if (document.getElementById("finalId").value=='1' && document.getElementById("finalPw").value =='1' && document.getElementById("finalNickname").value=='1'	)
+		{
+			alert("가입가능!");
+		}
+		else
+		{
+			alert("응 안돼~~~");		
+		}
+		
+	}
+		
+		
 
 	
-	
 
+
+	
     
 </script>
 
@@ -285,7 +377,7 @@
 					<span>이메일(ID)</span>
 					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
 					required="required"/>
-					<button type="button" onclick="checkId()">아이디 확인</button><br>
+					<button type="button"  onclick="checkId()">아이디 확인</button><br>
 					
 			
 					<p id="idCheckResult"></p>
@@ -293,33 +385,41 @@
 					<p id="msg_false">이미 사용중이거나 사용 불가한 아이디입니다.</p>
 					<p id="msg_true">사용 가능한 아이디입니다. 인증번호 발송 버튼을 눌러 인증을 완료해주세요.</p>
 					-->
-					
-					<!--
-					<button type="button" id="sendPinBtn">인증번호 발송</button><br>
-					<p id="msg_true">인증번호가 발송되었습니다. 작성하신 이메일 계정을 통해 확인해주세요.</p>
+<!-- 		
+					<button type="button" id="sendPinBtn"  onclick="checkEmail()">인증번호 발송</button><br>
+					<p id="msgSend"></p>
+					<br />
+
+					<input type="hidden" id="hiddenEmailCk" name="hiddenEmailCk" value="" />
+					<input type="hidden" id="emailCkResult" name="hiddenEmailCk" value="" />
+								
 					
 					<span>인증번호 입력</span>
-					<input type="text" id="emailPinNo" name="emailPinNo" />
+					<input type="text" id="userEmailCk" name="userEmailCk" 
+					oninput="inputCkEmail()"/>
 					<button type="button">인증번호 확인</button><br>
 					
-					<p id="msg_false">인증번호가 틀렸습니다. 정확하게 입력해주세요.</p>
-					<p id="msg_true">이메일 인증이 완료되었습니다.</p>
-					-->
+					<p id="emailCheckResult"></p>
+					
+ -->			
+					
 					<br />
 					<span>비밀번호 </span>
 					<input type="password" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"
 					required="required"/>
-					<button type="button">비밀번호 확인</button><br>
+					<!-- <button type="button">비밀번호 확인</button><br> -->
 					
 					
 					<!--
 					<p id="msg_false">잘못된 비밀번호입니다. 8~16자 영문 숫자 조합으로 입력해주세요.</p>
 					<p id="msg_true">사용가능한 비밀번호입니다. 아래에도 동일하게 입력해주세요.</p> 
 					-->
-					
+					<br />
 					<span>비밀번호 재입력</span>
 					<input type="password" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
 					required="required" oninput="checkRePw()"/>
+					
+					
 					<!-- <button type="button" >재입력 확인</button><br> -->
 					<br />
 					<p id="pwReCheckResult"></p>
@@ -327,17 +427,21 @@
 					<span>닉네임</span>
 					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
 					required="required"/>
-					<button type="button" onclick="checkNickname()">중복 확인</button><br>
+					<button type="button"  onclick="checkNickname()">중복 확인</button><br>
 					
 					
 					<p id="nicknameCheckResult"></p>
 					
+					
+					<input type="hidden" id="finalId" name="finalId" value="0"/>
+					<input type="hidden" id="finalPw" name="finalPw" value="0"/>
+					<input type="hidden" id="finalNickname" name="finalNickname" value="0"/>
+					
+					
 					<!-- == 가입하기 전송 / 유효성 ok → 가입완료 페이지로 ==== -->
-					<button type="submit" id="sendJoinBtn">
-					<a href="AfterCreateAccount.jsp">가입하기</a>
-					</button>
+					<button type="button" id="sendJoinBtn" onclick="submitJoin()">가입하기</button>
 					
-					
+		
 				</form>	
 			</div><!-- end of #joinBox div -->
 			

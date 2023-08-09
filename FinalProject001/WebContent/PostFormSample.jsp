@@ -138,7 +138,7 @@
 			 </p>
 			 
 			<!--  프로젝트(공고) 제목 -->
-			<h1>주차 시스템 프로젝트</h1>
+			<h1 class="title">주차 시스템 프로젝트</h1>
 			<div>
 				프로젝트 기간 <span>2023-09-09 ~ 2023-11-30</span>   
 			</div>
@@ -150,16 +150,8 @@
 			<div id="positionList">
 				<ul>
 					<li>
-						<span class="position">디자인</span>
-						<span>0/1</span>
-					</li>
-					<li>
-						<span class="position">프론트엔드</span>
-						<span>1/2</span>
-					</li>
-					<li>
-						<span class="position">백엔드</span>
-						<span>1/2</span>
+						<span class="positionName">디자인</span>
+						<span class="positionNumber">0/1</span>
 					</li>
 				</ul>
 			</div><!-- ======================== -->

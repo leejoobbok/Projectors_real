@@ -5,7 +5,10 @@
 package com.projectors.mvc;
 
 import java.io.IOException;
+import java.util.Properties;
+import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,14 +40,7 @@ public class UsersController
 		return result;
 
 	}
-	
-	
-	@RequestMapping(value = "/toidcheck.action", method = RequestMethod.GET)
-	public void toCheckId(HttpServletRequest request, HttpServletResponse response)
-	{
-		
-		
-	}
+
 	
 	
 
@@ -79,6 +75,7 @@ public class UsersController
 	}
 	
 	
+	
 	@RequestMapping(value="/nicknamecheck.action", method=RequestMethod.GET)
 	public void CheckNickname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -87,7 +84,7 @@ public class UsersController
 		
 		String nickname = (request.getParameter("nickname")).trim();
 		
-		System.out.println("닉네임 중복 확인 버큰 작동");
+		/* System.out.println("닉네임 중복 확인 버큰 작동"); */
 		
 		
 		int result=0;
