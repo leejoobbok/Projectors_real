@@ -13,4 +13,9 @@ public interface IRecruitDAO
 	
 	public ArrayList<String> subRegionList(int regionNo);
 	public ArrayList<RecruitDTO> countRecruitMember(String recruitNo);
+	
+	public RecruitDTO article(String recruitNo);
+	
+	public ArrayList<RecruitDTO> countPosRecruitMember(String recruitNo);
+	public ArrayList<RecruitDTO> recruitMember(String recruitNo);
 }
