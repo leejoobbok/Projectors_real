@@ -85,7 +85,7 @@
 
 	.table
 	{
-		text-align: auto;
+		text-align: center;
 		width: 90%;
 	}
 
@@ -152,37 +152,34 @@
 				</a>
 			</div>
 			<div class="btnHeight">
-				<a href="AnswerManagement.jsp">
-					<button type="button" class="btn">1:1 문의 답변</button>
+				<a href="q-list-4admin.action">
+					<button type="button" class="btn">1:1 문의 관리</button>
 				</a>
 			</div>
 		</div><!-- end #leftBar -->
 
 		<div id="rightBar">
 			<div>
-				<h2> 1:1 문의 답변</h2>
+				<h2> 1:1 문의 상세</h2>
 			</div>
 			<br>
-		
 			<div>	
 				<table class="table">
 					<tr>
 						<th>번호</th>
-						<th>작성자</th>
 						<th>작성일</th>
 						<th>제목</th>
 						<th>내용</th>
+						<th>작성자</th>
 					</tr>
-					<c:set var="adArticle" value="${qArticleForAdmin}"/>  
 				    <tr>
-				        <td>${adArticle.questionNo}</td>
-				        <td>${adArticle.nickName}</td>
-				        <td>${adArticle.qCreatedDate}</td>
-				        <td>${adArticle.questionTitle}</td>
-				        <td>${adArticle.questionContent}</td>
+				        <td>${qArticleForAdmin.questionNo}</td>
+				        <td>${qArticleForAdmin.qCreatedDate}</td>
+				        <td>${qArticleForAdmin.questionTitle}</td>
+				        <td>${qArticleForAdmin.questionContent}</td>
+				        <td>${qArticleForAdmin.nickName}</td>
 				    </tr>
 				</table>
-				
 			</div>
 			<br>
 			

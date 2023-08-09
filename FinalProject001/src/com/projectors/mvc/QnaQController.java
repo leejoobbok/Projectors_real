@@ -95,9 +95,12 @@ public class QnaQController
 			/* QnaADTO aArticleForAdmin = aDAO.viewAnswerDetail(questionNo); */
 
 		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
+		    model.addAttribute("nickName", qArticleForAdmin.getNickName());
 			/* model.addAttribute("aArticleForAdmin", aArticleForAdmin); */
 			
 			result = "AnswerManagementArticle.jsp";
+			
+			System.out.println();
 		    return result; 
 		}
 	

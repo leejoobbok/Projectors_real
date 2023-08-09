@@ -147,11 +147,11 @@
 		</div>
 		<!-- ============================================================= -->
 		
-<div>
-<h1>문의관리</h1>
-<hr />
-</div>
-<br />
+	<div>
+		<h1>문의관리</h1>
+		<hr />
+	</div>
+	<br />
 
 
 	<div id="leftBar">
@@ -162,7 +162,7 @@
 		</div>
 		<div class="btnHeight">
 			<a href="q-list-4admin.action">
-				<button type="button" class="btn">1:1 문의 목록</button>
+				<button type="button" class="btn">1:1 문의 관리</button>
 			</a>
 		</div>
 	</div><!-- end #leftBar -->
