@@ -68,6 +68,29 @@
 		WHERE REGION_NO = #{regionNo }
 	</select>
 	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="article">
+		SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
+		     , DOTYPENAME, REGIONNAME, SUBREGIONNAME
+		FROM RECRUITVIEW
+		WHERE RECRUITNO = #{regionNo }
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="countPosRecruitMember">
+		SELECT SUM(COUNTALL) AS COUNTALL
+		     , SUM(COUNTPOS) AS COUNTPOS
+		     , POSNAME
+		FROM RECRUITPOSITIONVIEW 
+		WHERE RECRUITNO = #{regionNo }
+		GROUP BY POSNAME
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="recruitMember">
+		SELECT RECRUITPOSNO, POSNAME, COUNTPOS
+		FROM RECRUITPOSITIONVIEW 
+		WHERE RECRUITNO = #{regionNo }
+		ORDER BY POSNAME
+	</select>
+	
 	
 	<!--
 	private int regionNo, subRegionNo, posNo, toolNo;
