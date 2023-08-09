@@ -166,7 +166,7 @@
 			<p class="smallTitile" style="font-size: 13pt;">
 				<a href="AnswerManagement.jsp">문의 ${newQuestionCnt }건</a>
 				<br>
-				<a href="ReportManagement.jsp">신고 ${newReportCnt }건</a>
+				<a href="reportRecruit.action">신고 ${newReportCnt }건</a>
 			</p>
 			
 		</div><!-- end of #wrapper div -->
