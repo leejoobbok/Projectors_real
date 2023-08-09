@@ -160,7 +160,7 @@
 
 <div id="rightBar">
 	<div>
-		<h2> 1:1 문의 관리</h2>
+		<h2> 1:1 문의 답변</h2>
 	</div>
 	<br>
 
@@ -169,35 +169,33 @@
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
-			<c:forEach var="userQ" items="qListForAdmin">  
+			<c:set var="adArticle" value="qArticleForAdmin"/>  
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<td style="width: 10%;">${userQ.questionNo}</td>
+				<td style="width: 10%;">${adArticle.questionNo}</td>
 				<th style="width: 20%;">작성자</th>
-				<td style="width: 20%;">${userQ.nickName }</td>
+				<td style="width: 20%;">${adArticle.nickName }</td>
 				<th style="width: 10%;">작성일</th>
-				<td style="width: 10%;">${userQ.qCreatedDate}</td>
+				<td style="width: 10%;">${adArticle.qCreatedDate}</td>
 			</tr>
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">제목</th>
-				<td colspan="5" style="width: 90%;">지원한 내역이 안보여요</td>
+				<td colspan="6" style="width: 90%;">${adArticle.questionTitle}</td>
 			</tr>
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
 			<tr>
 				<th style="vertical-align: top;">내용</th>
-				<td colspan="5">
+				<td colspan="6">
 					<div>
-					분명히 지원했는데 안보여요<br>
-					무슨일이죠?<br>
+					${adArticle.questionContent }
 					</div>
 				</td>
 			</tr>
-			</c:forEach>
 			
 			<tr>
 				<th colspan="6"><hr /></th>
@@ -207,7 +205,7 @@
 	<br>
 	
 	
-		<div class="wrapper">
+		<!-- <div class="wrapper">
 		
 			<h4>댓글<span>(1)</span></h4>
 			<hr style="margin-left: 0px; width: 90%">
@@ -230,7 +228,7 @@
 				<button type="submit" class="WriteBtn">댓글 등록</button>
 			</form>
 			<br>
-		</div>
+		</div> -->
 	
 	
 	<div style="text-align: center;">
