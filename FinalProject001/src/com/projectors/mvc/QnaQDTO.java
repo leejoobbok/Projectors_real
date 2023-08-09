@@ -4,8 +4,7 @@ public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO
 {
 	private String questionNo, pinNo, nickName, questionTitle, questionContent, qCreatedDate, isReply;
 	// 문의번호, (회원)식별번호, 닉네임, 제목, 내용, 등록일, 답변 여부 
-	
-	// getter setter
+
 	public String getQuestionNo()
 	{
 		return questionNo;
@@ -24,6 +23,16 @@ public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO
 	public void setPinNo(String pinNo)
 	{
 		this.pinNo = pinNo;
+	}
+
+	public String getNickName()
+	{
+		return nickName;
+	}
+
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
 	}
 
 	public String getQuestionTitle()
@@ -65,15 +74,6 @@ public class QnaQDTO // 1:1 문의의 질문(Q) 관련 DTO
 	{
 		this.isReply = isReply;
 	}
-
-	public String getNickName()
-	{
-		return nickName;
-	}
-
-	public void setNickName(String nickName)
-	{
-		this.nickName = nickName;
-	}
+	
 	
 }
