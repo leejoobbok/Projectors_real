@@ -209,13 +209,12 @@
 	});
 	
 	
-	
 	function searchRecruit()
 	{
 		// alert(regionChoiceNo + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceNo);
 		/*
 		var f = document.createElement("searchBtn");
-	    form.action = "/searchRecruit.action";
+	    form.action = "searchrecruit.action";
 	    f.submit;
 	    */
 	}
@@ -303,6 +302,13 @@
 				<hr style="width: 70%">
 			</div> <!-- end.search -->
 			
+			
+			<div class="writeBtnArea">
+				<button class="writeBtn">공고 작성하기</button>
+			</div>
+			
+
+			
 			<div class="recruitLists">
 				
 				<c:forEach var="recruit" items="${lists }" varStatus="status">
@@ -320,7 +326,7 @@
 							</span>
 						</li>
 						<li>
-							<span class="recruitTitle"><a href="/recruitarticle.action?recruitNo=${recruit.recruitNo }">${recruit.title } </a></span>
+							<span class="recruitTitle"><a href="recruitarticle.action?recruitNo=${recruit.recruitNo }">${recruit.title } </a></span>
 								<c:forEach var="member" items="${members[status.index] }">
 								<c:choose>
 									<c:when test="${Integer.parseInt(member.countAll) - Integer.parseInt(member.countPos) == 0 }">
@@ -338,11 +344,11 @@
 						</li>
 						<li>
 							<c:forEach var="tool" items="${tools[status.index] }">
-								<span>${tool }</span>
+								<span class="toolTag">${tool }</span>
 							</c:forEach>
-							<span>${recruit.doTypeName }</span>
-							<span>${recruit.regionName }</span>
-							<span>${recruit.subRegionName }</span>
+							<span class="doTypeTag">${recruit.doTypeName }</span>
+							<span class="regionTag">${recruit.regionName }</span>
+							<span class="regionTag">${recruit.subRegionName }</span>
 						</li>
 						
 					</ul>
