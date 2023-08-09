@@ -16,12 +16,14 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
-	var regionNoChoice = "";
-	var subRegionNameChoice = "";
-	var posNoChoice = "";
-	var doTypeNoChoice = "";
+
+	var regionChoiceNo = "";
+	var subRegionChoiceName = "";
+	var posChoiceNo = "";
+	var doTypeChoiceNo = "";
+
 	
-	// 지역선택 → 태그 올리기
+	// 지역 선택 → 태그 추가
 	function changeRegionSelect()
 	{
 		var regionSelect = document.getElementById("region").value;
@@ -38,15 +40,16 @@
 		if (regionSelect !== "default" && regionSelect !== "")
 		{
 			var regionSelectValue = document.getElementById("region").querySelector('option[value="' + regionSelect + '"]').textContent;
-	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteRegion()'>x</button>";
+	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='regionSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
 	        
-	        regionNoChoice = regionSelect;
+	        regionChoiceNo = regionSelect;
 		}
+		
 	}
 	
-	// 태그 x 버튼 → 지우기
-	function deleteRegion()
+	// 삭제 버튼 → 태그 삭제
+	function regionSelectDelete()
 	{
 		var inlineTag = document.querySelector(".inlineTagReg");
         var newSpan = document.createElement("span");
@@ -56,12 +59,12 @@
         {
             inlineTag.removeChild(inlineTag.firstChild);
         }
-
-        regionNoChoice = "";
-        subRegionNameChoice = "";
+        
+        regionChoiceNo = "";
+        subRegionChoiceName = "";
 	}
-
-	// 상세지역선택 → 태그 올리기
+	
+	// 세부지역 선택 → 태그 추가
 	function changeSubregionSelect()
 	{
 		var subRegionSelect = document.getElementById("subRegion").value;
@@ -78,15 +81,15 @@
 		if (subRegionSelect !== "default" && subRegionSelect !== "")
 		{
 			var subRegionSelectValue = document.getElementById("subRegion").querySelector('option[value="' + subRegionSelect + '"]').textContent;
-	        newSpan.innerHTML = subRegionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteSubRegion()'>x</button>";
+	        newSpan.innerHTML = subRegionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='subRegionSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
-
-	        subRegionNameChoice = subRegionSelect;
+	        
+	        subRegionChoiceName = subRegionSelect;
 		}
 	}
-
-	// 태그 x 버튼 → 지우기
-	function deleteSubRegion()
+	
+	// 삭제 버튼 → 태그 삭제
+	function subRegionSelectDelete()
 	{
 		var inlineTag = document.querySelector(".inlineTagReg");
         var newSpan = document.createElement("span");
@@ -97,10 +100,10 @@
             inlineTag.removeChild(inlineTag.firstChild.nextSibling);
         }
         
-        subRegionNameChoice = "";
+        subRegionChoiceName = "";
 	}
 
-	// 포지션선택 → 태그 올리기
+	// 포지션 선택 → 태그 추가
 	function changePosSelect()
 	{
 		var posSelect = document.getElementById("position").value;
@@ -117,15 +120,15 @@
 		if (posSelect !== "default" && posSelect !== "")
 		{
 			var posSelectValue = document.getElementById("position").querySelector('option[value="' + posSelect + '"]').textContent;
-	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deletePos()'>x</button>";
+	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn' onclick='posSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
-
-	    	posNoChoice = posSelect;
+	        
+	        posChoiceNo = posSelect;
 		}
 	}
 
-	// 태그 x 버튼 → 지우기
-	function deletePos()
+	// 삭제 버튼 → 태그 삭제
+	function posSelectDelete()
 	{
 		var inlineTag = document.querySelector(".inlineTagPos");
         var newSpan = document.createElement("span");
@@ -136,10 +139,10 @@
             inlineTag.removeChild(inlineTag.firstChild);
         }
         
-        posNoChoice = "";
+        posChoiceNo = "";
 	}
 
-	// 진행방식선택 → 태그 올리기
+	// 진행방식 선택 → 태그 추가
 	function changeDoTypeSelect()
 	{
 		var doTypeSelect = document.getElementById("doType").value;
@@ -156,15 +159,15 @@
 		if (doTypeSelect !== "default" && doTypeSelect !== "")
 		{
 			var doTypeSelectValue = document.getElementById("doType").querySelector('option[value="' + doTypeSelect + '"]').textContent;
-	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteDo()'>x</button>";
+	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn' onclick='doSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
-
-	    	doTypeNoChoice = doTypeSelect;
+	        
+	        doTypeChoiceNo = doTypeSelect;
 		}
 	}
 
-	// 태그 x 버튼 → 지우기
-	function deleteDo()
+	// 삭제 버튼 → 태그 삭제
+	function doSelectDelete()
 	{
 		var inlineTag = document.querySelector(".inlineTagDo");
         var newSpan = document.createElement("span");
@@ -174,11 +177,11 @@
         {
             inlineTag.removeChild(inlineTag.firstChild);
         }
-
-    	doTypeNoChoice = "";
+        
+        doTypeChoiceNo = "";
 	}
 	
-	// ajax 로 지역번호 넘겨서 상세지역 option 가져오기
+	// ajax 를 통해 지역을 선택하면 해당지역의 상세지역 옵션 가져오기
 	$(function() {
 		$("#region").change(function()
 		{
@@ -209,9 +212,13 @@
 	
 	function searchRecruit()
 	{
-		alert(regionNoChoice + " / " + subRegionNameChoice + " / " + posNoChoice + " / " + doTypeNoChoice);
+		// alert(regionChoiceNo + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceNo);
+		/*
+		var f = document.createElement("searchBtn");
+	    form.action = "/searchRecruit.action";
+	    f.submit;
+	    */
 	}
-
 	
 
 </script>
@@ -259,32 +266,33 @@
 					<li>
 						<span>지역</span>
 						<select class="select" id="region" name="region">
-							<option>-</option>
-						<c:forEach var="regions" items="${regions }">
-							<option value="${regions.regionNo }">${regions.regionName }</option>
+							<option>전체</option>
+						<c:forEach var="region" items="${regions }">
+							<option value="${region.regionNo }">${region.regionName }</option>
 						</c:forEach>
 						</select>
 					</li>
 					<li>
 						<span>상세 지역</span>
 						<select class="select" id="subRegion" name="subRegion" onchange="changeSubregionSelect()">
+							<option>-</option>
 						</select>
 					</li>
 					<li>
 						<span>포지션</span>
 						<select class="select" id="position" name="position" onchange="changePosSelect()">
-							<option>-</option>
-						<c:forEach var="poss" items="${poss }">
-							<option value="${poss.posNo }">${poss.posName }</option>
+							<option>전체</option>
+						<c:forEach var="pos" items="${poss }">
+							<option value="${pos.posNo }">${pos.posName }</option>
 						</c:forEach>
 						</select>
 					</li>
 					<li>
 						<span>진행방식</span>
 						<select class="select" id="doType" name="doType" onchange="changeDoTypeSelect()">
-							<option>-</option>
-						<c:forEach var="dotypes" items="${dotypes }">
-							<option value="${dotypes.doTypeNo }">${dotypes.doTypeName }</option>
+							<option>전체</option>
+						<c:forEach var="dotype" items="${dotypes }">
+							<option value="${dotype.doTypeNo }">${dotype.doTypeName }</option>
 						</c:forEach>
 						</select>
 					</li>
@@ -304,12 +312,25 @@
 						<li>
 							<span>모집 마감일  ${recruit.deadlineDate } (D-${recruit.dDay })</span>
 							<span style="margin-left:60px;">프로젝트 기간 ${recruit.prjStart } ~ ${recruit.prjEnd } </span>
-							<span style="margin-left:60px;">모집 인원  5 / 6 </span>
+							<span style="margin-left:60px;">
+								모집 인원 
+								<c:forEach var="member" items="${members[status.index] }">
+									${member.countPos } / ${member.countAll }
+								</c:forEach> 
+							</span>
 						</li>
 						<li>
-							<span class="recruitTitle"><a href="PostFormSample.jsp">${recruit.title } </a></span>
-							<span class="recruitStatus">모집중</span>
-							<!-- <span class="endStatus">모집마감</span> -->
+							<span class="recruitTitle"><a href="/recruitarticle.action?recruitNo=${recruit.recruitNo }">${recruit.title } </a></span>
+								<c:forEach var="member" items="${members[status.index] }">
+								<c:choose>
+									<c:when test="${Integer.parseInt(member.countAll) - Integer.parseInt(member.countPos) == 0 }">
+										<span class="endStatus">모집마감</span>
+									</c:when>
+									<c:otherwise>
+								      	<span class="recruitStatus">모집중</span>
+									</c:otherwise>
+								</c:choose> 
+								</c:forEach>
 						</li>
 						<li>
 							<p>${recruit.content }
@@ -328,9 +349,11 @@
 					</div> <!-- end.recruitList -->
 				</c:forEach>
 				
-			
+			</div> <!-- end.recruitLists -->
 		</div> <!-- end.container -->
 	</div> <!-- end.main -->
+	
+	
 	
 	<div class="footer">
 		<!-- footer -->
