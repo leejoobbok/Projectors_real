@@ -80,10 +80,19 @@
 		background-color: black;
 		border: none;
 	}
-
-	.table
+	
+	#writeQnA, #returnList /* 문의하기 버튼, 목록으로 버튼 */
 	{
-		text-align: auto;
+		display: inline;
+		padding: 4px 10px;
+		font-size: 12px;
+		font-weight: bold;
+		border-radius: 10px;
+	}
+	
+	.faqArticleTable
+	{
+		text-align: center;
 		width: 90%;
 	}
 
@@ -95,14 +104,14 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#returnList").click(function()
+		$("#returnList").click(function()  // faq 목록으로 돌아가기 버튼 클릭시 호출 
 		{
-			window.location.href="FAQLists.jsp";
+			window.location.href="faq-list.action";
 		});
 		
-		$("#writeQnA").click(function()
+		$("#writeQnA").click(function()  // 1:1 문의하기 버튼 클릭시 호출 
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="question-list.action";
 		});
 		
 	});
@@ -131,52 +140,44 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
-		</button>
+		<a href="faq-list.action">
+			<button type="button" class="btn">FAQ</button>
+		</a>
 	</div>
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="QnAQInsert.jsp">1:1문의</a>
-		</button>
+		<a href="question-list.action?questionPinNo='UP1'">
+			<button type="button" class="btn">1:1문의</button>
+		</a>
 	</div>
 </div><!-- end #leftBar -->
 
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
+		<h2>FAQ: 자주하는 질문</h2>
+	</div>
+	<div id="rightBar-left">
+		<h3>찾으시는 질문이 없다면 .. →
+			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
+		</h3>
 	</div>
 	<br>
 
 	<div>	
-		<table class="table">
+		<table class="faqArticleTable">
 			<tr>
-				<th colspan="2"><hr /></th>
+				<th colspan="3"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<th style="width: 90%;">내용</th>
+				<th style="width: 20%;">제목</th>
+				<th style="width: 70%;">내용</th>
 			</tr>
+			<c:set var="faq" value="${faqArticle}"/>
 			<tr>
-				<td>10</td>
-				<td>지원한 내역이 안보여요</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div>
-					<br>
-					여러분 많이 당황하셨죠<br>
-					네... 저희도 많이 당황했습니다. 멋슥^^<br>
-					하지만...! 이건 바로 프로젝트 올린 놈들이 삭튀한 것입니다!!!!!<br>
-					그르니까... 사람을 잘~ 만나야한다는 이 말입니다. 후후후후
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align: right;">
-					<button id="writeQnA" class="blackBtn">1:1문의하러가기</button>
-				</td>
+				<td>${faq.faqNo}</td>
+				<td>${faq.title}</td>
+				<td>${faq.content}</td>
 			</tr>
 		</table>
 	</div>
