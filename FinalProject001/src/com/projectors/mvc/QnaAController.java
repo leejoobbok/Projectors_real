@@ -20,26 +20,6 @@ public class QnaAController
 	private SqlSession sqlSession; //-- 답변 관련 세션
 	
 
-	// (관리자 전용)선택한 특정 문의글 아티클 페이지 (AnswerManagementArticle.jsp)
-	
-	@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
-	public String qArticle(String questionNo, Model model)
-	{
-		String result = "";
-		
-		IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-		// IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class); 
-		
-		QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
-		 
-		model.addAttribute("questionArticle", questionArticle);
-		//result = "/WEB-INF/view/AnswerManagementArticle.jsp";
-		result = "AnswerManagementArticle.jsp";
-		return result;
-	}
-	
-	
-	
 	// 답변 등록 (인서트)
 	
 	
