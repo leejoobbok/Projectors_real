@@ -68,7 +68,7 @@ public class QnaQController
 	//=========================================================================
 	
 	
-	// [관리자 ]모든 유저의 문의글 리스트로 가져오기 getAllQList (질문 관련 세션 )
+	// [관리자 ]모든 유저의 문의글 리스트로 가져오기 (AnswerManagement.jsp )
 	@RequestMapping(value = "/q-list-4admin.action", method = RequestMethod.GET)
 	public String getAllQList(Model model)
 	{
@@ -81,6 +81,23 @@ public class QnaQController
 		result = "AnswerManagement.jsp";
 		return result;
 	}
+	
+	// [관리자 ] 특정 질문 아티클 출력 (답변 작성란 포함 ) (AnswerManagementArticle.jsp)
+		@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
+		public String aWritePage(String questionNo, Model model) 
+		{
+		    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
+			IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
+
+		    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
+			QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
+
+		    model.addAttribute("qArticleForAdmin", questionArticle);
+			model.addAttribute("aArticleForAdmin", answerArticle); 
+
+		    return "AnswerManagementArticle.jsp";
+		}
+	
 }
 
 /* dto 속성
