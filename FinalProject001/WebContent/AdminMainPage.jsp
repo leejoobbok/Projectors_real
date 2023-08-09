@@ -169,8 +169,6 @@
 
 				<a href="ReportManagement.jsp"><span>신고 ${newReportCnt }건</span></a>
 
-				<a href="reportRecruit.action">신고 ${newReportCnt }건</a>
-
 			</p>
 			
 		</div><!-- end of #wrapper div -->
