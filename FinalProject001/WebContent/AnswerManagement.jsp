@@ -124,10 +124,10 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#WriteQnA").click(function()
+		/* $("#WriteQnA").click(function()
 		{
-			window.location.href="QnAAInsert.jsp"; // 답변 인서트 페이지로 이동 
-		});
+			window.location.href="q-list-4admin.action"; // 문의 목록으로 이동 
+		}); */
 	});
 </script>
 
