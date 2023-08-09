@@ -7,6 +7,8 @@ public class RecruitDTO
 	private int countAll, countPos;
 	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
 	
+	private String recruitPosNo;
+	
 	
 	// getter / setter
 	public int getRegionNo()
@@ -168,6 +170,14 @@ public class RecruitDTO
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+	public String getRecruitPosNo()
+	{
+		return recruitPosNo;
+	}
+	public void setRecruitPosNo(String recruitPosNo)
+	{
+		this.recruitPosNo = recruitPosNo;
 	}
 	
 }

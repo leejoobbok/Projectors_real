@@ -116,7 +116,7 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#manageReport").click(function(event) {
+		$(".manageReport").click(function(event) {
 		    event.preventDefault();
 
 		    var newWindow = window.open('managementReport.action?reportedNickName='+$("#reportedNickName").val()
@@ -127,12 +127,12 @@
 		        var reguNo = newWindow.reguNo; // 첫 번째 int 값
 		        var reguPeriodNo = newWindow.reguPeriodNo; // 두 번째 int 값
 		        
-		        if (reguPeriodNo !== undefined && reguPeriodNo !== undefined) 
+		        if (reguNo != undefined && reguPeriodNo != undefined) 
 		        {
 		        	$('#reguNo').val(reguNo);
 		        	$('#reguPeriodNo').val(reguPeriodNo);
 		        	
-		            $('#reportForm').attr('action', 'clearManageReport.action');
+		            $('#reportForm').attr('action', 'clearManageReport.action?repResultNo='+$(".manageReport").val());
 		            $('#reportForm').submit(); // 폼 제출
 		    	}
 		        
@@ -140,11 +140,11 @@
 		});
 
 		
-		$("#cancelReport").click(function()
+		$(".cancelReport").click(function()
 		{
 			if (confirm("신고처리를 반려하시겠습니까?"))
 			{
-				$('#reportForm').attr('action', 'rejectReport.action');
+				$('#reportForm').attr('action', 'rejectManageReport.action?repResultNo='+$(".cancelReport").val());
 			}
 		});
 		
@@ -241,8 +241,8 @@
 						${report.reportDate }
 					</td>
 					<td>
-						<button type="button" id="manageReport" name="repResultNo" value="1">처리</button>
-						<button type="button" id="cancelReport" name="repResultNo" value="0">반려</button>
+						<button type="button" class="manageReport" name="repResultNo" value="1">처리</button>
+						<button type="button" class="cancelReport" name="repResultNo" value="0">반려</button>
 					</td>
 				</tr>
 			</c:forEach>

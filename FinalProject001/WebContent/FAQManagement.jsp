@@ -161,7 +161,7 @@
 		</div>
 		<div class="btnHeight">
 			<a href="q-list-4admin.action">
-				<button type="button" class="btn">1:1 문의 답변</button>
+				<button type="button" class="btn">1:1 문의 관리</button>
 			</a>
 		</div>
 	</div><!-- end #leftBar -->
