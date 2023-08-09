@@ -17,14 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class QnaAController
 {	
 	@Autowired
-	private SqlSession sqlSession;
-	
-	// 모든 유저의 문의글 리스트로 가져오기 
-	
+	private SqlSession sqlSession; //-- 답변 관련 세션
 	
 
 	// (관리자 전용)선택한 특정 문의글 아티클 페이지 (AnswerManagementArticle.jsp)
-	/*
+	
 	@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
 	public String qArticle(String questionNo, Model model)
 	{
@@ -40,7 +37,7 @@ public class QnaAController
 		result = "AnswerManagementArticle.jsp";
 		return result;
 	}
-	*/
+	
 	
 	
 	// 답변 등록 (인서트)
