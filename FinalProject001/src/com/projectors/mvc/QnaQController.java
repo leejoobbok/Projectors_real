@@ -58,7 +58,7 @@ public class QnaQController
 		IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
 
 	    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
-		QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
+		QnaADTO answerArticle = aDAO.answerView(questionNo);
 
 	    model.addAttribute("questionArticle", questionArticle);
 		model.addAttribute("answerArticle", answerArticle); 
@@ -82,22 +82,25 @@ public class QnaQController
 		return result;
 	}
 	
-	// [관리자 ] 특정 질문 아티클 출력 (답변 작성란 포함 ) (AnswerManagementArticle.jsp)
+	// [관리자 ] 특정 질문 아티클 출력 (등록된 답변 포함) (AnswerManagementArticle.jsp)
 		@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
 		public String adAnswerWrite(String questionNo, Model model) 
 		{	
 			String result = "";
 			
 		    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-			/* IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); */ //-- 세션 다름! 
+			IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class);  //-- 세션 다름! 
 
-		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);
-			/* QnaADTO aArticleForAdmin = aDAO.viewAnswerDetail(questionNo); */
+		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);	 //-- 질문 조회
+			QnaADTO aArticleForAdmin = aDAO.answerView(questionNo); 		//-- 답변 조회
 
 		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
-			/* model.addAttribute("aArticleForAdmin", aArticleForAdmin); */
+		    model.addAttribute("nickName", qArticleForAdmin.getNickName());
+			model.addAttribute("aArticleForAdmin", aArticleForAdmin);
 			
 			result = "AnswerManagementArticle.jsp";
+			
+			System.out.println();
 		    return result; 
 		}
 	

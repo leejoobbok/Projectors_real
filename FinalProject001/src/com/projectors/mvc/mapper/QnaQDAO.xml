@@ -41,7 +41,7 @@
 	</select>
 	
 	
-	<select id="adAnswerWrite" resultType="com.projectors.mvc.QnaQDTO"><!-- 관리자가 보는 아티클 페이지 (답변 작성란 포함)  -->
+	<select id="adAnswerWrite" resultType="com.projectors.mvc.QnaQDTO"><!-- 관리자가 보는 아티클 페이지의 유저 문의 부분  -->
 		SELECT Q.QUESTION_NO AS QUESTIONNO
 	    ,Q.TITLE AS QUESTIONTITLE
 	    ,U.NICKNAME AS NICKNAME

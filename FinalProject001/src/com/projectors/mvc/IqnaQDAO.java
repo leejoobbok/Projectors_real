@@ -17,7 +17,7 @@ public interface IqnaQDAO // 1:1 문의 질문 관련 DAO 인터페이스
 	// 특정 질문 글 출력 ( 문의번호, 제목, 내용, 등록일) 
 	public QnaQDTO viewQuestionDetail(String questionNo);		
 	
-	// [관리자] 의 특정 질문 글 출력 (답변 작성란 포함) 
-	public QnaQDTO adAnswerWrite(String questionNo); 
+	// [관리자] 의 특정 질문에 대한 답 출력
+	public QnaADTO answerView(String questionNO);
 
 }

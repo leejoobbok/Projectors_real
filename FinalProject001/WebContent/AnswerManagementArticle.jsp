@@ -85,7 +85,7 @@
 
 	.table
 	{
-		text-align: auto;
+		text-align: center;
 		width: 90%;
 	}
 
@@ -111,15 +111,15 @@
 </style>
 <script type="text/javascript">
 	$(function()
-	{
+	{	
 		$("#returnList").click(function()
 		{
-			window.location.href="AnswerManagement.jsp";
+			window.location.href="q-list-4admin.action";
 		});
 		
 		$("#writeQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="answer-insert-form.action";
 		});
 		
 	});
@@ -138,107 +138,94 @@
 		</div>
 		<!-- ============================================================= -->
 		
-<div>
-<h1>FAQ / 문의</h1>
-<hr />
-</div>
-<br />
-
-
-	<div id="leftBar">
-		<div class="btnHeight">
-			<a href="faqManagement.action">
-				<button type="button" class="btn">FAQ 관리</button>
-			</a>
+		<div>
+			<h1>FAQ / 문의</h1>
+			<hr />
 		</div>
-		<div class="btnHeight">
-			<a href="AnswerManagement.jsp">
-				<button type="button" class="btn">1:1 문의 답변</button>
-			</a>
-		</div>
-	</div><!-- end #leftBar -->
 
-<div id="rightBar">
-	<div>
-		<h2> 1:1 문의 답변</h2>
-	</div>
-	<br>
 
-	<div>	
-		<table class="table">
-			<tr>
-				<th colspan="6"><hr /></th>
-			</tr>
-			<c:set var="adArticle" value="qArticleForAdmin"/>  
-			<tr>
-				<th style="width: 10%;">번호</th>
-				<td style="width: 10%;">${adArticle.questionNo}</td>
-				<th style="width: 20%;">작성자</th>
-				<td style="width: 20%;">${adArticle.nickName }</td>
-				<th style="width: 10%;">작성일</th>
-				<td style="width: 10%;">${adArticle.qCreatedDate}</td>
-			</tr>
-			<tr>
-				<th colspan="6"><hr /></th>
-			</tr>
-			<tr>
-				<th style="width: 10%;">제목</th>
-				<td colspan="6" style="width: 90%;">${adArticle.questionTitle}</td>
-			</tr>
-			<tr>
-				<th colspan="6"><hr /></th>
-			</tr>
-			<tr>
-				<th style="vertical-align: top;">내용</th>
-				<td colspan="6">
-					<div>
-					${adArticle.questionContent }
-					</div>
-				</td>
-			</tr>
+
+		<div id="leftBar">
+			<div class="btnHeight">
+				<a href="faqManagement.action">
+					<button type="button" class="btn">FAQ 관리</button>
+				</a>
+			</div>
+			<div class="btnHeight">
+				<a href="q-list-4admin.action">
+					<button type="button" class="btn">1:1 문의 관리</button>
+				</a>
+			</div>
+		</div><!-- end #leftBar -->
+
+		<div id="rightBar">
+			<div>
+				<h2> 1:1 문의 상세</h2>
+			</div>
+			<hr>
+			<div>	
+				<table class="table">
+					<tr>
+						<th>번호</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>제목</th>
+						
+					</tr>
+				    <tr>
+				        <td>${qArticleForAdmin.questionNo}</td>
+				        <td>${qArticleForAdmin.nickName}</td>
+				        <td>${qArticleForAdmin.qCreatedDate}</td>
+				        <td>${qArticleForAdmin.questionTitle}</td>
+				    </tr>
+				    <tr>
+				    	 <td colspan="4">${qArticleForAdmin.questionContent}</td>
+				    </tr>
+				</table>
+			</div>
+			<hr>
 			
-			<tr>
-				<th colspan="6"><hr /></th>
-			</tr>
-		</table>
-	</div>
-	<br>
-	
-	
-		<!-- <div class="wrapper">
+			
+			<div class="wrapper">
+			
+				<h4>답변</h4>
+				<hr style="margin-left: 0px; width: 90%">
+				
+				<div>
+					<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">관리자</span>
+				</div>
+				
+				<div>
+				    <c:choose>
+				        <c:when test="${not empty aArticleForAdmin.answerContent}">
+				            <p class="reply">${aArticleForAdmin.answerContent}</p>
+				            <span class="reply">${aArticleForAdmin.answerCreatedDate}</span>
+				        </c:when>
+				        <c:otherwise>
+				            <!-- If answerContent is null or empty, nothing will be displayed here -->
+				        </c:otherwise>
+				    </c:choose>
+				</div>
+				
+				<hr style="margin-left: 0px; width: 90%">
+				
+				<c:if test="${empty aArticleForAdmin.answerContent}">
+				    <form action="" method="get">
+				        <textarea style="margin-left: 30px;" cols="100" rows="5" id="answerContent" name="answerContent" placeholder="문의에 답변을 남겨주세요."></textarea>
+				        <button type="submit" class="WriteBtn">댓글 등록</button>
+				    </form>
+				</c:if>
+				
+				<br>
+			</div>
+			
+			
+			<div style="text-align: center;">
+				<br>
+				<button id="returnList">목록으로</button>
+			</div>
 		
-			<h4>댓글<span>(1)</span></h4>
-			<hr style="margin-left: 0px; width: 90%">
-			
-			<div>
-				<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">&nbsp; 관리자</span>
-			</div>
-			
-			<div>
-			<span class="reply">안녕하세요. 지원서가 보이지않아 당황스러우셨겠어요.</span><br>
-			<span class="reply">사유는 아래와 같을 수 있습니다.</span><br>
-			<span class="reply">1. 모집자가 게시물을 삭제한 경우</span><br>
-			<span class="reply">2. ....</span><br>
-			<span class="reply">감사합니다.</span><br>
-			</div>
-			<hr style="margin-left: 0px; width: 90%">
-			
-			<form action="" method="get">
-				<textarea  style="margin-left: 30px;" cols="100" rows="5" id="comment" name="comment" placeholder="문의에 답변을 남겨주세요."></textarea>
-				<button type="submit" class="WriteBtn">댓글 등록</button>
-			</form>
-			<br>
-		</div> -->
-	
-	
-	<div style="text-align: center;">
-		<br>
-		<button id="returnList">목록으로</button>
-	</div>
-	<br><br>
-	<hr>
-	<br><br><br><br><br><br><br>
-</div><!-- end #rightBar -->
+		</div><!-- end #rightBar -->
 
 <!-- footer 넣을 자리	 -->
 

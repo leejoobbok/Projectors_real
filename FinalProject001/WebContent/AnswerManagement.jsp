@@ -124,10 +124,10 @@
 <script type="text/javascript">
 	$(function()
 	{
-		$("#WriteQnA").click(function()
+		/* $("#WriteQnA").click(function()
 		{
-			window.location.href="QnAAInsert.jsp"; // 답변 인서트 페이지로 이동 
-		});
+			window.location.href="q-list-4admin.action"; // 문의 목록으로 이동 
+		}); */
 	});
 </script>
 
@@ -147,11 +147,11 @@
 		</div>
 		<!-- ============================================================= -->
 		
-<div>
-<h1>문의관리</h1>
-<hr />
-</div>
-<br />
+	<div>
+		<h1>문의관리</h1>
+		<hr />
+	</div>
+	<br />
 
 
 	<div id="leftBar">
@@ -162,7 +162,7 @@
 		</div>
 		<div class="btnHeight">
 			<a href="q-list-4admin.action">
-				<button type="button" class="btn">1:1 문의 목록</button>
+				<button type="button" class="btn">1:1 문의 관리</button>
 			</a>
 		</div>
 	</div><!-- end #leftBar -->
