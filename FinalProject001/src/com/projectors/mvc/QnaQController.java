@@ -65,6 +65,22 @@ public class QnaQController
 
 	    return "QnAArticle.jsp";
 	}
+	//=========================================================================
+	
+	
+	// [관리자 ]모든 유저의 문의글 리스트로 가져오기 getAllQList (질문 관련 세션 )
+	@RequestMapping(value = "/q-list-4admin.action", method = RequestMethod.GET)
+	public String getAllQList(Model model)
+	{
+		String result = "";
+		
+		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
+		
+		model.addAttribute("qListForAdmin", dao.getAllQList());
+		//result = "/WEB-INF/view/AnswerManagement.jsp";
+		result = "AnswerManagement.jsp";
+		return result;
+	}
 }
 
 /* dto 속성
