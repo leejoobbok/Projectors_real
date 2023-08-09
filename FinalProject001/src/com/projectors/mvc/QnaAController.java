@@ -9,7 +9,6 @@ package com.projectors.mvc;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,10 +16,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class QnaAController
 {	
 	@Autowired
-	private SqlSession sqlSession; //-- 답변 관련 세션
+	private SqlSession sqlSession; 
 	
-
-	// 답변 등록 (인서트)
+	// [ 관리자 ] 답변 등록 (인서트) (QnAQInsert.jsp) 
+	@RequestMapping(value="/answer-insert-form.action", method = RequestMethod.GET )
+	public String qnaAInsert(QnaADTO dto)
+	{
+		String result = "";
+		
+		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);
+		dao.addAnswer(dto);
+		
+		result ="q-article-4admin.action";
+		return result; 
+	}
+	
 	
 	
 }
