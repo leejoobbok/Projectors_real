@@ -6,36 +6,8 @@
 
 
 	
-	<select id="getPinNo" resultType="com.projectors.mvc.UsersDTO">
-		SELECT PIN_NO
-		FROM USERS
-		WHERE ID=${userId} AND PW=#{userPw}
-	</select>
 
-	
-	
-	<select id="addPin" >
-		INSERT INTO USER_PIN
-		(PIN_NO, JOIN_DATE)
-		VALUES
-		('UP'||TO_CHAR(USERPINSEQ.NEXTVAL), SYSDATE)
-
-	</select>
-	
-	<select id="addUsers">
-		INSERT INTO USERS
-		( USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-		VALUES
-		('US'||TO_CHAR(USERNOSEQ.NEXTVAL)
-		,(SELECT PIN_NO
-		  FROM (SELECT PIN_NO
-		         FROM USER_PIN
-		         ORDER BY JOIN_DATE DESC)
-		   WHERE ROWNUM = 1)
-		,#{userId} ,#{userPw} ,#{nickname} ,#{photourl})
-	</select>
-	
-	
+		
 	<select id="checkId" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM IDCHECK
@@ -47,7 +19,41 @@
 		FROM USERS
 		WHERE NICKNAME=#{nickname}
 	</select>
-	
-	
-	
+		
+	<insert id="addPin">
+		INSERT INTO USER_PIN
+		( PIN_NO
+		, JOIN_DATE)
+		VALUES
+		( 'UP'||TO_CHAR(USERPINSEQ.NEXTVAL)
+ 		, SYSDATE)
+	</insert>
+ 
+	<select id="getPinNo" resultType="java.lang.String">
+			SELECT PIN_NO AS PINNO
+		   FROM (SELECT PIN_NO
+ 		         FROM USER_PIN
+ 		         ORDER BY JOIN_DATE DESC)
+		   WHERE ROWNUM = 1
+	</select>
+ 
+	<insert id="addUsers" >
+		INSERT INTO USERS
+		( USER_NO
+		, PIN_NO
+		, ID
+		, PW
+		, NICKNAME )
+		VALUES
+		( 'US'||TO_CHAR(USERNOSEQ.NEXTVAL)
+		,(SELECT PIN_NO
+		   FROM (SELECT PIN_NO
+ 		         FROM USER_PIN
+ 		         ORDER BY JOIN_DATE DESC)
+		   WHERE ROWNUM = 1)
+		,#{userId}
+		,#{userPw}
+		,#{nickname})
+	</insert>
+  
 </mapper>
