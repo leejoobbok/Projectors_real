@@ -12,4 +12,5 @@ public interface IRecruitDAO
 	public ArrayList<RecruitDTO> optionPos();
 	
 	public ArrayList<String> subRegionList(int regionNo);
+	public ArrayList<RecruitDTO> countRecruitMember(String recruitNo);
 }
