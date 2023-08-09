@@ -44,7 +44,7 @@
 		</div>
 		<!-- ===================================== -->
 		
-		<a href="FAQLists.jsp">FAQ/문의</a>
+		<a href="faq-list.action?pinNo=UP2">FAQ/문의</a> <!-- 유저 번호 정적 구성  -->
 	</div>
 </body>
 </html>

@@ -146,18 +146,18 @@
 <br />
 
 
-<div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="faqManagement.action">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="AnswerManagement.jsp">1:1문의</a>
-		</button>
-	</div>
-</div><!-- end #leftBar -->
+	<div id="leftBar">
+		<div class="btnHeight">
+			<a href="faqManagement.action">
+				<button type="button" class="btn">FAQ 관리</button>
+			</a>
+		</div>
+		<div class="btnHeight">
+			<a href="AnswerManagement.jsp">
+				<button type="button" class="btn">1:1 문의 답변</button>
+			</a>
+		</div>
+	</div><!-- end #leftBar -->
 
 
 <div id="rightBar">

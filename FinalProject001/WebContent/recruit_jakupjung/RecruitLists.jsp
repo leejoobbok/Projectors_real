@@ -15,7 +15,13 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
+
+	var regionNoChoice = "";
+	var subRegionNameChoice = "";
+	var posNoChoice = "";
+	var doTypeNoChoice = "";
 	
+	// 지역선택 → 태그 올리기
 	function changeRegionSelect()
 	{
 		var regionSelect = document.getElementById("region").value;
@@ -32,28 +38,69 @@
 		if (regionSelect !== "default" && regionSelect !== "")
 		{
 			var regionSelectValue = document.getElementById("region").querySelector('option[value="' + regionSelect + '"]').textContent;
-	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteRegion()'>x</button>";
 	        inlineTag.appendChild(newSpan);
+	        
+	        regionNoChoice = regionSelect;
 		}
-		
 	}
 	
+	// 태그 x 버튼 → 지우기
+	function deleteRegion()
+	{
+		var inlineTag = document.querySelector(".inlineTagReg");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+
+        regionNoChoice = "";
+        subRegionNameChoice = "";
+	}
+
+	// 상세지역선택 → 태그 올리기
 	function changeSubregionSelect()
 	{
-		var posSelect = document.getElementById("subRegion").value;
+		var subRegionSelect = document.getElementById("subRegion").value;
 		
 		var inlineTag = document.querySelector(".inlineTagReg");
         var newSpan = document.createElement("span");
         newSpan.className = "searchTag";
 
-		if (posSelect !== "default" && posSelect !== "")
+        while (inlineTag.firstChild.nextSibling)
+        {
+            inlineTag.removeChild(inlineTag.firstChild.nextSibling);
+        }
+        
+		if (subRegionSelect !== "default" && subRegionSelect !== "")
 		{
-			var posSelectValue = document.getElementById("subRegion").querySelector('option[value="' + posSelect + '"]').textContent;
-	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+			var subRegionSelectValue = document.getElementById("subRegion").querySelector('option[value="' + subRegionSelect + '"]').textContent;
+	        newSpan.innerHTML = subRegionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteSubRegion()'>x</button>";
 	        inlineTag.appendChild(newSpan);
+
+	        subRegionNameChoice = subRegionSelect;
 		}
 	}
-	
+
+	// 태그 x 버튼 → 지우기
+	function deleteSubRegion()
+	{
+		var inlineTag = document.querySelector(".inlineTagReg");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild.nextSibling)
+        {
+            inlineTag.removeChild(inlineTag.firstChild.nextSibling);
+        }
+        
+        subRegionNameChoice = "";
+	}
+
+	// 포지션선택 → 태그 올리기
 	function changePosSelect()
 	{
 		var posSelect = document.getElementById("position").value;
@@ -70,11 +117,29 @@
 		if (posSelect !== "default" && posSelect !== "")
 		{
 			var posSelectValue = document.getElementById("position").querySelector('option[value="' + posSelect + '"]').textContent;
-	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        newSpan.innerHTML = posSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deletePos()'>x</button>";
 	        inlineTag.appendChild(newSpan);
+
+	    	posNoChoice = posSelect;
 		}
 	}
-	
+
+	// 태그 x 버튼 → 지우기
+	function deletePos()
+	{
+		var inlineTag = document.querySelector(".inlineTagPos");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+        
+        posNoChoice = "";
+	}
+
+	// 진행방식선택 → 태그 올리기
 	function changeDoTypeSelect()
 	{
 		var doTypeSelect = document.getElementById("doType").value;
@@ -91,12 +156,29 @@
 		if (doTypeSelect !== "default" && doTypeSelect !== "")
 		{
 			var doTypeSelectValue = document.getElementById("doType").querySelector('option[value="' + doTypeSelect + '"]').textContent;
-	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn'>x</button>";
+	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn' onclick='deleteDo()'>x</button>";
 	        inlineTag.appendChild(newSpan);
+
+	    	doTypeNoChoice = doTypeSelect;
 		}
 	}
+
+	// 태그 x 버튼 → 지우기
+	function deleteDo()
+	{
+		var inlineTag = document.querySelector(".inlineTagDo");
+        var newSpan = document.createElement("span");
+        newSpan.className = "searchTag";
+
+        while (inlineTag.firstChild)
+        {
+            inlineTag.removeChild(inlineTag.firstChild);
+        }
+
+    	doTypeNoChoice = "";
+	}
 	
-	
+	// ajax 로 지역번호 넘겨서 상세지역 option 가져오기
 	$(function() {
 		$("#region").change(function()
 		{
@@ -127,7 +209,7 @@
 	
 	function searchRecruit()
 	{
-		
+		alert(regionNoChoice + " / " + subRegionNameChoice + " / " + posNoChoice + " / " + doTypeNoChoice);
 	}
 
 	
@@ -186,7 +268,6 @@
 					<li>
 						<span>상세 지역</span>
 						<select class="select" id="subRegion" name="subRegion" onchange="changeSubregionSelect()">
-							<option>-</option>
 						</select>
 					</li>
 					<li>
@@ -247,37 +328,6 @@
 					</div> <!-- end.recruitList -->
 				</c:forEach>
 				
-				<!-- 
-				<div class="recruitList">
-					<ul>
-						<li>
-							<span>모집 마감일  2023.09.01 (D-1)</span>
-							<span style="margin-left:60px;">프로젝트 기간  2023.09.30 ~ 2023.11.30 </span>
-							<span style="margin-left:60px;">모집 인원  5 / 6 </span>
-						</li>
-						<li>
-							<span class="recruitTitle"><a href="PostFormSample.jsp">주차 시스템 프로젝트</a></span>
-							<span class="recruitStatus">모집중</span>
-							<span class="endStatus">모집마감</span>
-						</li>
-						<li>
-							<p>안녕하세요. 취업 전 이력서에 작성할 포트폴리오를 만드려고 합니다. 상세 기획은 완성되지 않았기에
-						    	머시기저시기 머시기저시기 머시기저시기 머시기저시기...
-						    </p>
-						</li>
-						<li>
-							<span>Go</span>
-							<span>Spring</span>
-							<span>Javascript</span>
-							<span>대면</span>
-							<span>서울</span>
-						</li>
-					</ul>
-				</div> end.recruitList
-				 -->
-			</div> <!-- end.recruitLists -->
-			
-			
 			
 		</div> <!-- end.container -->
 	</div> <!-- end.main -->

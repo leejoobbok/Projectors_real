@@ -47,11 +47,14 @@
 		text-align: center;
 	}
 	
-	.btn
+	.bottonBtns		/* 하단 작성하기, 취소하기 버튼*/
 	{	
-		width: 200px;
+		width: 100px;
 		padding: 4px;
-		border-right: 3px solid black;
+		border-radius: 10px;
+		font-weight: bold;
+		background-color: black;
+		color: white;
 	}
 	/* ======================================================= */
 	
@@ -76,7 +79,6 @@
 	.table
 	{
 		text-align: auto;
-		width: 90%;
 	}
 	
 	#rightBar-left
@@ -92,6 +94,10 @@
 		bottom: 0px;		
 	}
 	
+	#questionTitle /* 질문 제목 입력란*/
+	{
+		width: 630px;
+	}
 
 
 	/* ======================================================= */
@@ -109,7 +115,7 @@
 		
 		$("#returnList").click(function()
 		{
-			window.location.href="QnALists.jsp";
+			window.location.href="question-list.action?pinNo=UP2";  // 정적 구성 
 		});
 	});
 </script>
@@ -139,10 +145,10 @@
 
 
 	<div id="leftBar">
-		<a href="FAQLists.jsp">
+		<a href="faq-list.action">
 			<button type="button" class="btnHeight">FAQ</button>
 		</a>
-		<a href="QnALists.jsp">	
+		<a href="question-list.action?pinNo=UP2">	<!-- 정적 구성 -->
 			<button type="button" class="btnHeight">1:1문의</button>
 		</a>
 	</div><!-- end #leftBar -->
@@ -155,41 +161,34 @@
 	<br>
 	
 	<div>
-	<form action="question-insert-form.action" id="insertForm" method="GET">
-		<table class="table">
-			<tr>
-				<th colspan="2"><hr /></th>
-			</tr>
-			<tr>
-				<th style="width: 20%;">제목</th>
-				<th style="width: 80%;">
-					<input type="text" name="questionTitle" id="questionTitle" width="100%;" />
-				</th>
-			</tr>
-			<tr>
-				<th colspan="2"><hr /></th>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<textarea name="questionContent" id="questionContent" cols="30" rows="10" placehoder="내용을 작성해주세요."></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th colspan="2"><hr /></th>
-			</tr>
-			<tr style="text-align: right;">
-				<td colspan="2">
-					<button id="insertQnA">작성하기</button>
-					<a href="QnALists.jsp">
-						<button id="returnList">취소하기</button>
-					</a>
-				</td>
-			</tr>
-		</table>
-	</form>
+		<form action="question-insert-form.action" id="insertForm" method="GET">
+			<table class="table">
+				<tr>
+					<th colspan="2"><hr></th>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>
+						<input type="text" name="questionTitle" id="questionTitle">
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<textarea name="questionContent" id="questionContent" cols="100" rows="10" placeholder="내용을 작성해주세요."></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="pinNo" id="pinNo" value="UP2"></td> <!-- 정적 구성 -->
+				</tr>
+			</table>
+		</form>
+		<hr>
+		<div>
+			<button id="insertQnA" class="bottonBtns">작성하기</button>
+			<button id="returnList" class="bottonBtns">취소하기</button>
+		</div>
 	</div>
-
-	<br>
 
 </div><!-- end #rightBar -->
 

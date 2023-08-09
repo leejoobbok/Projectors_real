@@ -45,23 +45,16 @@ public class RecruitController
 	@ResponseBody
 	public String getsubregion(int regionNo)
 	{
-		System.out.println(regionNo);
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
-		// ArrayList<String> subRegList = dao.subRegionList(regionNo);
-		
-		// ArrayList<String> subRegList = new ArrayList<String>();
 		
 		String result = "";
+		
+		if ( dao.subRegionList(regionNo).size() > 1)
+			result = "<option>전체</option>";
+		
 		for (String lists : dao.subRegionList(regionNo))
 			result += "<option value='" + lists + "'>" + lists + "</option>";
 		
-		System.out.println(result);
-		/*
-		StringBuilder result = new StringBuilder();
-	    for (String item : subRegList) {
-	        result.append("<option value='").append(item).append("'>").append(item).append("</option>");
-	    }
-	    */
 		return result;
 	}
 	

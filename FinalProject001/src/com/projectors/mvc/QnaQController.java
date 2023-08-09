@@ -1,6 +1,6 @@
 /*==================================
  	QnaQController.java
- - mybatis 객체 활용/ 문의 컨트롤러 
+ -  1:1 문의 관련 컨트롤러 (유저용)  
 ===================================*/
 package com.projectors.mvc;
 
@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class QnaQController
 {
 	@Autowired   
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;    // 질문 관련 SQL 세션
 	
-	// 문의글 인서트 (QnAQInsert.jsp) 
+	@Autowired
+	private SqlSession answerSqlSession; // 답변 출력용 SQL 세션 
+	 
+	 
+	 
+	// (유저) 문의글 인서트 (QnAQInsert.jsp) 
 	@RequestMapping(value="/question-insert-form.action", method = RequestMethod.GET )
 	public String qnaQInsert(QnaQDTO dto)
 	{
@@ -31,49 +36,73 @@ public class QnaQController
 		return result; 
 	}
 	
-	// 나의 질문 리스트 출력 (QnALists.jsp) 
+	// (유저)나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
-	public String questionList(Model model)
+	public String qList(String pinNo, Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionList", dao.getQuestionList());
+		model.addAttribute("questionList", dao.getQuestionList(pinNo));
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
 		result = "QnALists.jsp";
-		return result; 
-	}
-	
-	
-	// 특정 질문글 출력 (QnAArticle.jsp)
-	//-- 여기까진 동작하는데 답변이랑 같이 출력하려면 매핑을 묶어야 할 것 같아서 아래처럼 ..
-	/*
-	@RequestMapping(value="/question-article.action", method = RequestMethod.GET)
-	public String questionArticle(Model model)
-	{	
-		String result = "";
-		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
-	
-		model.addAttribute("questionArticle", dao.viewQuestionDetail());
 		
-		//result = "/WEB-INF/view/QnAArticle.jsp"; 
-		result = "QnAArticle.jsp";
 		return result; 
 	}
-	*/
 	
-	// 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
+	
+	// (유저) 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
 	@RequestMapping(value = "/question-article.action", method = RequestMethod.GET)
-	public String combinedData(Model model) {
+	public String combinedData(String questionNo, Model model) {
 	    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-	    IqnaADAO aDAO = sqlSession.getMapper(IqnaADAO.class);
+		IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
 
-	    QnaQDTO questionArticle = qDAO.viewQuestionDetail();
-	    QnaADTO answerArticle = aDAO.viewAnswerDetail();
+	    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
+		QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
 
 	    model.addAttribute("questionArticle", questionArticle);
-	    model.addAttribute("answerArticle", answerArticle);
+		model.addAttribute("answerArticle", answerArticle); 
 
 	    return "QnAArticle.jsp";
 	}
+	//=========================================================================
+	
+	
+	// [관리자 ]모든 유저의 문의글 리스트로 가져오기 (AnswerManagement.jsp )
+	@RequestMapping(value = "/q-list-4admin.action", method = RequestMethod.GET)
+	public String getAllQList(Model model)
+	{
+		String result = "";
+		
+		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
+		
+		model.addAttribute("qListForAdmin", dao.getAllQList());
+		//result = "/WEB-INF/view/AnswerManagement.jsp";
+		result = "AnswerManagement.jsp";
+		return result;
+	}
+	
+	// [관리자 ] 특정 질문 아티클 출력 (답변 작성란 포함 ) (AnswerManagementArticle.jsp)
+		@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
+		public String adAnswerWrite(String questionNo, Model model) 
+		{	
+			String result = "";
+			
+		    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
+			/* IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); */ //-- 세션 다름! 
+
+		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);
+			/* QnaADTO aArticleForAdmin = aDAO.viewAnswerDetail(questionNo); */
+
+		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
+			/* model.addAttribute("aArticleForAdmin", aArticleForAdmin); */
+			
+			result = "AnswerManagementArticle.jsp";
+		    return result; 
+		}
+	
 }
+
+/* dto 속성
+ questionNo, questionPinNo , questionTitle, questionContent, qCreatedDate, isReply
+ */

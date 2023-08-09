@@ -108,9 +108,10 @@ public class AdminController
 	}
 	//==========================================공지===============================================
 
-	//==========================================문의===============================================
 	
-	//-- 문의 카테고리 메인 FAQ 리스트 페이지
+	//========================================= 문의관리 > FAQ ====================================
+	
+	//-- 문의 관리 > 메인 (FAQ 리스트 페이지)
 	@RequestMapping (value = "/faqManagement.action", method = RequestMethod.GET)
 	public String adminFaq(Model model)
 	{
@@ -125,7 +126,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 카테고리 FAQ 아티클 확인 페이지
+	//-- 문의 관리 > FAQ 아티클 확인 페이지
 	@RequestMapping	(value = "/faqManagementArticle.action", method = RequestMethod.GET)
 	public String adminFaqArticle(Model model, String faqNo)
 	{
@@ -140,7 +141,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 아티클 작성 폼
+	//-- 문의 관리> FAQ 아티클 작성 폼 페이지
 	@RequestMapping (value = "/faqInsertForm.action" , method = RequestMethod.GET)
 	public String faqInsertForm()
 	{
@@ -153,7 +154,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 아티클 작성
+	//-- FAQ 아티클 작성
 	@RequestMapping (value = "/faqInsert.action", method = RequestMethod.GET)
 	public String faqInsert(FaqDTO dto)
 	{
@@ -168,7 +169,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 아티클 수정 폼
+	//-- FAQ 아티클 수정 폼
 	@RequestMapping (value = "/faqUpdateForm.action", method = RequestMethod.GET)
 	public String faqUpdateForm(Model model, String faqNo)
 	{
@@ -183,7 +184,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 아티클 수정
+	//-- FAQ 아티클 수정
 	@RequestMapping (value = "/faqUpdate.action", method = RequestMethod.GET)
 	public String faqUpdate(FaqDTO dto)
 	{
@@ -198,7 +199,7 @@ public class AdminController
 		return result;
 	}
 	
-	//-- 문의 아티클 삭제
+	//-- FAQ 아티클 삭제
 	@RequestMapping (value = "/faqDelete.action", method = RequestMethod.GET)
 	public String deleteFaq(String faqNo)
 	{
@@ -212,7 +213,21 @@ public class AdminController
 		
 		return result;
 	}
+
 	
-	//==========================================문의===============================================
+	//========================================= 문의관리 > FAQ ====================================
+	
+	//========================= 문의관리 > 1:1 문의에 답변 등록 ====================================
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//========================= 문의관리 > 1:1 문의에 답변 등록 ====================================
 
 }

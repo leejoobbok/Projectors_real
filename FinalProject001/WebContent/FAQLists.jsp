@@ -33,7 +33,11 @@
 	    top: -32px;
 	}
 	/*==========================================================*/
-
+	a:hover
+	{
+		text-decoration: underline;
+	 	font-weight: bold;
+	}
 	/* 헤더 */
 	div>h1
 	{
@@ -81,11 +85,26 @@
 		background-color: black;
 		border: none;
 	}
-
-	.table
+	button:hover
 	{
-		text-align: auto;
+		background-color: white;
+		color: black;
+		border: 1px solid black;
+	}
+	#writeQnA /* 문의하기 버튼 */
+	{
+		display: inline;
+		padding: 4px 10px;
+		font-size: 12px;
+		font-weight: bold;
+		border-radius: 10px;
+	}
+	
+	.faqTable
+	{
+		text-align: center;
 		width: 90%;
+	
 	}
 	
 	#rightBar-left
@@ -142,54 +161,56 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQLists.jsp">FAQ</a>
-		</button>
+		<a href="faq-list.action">
+			<button type="button" class="btn">FAQ</button>
+		</a>
 	</div>
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="QnALists.jsp">1:1문의</a>
-		</button>
+		<a href="question-list.action?pinNo=UP2"> <!-- 정적 구성 -->
+			<button type="button" class="btn">1:1문의</button>
+		</a>
 	</div>
 </div><!-- end #leftBar -->
 
 
 <div id="rightBar">
 	<div>
-		<h2>	FAQ 자주하는 질문</h2>
+		<h2>FAQ: 자주하는 질문</h2>
 	</div>
-	<div>
-		<div id="rightBar-left">
-			<h3>찾으시는 질문이 없으신가요?</h3>
-		</div>
-		<br>
-		<div id="rightBar-right">
+	<div id="rightBar-left">
+		<h3>찾으시는 질문이 없다면 .. →
 			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
-		</div>
+		</h3>
+		<hr>
 	</div>
+		<!-- <div id="rightBar-right">
+			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
+		</div> 
+		문의 버튼 글귀 바로 옆에있는게 좋을 것 같아서 옮겨놨어요(아현) 
+		-->
 	<br>
 
 	<div>	
-		<table class="table">
+		<table class="faqTable">
         	<thead>
             	<tr>
-                	<th>번호</th>
-                     <th>제목</th>
+                	<th style="witdh: 20%">번호</th>
+                     <th style="witdh: 80%">제목</th>
                 </tr>
             </thead>
             <tbody>
                   <c:forEach var="faq" items="${faqList}">
               	  <tr>
             		  <td>${faq.faqNo}</td>
-            		  <td>${faq.title}</td>
+            		  <td><a href="faq-article.action?faqNo=${faq.faqNo}">${faq.title}</a></td>
               	  </tr>
                   </c:forEach>
              </tbody>
 	     </table>
 	</div>
-	<br>
+	
 	<div>
-		[페이징처리]
+		<span>[페이징처리]</span>
 	</div>
 </div><!-- end #rightBar -->
 

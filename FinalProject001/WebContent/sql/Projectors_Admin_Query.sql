@@ -162,3 +162,265 @@ FROM FAQ
 ;
 
 -- FAQ Insert
+INSERT INTO FAQ(FAQ_NO, TITLE, CONTENT)
+VALUES (FAQNOSEQ.NEXTVAL, ?, ? )
+;
+
+
+------------------------------------------------------------------------------------
+-- ADMIN 신고 관리용 쿼리문
+
+-- 댓글 + 지원서 + 모집공고 + 쪽지 UNION 시도
+
+SELECT *
+FROM REPCOMMNULL
+;
+SELECT *
+FROM REPAPPLYNULL
+;
+SELECT *
+FROM REPRECRUITNULL
+; 
+SELECT *
+FROM REPNOTENULL
+;
+--==>>
+/*
+expression must have same datatype as corresponding expression
+--==>> COMM 이 번호가 NUMBER 이라서 안됨.
+--==>> 별도로 구성 해야함
+*/
+--==============================================================================
+
+-- 신고들어온 목록 리스트 에서도 아직 처리 안된 것 찾기
+-- 댓글 
+    CREATE OR REPLACE VIEW REPCOMMNULL
+    AS
+    SELECT C.PIN_NO AS reportedUserPinNo
+        , RC.PIN_NO AS reportUserPinNo
+        , RCR.REGU_DATE AS reguDate
+        , RC.REP_COMM_NO AS repNo
+        , RC.COMM_NO AS postNo
+        , RC.REP_DATE AS reportDate
+        , (  SELECT REASON
+            FROM REPORT_REASON
+            WHERE REP_REASON_NO = RC.REP_REASON_NO 
+        )   AS repReason
+    FROM REP_COMM_RESULT RCR
+    RIGHT JOIN REPORT_COMM RC 
+    ON RCR.REP_COMM_NO = RC.REP_COMM_NO
+    JOIN COMMENTS C
+    ON C.COMM_NO = RC.COMM_NO
+    WHERE RCR.REGU_DATE IS NULL;
+--==>> View REPCOMMNULL이(가) 생성되었습니다.
+
+-- 지원서
+    CREATE OR REPLACE VIEW REPAPPLYNULL
+    AS
+    SELECT A.PIN_NO AS reportedUserPinNo
+        , RA.PIN_NO AS reportUserPinNo
+        , RAR.REGU_DATE AS reguDate
+        , RA.REP_APPLY_NO AS repNo
+        , RA.APPLY_NO AS postNo
+        , RA.CREATED_DATE AS reportDate
+        , (  SELECT REASON
+            FROM REPORT_REASON
+            WHERE REP_REASON_NO = RA.REP_REASON_NO 
+        )   AS repReason
+    FROM REP_APPLY_RESULT RAR
+    RIGHT JOIN REPORT_APPLY RA 
+    ON RAR.REP_APPLY_NO = RA.REP_APPLY_NO
+    JOIN APPLY A
+    ON A.APPLY_NO = RA.APPLY_NO
+    WHERE RAR.REGU_DATE IS NULL;
+--==>> View REPAPPLYNULL이(가) 생성되었습니다
+        
+-- 공고
+    CREATE OR REPLACE VIEW REPRECRUITNULL
+    AS
+    SELECT ( SELECT NICKNAME
+            FROM USERS 
+            WHERE PIN_NO = R.PIN_NO 
+            )AS reportedNickName 
+        , R.PIN_NO AS reportedUserPinNo
+        , ( SELECT NICKNAME
+            FROM USERS
+            WHERE PIN_NO = RR.PIN_NO 
+            )AS reportNickName
+        , RR.PIN_NO AS reportUserPinNo
+        , RRR.REGU_DATE AS reguDate
+        , RR.REP_RECRUIT_NO AS repNo
+        , RR.RECRUIT_NO AS postNo
+        , RR.CREATED_DATE AS reportDate
+        ,(  SELECT REASON
+            FROM REPORT_REASON
+            WHERE REP_REASON_NO = RR.REP_REASON_NO 
+        )   AS repReason
+    FROM REP_RECRUIT_RESULT RRR
+    RIGHT JOIN REP_RECRUIT RR
+    ON RRR.REP_RECRUIT_NO = RR.REP_RECRUIT_NO
+    JOIN RECRUIT R
+    ON RR.RECRUIT_NO = R.RECRUIT_NO
+    WHERE RRR.REGU_DATE IS NULL;
+--==>> View REPRECRUITNULL이(가) 생성되었습니다.
+DESC REPRECRUITNULL;
+--==>> 
+/*
+REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASONNO
+*/
+SELECT REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASONNO
+FROM REPRECRUITNULL
+;
+-- 쪽지
+    CREATE OR REPLACE VIEW REPNOTENULL
+    AS
+    SELECT N.SENDER AS reportedUserPinNo
+        , RN.PIN_NO AS reportUserPinNo
+        , RNR.REGU_DATE AS reguDate
+        , RN.REP_NOTE_NO AS repNo
+        , RN.NOTE_NO AS postNo
+        , RN.CREATED_DATE AS reportDate
+        , (  SELECT REASON
+            FROM REPORT_REASON
+            WHERE REP_REASON_NO = RN.REP_REASON_NO 
+        )   AS repReason
+    FROM REP_NOTE_RESULT RNR
+    RIGHT JOIN REPORT_NOTE RN 
+    ON RNR.REP_NOTE_NO = RN.REP_NOTE_NO
+    JOIN NOTE N
+    ON N.NOTE_NO = RN.NOTE_NO
+    WHERE RNR.REGU_DATE IS NULL;
+--==>> View REPNOTENULL이(가) 생성되었습니다.
+
+-- 신고처리 창에서 필요한 처벌 유형, 처벌기간
+SELECT REGU_NO AS reguNo
+    , CONTENT
+FROM REGULATION
+;
+
+SELECT REGU_PERIOD_NO AS reguPeriodNo
+    , PERIOD
+FROM REGULATION_PERIOD
+;
+
+SELECT *
+FROM REP_RECRUIT_RESULT
+;
+
+-- 공고 신고처리 insert
+INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO, REP_RECRUIT_NO, REP_RESULT_NO, REGU_NO, REGU_PERIOD_NO, PIN_NO)
+VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL, ?, ?, ? , ?, ?)
+;
+
+desc REGULATION_PERIOD;
+
+select *
+from regulation_period;
+
+--==============================================================================
+    
+-- 신고처리 완료된 목록----------------------------------------------------------
+-- 댓글 
+    CREATE OR REPLACE VIEW REPCOMMCOMPLETE
+    AS
+    SELECT RCR.COMM_RESULT_NO AS ResultNo
+        , RCR.REP_RESULT_NO AS repResultNo
+        , RCR.REGU_NO AS reguNo
+        , RCR.REGU_PERIOD_NO AS reguPeriod
+        , C.PIN_NO AS reportedUserPinNo
+        , RC.PIN_NO AS reportUserPinNo
+        , RCR.REGU_DATE AS reguDate
+        , RC.REP_COMM_NO AS repNo
+        , RC.COMM_NO AS postNo
+        , RCR.PIN_NO AS adminPinNo
+        , RC.REP_DATE AS reportDate
+        , RC.REP_REASON_NO AS repReasonNo
+    FROM REP_COMM_RESULT RCR
+    RIGHT JOIN REPORT_COMM RC 
+    ON RCR.REP_COMM_NO = RC.REP_COMM_NO
+    JOIN COMMENTS C
+    ON C.COMM_NO = RC.COMM_NO
+    WHERE RCR.REGU_DATE IS NOT NULL;
+--==>> View REPCOMMNULL이(가) 생성되었습니다.
+
+-- 지원서
+    CREATE OR REPLACE VIEW REPAPPLYCOMPLETE
+    AS
+    SELECT RAR.APPLY_RESULT_NO AS ResultNo
+        , RAR.REP_RESULT_NO AS repResultNo
+        , RAR.REGU_NO AS reguNo
+        , RAR.REGU_PERIOD_NO AS reguPeriod
+        , A.PIN_NO AS reportedUserPinNo
+        , RA.PIN_NO AS reportUserPinNo
+        , RAR.REGU_DATE AS reguDate
+        , RA.REP_APPLY_NO AS repNo
+        , RA.APPLY_NO AS postNo
+        , RAR.PIN_NO AS adminPinNo
+        , RA.CREATED_DATE AS reportDate
+        , RA.REP_REASON_NO AS repReasonNo
+    FROM REP_APPLY_RESULT RAR
+    RIGHT JOIN REPORT_APPLY RA 
+    ON RAR.REP_APPLY_NO = RA.REP_APPLY_NO
+    JOIN APPLY A
+    ON A.APPLY_NO = RA.APPLY_NO
+    WHERE RAR.REGU_DATE IS NOT NULL;
+--==>> View REPAPPLYNULL이(가) 생성되었습니다
+        
+-- 공고
+    CREATE OR REPLACE VIEW REPRECRUITCOMPLETE
+    AS
+    SELECT RRR.RECRUIT_RESULT_NO AS ResultNo
+        , RRR.REP_RESULT_NO AS repResultNo
+        , RRR.REGU_NO AS reguNo
+        , RRR.REGU_PERIOD_NO AS reguPeriod
+        , R.PIN_NO AS reportedUserPinNo
+        , RR.PIN_NO AS reportUserPinNo
+        , RRR.REGU_DATE AS reguDate
+        , RR.REP_RECRUIT_NO AS repNo
+        , RR.RECRUIT_NO AS postNo
+        , RRR.PIN_NO AS adminPinNo
+        , RR.CREATED_DATE AS reportDate
+        , RR.REP_REASON_NO AS repReasonNo
+    FROM REP_RECRUIT_RESULT RRR
+    RIGHT JOIN REP_RECRUIT RR
+    ON RRR.REP_RECRUIT_NO = RR.REP_RECRUIT_NO
+    JOIN RECRUIT R
+    ON RR.RECRUIT_NO = R.RECRUIT_NO
+    WHERE RRR.REGU_DATE IS NULL;
+--==>> View REPRECRUITNULL이(가) 생성되었습니다.
+
+-- 쪽지
+    CREATE OR REPLACE VIEW REPNOTECOMPLETE
+    AS
+    SELECT RNR.NOTE_RESULT_NO AS ResultNo
+        , RNR.REP_RESULT_NO AS repResultNo
+        , RNR.REGU_NO AS reguNo
+        , RNR.REGU_PERIOD_NO AS reguPeriod
+        , N.SENDER AS reportedUserPinNo
+        , RN.PIN_NO AS reportUserPinNo
+        , RNR.REGU_DATE AS reguDate
+        , RN.REP_NOTE_NO AS repNo
+        , RN.NOTE_NO AS postNo
+        , RNR.PIN_NO AS adminPinNo
+        , RN.CREATED_DATE AS reportDate
+        , RN.REP_REASON_NO AS repReasonNo
+    FROM REP_NOTE_RESULT RNR
+    RIGHT JOIN REPORT_NOTE RN 
+    ON RNR.REP_NOTE_NO = RN.REP_NOTE_NO
+    JOIN NOTE N
+    ON N.NOTE_NO = RN.NOTE_NO
+    WHERE RNR.REGU_DATE IS NOT NULL;
+--==>> View REPNOTENULL이(가) 생성되었습니다.
+
+--==============================================================================
+select *
+from REPORT_RESULT
+;
+select *
+from REP_RECRUIT;
+
+update rep_recruit
+set pin_no ='UP5'
+where RECRUIT_NO='RC8';
+
+commit;

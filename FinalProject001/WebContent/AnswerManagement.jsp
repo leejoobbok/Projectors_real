@@ -8,10 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문의관리 1:1 : Projectors</title>
+<title> 1:1 문의 관리 : Projectors</title>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
+
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
 	{
@@ -48,7 +51,6 @@
 		height : 300px;
 		text-align: center;
 	}
-	
 	.btnHeight
 	{
 		padding: 10px;
@@ -60,7 +62,6 @@
 		width: 150px;
 	}
 	
-
 	/* ======================================================= */
 	
 	
@@ -94,17 +95,12 @@
 		bottom: 0px;
 	}
 	
-	.table
+	#userQtable
 	{
 		text-align: center;
 		margin: auto;
 		width: 90%;
 		margin-left: 0%
-	}
-	
-	.leftTd
-	{
-		text-align: left;
 	}
 	
 	#rightBar-left
@@ -119,8 +115,7 @@
 		right: 0px;
 		bottom: 0px;		
 	}
-
-
+	
 	/* ======================================================= */
 	
 	
@@ -131,10 +126,12 @@
 	{
 		$("#WriteQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="QnAAInsert.jsp"; // 답변 인서트 페이지로 이동 
 		});
 	});
 </script>
+
+
 </head>
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
@@ -157,42 +154,72 @@
 <br />
 
 
-<div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="AnswerManagement.jsp">1:1문의</a>
-		</button>
-	</div>
-</div><!-- end #leftBar -->
+	<div id="leftBar">
+		<div class="btnHeight">
+			<a href="faqManagement.action">
+				<button type="button" class="btn">FAQ 관리</button>
+			</a>
+		</div>
+		<div class="btnHeight">
+			<a href="q-list-4admin.action">
+				<button type="button" class="btn">1:1 문의 목록</button>
+			</a>
+		</div>
+	</div><!-- end #leftBar -->
 
 
 <div id="rightBar">
 	<div>
-		<h2>	1:1 문의 관리 </h2>
+		<h2>	1:1 문의 목록 </h2>
 	</div>
 	<br>
 
 	<div>	
-		<table class="table">
+		<table id="userQtable">
 			<tr>
 				<th colspan="5"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<th style="width: 60%;">제목</th>
+				<th style="width: 40%;">제목</th>
 				<th style="width: 10%;">작성자</th>
-				<th style="width: 10%;">작성일</th>
+				<th style="width: 30%;">작성일시</th>
 				<th style="width: 10%;">답변상태</th>
 			</tr>
+			<c:forEach var="userQ" items="${qListForAdmin}">
+			<tr>
+				<td>${userQ.questionNo}</td>
+				<td>
+					<a href="q-article-4admin.action?questionNo=${userQ.questionNo}">${userQ.questionTitle}</a>
+				</td>
+				<td>${userQ.nickName}</td>
+				<td>${userQ.qCreatedDate}</td>
+				<td>
+    				<span id="isReply" style="color: ${userQ.isReply eq '답변대기중' ? 'red' : 'blue'}">${userQ.isReply}</span>
+				</td>
+			</tr>
+			</c:forEach>
 			<tr>
 				<th colspan="5"><hr /></th>
 			</tr>
-			<tr>
+		</table>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		&lt; [ 1 2 3 4 5 6 7 8 9 ] >
+	</div>
+	<br><br>
+	<hr>
+	<br><br><br><br><br><br><br>
+</div><!-- end #rightBar -->
+
+<!-- footer 넣을 자리	 -->
+
+</body>
+</html>
+
+<!-- 정적 구성
+<tr>
 				<td>29</td>
 				<td class="leftTd"><a href="AnswerManagementArticle.jsp">지원한 내역이 안보여요</a></td>
 				<td>말랑콩떡</td>
@@ -292,18 +319,5 @@
 			<tr>
 				<th colspan="5"><hr style=""/></th>
 			</tr>
-		</table>
-	</div>
-	<br>
-	<div style="text-align: center;">
-		&lt; [ 1 2 3 4 5 6 7 8 9 ] >
-	</div>
-	<br><br>
-	<hr>
-	<br><br><br><br><br><br><br>
-</div><!-- end #rightBar -->
 
-<!-- footer 넣을 자리	 -->
-
-</body>
-</html>
+ -->

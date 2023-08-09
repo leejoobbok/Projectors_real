@@ -145,23 +145,22 @@
 <br />
 
 
-<div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="AnswerManagement.jsp">1:1문의</a>
-		</button>
-	</div>
-</div><!-- end #leftBar -->
-
+	<div id="leftBar">
+		<div class="btnHeight">
+			<a href="faqManagement.action">
+				<button type="button" class="btn">FAQ 관리</button>
+			</a>
+		</div>
+		<div class="btnHeight">
+			<a href="AnswerManagement.jsp">
+				<button type="button" class="btn">1:1 문의 답변</button>
+			</a>
+		</div>
+	</div><!-- end #leftBar -->
 
 <div id="rightBar">
 	<div>
-		<h2>	1:1 문의 관리</h2>
+		<h2> 1:1 문의 답변</h2>
 	</div>
 	<br>
 
@@ -170,33 +169,34 @@
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
+			<c:set var="adArticle" value="qArticleForAdmin"/>  
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<td style="width: 10%;">29</td>
+				<td style="width: 10%;">${adArticle.questionNo}</td>
 				<th style="width: 20%;">작성자</th>
-				<td style="width: 20%;">말랑콩떡</td>
-				<th style="width: 20%;">작성일</th>
-				<td style="width: 20%;">2023.08.05</td>
+				<td style="width: 20%;">${adArticle.nickName }</td>
+				<th style="width: 10%;">작성일</th>
+				<td style="width: 10%;">${adArticle.qCreatedDate}</td>
 			</tr>
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
 			<tr>
 				<th style="width: 10%;">제목</th>
-				<td colspan="5" style="width: 90%;">지원한 내역이 안보여요</td>
+				<td colspan="6" style="width: 90%;">${adArticle.questionTitle}</td>
 			</tr>
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
 			<tr>
 				<th style="vertical-align: top;">내용</th>
-				<td colspan="5">
+				<td colspan="6">
 					<div>
-					분명히 지원했는데 안보여요<br>
-					무슨일이죠?<br>
+					${adArticle.questionContent }
 					</div>
 				</td>
 			</tr>
+			
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
@@ -205,7 +205,7 @@
 	<br>
 	
 	
-		<div class="wrapper">
+		<!-- <div class="wrapper">
 		
 			<h4>댓글<span>(1)</span></h4>
 			<hr style="margin-left: 0px; width: 90%">
@@ -228,7 +228,7 @@
 				<button type="submit" class="WriteBtn">댓글 등록</button>
 			</form>
 			<br>
-		</div>
+		</div> -->
 	
 	
 	<div style="text-align: center;">
