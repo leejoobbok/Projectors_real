@@ -3,7 +3,7 @@ package com.projectors.mvc;
 public interface IqnaADAO // 1:1 문의 답변 DAO 인터페이스
 {	
 	
-	public QnaADTO viewAnswerDetail();	// 특정 답변 출력 ( 내용, 등록일) //-- 유저, 관리자 공통
+	public QnaADTO viewAnswerDetail(String questionNo);	// 특정 답변 출력 ( 내용, 등록일) //-- 유저
 	
 	//========[관리자 기능] 답변 등록,수정,삭제, 최근답변 번호 찾기 ==========
 	

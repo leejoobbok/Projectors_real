@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class QnaQController
 {
 	@Autowired   
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;    // 질문 관련 SQL 세션
 	
+	@Autowired
+	private SqlSession answerSqlSession; // 답변 출력용 SQL 세션 
+	 
+	 
+	 
 	// (유저) 문의글 인서트 (QnAQInsert.jsp) 
 	@RequestMapping(value="/question-insert-form.action", method = RequestMethod.GET )
 	public String qnaQInsert(QnaQDTO dto)
@@ -33,7 +38,7 @@ public class QnaQController
 	
 	// (유저)나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
-	public String questionList(String pinNo, Model model)
+	public String qList(String pinNo, Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
@@ -41,6 +46,7 @@ public class QnaQController
 		model.addAttribute("questionList", dao.getQuestionList(pinNo));
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
 		result = "QnALists.jsp";
+		
 		return result; 
 	}
 	
@@ -64,15 +70,15 @@ public class QnaQController
 	
 	// (유저) 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
 	@RequestMapping(value = "/question-article.action", method = RequestMethod.GET)
-	public String combinedData(Model model) {
+	public String combinedData(String questionNo, Model model) {
 	    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-	    IqnaADAO aDAO = sqlSession.getMapper(IqnaADAO.class);
+		IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
 
-	    QnaQDTO questionArticle = qDAO.viewQuestionDetail();
-	    QnaADTO answerArticle = aDAO.viewAnswerDetail();
+	    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
+		QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
 
 	    model.addAttribute("questionArticle", questionArticle);
-	    model.addAttribute("answerArticle", answerArticle);
+		model.addAttribute("answerArticle", answerArticle); 
 
 	    return "QnAArticle.jsp";
 	}

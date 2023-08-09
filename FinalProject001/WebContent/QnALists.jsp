@@ -135,7 +135,7 @@
 			<a href="faq-list.action">
 				<button type="button" class="btn">FAQ</button>
 			</a>	
-			<a href="question-list.action">
+			<a href="question-list.action?pinNo=UP2"> <!--  여기 특정 유저 아이디 받아온거 넣어줘야함 일단 정적 구성 -->
 				<button type="button" class="btn">1:1문의</button>
 			</a>
 	</div><!-- end #leftBar -->
@@ -172,7 +172,7 @@
 				<c:forEach var="question" items="${questionList}">
 					<tr>
 						<td>${question.questionNo}</td> 			<!-- 문의 번호 -->
-						<td><a href="question-article.action">${question.questionTitle}</a></td> 		<!-- 제목 -->
+						<td><a href="question-article.action?questionNo=${question.questionNo}">${question.questionTitle}</a></td> 		<!-- 제목 -->
 						<td>${question.qCreatedDate}</td> 			<!-- 작성일 -->
 						<td>${question.isReply}</td> 				<!-- 답변여부 -->
 					</tr>	

@@ -7,8 +7,9 @@
 	<insert id="insert">
 		INSERT INTO QUESTION (QUESTION_NO, PIN_NO, TITLE, CONTENT, CREATED_DATE)
 		VALUES ('QN'||TO_CHAR(QUESTIONNOSEQ.NEXTVAL)
-		, 'UP2' <!-- 유저 핀번호 정적구성 (임시) -->
-		,#{questionTitle}, #{questionContent}, SYSDATE)
+		,#{pinNo} 
+		,#{questionTitle}
+		,#{questionContent}, SYSDATE)
 	</insert>
 	
 	<select id="getQuestionList" resultType="com.projectors.mvc.QnaQDTO">
@@ -17,19 +18,16 @@
 		, NVL2(A.CREATED_DATE,'답변완료','답변대기중') AS ISREPLY
 		FROM QUESTION Q FULL OUTER JOIN ANSWER A 
 		ON Q.QUESTION_NO = A.QUESTION_NO
-		WHERE Q.PIN_NO = 'UP2'<!-- 특정 회원의 질문만 출력(일단 정적구성) -->
-								
-		<!-- WHERE Q.PIN_NO = #{questionPinNo} -->
+		WHERE Q.PIN_NO = #{pinNo}
 	</select>
 
 	<select id="viewQuestionDetail" resultType="com.projectors.mvc.QnaQDTO">
 		SELECT QUESTION_NO AS QUESTIONNO, TITLE AS QUESTIONTITLE, 
 		CONTENT AS QUESTIONCONTENT, CREATED_DATE AS QCREATEDDATE
 		FROM QUESTION
-		WHERE QUESTION_NO='QN1'					<!-- 임시 정적구성 -->
-		<!-- WHERE QUESTION_NO = #{questionNo} -->
+		WHERE QUESTION_NO = #{questionNo}
 	</select>
 	
 </mapper>
 
-		<!-- questionNo, questionPinNo , questionTitle, questionContent, qCreatedDate, isReply -->
+		<!-- questionNo, pinNo , questionTitle, questionContent, qCreatedDate, isReply -->
