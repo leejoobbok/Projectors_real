@@ -155,14 +155,14 @@
 
 	<div id="leftBar">
 		<div class="btnHeight">
-			<button type="button" class="btn">
-				<a href="faqManagement.action">FAQ</a>
-			</button>
+			<a href="faqManagement.action">
+				<button type="button" class="btn">FAQ 관리</button>
+			</a>
 		</div>
 		<div class="btnHeight">
-			<button type="button" class="btn">
-				<a href="AnswerManagement.jsp">1:1문의</a>
-			</button>
+			<a href="q-list-4admin.action">
+				<button type="button" class="btn">1:1 문의 답변</button>
+			</a>
 		</div>
 	</div><!-- end #leftBar -->
 
