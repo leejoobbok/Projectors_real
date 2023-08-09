@@ -42,8 +42,8 @@
 	{
 		$("#reportComplete").click(function() 
 		{
-		    window.opener.reguNo = $("#reason").val();
-		    window.opener.reguPeriodNo = $("#period").val();
+		    window.opener.document.getElementById("reguNo").value = $("#reason").val();
+		    window.opener.document.getElementById("reguPeriodNo").value = $("#period").val();
 		    window.close();
 		});
 		
@@ -60,7 +60,6 @@
 		</div>	
 
 		<div id="reportBox">
-			<form action="AfterComplete.jsp" id="reportForm">
 				<table style="margin: auto; margin-top: 10%;">
 					<tr>
 						<th colspan="2" style="font-size: x-large;">재제하기</th>
@@ -70,7 +69,7 @@
 					</tr>					
 					<tr>
 						<th>재제대상</th>
-						<td><input type="text" readonly="readonly" value="${reportedNickName }"/></td>						
+						<td><input type="text" readonly="readonly" value="${reportedNickName}"/></td>						
 					</tr>
 					<tr>
 						<th>재제사유</th>
@@ -110,7 +109,6 @@
 						</td>
 					</tr>
 				</table>
-			</form>
 		</div>
 </body>
 </html>
