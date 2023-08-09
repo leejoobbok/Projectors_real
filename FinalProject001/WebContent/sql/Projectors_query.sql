@@ -850,3 +850,96 @@ WHERE NICKNAME='';
 SELECT *
 FROM FAQ;
 
+
+SELECT sequence_name, last_number
+FROM user_sequences;
+
+
+SELECT * FROM PROFILE;
+
+
+DESC NOTE;
+/*
+NOTE_NO   NOT NULL VARCHAR2(16)   
+SENDER    NOT NULL VARCHAR2(16)   
+READER    NOT NULL VARCHAR2(16)   
+SEND_DATE          DATE           
+READ_DATE          DATE           
+TITLE     NOT NULL VARCHAR2(100)  
+CONTENT   NOT NULL VARCHAR2(1000) 
+SEND_DEL           DATE           
+READ_DEL           DATE       
+*/
+
+
+SELECT * FROM USERS;
+
+
+INSERT INTO NOTE
+( NOTE_NO
+, SENDER
+, READER
+, SEND_DATE
+, TITLE
+,CONTENT)
+VALUES
+( 'NN'||TO_CHAR(NOTENOSEQ.NEXTVAL)
+, 'UP27'
+, 'UP15'
+, SYSDATE
+, '하찮은 녀석'
+, '은 너!'
+);
+--==>> 1 행 이(가) 삽입되었습니다.
+
+COMMIT;
+--==>> 커밋 완료.
+
+DESC REPORT_COMM;
+/*
+REP_COMM_NO   NOT NULL NUMBER(10)   
+COMM_NO       NOT NULL NUMBER(10)   
+PIN_NO        NOT NULL VARCHAR2(16) 
+REP_DATE               DATE         
+REP_REASON_NO NOT NULL NUMBER(2)
+*/
+
+DESC COMMENTS;
+SELECT * FROM RECRUIT;
+
+INSERT INTO COMMENTS
+( COMM_NO
+, RECRUIT_NO
+, PIN_NO
+, CREATED_DATE
+, CONTENT
+)
+VALUES
+( COMMNOSEQ.NEXTVAL
+, 'RC9'
+, 'UP18'
+, SYSDATE
+, '기분 나쁘게 생김' 
+);
+--==>> 1 행 이(가) 삽입되었습니다.*3 
+
+SELECT  * FROM COMMENTS;
+
+DESC REPORT_COMM;
+
+INSERT INTO REPORT_COMM
+( REP_COMM_NO
+, COMM_NO
+, PIN_NO
+, REP_DATE
+, REP_REASON_NO )
+VALUES
+( REPCOMMNOSEQ.NEXTVAL
+,3
+,'UP13'
+, SYSDATE
+, 2 );
+--==>> 1 행 이(가) 삽입되었습니다. *3
+
+COMMIT;
+--==>> 커밋 완료.
