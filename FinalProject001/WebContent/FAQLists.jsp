@@ -33,9 +33,10 @@
 	    top: -32px;
 	}
 	/*==========================================================*/
-	a:hober
-	{text-decoration: underline;
-	 font-weight: bold;
+	a:hover
+	{
+		text-decoration: underline;
+	 	font-weight: bold;
 	}
 	/* 헤더 */
 	div>h1
@@ -176,12 +177,12 @@
 	<div>
 		<h2>FAQ: 자주하는 질문</h2>
 	</div>
-		<div id="rightBar-left">
-			<h3>찾으시는 질문이 없다면 .. →
-				<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
-			</h3>
-			<hr>
-		</div>
+	<div id="rightBar-left">
+		<h3>찾으시는 질문이 없다면 .. →
+			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
+		</h3>
+		<hr>
+	</div>
 		<!-- <div id="rightBar-right">
 			<button id="writeQnA" class="blackBtn">1:1 문의하기</button>
 		</div> 
@@ -201,7 +202,7 @@
                   <c:forEach var="faq" items="${faqList}">
               	  <tr>
             		  <td>${faq.faqNo}</td>
-            		  <td><a href="faq-article.action">${faq.title}</a></td>
+            		  <td><a href="faq-article.action?faqNo=1">${faq.title}</a></td>
               	  </tr>
                   </c:forEach>
              </tbody>
