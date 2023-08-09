@@ -84,18 +84,21 @@ public class QnaQController
 	
 	// [관리자 ] 특정 질문 아티클 출력 (답변 작성란 포함 ) (AnswerManagementArticle.jsp)
 		@RequestMapping(value = "/q-article-4admin.action", method = RequestMethod.GET)
-		public String aWritePage(String questionNo, Model model) 
-		{
+		public String adAnswerWrite(String questionNo, Model model) 
+		{	
+			String result = "";
+			
 		    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
-			IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); //-- 세션 다름! 
+			/* IqnaADAO aDAO = answerSqlSession.getMapper(IqnaADAO.class); */ //-- 세션 다름! 
 
-		    QnaQDTO questionArticle = qDAO.viewQuestionDetail(questionNo);
-			QnaADTO answerArticle = aDAO.viewAnswerDetail(questionNo); 
+		    QnaQDTO qArticleForAdmin = qDAO.viewQuestionDetail(questionNo);
+			/* QnaADTO aArticleForAdmin = aDAO.viewAnswerDetail(questionNo); */
 
-		    model.addAttribute("qArticleForAdmin", questionArticle);
-			model.addAttribute("aArticleForAdmin", answerArticle); 
-
-		    return "AnswerManagementArticle.jsp";
+		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
+			/* model.addAttribute("aArticleForAdmin", aArticleForAdmin); */
+			
+			result = "AnswerManagementArticle.jsp";
+		    return result; 
 		}
 	
 }
