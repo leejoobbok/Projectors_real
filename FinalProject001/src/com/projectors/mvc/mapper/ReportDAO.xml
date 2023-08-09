@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IReportDAO">
+
+	<select id="reportedRecruitList"
+		resultType="com.projectors.mvc.ReportDTO">
+		SELECT REPORTEDUSERPINNO, REPORTEDNICKNAME
+		,
+		REPORTUSERPINNO, REPORTNICKNAME
+		,REGUDATE, REPNO, POSTNO, REPORTDATE,
+		REPREASON
+		FROM REPRECRUITNULL
+	</select>
+
+	<select id="punishContent"
+		resultType="com.projectors.mvc.ReportDTO">
+		SELECT TO_CHAR(REGU_NO) AS reguNo
+		, CONTENT
+		FROM REGULATION
+	</select>
+
+	<select id="periods" resultType="com.projectors.mvc.ReportDTO">
+		SELECT TO_CHAR(REGU_PERIOD_NO)
+		AS reguPeriodNo
+		, TO_CHAR(PERIOD) AS period
+		FROM REGULATION_PERIOD
+	</select>
+
+	<insert id="clearManageReport">
+		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
+		REP_RECRUIT_NO,REP_RESULT_NO, REGU_NO, REGU_PERIOD_NO, PIN_NO)
+		VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL,
+		#{repNo},TO_NUMBER(#{repResultNo}),
+		TO_NUMBER(#{reguNo}),TO_NUMBER(#{reguPeriodNo}) , #{adminPinNo})
+	</insert>
+
+	<insert id="rejectManageReport">
+		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
+		REP_RECRUIT_NO,
+		REP_RESULT_NO, PIN_NO)
+		VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL, #{repNo},
+		TO_NUMBER(#{repResultNo}), #{adminPinNo})
+	</insert>
+
+</mapper>
