@@ -1,6 +1,6 @@
 /*==================================
  	QnaQController.java
- - mybatis 객체 활용/ 문의 컨트롤러 
+ -  1:1 문의 관련 컨트롤러 (유저용)  
 ===================================*/
 package com.projectors.mvc;
 
@@ -18,7 +18,7 @@ public class QnaQController
 	@Autowired   
 	private SqlSession sqlSession;
 	
-	// 문의글 인서트 (QnAQInsert.jsp) 
+	// (유저) 문의글 인서트 (QnAQInsert.jsp) 
 	@RequestMapping(value="/question-insert-form.action", method = RequestMethod.GET )
 	public String qnaQInsert(QnaQDTO dto)
 	{
@@ -31,14 +31,14 @@ public class QnaQController
 		return result; 
 	}
 	
-	// 나의 질문 리스트 출력 (QnALists.jsp) 
+	// (유저)나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
-	public String questionList(Model model)
+	public String questionList(String pinNo, Model model)
 	{	
 		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
 	
-		model.addAttribute("questionList", dao.getQuestionList());
+		model.addAttribute("questionList", dao.getQuestionList(pinNo));
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
 		result = "QnALists.jsp";
 		return result; 
@@ -46,7 +46,7 @@ public class QnaQController
 	
 	
 	// 특정 질문글 출력 (QnAArticle.jsp)
-	//-- 여기까진 동작하는데 답변이랑 같이 출력하려면 매핑을 묶어야 할 것 같아서 아래처럼 ..
+	//-- 답변이랑 같이 출력하려면 매핑을 묶어야 할 것 같아서 아래처럼 ..
 	/*
 	@RequestMapping(value="/question-article.action", method = RequestMethod.GET)
 	public String questionArticle(Model model)
@@ -62,7 +62,7 @@ public class QnaQController
 	}
 	*/
 	
-	// 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
+	// (유저) 특정 질문 아티클 출력 (답변 포함) (QnAArticle.jsp)
 	@RequestMapping(value = "/question-article.action", method = RequestMethod.GET)
 	public String combinedData(Model model) {
 	    IqnaQDAO qDAO = sqlSession.getMapper(IqnaQDAO.class);
@@ -77,3 +77,7 @@ public class QnaQController
 	    return "QnAArticle.jsp";
 	}
 }
+
+/* dto 속성
+ questionNo, questionPinNo , questionTitle, questionContent, qCreatedDate, isReply
+ */
