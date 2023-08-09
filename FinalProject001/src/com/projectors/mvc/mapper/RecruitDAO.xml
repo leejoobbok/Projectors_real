@@ -5,10 +5,26 @@
 <mapper namespace="com.projectors.mvc.IRecruitDAO">
 
 	<select resultType="com.projectors.mvc.RecruitDTO" id="lists">
+	<!-- 
 		SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
 		        , DOTYPENAME, REGIONNAME, SUBREGIONNAME
 		FROM RECRUITVIEW
 		WHERE DDAY >= 0
+	 -->
+	 	SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
+        , DOTYPENAME, REGIONNAME, SUBREGIONNAME
+		FROM RECRUITVIEW
+		WHERE DDAY >= 0
+		  AND REGIONNAME IN (SELECT REGION_NAME
+		                     FROM REGION 
+		                     WHERE REGION_NO LIKE '%%')
+		  AND SUBREGIONNAME LIKE '%%'
+		  AND RECRUITNO IN (SELECT RECRUIT_NO
+		                    FROM RECRUIT_POS 
+		                    WHERE POS_NO LIKE '%%')
+		  AND RECRUITNO IN (SELECT RECRUIT_NO
+		                    FROM RECRUIT_TOOL 
+		                    WHERE TOOL_NO LIKE '%%')
 	</select>
 
 	<select resultType="java.lang.String" id="showTool">
@@ -17,6 +33,15 @@
 		WHERE TOOL_NO IN (SELECT TOOL_NO
 		                 FROM RECRUIT_TOOL
 		                 WHERE RECRUIT_NO = #{recruitNo })
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="countRecruitMember">
+		SELECT SUM(COUNTALL) AS COUNTALL
+		     , SUM(COUNTPOS) AS COUNTPOS
+		     , RECRUITNO
+		FROM RECRUITPOSITIONVIEW
+		WHERE RECRUITNO LIKE '%' || #{recruitNo } || '%'
+		GROUP BY RECRUITNO
 	</select>
 	
 	<select resultType="com.projectors.mvc.RecruitDTO" id="optionRegion">
