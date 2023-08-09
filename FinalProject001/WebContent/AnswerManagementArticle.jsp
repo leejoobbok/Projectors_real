@@ -145,23 +145,22 @@
 <br />
 
 
-<div id="leftBar">
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="FAQManagement.jsp">FAQ</a>
-		</button>
-	</div>
-	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="AnswerManagement.jsp">1:1문의</a>
-		</button>
-	</div>
-</div><!-- end #leftBar -->
-
+	<div id="leftBar">
+		<div class="btnHeight">
+			<a href="faqManagement.action">
+				<button type="button" class="btn">FAQ 관리</button>
+			</a>
+		</div>
+		<div class="btnHeight">
+			<a href="AnswerManagement.jsp">
+				<button type="button" class="btn">1:1 문의 답변</button>
+			</a>
+		</div>
+	</div><!-- end #leftBar -->
 
 <div id="rightBar">
 	<div>
-		<h2>	1:1 문의 관리</h2>
+		<h2> 1:1 문의 관리</h2>
 	</div>
 	<br>
 
@@ -170,13 +169,14 @@
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>
+			<c:forEach var="userQ" items="qListForAdmin">  
 			<tr>
 				<th style="width: 10%;">번호</th>
-				<td style="width: 10%;">29</td>
+				<td style="width: 10%;">${userQ.questionNo}</td>
 				<th style="width: 20%;">작성자</th>
-				<td style="width: 20%;">말랑콩떡</td>
-				<th style="width: 20%;">작성일</th>
-				<td style="width: 20%;">2023.08.05</td>
+				<td style="width: 20%;">${userQ.nickName }</td>
+				<th style="width: 10%;">작성일</th>
+				<td style="width: 10%;">${userQ.qCreatedDate}</td>
 			</tr>
 			<tr>
 				<th colspan="6"><hr /></th>
@@ -197,6 +197,8 @@
 					</div>
 				</td>
 			</tr>
+			</c:forEach>
+			
 			<tr>
 				<th colspan="6"><hr /></th>
 			</tr>

@@ -3,12 +3,12 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.projectors.mvc.IqnaADAO">
-
+	
+	
 	<select id="viewAnswerDetail"  resultType="com.projectors.mvc.QnaADTO" >
 		SELECT CONTENT AS ANSWERCONTENT,CREATED_DATE AS ANSWERCREATEDDATE
 		FROM ANSWER
-		WHERE QUESTION_NO='QN1' <!-- 정적 구성 -->
-		<!-- WHERE QUESTION_NO = #{questionNo} -->
+		WHERE QUESTION_NO = #{questionNo} 
 	</select>
 	
 </mapper>

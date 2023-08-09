@@ -33,8 +33,13 @@ a
 <div id="menuBar">
 	<a href="adminMain.action">메인</a>
 	<a href="mainNoticeList.action">공지사항</a>
+<<<<<<< HEAD
 	<a href="faqManagement.action">문의관리</a>
 	<a href="reportRecruit.action">신고관리</a>
+=======
+	<a href="faqManagement.action">FAQ/문의관리</a>
+	<a href="ReportManagement.jsp">신고관리</a>
+>>>>>>> develop
 	<a href="ContentsManagement.jsp">컨텐츠관리</a>
 	<a href="UserManagement.jsp">회원관리</a>
 	<hr>

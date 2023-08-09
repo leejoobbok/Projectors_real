@@ -37,8 +37,9 @@ public class FaqController
 	public String FaqArticle(String faqNo, Model model)
 	{	
 		String result = "";
+		
 		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);	
-	
+		
 		model.addAttribute("faqArticle", dao.viewFaqDetail(faqNo));
 		
 		/* result = "/WEB-INF/view/FaqArticle.jsp"; */

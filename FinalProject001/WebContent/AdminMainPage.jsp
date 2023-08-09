@@ -164,7 +164,7 @@
 			<h2 class="smallTitile">오늘의 할일</h2>
 			<hr style="width: 100%">
 			<p class="smallTitile" style="font-size: 13pt;">
-				<a href="AnswerManagement.jsp">문의 ${newQuestionCnt }건</a>
+				<a href="q-list-4admin.action">문의 ${newQuestionCnt }건</a>
 				<br>
 				<a href="reportRecruit.action">신고 ${newReportCnt }건</a>
 			</p>
