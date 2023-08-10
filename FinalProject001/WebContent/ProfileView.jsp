@@ -53,6 +53,8 @@
 	{
 		border-radius: 14px;
 	}
+
+	
 </style>
 
 
@@ -69,7 +71,7 @@
 			<div id="profileImgBox">
 				<img style="width:100px; height: 100px; margin:20px; border-radius: 6px"
 				  alt="profileImg"
-				  src="images/test_profile.JPG">
+				  src="${profileDTO.photourl}">
 			</div>
 			<div style="margin: 30px 16px;">
 				<button type="submit"
@@ -89,28 +91,35 @@
 					</tr>
 					<tr>
 						<th>아이디 </th>
-						<td>만두@test.com</td>
+						<td>${profileDTO.id}</td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>닉네임 </th>
-						<td>맨두</td>
+						<td>${profileDTO.nickname }</td>
 					</tr>
 					<tr>
 						<th>희망 포지션 </th>
-						<td>프론트엔드</td>
+						<td>${profileDTO.posName }</td>
 					</tr>
 					<tr>
 						<th>사용 가능 도구</th>
-						<td>타입스크립트, 리액트, 피그마</td>
-					</tr>
+						<td>
+						<c:forEach var="utool" items="${utool}">
+							<td style="margin: %">${utool.toolName}</td>
+						</c:forEach>
+						</td>
+					</tr> 
 					<tr>
 						<th>지역 </th>
-						<td>서울시 마포구</td>
+						<td>${profileDTO.regionName } | ${profileDTO.subRegionName }</td>
 					</tr>
-					<tr>
+
+<!-- 					<tr>
 						<th>희망 진행 방식 </th>
-						<td>대면</td>
-					</tr>
+						<td></td>
+						</tr> 
+-->
 				</table>
 			</form>
 		</div><!-- end of #ProfileBox div-->

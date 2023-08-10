@@ -148,6 +148,8 @@
 					
 					<br><br>
 					
+					
+					
 					<span class="profileItem">사용 도구</span>
 					<span style="font-size:8pt;">(다중선택 가능)</span>
 					<span id="msg_false"> 사용 가능한 도구를 1개 이상 선택해주세요!</span>
