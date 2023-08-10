@@ -83,7 +83,9 @@
 							<select name="reason" id="reason">
 								<option selected="selected">-- 사유 선택 --</option>
 							<c:forEach var="content" items="${punishContent }">
+								<c:if test="${content.reguNo!=0 }">
 								<option value="${content.reguNo }">${content.content }</option>
+								</c:if>
 							</c:forEach>
 							</select>
 						</td>
@@ -94,7 +96,9 @@
 							<select name="period" id="period">
 								<option selected="selected">-- 기간 선택 --</option>
 							<c:forEach var="peri" items="${periods }">
+								<c:if test="${peri.reguPeriodNo!=0 }">
 								<option value="${peri.reguPeriodNo }">${peri.period }</option>
+								</c:if>
 							</c:forEach>
 							</select>
 							일
