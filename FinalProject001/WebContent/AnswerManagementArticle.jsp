@@ -3,6 +3,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	String questionNo = request.getParameter("questionNo"); //-- 이전 페이지로부터 넘겨받은 문의 번호 
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,10 @@
 <meta charset="UTF-8">
 <title>문의관리 FAQ : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
+
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
@@ -35,12 +39,9 @@
 
 	/* 헤더 */
 	div>h1
-	{
-		padding-left : 5%; 
-	}
+	{padding-left : 5%; }
 
 	/* ====================== 좌측바 ========================= */
-
 	#leftBar
 	{
 		float: left;
@@ -48,18 +49,15 @@
 		height : 300px;
 		text-align: center;
 	}
-	
 	.btnHeight
 	{
 		padding: 10px;
 		border-right: 3px solid black;
 	}
-	
 	/* ======================================================= */
 	
 	
 	/* ====================== 우측바 ========================= */
-	
 	#rightBar
 	{
 		float: right;
@@ -87,7 +85,7 @@
 	
 	#answerTitle {font-size: 14pt; font-weight: bold;}
 	
-	.btn		/* 버튼 클래스 공통 */
+	.btn							/* 버튼 클래스 공통 */
 	{
 		background-color: black;
 		color: white;
@@ -101,8 +99,8 @@
 	{
 		background-color: #fadc6e;
 		color: black;
-	}
-	#deleteBtn					/* 삭제 버튼*/
+	}	
+	#deleteBtn						/* 삭제 버튼*/
 	{
 		background-color: #fa6e6e;
 		color: black;
@@ -118,30 +116,62 @@
 		padding: 5px 20px
 	}
 	
-	.reply
+	#writeArea					/* 답변 작성 or 출력란 */
 	{
-		margin-left: 30px;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 10px;
 		font-size: 11pt;
+		
+		
 	}
-	.replydate				/* 답변 일시*/
+	.replydate					/* 답변 일시*/
 	{
 		font-size: 9pt;
 		color: gray;
 		padding-left: 30px;
 	}
+	
 </style>
 
+
+
 <script type="text/javascript">
+	
+	
 	$(function()
 	{	
-		$("#returnList").click(function()
+		
+		
+		$("#returnList").click(function()				// 목록으로 버튼 클릭시 실행
 		{
 			window.location.href="q-list-4admin.action";
-		});
+		});		
 		
-		$("#writeQnA").click(function()
-		{
-			window.location.href="answer-insert-form.action";
+		$("#modifyBtn").click(function()    // 등록된 답변 수정 버튼 클릭시, 편집박스 활성화 및 스타일 변경 
+		{ 
+            $("#writeArea").removeAttr("readonly").removeAttr("disabled"); //-- 수정 가능하게 변경, 디자인 명시 
+            $("#modifyBtn, #deleteBtn").hide();							   //-- 기존 수정, 삭제 버튼 숨기기 
+            $("#saveBtn").show();
+        });
+		
+
+		$("#saveBtn").click(function() {			  // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 답변 일시 뒤에 (수정됨) 표시 추가 
+
+            $("#writeArea").attr("readonly",true); //-- 편집 불가 속성 추가 		
+            $("#saveBtn").hide();
+            $("#modifyBtn").show();
+            $("#deleteBtn").show();
+            
+            var replyDateSpan = $(".replydate");		//-- 답변 등록일 값을 담고있는  span 요소 
+            var modifiedSpan = $("<span>").text("(수정됨)").css("color", "green"); //-- 수정된 값 
+            replyDateSpan.append(" ", modifiedSpan);
+            
+        });
+	        
+		$("#deleteBtn").click(function()					// 등록된 답변 삭제 버튼 클릭시 실행
+		{	
+			window.location.href="answer-delete.action?questionNo="+"<%= questionNo %>";
 		});
 		
 	});
@@ -193,7 +223,6 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>제목</th>
-						
 					</tr>
 				    <tr>
 				        <td>${qArticleForAdmin.questionNo}</td>
@@ -208,31 +237,27 @@
 			</div>
 			<hr>
 			
-			
-			<div class="wrapper"> <!--  ============관리자 답변 관련 출력부분 =========== -->
-			
-				<span id="answerTitle">등록된 답변</span>
-				<c:choose>					<%-- 등록된 답변이 있는 경우 수정/삭제 버튼 출력 --%>
-					<c:when test="${not empty aArticleForAdmin.answerContent}">
-							<button type="submit" id="modifyBtn" class=" btn">수정</button>
-							<button type="submit" id="deleteBtn" class=" btn">삭제</button>
-					</c:when>
-					<c:otherwise>
-						<span> 작성하기 </span>
-					</c:otherwise>
-				</c:choose>
-				<hr style="margin-left: 0px; width: 90%">
+			<div class="wrapper"> <!--  ==========답변 등록 or 등록된 답변 관리 부분 =========== -->
 				
-				
-				<div>
-					<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">관리자</span>
-				</div>
-				
-				<div>
+				<div><%-- 등록된 답변이 있는 경우, 해당 내용과 수정/삭제 버튼 출력 --%>
 				    <c:choose>
 				        <c:when test="${not empty aArticleForAdmin.answerContent}">
-				            <p class="reply">${aArticleForAdmin.answerContent}</p>
-				            <span class="replydate">답변일시: ${aArticleForAdmin.answerCreatedDate}</span>
+
+				        	<span id="answerTitle">등록된 답변</span>
+							<button type="submit" id="modifyBtn" class=" btn">수정</button>
+							<button type="button" id="deleteBtn" class=" btn">삭제</button>
+							<button type="submit" id="saveBtn" style="display: none;" class=" btn">저장</button> <!-- 수정 시 나타나는 버튼 -->
+							
+							<hr style="margin-left: 0px; width: 90%">
+							
+							<div>
+								<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">관리자</span>
+								<span class="replydate">답변일시: ${aArticleForAdmin.answerCreatedDate}</span>
+							</div>
+				            <textarea id="writeArea" cols="100" rows="5" name="answerContent" readonly="readonly" disabled="disabled">${aArticleForAdmin.answerContent}
+				            </textarea>
+				            
+				            <hr style="margin-left: 0px; width: 90%">
 				        </c:when>
 				        <c:otherwise>
 				            <!-- answerContent 가 null 이면, 이 부분 출력( 아무것도 나오지 않음 )  -->
@@ -240,18 +265,15 @@
 				    </c:choose>
 				</div>
 				
-				<hr style="margin-left: 0px; width: 90%">
-				
+				<!-- 등록된 답변이 없을 때만 작성란 출력 -->
 				<c:if test="${empty aArticleForAdmin.answerContent}">
-				    <form action="" method="get">
-				        <textarea style="margin-left: 30px;" cols="100" rows="5" id="answerContent" name="answerContent" placeholder="문의에 답변을 남겨주세요."></textarea>
-				        <button type="submit" class="WriteBtn">댓글 등록</button>
-				    </form>
+				     <form action="insert-answer.action" method="GET">
+       					 <textarea id="writeArea" cols="100" rows="5" name="answerContent" placeholder="문의에 답변을 남겨주세요."></textarea>
+       					 <input type="hidden" name="questionNo" value="<%= questionNo %>">
+				         <button type="submit" id="writeBtn">댓글 등록</button>
+				     </form>
 				</c:if>
-				
-				<br>
 			</div>
-			
 			
 			<div style="text-align: center;">
 				<br>
