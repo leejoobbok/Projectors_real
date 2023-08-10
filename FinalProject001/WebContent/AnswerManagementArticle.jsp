@@ -219,19 +219,21 @@
 			<div>	<!--  ============사용자 문의 상세 내용 출력부분 =========== -->
 				<table class="table">
 					<tr>
-						<th>번호</th>
+						<th>문의번호</th>
+						<th>회원번호</th>
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>제목</th>
 					</tr>
 				    <tr>
 				        <td>${qArticleForAdmin.questionNo}</td>
+				        <td>${qArticleForAdmin.pinNo}</td>
 				        <td>${qArticleForAdmin.nickName}</td>
 				        <td>${qArticleForAdmin.qCreatedDate}</td>
 				        <td>${qArticleForAdmin.questionTitle}</td>
 				    </tr>
 				    <tr>
-				    	 <td colspan="4">${qArticleForAdmin.questionContent}</td>
+				    	 <td colspan="5">${qArticleForAdmin.questionContent}</td>
 				    </tr>
 				</table>
 			</div>
