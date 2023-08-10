@@ -114,42 +114,38 @@
 </style>
 
 <script type="text/javascript">
-	/* $(function()
-	{
-		$(".manageReport").click(function(event) {
-		    event.preventDefault();
 
-		    var newWindow = window.open('managementReport.action?reportedNickName='+$("#reportedNickName").val()
-		    				, 'manageReport', 'left=500,top=300,width=600,height=500,resizable=no');
-		    
-		    newWindow.onbeforeunload = function() 
-		    {
-		        var reguNo = newWindow.reguNo; // 첫 번째 int 값
-		        var reguPeriodNo = newWindow.reguPeriodNo; // 두 번째 int 값
-		        
-		        if (reguNo != undefined && reguPeriodNo != undefined) 
-		        {
-		        	$('#reguNo').val(reguNo);
-		        	$('#reguPeriodNo').val(reguPeriodNo);
-		        	
-		            $('#reportForm').attr('action', 'clearManageReport.action?repResultNo='+$(".manageReport").val());
-		            $('#reportForm').submit(); // 폼 제출
-		    	}
-		        
-		    };
-		});
+function manageReport(button)
+{
+	var row = button.closest('tr');
+    var reportedNickName = row.querySelector('.reportedNickName').value;
+    
+    var newWindow = window.open('managementReport.action?reportedNickName='+reportedNickName
+								, 'manageReport', 'left=500,top=300,width=600,height=500,resizable=no');
+    
+    window.addEventListener('message', function(event) 
+ 	{
+        if (event.origin !== window.location.origin) 
+        {
+            // 안전한 출처 확인
+            return;
+        }
 
-		
-		$(".cancelReport").click(function()
-		{
-			if (confirm("신고처리를 반려하시겠습니까?"))
-			{
-				$('#reportForm').attr('action', 'rejectManageReport.action?repResultNo='+$(".cancelReport").val());
-			}
-		});
-		
-	});
-	 */
+        // 전달받은 데이터 사용
+        var receivedData = JSON.parse(event.data);
+        
+        row.querySelector('.reguNo').value = receivedData.param1;
+        row.querySelector('.reguPeriodNo').value = receivedData.param2;
+        
+        var f = document.forms.reportForm;
+        f.action = 'clearManageReport.action';
+        f.submit();
+ 	});
+    
+}
+
+
+
 
 </script>
 </head>
@@ -236,8 +232,8 @@
 					</td>
 					<td>
 						${report.repReason } 
-						<input type="hidden" class="reguNo" name="reguNo"/>
-						<input type="hidden" class="reguPeriodNo" name="reguPeriodNo"/>
+						<input type="text" class="reguNo" name="reguNo"/>
+						<input type="text" class="reguPeriodNo" name="reguPeriodNo"/>
 					</td>
 					<td>
 						${report.reportDate }
