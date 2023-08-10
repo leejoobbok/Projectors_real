@@ -42,8 +42,14 @@
 	{
 		$("#reportComplete").click(function() 
 		{
-		    window.opener.reguNo = $("#reason").val();
-		    window.opener.reguPeriodNo = $("#period").val();
+		    var reguNo = $("#reason").val();
+		    var reguPeriodNo = $("#period").val();
+		    
+		    
+			// 데이터 전달 및 부모 창으로 메시지 보내기
+		    var dataToSend = { param1: reguNo, param2: reguPeriodNo };
+		    window.opener.postMessage(JSON.stringify(dataToSend), window.location.origin);
+		    
 		    window.close();
 		});
 		
@@ -60,7 +66,6 @@
 		</div>	
 
 		<div id="reportBox">
-			<form action="AfterComplete.jsp" id="reportForm">
 				<table style="margin: auto; margin-top: 10%;">
 					<tr>
 						<th colspan="2" style="font-size: x-large;">재제하기</th>
@@ -70,7 +75,7 @@
 					</tr>					
 					<tr>
 						<th>재제대상</th>
-						<td><input type="text" readonly="readonly" value="${reportedNickName }"/></td>						
+						<td><input type="text" readonly="readonly" value="${reportedNickName}"/></td>						
 					</tr>
 					<tr>
 						<th>재제사유</th>
@@ -78,7 +83,9 @@
 							<select name="reason" id="reason">
 								<option selected="selected">-- 사유 선택 --</option>
 							<c:forEach var="content" items="${punishContent }">
+								<c:if test="${content.reguNo!=0 }">
 								<option value="${content.reguNo }">${content.content }</option>
+								</c:if>
 							</c:forEach>
 							</select>
 						</td>
@@ -89,7 +96,9 @@
 							<select name="period" id="period">
 								<option selected="selected">-- 기간 선택 --</option>
 							<c:forEach var="peri" items="${periods }">
+								<c:if test="${peri.reguPeriodNo!=0 }">
 								<option value="${peri.reguPeriodNo }">${peri.period }</option>
+								</c:if>
 							</c:forEach>
 							</select>
 							일
@@ -105,12 +114,11 @@
 					</tr>					
 					<tr style="text-align: center;">
 						<td colspan="2">
-							<button id="reportComplete" >제재하기</button>
+							<button id="reportComplete" value="${row }">제재하기</button>
 							<button id="closeReport">취소하기</button>
 						</td>
 					</tr>
 				</table>
-			</form>
 		</div>
 </body>
 </html>
