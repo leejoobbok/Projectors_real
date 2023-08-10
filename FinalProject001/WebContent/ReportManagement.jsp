@@ -216,7 +216,10 @@ function manageReport(button)
 			</tr>
 			<c:forEach var="report" items="${lists }" varStatus="i">
 				<tr class="${i.count }">
-					<td>${report.repNo }</td>
+					<td>
+						${report.repNo }
+						<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
+					</td>
 					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
 						${report.reportedNickName }
@@ -232,8 +235,8 @@ function manageReport(button)
 					</td>
 					<td>
 						${report.repReason } 
-						<input type="text" class="reguNo" name="reguNo"/>
-						<input type="text" class="reguPeriodNo" name="reguPeriodNo"/>
+						<input type="hidden" class="reguNo" name="reguNo"/>
+						<input type="hidden" class="reguPeriodNo" name="reguPeriodNo"/>
 					</td>
 					<td>
 						${report.reportDate }
