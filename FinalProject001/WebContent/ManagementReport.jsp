@@ -42,8 +42,14 @@
 	{
 		$("#reportComplete").click(function() 
 		{
-		    window.opener.document.getElementById("reguNo").value = $("#reason").val();
-		    window.opener.document.getElementById("reguPeriodNo").value = $("#period").val();
+		    var reguNo = $("#reason").val();
+		    var reguPeriodNo = $("#period").val();
+		    
+		    
+			// 데이터 전달 및 부모 창으로 메시지 보내기
+		    var dataToSend = { param1: reguNo, param2: reguPeriodNo };
+		    window.opener.postMessage(JSON.stringify(dataToSend), window.location.origin);
+		    
 		    window.close();
 		});
 		
@@ -104,7 +110,7 @@
 					</tr>					
 					<tr style="text-align: center;">
 						<td colspan="2">
-							<button id="reportComplete" >제재하기</button>
+							<button id="reportComplete" value="${row }">제재하기</button>
 							<button id="closeReport">취소하기</button>
 						</td>
 					</tr>
