@@ -122,6 +122,33 @@ NOCACHE;
 
 
 
+CREATE SEQUENCE MEMOUTNOSEQ
+NOCACHE;
+
+CREATE SEQUENCE PRJSTOPNOSEQ
+NOCACHE;
+--==>>Sequence PRJRATENOSEQ이(가) 생성되었습니다.
+
+
+-- MO //
+
+
+CREATE SEQUENCE MEMOUTRATENOSEQ
+NOCACHE;
+--==>>Sequence MEMOUTRATENOSEQ이(가) 생성되었습니다.
+
+CREATE SEQUENCE PRJSTOPRATENOSEQ
+NOCACHE;
+--==>>Sequence PRJSTOPRATENOSEQ이(가) 생성되었습니다.
+
+
+CREATE SEQUENCE PRJRATENOSEQ
+NOCACHE;
+
+-- MOR // PSR // PJR
+
+
+
 COMMIT;
 
 --==================================================================
