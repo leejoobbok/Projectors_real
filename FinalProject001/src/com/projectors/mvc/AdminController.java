@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,7 @@ public class AdminController
 	
 	//admin으로 로그인 시 보여질 AdminMain 페이지 
 	//-- (금일 회원 접속 수, 새 문의 건수 확인, 새 신고 건수 확인)
-	@RequestMapping (value = "/adminMain.action", method = RequestMethod.GET)
+	@RequestMapping (value = "/adminMain.action", method = RequestMethod.POST)
 	public String main(Model model)
 	{
 		String result = "";

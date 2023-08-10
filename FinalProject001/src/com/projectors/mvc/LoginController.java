@@ -51,8 +51,8 @@ public class LoginController
 				/*관리자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
 				
-				System.out.println(dao.getAdminPin(loginDTO));
-				System.out.println(dao.getAdminNo(loginDTO));
+				//System.out.println(dao.getAdminPin(loginDTO));
+				//System.out.println(dao.getAdminNo(loginDTO));
 				
 				
 				/*세션에 관리자 pin 등록*/
