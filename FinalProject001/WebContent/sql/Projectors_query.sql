@@ -182,7 +182,7 @@ WHERE MEM_OUT_NO = (SELECT MEM_OUT_NO
                                                           FROM FIRST_CK
                                                           WHERE APPLY_NO = (SELECT APPLY_NO
                                                                             FROM APPLY
-                                                                            WHERE PIN_NO =? ))))
+                                                                            WHERE PIN_NO ='UP42' ))))
 GROUP BY RATE_NO;
                                          
 --(2) 팀 닫기 총 평가                                         
@@ -194,7 +194,7 @@ WHERE RECEIVER_NO = (SELECT FINAL_NO
                                          FROM FIRST_CK
                                          WHERE APPLY_NO = (SELECT APPLY_NO
                                                            FROM APPLY
-                                                           WHERE PIN_NO=?)))
+                                                           WHERE PIN_NO='UP42')))
 GROUP BY RATE_NO;
 
 --(3) 팀 완료 총 평가
@@ -206,7 +206,7 @@ WHERE RECEIVER_NO = (SELECT FINAL_NO
                                          FROM FIRST_CK
                                          WHERE APPLY_NO = (SELECT APPLY_NO
                                                            FROM APPLY
-                                                           WHERE PIN_NO=?)))
+                                                           WHERE PIN_NO='UP42')))
 GROUP BY RATE_NO;
 
 
@@ -396,6 +396,7 @@ INSERT INTO USER_PIN
 VALUES
 ( 'UP'||TO_CHAR(USERPINSEQ.NEXTVAL)
  , SYSDATE);
+ 
 INSERT INTO USERS
 ( USER_NO
 , PIN_NO
@@ -410,10 +411,12 @@ VALUES
          FROM USER_PIN
          ORDER BY JOIN_DATE DESC)
    WHERE ROWNUM = 1)
-,'tty@naver.com'
+,'평가용6@naver.com'
 ,'java002'
-,'탈퇴용2'
+,'평가용6'
 ,'images/defaulfPhoto.jpg');
+
+
 
 
 DESC WITHDRAW_USER;
@@ -510,13 +513,13 @@ INSERT INTO RECRUIT
 VALUES
 ( 
 'RC'||TO_CHAR(RECRUITNOSEQ.NEXTVAL)
-, (SELECT PIN_NO FROM USERS WHERE NICKNAME='스폰지밥')
+, (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용1')
 , 1
-, '불량한 제목의 공고'
-, '불량한 내용의 공고'
+, '평가 출력용 제목 공고'
+, '평가 출력용 내용 공고'
 , SYSDATE
-, TO_DATE('2023-08-25 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
-, TO_DATE('2023-12-25 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+, TO_DATE('2022-05-25 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+, TO_DATE('2023-08-09 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
 );
 
 --===>> 1 행 이(가) 삽입되었습니다.
@@ -549,6 +552,13 @@ VALUES
 , (SELECT PIN_NO FROM USERS WHERE NICKNAME='스폰지밥' )
 , SYSDATE
 , 1);
+
+
+
+
+
+
+
 
 --==>> 1 행 이(가) 삽입되었습니다.
 
@@ -1046,8 +1056,9 @@ INSERT INTO PROFILE
 , PROFILE_DATE )
 VALUES
 ( 'PF'||TO_CHAR(PROFILENOSEQ.NEXTVAL)
-, 'UP33'                                -- 원래를 세션에서 받아온 핀넘버여야 함
-, 입력받을 포지션 넘버
+,  (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용6')                             -- 원래를 세션에서 받아온 핀넘버여야 함
+, 1
+, 1
 , SYSDATE);
 
 
@@ -1098,6 +1109,244 @@ SELECT TOOLNO
 FROM USER_TOOL_VIEW
 WHERE PINNO='UP13';
 
+
+SELECT * FROM RATE;
+
+SELECT * FROM RATE_SELECT;
+
+SELECT * FROM MEM_OUT_RATE;
+DESC MEM_OUT_RATE;
+/*
+OUT_RATE_NO NOT NULL VARCHAR2(18) 
+MEM_OUT_NO  NOT NULL VARCHAR2(16) 
+GIVER       NOT NULL VARCHAR2(16) 
+RATE_NO     NOT NULL NUMBER(1)    
+RATE_DATE            DATE     
+*/
+
+SELECT * FROM FINAL;
+
+SELECT * FROM RECRUIT_POS;
+
+DESC RECRUIT_POS;
+/*
+RECRUIT_POS_NO NOT NULL VARCHAR2(20) 
+RECRUIT_NO     NOT NULL VARCHAR2(16) 
+POS_NO         NOT NULL NUMBER(2) 
+*/
+
+INSERT INTO RECRUIT_POS
+VALUES
+('RP'||TO_CHAR(RECRUITPOSSEQ.NEXTVAL)
+,(SELECT RECRUIT_NO FROM RECRUIT WHERE PIN_NO = (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용1'))
+,1);
+
+SELECT RECRUIT_POS_NO FROM RECRUIT_POS WHERE RECRUIT_NO = (SELECT RECRUIT_NO FROM RECRUIT WHERE PIN_NO = (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용'));
+/*
+RP24
+RP25
+RP26
+*/
+
+SELECT RECRUIT_POS_NO FROM RECRUIT_POS WHERE RECRUIT_NO = (SELECT RECRUIT_NO FROM RECRUIT WHERE PIN_NO = (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용1'));
+/*
+RP27
+RP28
+*/
+
+
+INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
+VALUES('AP'||TO_CHAR(APPLYNOSEQ.NEXTVAL)
+        , 'RP28' -- ?삁?떆 (怨듦퀬?뿉?꽌 紐⑥쭛以묒씤 ?룷吏??뀡 踰덊샇)(?궗?슜?옄媛? ?꽑?깮?븳 媛?)
+        , (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용6') -- 吏??썝?옄 ?? 踰덊샇(=紐⑥쭛?옄)
+        ,'평가용6의 지원내용' -- ?궡?슜
+        , TO_DATE('2023-07-20', 'YYYY-MM-DD')     -- 吏??썝?씪 (怨듦퀬 ?벑濡앹씪?떆?? 媛숈쓬) ?썝?옒?뒗 SYSDATE濡? 
+        , TO_DATE('2023-07-20', 'YYYY-MM-DD')); 
+
+
+SELECT * FROM RECRUIT;
+/*
+RC10	UP39	1	평가 출력용 제목 공고	평가 출력용 내용 공고
+RC11	UP41	1	평가 출력용 제목 공고	평가 출력용 내용 공고
+*/
+
+SELECT * FROM APPLY;
+/*
+AP21    	RP24	    UP42    	평가용 2의 지원내용
+AP22	    RP25	    UP43	평가용 3의 지원내용
+AP23	    RP26	    UP44	평가용4의 지원내용
+AP24	    RP27	    UP45	평가용5의 지원내용
+AP25	    RP28    	UP46	평가용6의 지원내용
+*/
+INSERT INTO FIRST_CK
+(FIRST_CK_NO
+, APPLY_NO
+, PASS_DATE)
+VALUES
+( 'FS'||FIRSTCKSEQ.NEXTVAL
+, 'AP25'
+, TO_DATE('2023-07-23', 'YYYY-MM-DD'));
+
+SELECT * FROM FIRST_CK;
+/*
+FS10	    AP21	    2023-07-23
+FS11	    AP22	    2023-07-23
+FS12	    AP23    	2023-07-23
+FS13    	AP24    	2023-07-23
+FS14    	AP25	    2023-07-23
+*/
+
+INSERT INTO FINAL(FINAL_NO, FIRST_CK_NO,FINAL_CK_DATE)
+VALUES('FN'||TO_CHAR(FINALNOSEQ.NEXTVAL),'FS14', TO_DATE('2023-07-24 13:00:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+SELECT * FROM RECRUIT;
+/*
+RC10    	UP39	1	평가 출력용 제목 공고	평가 출력용 내용 공고
+RC11    	UP41	1	평가 출력용 제목 공고	평가 출력용 내용 공고
+*/
+INSERT INTO PROJECT (PRJ_NO, RECRUIT_NO, PRJ_DATE)
+VALUES ('PJ'||TO_CHAR(PROJECTNOSEQ.NEXTVAL), 'RC11', TO_DATE('2023-07-24 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+
+SELECT * FROM MEM_OUT_REASON;
+SELECT * FROM PRJ_STOP_REASON;
+
+
+DESC MEMBER_OUT;
+/*
+MEM_OUT_NO    NOT NULL VARCHAR2(16) 
+FINAL_NO      NOT NULL VARCHAR2(16) 
+OUT_REASON_NO NOT NULL NUMBER(1)    
+OUT_DATE               DATE
+*/
+/*
+SELECT * FROM FINAL WHERE FIRST_CK_NO = (SELECT FIRST_CK_NO FROM FIRST_CK WHERE APPLY_NO = (SELECT APPLY_NO FROM APPLY 
+WHERE RECRUIT_POS_NO =(SELECT RECRUIT_POS_NO FROM RECRUIT_POS WHERE RECRUIT_NO = (SELECT RECRUIT_NO FROM RECRUIT 
+WHERE PIN_NO = (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용')))));
+*/
+
+DESC FINAL;
+
+SELECT FINAL_NO FROM FINAL WHERE FIRST_CK_NO=
+(SELECT FIRST_CK_NO FROM FIRST_CK WHERE APPLY_NO = (SELECT APPLY_NO FROM APPLY WHERE PIN_NO = (SELECT PIN_NO FROM USERS WHERE NICKNAME='평가용6')));
+
+DESC MEMBER_OUT;
+
+INSERT INTO MEMBER_OUT
+VALUES
+( 'MO'||TO_CHAR(MEMOUTNOSEQ.NEXTVAL)
+, 'FN8'
+, 1
+, TO_DATE('2023-07-31 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+
+SELECT * FROM MEMBER_OUT WHERE FINAL_NO ='FN8'; --> 평가용2 의 팀이탈 번호는 MO2
+
+DESC MEM_OUT_RATE;
+/*
+OUT_RATE_NO NOT NULL VARCHAR2(18) 
+MEM_OUT_NO  NOT NULL VARCHAR2(16) 
+GIVER       NOT NULL VARCHAR2(16) 
+RATE_NO     NOT NULL NUMBER(1)    
+RATE_DATE            DATE         
+*/
+
+/*
+평가용(팀장) ==> FIANL_NO 없음   프로젝트 번호 PJ3
+평가용2      ==> 'FN8'     -> 팀 이탈자 (MEMBERO_OUT_RATE)    팀 이탈 번호 MO2
+평가용3      ==> 'FN9'     -> 팀 닫기   (PROJECT_STOP_RATE)
+평가용4      ==> 'FN10'    -> 팀 닫기   (PROJECT_STOP_RATE)
+----
+평가용1(팀장) ==> FINAL_NO 없음  프로젝트 번호 PJ4
+평가용5      ==> 'FN11'  -> 팀완료      (PROJECT_RATE)
+평가용6      ==> 'FN12'  -> 팀완료      (PROJECT_RATE)
+*/
+
+DESC MEM_OUT_RATE;
+/*
+OUT_RATE_NO NOT NULL VARCHAR2(18) 
+MEM_OUT_NO  NOT NULL VARCHAR2(16) 
+GIVER       NOT NULL VARCHAR2(16) 
+RATE_NO     NOT NULL NUMBER(1)    
+RATE_DATE            DATE    
+*/
+SELECT * FROM RATE_SELECT;
+/*
+1	열심히 참여함
+2	협업능력이 뛰어남
+4	참여율이 저조함
+5	협업능력이 부족함
+6	업무 수행 능력이 낮음
+3	업무 능력이 뛰어남
+*/
+
+
+-- 평가용 2('FN8' )에대한 팀이탈 평가자 평가자는(GIVER)는 평가용3 와 평가용 4
+INSERT INTO MEM_OUT_RATE VALUES('MOR'||TO_CHAR(MEMOUTRATENOSEQ.NEXTVAL), 'MO2', 'FN9',  4, TO_DATE('2023-08-01 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO MEM_OUT_RATE VALUES('MOR'||TO_CHAR(MEMOUTRATENOSEQ.NEXTVAL), 'MO2', 'FN10', 5, TO_DATE('2023-08-01 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+
+-- 평가용 3 (FN8) -> 평가용 4 (FN9) / 평가용4(FN9 -> 평가용 3(FN8)  프로젝트 번호 PJ3
+-- 우선 팀 닫기 먼저
+INSERT INTO PROJECT_STOP
+VALUES('PS'||TO_CHAR(PRJSTOPNOSEQ.NEXTVAL), 'PJ3',  TO_DATE('2023-08-05 14:34:56', 'YYYY-MM-DD HH24:MI:SS'), 1);
+-->> PJ3 팀 닫기 완료    팀 닫기 번호 ==> PS1
+
+DESC PROJECT_STOP_RATE;
+/*------------ -------- ------------ 
+STOP_RATE_NO NOT NULL VARCHAR2(20) 
+PRJ_STOP_NO  NOT NULL VARCHAR2(16) 
+RECEIVER     NOT NULL VARCHAR2(16) 
+GIVER        NOT NULL VARCHAR2(16) 
+RATE_NO      NOT NULL NUMBER(1)    
+RATE_DATE             DATE  
+*/
+
+INSERT INTO PROJECT_STOP_RATE VALUES('PSR'||TO_CHAR(PRJSTOPRATENOSEQ.NEXTVAL), 'PS1','FN9', 'FN8',1, TO_DATE('2023-08-06 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO PROJECT_STOP_RATE VALUES('PSR'||TO_CHAR(PRJSTOPRATENOSEQ.NEXTVAL), 'PS1','FN8', 'FN9',1, TO_DATE('2023-08-06 14:34:56', 'YYYY-MM-DD HH24:MI:SS'));
+--==>> 상호 평가 완료
+
+--== 
+
+DESC PROJECT_RATE;
+/*
+DONE_RATE_NO NOT NULL VARCHAR2(20) 
+GIVER        NOT NULL VARCHAR2(16) 
+RECEIVER     NOT NULL VARCHAR2(16) 
+RATE_NO      NOT NULL NUMBER(1)    
+RATE_DATE             DATE 
+*/
+-- 프로젝트 완료 평가 데이터 입력
+-- 평가용 5 (FN10) -> 평가용 6 (FN11) / 평가용6(FN11) -> 평가용5 (FN10)  프로젝트 번호 PJ4
+
+INSERT INTO PROJECT_RATE VALUES('PJR'||TO_CHAR(PRJRATENOSEQ.NEXTVAL), 'FN10', 'FN11', 3, SYSDATE);
+INSERT INTO PROJECT_RATE VALUES('PJR'||TO_CHAR(PRJRATENOSEQ.NEXTVAL), 'FN11', 'FN10', 3, SYSDATE);
+--==>> 프로젝트 완료 상호평가 완료
+
+COMMIT;
+--==>> 커밋 완료
+
+
+
+SELECT * FROM PROJECT LEFT JOIN RECRUIT ON PROJECT.RECRUIT_NO = RECRUIT.RECRUIT_NO;
+
+DESC PROJECT_STOP;
+/*
+PRJ_STOP_NO    NOT NULL VARCHAR2(16) 
+PRJ_NO         NOT NULL VARCHAR2(16) 
+STOP_DATE               DATE         
+STOP_REASON_NO NOT NULL NUMBER(1)    
+*/
+
+DESC FINAL;
+DESC FIRST_CK;
+
+-- 최종합류 번호를 가지고 회원 번호 가져오는 법
+SELECT F.FINAL_NO, US.PIN_NO
+FROM FINAL F
+LEFT JOIN FIRST_CK FC ON F.FIRST_CK_NO = FC.FIRST_CK_NO
+LEFT JOIN APPLY A ON FC.APPLY_NO = A.APPLY_NO  
+LEFT JOIN USERS US ON A.PIN_NO = US.PIN_NO
+WHERE F.FINAL_NO = 'FN8';
+--==>> FN8	UP42
+--==>> FN8	FS10	2023-07-24	FS10	AP21	2023-07-23	AP21	RP24	UP42	평가용 2의 지원내용	2023-07-20	2023-07-20	US40	UP42	평가용2@naver.com	java002	평가용2	images/defaulfPhoto.jpg
 
 
 
