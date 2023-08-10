@@ -1,37 +1,37 @@
 SELECT USER FROM DUAL;
 --==>PROJECTORS
 --------------------------------------------------------------------------------
---¢Ã 2023.08.03.¿ÀÈÄ 8:55 ¾ÆÇö : Å×ÀÌºí ÀÎ¼­Æ® ±¸¹® ÀÛ¼º 
+--â–£ 2023.08.03.ì˜¤í›„ 8:55 ì•„í˜„ : í…Œì´ë¸” ì¸ì„œíŠ¸ êµ¬ë¬¸ ìž‘ì„± 
 
 
 DESC RATE_SELECT;
 --==>>
 /*
-ÀÌ¸§      ³Î?       À¯Çü           
+ì´ë¦„      ë„?       ìœ í˜•           
 ------- -------- ------------ 
 RATE_NO NOT NULL NUMBER(1)    
 CONTENT NOT NULL VARCHAR2(30) 
 */
 
---¡Û Æò°¡ ¼±ÅÃÁö Å×ÀÌºí µ¥ÀÌÅÍ ÀÔ·Â ( RATE_SELECT )
-INSERT INTO RATE_SELECT VALUES(1,'¿­½ÉÈ÷ Âü¿©ÇÔ');
-INSERT INTO RATE_SELECT VALUES(2,'Çù¾÷´É·ÂÀÌ ¶Ù¾î³²');
-INSERT INTO RATE_SELECT VALUES(3,'¾÷¹« ´É·ÂÀÌ ¶Ù¾î³²');
-INSERT INTO RATE_SELECT VALUES(4,'Âü¿©À²ÀÌ ÀúÁ¶ÇÔ');
-INSERT INTO RATE_SELECT VALUES(5,'Çù¾÷´É·ÂÀÌ ºÎÁ·ÇÔ');
-INSERT INTO RATE_SELECT VALUES(6,'¾÷¹« ´É·ÂÀÌ ºÎÁ·ÇÔ');
+--â—‹ í‰ê°€ ì„ íƒì§€ í…Œì´ë¸” ë°ì´í„° ìž…ë ¥ ( RATE_SELECT )
+INSERT INTO RATE_SELECT VALUES(1,'ì—´ì‹¬ížˆ ì°¸ì—¬í•¨');
+INSERT INTO RATE_SELECT VALUES(2,'í˜‘ì—…ëŠ¥ë ¥ì´ ë›°ì–´ë‚¨');
+INSERT INTO RATE_SELECT VALUES(3,'ì—…ë¬´ ëŠ¥ë ¥ì´ ë›°ì–´ë‚¨');
+INSERT INTO RATE_SELECT VALUES(4,'ì°¸ì—¬ìœ¨ì´ ì €ì¡°í•¨');
+INSERT INTO RATE_SELECT VALUES(5,'í˜‘ì—…ëŠ¥ë ¥ì´ ë¶€ì¡±í•¨');
+INSERT INTO RATE_SELECT VALUES(6,'ì—…ë¬´ ëŠ¥ë ¥ì´ ë¶€ì¡±í•¨');
 
---(½ÇÁ¦ ¼öÇà ¾øÀÌ ÀÛ¼º¸¸ ÇÏ°í ÁØº¹ÀÌÇÑÅ× Àü¼Û ¿Ï·á) 
+--(ì‹¤ì œ ìˆ˜í–‰ ì—†ì´ ìž‘ì„±ë§Œ í•˜ê³  ì¤€ë³µì´í•œí…Œ ì „ì†¡ ì™„ë£Œ) 
 --------------------------------------------------------------------------------
 
---¢Ã 2023.08.04.¿ÀÈÄ 2:48 ¾ÆÇö
--- : ¸ÞÀÎ °øÁö °Ô½ÃÆÇ, ¸ÞÀÎ°øÁö±Û ÀÛ¼º ÆäÀÌÁö °ü·Ã Äõ¸®¹® ÀÛ¼º
+--â–£ 2023.08.04.ì˜¤í›„ 2:48 ì•„í˜„
+-- : ë©”ì¸ ê³µì§€ ê²Œì‹œíŒ, ë©”ì¸ê³µì§€ê¸€ ìž‘ì„± íŽ˜ì´ì§€ ê´€ë ¨ ì¿¼ë¦¬ë¬¸ ìž‘ì„±
 
---¡Û °ü¸®ÀÚ °øÁö °Ô½ÃÆÇ Å×ÀÌºí È®ÀÎ 
+--â—‹ ê´€ë¦¬ìž ê³µì§€ ê²Œì‹œíŒ í…Œì´ë¸” í™•ì¸ 
 DESC ADMIN_NOTICE; 
 --==>>
 /*
-ÀÌ¸§              ³Î?       À¯Çü             
+ì´ë¦„              ë„?       ìœ í˜•             
 --------------- -------- -------------- 
 ADMIN_NOTICE_NO NOT NULL VARCHAR2(8)    
 TITLE           NOT NULL VARCHAR2(100)  
@@ -39,131 +39,97 @@ CONTENT         NOT NULL VARCHAR2(1000)
 PIN_NO          NOT NULL VARCHAR2(16)  
 */
 --------------------------------------------------------------------------------
---¡Ü °øÁö±Û ¸ñ·Ï Á¶È¸ Äõ¸®¹® ÁØºñ (MainNoticeLists.jsp)
---( ±Û¹øÈ£, Á¦¸ñ) + (ÀÛ¼ºÀÚ, ÀÛ¼ºÀÏ..µµ ÀÖÀ½ ÁÁ°ÚÁö¸¸ ÀÏ´ÜÀº »©°í ½è½À´Ï´Ù) 
+--â— ê³µì§€ê¸€ ëª©ë¡ ì¡°íšŒ ì¿¼ë¦¬ë¬¸ ì¤€ë¹„ (MainNoticeLists.jsp)
+--( ê¸€ë²ˆí˜¸, ì œëª©) + (ìž‘ì„±ìž, ìž‘ì„±ì¼..ë„ ìžˆìŒ ì¢‹ê² ì§€ë§Œ ì¼ë‹¨ì€ ë¹¼ê³  ì¼ìŠµë‹ˆë‹¤) 
 SELECT ADMIN_NOTICE_NO, TITLE 
 FROM ADMIN_NOTICE;
 
 --------------------------------------------------------------------------------
---¢Â °ü¸®ÀÚ °øÁö µî·Ï °ü·Ã Äõ¸®¹® ÁØºñ (MainNoticeInsert.jsp)
+--â—ˆ ê´€ë¦¬ìž ê³µì§€ ë“±ë¡ ê´€ë ¨ ì¿¼ë¦¬ë¬¸ ì¤€ë¹„ (MainNoticeInsert.jsp)
 
---¡Ü1) ½ÃÄö½º »ý¼º (±Û ¹øÈ£ ¾Õ¿¡ ºÙÀÏ ¹®ÀÚ¿­Àº ¾ÆÁ÷ ¹ÌÁ¤) 
+--â—1) ì‹œí€€ìŠ¤ ìƒì„± (ê¸€ ë²ˆí˜¸ ì•žì— ë¶™ì¼ ë¬¸ìžì—´ì€ ì•„ì§ ë¯¸ì •) 
 CREATE SEQUENCE ADMIN_NOTICE_NO_SEQ
 NOCACHE;
 
---¡Ü2)ÀÎ¼­Æ® ¼öÇà ( ±Û¹øÈ£, Á¦¸ñ, ³»¿ë, ÇÉ¹øÈ£) // ¹®ÀÚ¿­ °áÇÕ
+--â—2)ì¸ì„œíŠ¸ ìˆ˜í–‰ ( ê¸€ë²ˆí˜¸, ì œëª©, ë‚´ìš©, í•€ë²ˆí˜¸) // ë¬¸ìžì—´ ê²°í•©
 INSERT INTO ADMIN_NOTICE(ADMIN_NOTICE_NO,TITLE,CONTENT,PIN_NO)
-VALUES('AAA'||TO_CHAR(ADMIN_NOTICE_SEQ.NEXTVAL),'¾È³çÇÏ¼¼¿ä ÇÁ·ÎÁ§ÅÍ½ºÀÔ´Ï´Ù','¾È³çÇÏ¼¼¿ä! »çÀÌÆ®°¡ Á¤½Ä ¿ÀÇÂÇß½À´Ï´Ù!','ABCD1234');
+VALUES('AAA'||TO_CHAR(ADMIN_NOTICE_SEQ.NEXTVAL),'ì•ˆë…•í•˜ì„¸ìš” í”„ë¡œì í„°ìŠ¤ìž…ë‹ˆë‹¤','ì•ˆë…•í•˜ì„¸ìš”! ì‚¬ì´íŠ¸ê°€ ì •ì‹ ì˜¤í”ˆí–ˆìŠµë‹ˆë‹¤!','ABCD1234');
 
 --------------------------------------------------------------------------------
 
---¢Ã 2023.08.06.¿ÀÈÄ 2:00 ¾ÆÇö
--- µ¥ÀÌÅÍ ÀÎ¼­Æ® Äõ¸®¹® ÀÛ¼º
+--â–£ 2023.08.06.ì˜¤í›„ 2:00 ì•„í˜„
+-- ë°ì´í„° ì¸ì„œíŠ¸ ì¿¼ë¦¬ë¬¸ ìž‘ì„±
 
--- : È¸¿ø 5¸í(ÇÁ·ÎÇÊ±îÁö), ¸ðÁý°ø°í 2°³(1¸ðÁýÁß|1¸ðÁý¿Ï·á)
---  Áö¿ø¼­ 5°³ (°ø°í1ÀÇ ¸ðÁýÀÚ Áö¿ø¼­ 1°³, °ø°í 2ÀÇ ¸ðÁýÀÚ Áö¿ø¼­ 1°³ 
---               + Áö¿øÀÚ 3°³(2°³´Â: ¸ðÁý ¿Ï·áµÈ °ø°í2 // 1°³´Â ¸ðÁý ÁßÀÎ °ø°í 1)) 
--- ÇÁ·ÎÁ§Æ® 1°³(3ÀÎ ÇÁ·ÎÁ§Æ®) 
+-- : íšŒì› 5ëª…(í”„ë¡œí•„ê¹Œì§€), ëª¨ì§‘ê³µê³  2ê°œ(1ëª¨ì§‘ì¤‘|1ëª¨ì§‘ì™„ë£Œ)
+--  ì§€ì›ì„œ 5ê°œ (ê³µê³ 1ì˜ ëª¨ì§‘ìž ì§€ì›ì„œ 1ê°œ, ê³µê³  2ì˜ ëª¨ì§‘ìž ì§€ì›ì„œ 1ê°œ 
+--               + ì§€ì›ìž 3ê°œ(2ê°œëŠ”: ëª¨ì§‘ ì™„ë£Œëœ ê³µê³ 2 // 1ê°œëŠ” ëª¨ì§‘ ì¤‘ì¸ ê³µê³  1)) 
+-- í”„ë¡œì íŠ¸ 1ê°œ(3ì¸ í”„ë¡œì íŠ¸) 
 
-
-ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
-
---=============================
-CREATE SEQUENCE USERPINSEQ
-NOCACHE;
-
-CREATE SEQUENCE USERNOSEQ
-NOCACHE;
-/*
-CREATE SEQUENCE PROFILENOSEQ
-NOCACHE;
-
-CREATE SEQUENCE UTOOLNOSEQ
-NOCACHE;
-
-CREATE SEQUENCE RECRUITNOSEQ
-NOCACHE;
-
-CREATE SEQUENCE APPLYNOSEQ
-NOCACHE;
-
-CREATE SEQUENCE RECRUITPOSSEQ
-NOCACHE;
-
-CREATE SEQUENCE FIRSTCKSEQ
-NOCACHE;
-
-CREATE SEQUENCE FINALNOSEQ
-NOCACHE;
-
-CREATE SEQUENCE PROJECTNOSEQ
-NOCACHE;
-*/
--- À¯Àú ÇÉ¹øÈ£ »ý¼º
+-- ìœ ì € í•€ë²ˆí˜¸ ìƒì„±
 INSERT INTO USER_PIN(PIN_NO, JOIN_DATE) VALUES(UP||TO_CHAR(USERPINSEQ.NEXTVAL),SYSDATE);
 
--- À¯Àú ¹øÈ£ ½ÃÄö½º »ý¼º
+-- ìœ ì € ë²ˆí˜¸ ì‹œí€€ìŠ¤ ìƒì„±
 CREATE SEQUENCE USERNOSEQ
 NOCACHE;
 
 
 
---¡Ü È¸¿ø Å×ÀÌºí(USERS) ÀÎ¼­Æ® (À¯Àú¹øÈ£, À¯ÀúÇÉ¹øÈ£, ¾ÆÀÌµð, ºñ¹ø, ´Ð³×ÀÓ, ÇÁ»ç) 
+--â— íšŒì› í…Œì´ë¸”(USERS) ì¸ì„œíŠ¸ (ìœ ì €ë²ˆí˜¸, ìœ ì €í•€ë²ˆí˜¸, ì•„ì´ë””, ë¹„ë²ˆ, ë‹‰ë„¤ìž„, í”„ì‚¬) 
 INSERT INTO USERS(USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-VALUES('US'||TO_CHAR(USERNOSEQ.NEXTVAL)        --À¯Àú¹øÈ£
-,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- À¯Àú ÇÉ¹øÈ£
-, 'doolahyeon@gmail.com'                     -- ¾ÆÀÌµð(ÀÌ¸ÞÀÏ)
-, CRYPTPACK.ENCRYPT('user0001','user0001')    -- ºñ¹Ð¹øÈ£(¾ÏÈ£È­)
-, 'µÎ¶óÇö'                                  -- ´Ð³×ÀÓ
-, 'images/defaultPhoto.jpg');                -- ÇÁ·ÎÇÊ»çÁø url
+VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --ìœ ì €ë²ˆí˜¸
+,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- ìœ ì € í•€ë²ˆí˜¸
+, 'doolahyeon@gmail.com'                     -- ì•„ì´ë””(ì´ë©”ì¼)
+, CRYPTPACK.ENCRYPT('user0001','user0001')    -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+, 'ë‘ë¼í˜„'                                  -- ë‹‰ë„¤ìž„
+, 'images/defaultPhoto.jpg');                -- í”„ë¡œí•„ì‚¬ì§„ url
 
 INSERT INTO USERS(USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --À¯Àú¹øÈ£
-,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- À¯Àú ÇÉ¹øÈ£
-, 'sedahyeon@gmail.com'                     -- ¾ÆÀÌµð(ÀÌ¸ÞÀÏ)
-, CRYPTPACK.ENCRYPT('user0002','user0002')    -- ºñ¹Ð¹øÈ£(¾ÏÈ£È­)
-, '¼¼´ÙÇö'                                  -- ´Ð³×ÀÓ
-, 'images/defaultPhoto.jpg');                -- ÇÁ·ÎÇÊ»çÁø url
+VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --ìœ ì €ë²ˆí˜¸
+,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- ìœ ì € í•€ë²ˆí˜¸
+, 'sedahyeon@gmail.com'                     -- ì•„ì´ë””(ì´ë©”ì¼)
+, CRYPTPACK.ENCRYPT('user0002','user0002')    -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+, 'ì„¸ë‹¤í˜„'                                  -- ë‹‰ë„¤ìž„
+, 'images/defaultPhoto.jpg');                -- í”„ë¡œí•„ì‚¬ì§„ url
 
 INSERT INTO USERS(USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --À¯Àú¹øÈ£
-,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- À¯Àú ÇÉ¹øÈ£
-, 'nedahyeon@gmail.com'                     -- ¾ÆÀÌµð(ÀÌ¸ÞÀÏ)
-, CRYPTPACK.ENCRYPT('user0003','user0003')    -- ºñ¹Ð¹øÈ£(¾ÏÈ£È­)
-, '³×´ÙÇö'                                  -- ´Ð³×ÀÓ
-, 'images/defaultPhoto.jpg');                -- ÇÁ·ÎÇÊ»çÁø url
+VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --ìœ ì €ë²ˆí˜¸
+,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- ìœ ì € í•€ë²ˆí˜¸
+, 'nedahyeon@gmail.com'                     -- ì•„ì´ë””(ì´ë©”ì¼)
+, CRYPTPACK.ENCRYPT('user0003','user0003')    -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+, 'ë„¤ë‹¤í˜„'                                  -- ë‹‰ë„¤ìž„
+, 'images/defaultPhoto.jpg');                -- í”„ë¡œí•„ì‚¬ì§„ url
 
 
 INSERT INTO USERS(USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --À¯Àú¹øÈ£
-,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- À¯Àú ÇÉ¹øÈ£
-, 'ohahyeon@gmail.com'                     -- ¾ÆÀÌµð(ÀÌ¸ÞÀÏ)
-, CRYPTPACK.ENCRYPT('user0004','user0004')    -- ºñ¹Ð¹øÈ£(¾ÏÈ£È­)
-, '¿À¾ÆÇö'                                  -- ´Ð³×ÀÓ
-, 'images/defaultPhoto.jpg');                -- ÇÁ·ÎÇÊ»çÁø url
+VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --ìœ ì €ë²ˆí˜¸
+,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- ìœ ì € í•€ë²ˆí˜¸
+, 'ohahyeon@gmail.com'                     -- ì•„ì´ë””(ì´ë©”ì¼)
+, CRYPTPACK.ENCRYPT('user0004','user0004')    -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+, 'ì˜¤ì•„í˜„'                                  -- ë‹‰ë„¤ìž„
+, 'images/defaultPhoto.jpg');                -- í”„ë¡œí•„ì‚¬ì§„ url
 
 INSERT INTO USERS(USER_NO, PIN_NO, ID, PW, NICKNAME, PHOTOURL)
-VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --À¯Àú¹øÈ£
-,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- À¯Àú ÇÉ¹øÈ£
-, 'ugahyeon@gmail.com'                     -- ¾ÆÀÌµð(ÀÌ¸ÞÀÏ)
-, CRYPTPACK.ENCRYPT('user0005','user0005')    -- ºñ¹Ð¹øÈ£(¾ÏÈ£È­)
-, 'À¯°¡Çö'                                  -- ´Ð³×ÀÓ
-, 'images/defaultPhoto.jpg');                -- ÇÁ·ÎÇÊ»çÁø url
+VALUES(US||TO_CHAR(USERNOSEQ.NEXTVAL)        --ìœ ì €ë²ˆí˜¸
+,(SELECT MAX(PIN_NO) FROM USER_PIN)          -- ìœ ì € í•€ë²ˆí˜¸
+, 'ugahyeon@gmail.com'                     -- ì•„ì´ë””(ì´ë©”ì¼)
+, CRYPTPACK.ENCRYPT('user0005','user0005')    -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+, 'ìœ ê°€í˜„'                                  -- ë‹‰ë„¤ìž„
+, 'images/defaultPhoto.jpg');                -- í”„ë¡œí•„ì‚¬ì§„ url
 
 --------------------------------------------------------------------------------
---¡Ü ÇÁ·ÎÇÊ ÀÎ¼­Æ®¹®
+--â— í”„ë¡œí•„ ì¸ì„œíŠ¸ë¬¸
 
--- ÇÁ·ÎÇÊ ¹øÈ£ »ý¼º¿¡ ¾µ ½ÃÄö½º »ý¼º
+-- í”„ë¡œí•„ ë²ˆí˜¸ ìƒì„±ì— ì“¸ ì‹œí€€ìŠ¤ ìƒì„±
 CREATE SEQUENCE PROFILESEQ
 NOCACHE;
 
--- ÇÁ·ÎÇÊ(PROFILE) ÀÎ¼­Æ® (ÇÁ·ÎÇÊ¹øÈ£, À¯ÀúÇÉ¹øÈ£, Æ÷Áö¼Ç¹øÈ£,¼¼ºÎÁö¿ª¹øÈ£,µî·ÏÀÏ)
+-- í”„ë¡œí•„(PROFILE) ì¸ì„œíŠ¸ (í”„ë¡œí•„ë²ˆí˜¸, ìœ ì €í•€ë²ˆí˜¸, í¬ì§€ì…˜ë²ˆí˜¸,ì„¸ë¶€ì§€ì—­ë²ˆí˜¸,ë“±ë¡ì¼)
 INSERT INTO PROFILE
 (PROFILE_NO, PIN_NO, POS_NO, SUB_REGION_NO, PROFILE_DATE)
 VALUES (PROFILESEQ.NEXTVAL
 ,(SELECT PIN_NO FROM USERS)
 , 1                                                     
-, 991               -- ¼­¿ïÀüÃ¼  
+, 991               -- ì„œìš¸ì „ì²´  
 , SYSDATE);
 
 INSERT INTO PROFILE
@@ -171,7 +137,7 @@ INSERT INTO PROFILE
 VALUES (PROFILESEQ.NEXTVAL
 ,(SELECT PIN_NO FROM USERS)
 , 2                                                       
-, 1                 -- °æ±âµµ °í¾ç½Ã
+, 1                 -- ê²½ê¸°ë„ ê³ ì–‘ì‹œ
 , SYSDATE);
 
 INSERT INTO PROFILE
@@ -179,7 +145,7 @@ INSERT INTO PROFILE
 VALUES (PROFILESEQ.NEXTVAL
 ,(SELECT PIN_NO FROM USERS)
 , 2                                                       
-, 28                 -- °­¿øµµ °­¸ª½Ã
+, 28                 -- ê°•ì›ë„ ê°•ë¦‰ì‹œ
 , SYSDATE);
 
 INSERT INTO PROFILE
@@ -187,7 +153,7 @@ INSERT INTO PROFILE
 VALUES (PROFILESEQ.NEXTVAL
 ,(SELECT PIN_NO FROM USERS)
 , 2                                                       
-, 35                 -- °æ»ó³²µµ °ÅÁ¦½Ã
+, 35                 -- ê²½ìƒë‚¨ë„ ê±°ì œì‹œ
 , SYSDATE);
 
 INSERT INTO PROFILE
@@ -195,108 +161,259 @@ INSERT INTO PROFILE
 VALUES (PROFILESEQ.NEXTVAL
 ,(SELECT PIN_NO FROM USERS)
 , 2                                                       
-, 45                 -- °æ»óºÏµµ ±¸¹Ì½Ã
+, 45                 -- ê²½ìƒë¶ë„ êµ¬ë¯¸ì‹œ
 , SYSDATE);
 --------------------------------------------------------------------------------
---°ø°í ¹øÈ£ ½ÃÄö½º
+--ê³µê³  ë²ˆí˜¸ ì‹œí€€ìŠ¤
 CREATE SEQUENCE RECRUITSEQ
 NOCACHE;
 
---¡Ü ¸ðÁý°ø°í ÀÎ¼­Æ®¹®
---(°ø°í¹øÈ£, ¸ðÁýÀÚÀÇ ÇÉ¹øÈ£, ÁøÇà¹æ½Ä¹øÈ£, Á¦¸ñ, ³»¿ë, µî·ÏÀÏ, ÇÁ·ÎÁ§Æ® ½ÃÀÛÀÏ, ÇÁ·ÎÁ§Æ® Á¾·áÀÏ)
+--â— ëª¨ì§‘ê³µê³  ì¸ì„œíŠ¸ë¬¸
+--(ê³µê³ ë²ˆí˜¸, ëª¨ì§‘ìžì˜ í•€ë²ˆí˜¸, ì§„í–‰ë°©ì‹ë²ˆí˜¸, ì œëª©, ë‚´ìš©, ë“±ë¡ì¼, í”„ë¡œì íŠ¸ ì‹œìž‘ì¼, í”„ë¡œì íŠ¸ ì¢…ë£Œì¼)
 
---¡Ü 1) °ø°í 1 ( ¸ðÁýÁß) 8/6 °ø°í µî·Ï , 19ÀÏ ¸¶°¨ÀÏ 
+--â— 1) ê³µê³  1 ( ëª¨ì§‘ì¤‘) 8/6 ê³µê³  ë“±ë¡ , 19ì¼ ë§ˆê°ì¼ 
 INSERT INTO RECRUIT (RECRUIT_NO, PIN_NO, DO_TYPE_NO, TITLE, CONTENT, CREATED_DATE, PRJ_START, PRJ_END) 
 VALUES('RC'||TO_CHAR(RECRUITSEQ.NEXTVAL)
-        ,'¸ðÁýÀÚÀÇ ÇÉ³Ñ¹ö'
+        ,'ëª¨ì§‘ìžì˜ í•€ë„˜ë²„'
         , 1                                         
-        , '¹Ý·Áµ¿¹° Áý»ç¸¦ À§ÇÑ Ä¿¹Â´ÏÆ¼'               
-        , '¹Ý·Áµ¿¹° Áý»çµéÀÌ ¼­·Î Á¤º¸¸¦ °øÀ¯ÇÏ°í ¼ÒÅëÇÒ ¼ö ÀÖ´Â Ä¿¹Â´ÏÆ¼¸¦ ±âÈ¹ÇÏ°í ÀÖ½À´Ï´Ù..' 
+        , 'ë°˜ë ¤ë™ë¬¼ ì§‘ì‚¬ë¥¼ ìœ„í•œ ì»¤ë®¤ë‹ˆí‹°'               
+        , 'ë°˜ë ¤ë™ë¬¼ ì§‘ì‚¬ë“¤ì´ ì„œë¡œ ì •ë³´ë¥¼ ê³µìœ í•˜ê³  ì†Œí†µí•  ìˆ˜ ìžˆëŠ” ì»¤ë®¤ë‹ˆí‹°ë¥¼ ê¸°íší•˜ê³  ìžˆìŠµë‹ˆë‹¤..' 
         , SYSDATE                                    
         , TO_DATE('2023-08-25', 'YYYY-MM-DD')
         , TO_DATE('2023-10-25', 'YYYY-MM-DD'));
 
---¡Ü 2) °ø°í 2 ( ¸ðÁý¿Ï·á) 7/23 °ø°í µî·Ï , 8/5ÀÏ ¸ðÁý ¸¶°¨, 6ÀÏ ÇÕ·ùÃ¼Å© ¸ðµÎ ¿Ï·á 
+--â— 2) ê³µê³  2 ( ëª¨ì§‘ì™„ë£Œ) 7/23 ê³µê³  ë“±ë¡ , 8/5ì¼ ëª¨ì§‘ ë§ˆê°, 6ì¼ í•©ë¥˜ì²´í¬ ëª¨ë‘ ì™„ë£Œ 
 INSERT INTO RECRUIT (RECRUIT_NO, PIN_NO, DO_TYPE_NO, TITLE, CONTENT, CREATED_DATE, PRJ_START, PRJ_END) 
 VALUES('RC'||TO_CHAR(RECRUITSEQ.NEXTVAL)
-        ,'¸ðÁýÀÚÀÇ ÇÉ³Ñ¹ö'
+        ,'ëª¨ì§‘ìžì˜ í•€ë„˜ë²„'
         , 0                                         
-        , 'ÇÁ·ÎÁ§Æ® ±âÈ¹ºÎÅÍ ÇÔ²²ÇÏ½Ç ºÐµéÀ» ±¸ÇÕ´Ï´Ù.'               
-        , 'ÇÁ·ÎÁ§Æ® °æÇèÀÌ ¾ø°Å³ª ÀûÀº ºÐµéµµ ±¦Âú½À´Ï´Ù. Àú Æ÷ÇÔ ÃÑ 3¸íÀ¸·Î..' 
+        , 'í”„ë¡œì íŠ¸ ê¸°íšë¶€í„° í•¨ê»˜í•˜ì‹¤ ë¶„ë“¤ì„ êµ¬í•©ë‹ˆë‹¤.'               
+        , 'í”„ë¡œì íŠ¸ ê²½í—˜ì´ ì—†ê±°ë‚˜ ì ì€ ë¶„ë“¤ë„ ê´œì°®ìŠµë‹ˆë‹¤. ì € í¬í•¨ ì´ 3ëª…ìœ¼ë¡œ..' 
         , SYSDATE                                    
         , TO_DATE('2023-08-10', 'YYYY-MM-DD')
         , TO_DATE('2023-10-10', 'YYYY-MM-DD'));
 
 
 --------------------------------------------------------------------------------
---¡Ü Áö¿ø¼­ 1 (°ø°í1(¸ðÁýÁß) ÀÇ ¸ðÁýÀÚ Áö¿ø¼­(ÀÚµ¿Ã³¸®))
--- (Áö¿ø ¹øÈ£, °ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç¹øÈ£, Áö¿øÀÚÀÇ ÇÉ¹øÈ£, ³»¿ë, Áö¿øÀÏ, Ã³¸®ÀÏ½Ã(¼ö¶ô/°ÅÀý) 
+--â— ì§€ì›ì„œ 1 (ê³µê³ 1(ëª¨ì§‘ì¤‘) ì˜ ëª¨ì§‘ìž ì§€ì›ì„œ(ìžë™ì²˜ë¦¬))
+-- (ì§€ì› ë²ˆí˜¸, ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ë²ˆí˜¸, ì§€ì›ìžì˜ í•€ë²ˆí˜¸, ë‚´ìš©, ì§€ì›ì¼, ì²˜ë¦¬ì¼ì‹œ(ìˆ˜ë½/ê±°ì ˆ) 
 
 INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
 VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
-        , 'RP0001' -- ¿¹½Ã (°ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç ¹øÈ£)(»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª)
-        , 'Áö¿øÀÚÀÇÇÉ¹øÈ£' -- Áö¿øÀÚ ÇÉ ¹øÈ£(=¸ðÁýÀÚ)
-        ,'¾øÀ½' -- ³»¿ë
-        , TO_DATE('2023-08-06', 'YYYY-MM-DD')     -- Áö¿øÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
-        , TO_DATE('2023-08-06', 'YYYY-MM-DD'));     -- Ã³¸®ÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
+        , 'RP0001' -- ì˜ˆì‹œ (ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ ë²ˆí˜¸)(ì‚¬ìš©ìžê°€ ì„ íƒí•œ ê°’)
+        , 'ì§€ì›ìžì˜í•€ë²ˆí˜¸' -- ì§€ì›ìž í•€ ë²ˆí˜¸(=ëª¨ì§‘ìž)
+        ,'ì—†ìŒ' -- ë‚´ìš©
+        , TO_DATE('2023-08-06', 'YYYY-MM-DD')     -- ì§€ì›ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
+        , TO_DATE('2023-08-06', 'YYYY-MM-DD'));     -- ì²˜ë¦¬ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
 
---¡Ü Áö¿ø¼­ 2 (°ø°í1(¸ðÁýÁß) ÀÇ Áö¿øÀÚÀÇ Áö¿ø¼­
--- (Áö¿ø ¹øÈ£, °ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç¹øÈ£, Áö¿øÀÚÀÇ ÇÉ¹øÈ£, ³»¿ë, Áö¿øÀÏ, Ã³¸®ÀÏ½Ã(¼ö¶ô/°ÅÀý) 
-
-INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
-VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
-        , 'RP0002' -- ¿¹½Ã (°ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç ¹øÈ£)(»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª)
-        , 'Áö¿øÀÚÀÇÇÉ¹øÈ£' -- Áö¿øÀÚ ÇÉ ¹øÈ£
-        ,'¾È³çÇÏ¼¼¿ä. °­¾ÆÁö µÎ ¸¶¸®¸¦ Å°¿ì°í ÀÖ´Â Áý»çÀÔ´Ï´Ù! ¹Ý·ÁÀÎÀ¸·Î¼­ ÁÖÁ¦¿¡ °ü½ÉÀÌ..' -- ³»¿ë
-        , TO_DATE('2023-08-06', 'YYYY-MM-DD')     -- Áö¿øÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
-        , TO_DATE('2023-08-06', 'YYYY-MM-DD'));     -- Ã³¸®ÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
-
---¡Ü Áö¿ø¼­ 3 (°ø°í2(¸ðÁý ¿Ï·á) ÀÇ ¸ðÁýÀÚ Áö¿ø¼­(ÀÚµ¿Ã³¸®)
--- (Áö¿ø ¹øÈ£, °ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç¹øÈ£, Áö¿øÀÚÀÇ ÇÉ¹øÈ£, ³»¿ë, Áö¿øÀÏ, Ã³¸®ÀÏ½Ã(¼ö¶ô/°ÅÀý) 
+--â— ì§€ì›ì„œ 2 (ê³µê³ 1(ëª¨ì§‘ì¤‘) ì˜ ì§€ì›ìžì˜ ì§€ì›ì„œ
+-- (ì§€ì› ë²ˆí˜¸, ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ë²ˆí˜¸, ì§€ì›ìžì˜ í•€ë²ˆí˜¸, ë‚´ìš©, ì§€ì›ì¼, ì²˜ë¦¬ì¼ì‹œ(ìˆ˜ë½/ê±°ì ˆ) 
 
 INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
 VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
-        , 'RP0003' -- ¿¹½Ã (°ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç ¹øÈ£)(»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª)
-        , 'Áö¿øÀÚÀÇÇÉ¹øÈ£' -- (= ¸ðÁýÀÚ ÇÉ¹øÈ£)
-        ,'¾øÀ½' -- ³»¿ë
-        , TO_DATE('2023-07-23', 'YYYY-MM-DD')     -- Áö¿øÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
-        , TO_DATE('2023-07-23', 'YYYY-MM-DD'));    -- Ã³¸®ÀÏ (°ø°í µî·ÏÀÏ½Ã¿Í °°À½) ¿ø·¡´Â SYSDATE·Î 
+        , 'RP0002' -- ì˜ˆì‹œ (ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ ë²ˆí˜¸)(ì‚¬ìš©ìžê°€ ì„ íƒí•œ ê°’)
+        , 'ì§€ì›ìžì˜í•€ë²ˆí˜¸' -- ì§€ì›ìž í•€ ë²ˆí˜¸
+        ,'ì•ˆë…•í•˜ì„¸ìš”. ê°•ì•„ì§€ ë‘ ë§ˆë¦¬ë¥¼ í‚¤ìš°ê³  ìžˆëŠ” ì§‘ì‚¬ìž…ë‹ˆë‹¤! ë°˜ë ¤ì¸ìœ¼ë¡œì„œ ì£¼ì œì— ê´€ì‹¬ì´..' -- ë‚´ìš©
+        , TO_DATE('2023-08-06', 'YYYY-MM-DD')     -- ì§€ì›ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
+        , TO_DATE('2023-08-06', 'YYYY-MM-DD'));     -- ì²˜ë¦¬ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
 
-
---¡Ü Áö¿ø¼­ 4 (°ø°í2(¸ðÁý ¿Ï·á) ÀÇ ¸ðÁýÀÚ1 Áö¿ø¼­(ÇÕ°Ý, ÇÕ·ù ¿Ï·á)
--- (Áö¿ø ¹øÈ£, °ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç¹øÈ£, Áö¿øÀÚÀÇ ÇÉ¹øÈ£, ³»¿ë, Áö¿øÀÏ, Ã³¸®ÀÏ½Ã(¼ö¶ô/°ÅÀý) 
-
-INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
-VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
-        , 'RP0004' -- ¿¹½Ã (°ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç ¹øÈ£)(»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª)
-        , 'Áö¿øÀÚÀÇÇÉ¹øÈ£' -- (= ¸ðÁýÀÚ ÇÉ¹øÈ£)
-        ,'ÇÁ·ÎÁ§Æ® °æÇèÀº ¾øÁö¸¸ ÇÁ·ÐÆ®¿£µå¿¡ °ü½ÉÀÌ ¸¹¾Æ ÀÌ·ÐÀûÀÎ ºÎºÐÀº Àü¹ÝÀûÀ¸·Î ¼÷ÁöÇÏ°í ÀÖ½À´Ï´Ù. ¶ÇÇÑ Å¬·Ð ÄÚµùÀ¸·Î..' -- ³»¿ë
-        , TO_DATE('2023-07-24', 'YYYY-MM-DD')     -- Áö¿øÀÏ  ¿ø·¡´Â SYSDATE·Î 
-        , TO_DATE('2023-07-24', 'YYYY-MM-DD'));    -- Ã³¸®ÀÏ ¿ø·¡´Â SYSDATE·Î 
-
-
---¡Ü Áö¿ø¼­ 5 (°ø°í2(¸ðÁý ¿Ï·á) ÀÇ ¸ðÁýÀÚ2 Áö¿ø¼­(ÇÕ°Ý, ÇÕ·ù ¿Ï·á)
--- (Áö¿ø ¹øÈ£, °ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç¹øÈ£, Áö¿øÀÚÀÇ ÇÉ¹øÈ£, ³»¿ë, Áö¿øÀÏ, Ã³¸®ÀÏ½Ã(¼ö¶ô/°ÅÀý) 
+--â— ì§€ì›ì„œ 3 (ê³µê³ 2(ëª¨ì§‘ ì™„ë£Œ) ì˜ ëª¨ì§‘ìž ì§€ì›ì„œ(ìžë™ì²˜ë¦¬)
+-- (ì§€ì› ë²ˆí˜¸, ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ë²ˆí˜¸, ì§€ì›ìžì˜ í•€ë²ˆí˜¸, ë‚´ìš©, ì§€ì›ì¼, ì²˜ë¦¬ì¼ì‹œ(ìˆ˜ë½/ê±°ì ˆ) 
 
 INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
 VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
-        , 'RP0005' -- ¿¹½Ã (°ø°í¿¡¼­ ¸ðÁýÁßÀÎ Æ÷Áö¼Ç ¹øÈ£)(»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª)
-        , 'Áö¿øÀÚÀÇÇÉ¹øÈ£' -- (= ¸ðÁýÀÚ ÇÉ¹øÈ£)
-        ,'ÇÁ·ÎÁ§Æ® °æÇèÀÌ 1È¸ ÀÖ°í ±âº»ÀûÀÎ ±â´É À§ÁÖ·Î ±¸¼ºµÈ °Ô½ÃÆÇÀÌ¾ú½À´Ï´Ù. ´É¼÷ÇÏÁö´Â ¾ÊÁö¸¸..' -- ³»¿ë
-        , TO_DATE('2023-07-25', 'YYYY-MM-DD')     -- Áö¿øÀÏ  ¿ø·¡´Â SYSDATE·Î 
-        , TO_DATE('2023-07-25', 'YYYY-MM-DD'));    -- Ã³¸®ÀÏ ¿ø·¡´Â SYSDATE·Î 
+        , 'RP0003' -- ì˜ˆì‹œ (ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ ë²ˆí˜¸)(ì‚¬ìš©ìžê°€ ì„ íƒí•œ ê°’)
+        , 'ì§€ì›ìžì˜í•€ë²ˆí˜¸' -- (= ëª¨ì§‘ìž í•€ë²ˆí˜¸)
+        ,'ì—†ìŒ' -- ë‚´ìš©
+        , TO_DATE('2023-07-23', 'YYYY-MM-DD')     -- ì§€ì›ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
+        , TO_DATE('2023-07-23', 'YYYY-MM-DD'));    -- ì²˜ë¦¬ì¼ (ê³µê³  ë“±ë¡ì¼ì‹œì™€ ê°™ìŒ) ì›ëž˜ëŠ” SYSDATEë¡œ 
+
+
+--â— ì§€ì›ì„œ 4 (ê³µê³ 2(ëª¨ì§‘ ì™„ë£Œ) ì˜ ëª¨ì§‘ìž1 ì§€ì›ì„œ(í•©ê²©, í•©ë¥˜ ì™„ë£Œ)
+-- (ì§€ì› ë²ˆí˜¸, ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ë²ˆí˜¸, ì§€ì›ìžì˜ í•€ë²ˆí˜¸, ë‚´ìš©, ì§€ì›ì¼, ì²˜ë¦¬ì¼ì‹œ(ìˆ˜ë½/ê±°ì ˆ) 
+
+INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
+VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
+        , 'RP0004' -- ì˜ˆì‹œ (ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ ë²ˆí˜¸)(ì‚¬ìš©ìžê°€ ì„ íƒí•œ ê°’)
+        , 'ì§€ì›ìžì˜í•€ë²ˆí˜¸' -- (= ëª¨ì§‘ìž í•€ë²ˆí˜¸)
+        ,'í”„ë¡œì íŠ¸ ê²½í—˜ì€ ì—†ì§€ë§Œ í”„ë¡ íŠ¸ì—”ë“œì— ê´€ì‹¬ì´ ë§Žì•„ ì´ë¡ ì ì¸ ë¶€ë¶„ì€ ì „ë°˜ì ìœ¼ë¡œ ìˆ™ì§€í•˜ê³  ìžˆìŠµë‹ˆë‹¤. ë˜í•œ í´ë¡  ì½”ë”©ìœ¼ë¡œ..' -- ë‚´ìš©
+        , TO_DATE('2023-07-24', 'YYYY-MM-DD')     -- ì§€ì›ì¼  ì›ëž˜ëŠ” SYSDATEë¡œ 
+        , TO_DATE('2023-07-24', 'YYYY-MM-DD'));    -- ì²˜ë¦¬ì¼ ì›ëž˜ëŠ” SYSDATEë¡œ 
+
+
+--â— ì§€ì›ì„œ 5 (ê³µê³ 2(ëª¨ì§‘ ì™„ë£Œ) ì˜ ëª¨ì§‘ìž2 ì§€ì›ì„œ(í•©ê²©, í•©ë¥˜ ì™„ë£Œ)
+-- (ì§€ì› ë²ˆí˜¸, ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ë²ˆí˜¸, ì§€ì›ìžì˜ í•€ë²ˆí˜¸, ë‚´ìš©, ì§€ì›ì¼, ì²˜ë¦¬ì¼ì‹œ(ìˆ˜ë½/ê±°ì ˆ) 
+
+INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE, CK_DATE) 
+VALUES('AP'||TO_CHAR(APPLYSEQ.NEXTVAL)
+        , 'RP0005' -- ì˜ˆì‹œ (ê³µê³ ì—ì„œ ëª¨ì§‘ì¤‘ì¸ í¬ì§€ì…˜ ë²ˆí˜¸)(ì‚¬ìš©ìžê°€ ì„ íƒí•œ ê°’)
+        , 'ì§€ì›ìžì˜í•€ë²ˆí˜¸' -- (= ëª¨ì§‘ìž í•€ë²ˆí˜¸)
+        ,'í”„ë¡œì íŠ¸ ê²½í—˜ì´ 1íšŒ ìžˆê³  ê¸°ë³¸ì ì¸ ê¸°ëŠ¥ ìœ„ì£¼ë¡œ êµ¬ì„±ëœ ê²Œì‹œíŒì´ì—ˆìŠµë‹ˆë‹¤. ëŠ¥ìˆ™í•˜ì§€ëŠ” ì•Šì§€ë§Œ..' -- ë‚´ìš©
+        , TO_DATE('2023-07-25', 'YYYY-MM-DD')     -- ì§€ì›ì¼  ì›ëž˜ëŠ” SYSDATEë¡œ 
+        , TO_DATE('2023-07-25', 'YYYY-MM-DD'));    -- ì²˜ë¦¬ì¼ ì›ëž˜ëŠ” SYSDATEë¡œ 
 
 --------------------------------------------------------------------------------
 
---¡Ü ÇÁ·ÎÁ§Æ® (°ø°í 2¸¦ ÅëÇØ »ý¼º, ÀÎ¿ø 3¸í )
---(ÇÁ·ÎÁ§Æ® ¹øÈ£, °ø°í¹øÈ£, ÇÁ·ÎÁ§Æ® »ý¼ºÀÏ)
+--â— í”„ë¡œì íŠ¸ (ê³µê³  2ë¥¼ í†µí•´ ìƒì„±, ì¸ì› 3ëª… )
+--(í”„ë¡œì íŠ¸ ë²ˆí˜¸, ê³µê³ ë²ˆí˜¸, í”„ë¡œì íŠ¸ ìƒì„±ì¼)
 
 INSERT INTO PROJECT (PRJ_NO, RECRUIT_NO, PRJ_DATE)
 VALUES('PJ'||TO_CHAR(PROJECTSEQ.NEXTVAL)
-    , '°ø°í2ÀÇ °ø°í¹øÈ£'
-    , TO_DATE('2023-08-06', 'YYYY-MM-DD')); -- ÇÕ·ù Ã¼Å© ¿Ï·áÀÏ (¿ø·¡´Â SYSDATE)
-    
+    , 'ê³µê³ 2ì˜ ê³µê³ ë²ˆí˜¸'
+    , TO_DATE('2023-08-06', 'YYYY-MM-DD')); -- í•©ë¥˜ ì²´í¬ ì™„ë£Œì¼ (ì›ëž˜ëŠ” SYSDATE)
     
 --------------------------------------------------------------------------------
---==>> ¿©±â±îÁö Àü´Þ, ¹Ý¿µ¿Ï·á.
+--==>> ì—¬ê¸°ê¹Œì§€ ìˆ˜ì • ë° ë°˜ì˜ ì™„ë£Œ 
+--------------------------------------------------------------------------------
 
+--â–£ 08.07 ì›”_ì˜¤í›„ 9ì‹œ ~ 12ì‹œ 
+-- faq, qna ê´€ë ¨ dto, Idao, dao.xml, controller êµ¬ì„± í›„ í…ŒìŠ¤íŠ¸
+
+--// í…Œì´ë¸” ë°ì´í„° í™•ì¸ 
+SELECT * FROM FAQ;
+--==>>1	FAQ ì˜ˆì‹œ1	ì˜ˆì‹œ 1ì— ê´€ë ¨ëœ ë‚´ìš© //- í…ŒìŠ¤íŠ¸ìš© ë°ì´í„° 1ê°œ ìžˆìŒ.
+
+-- FAQ ëª©ë¡ ì¡°íšŒ ì¿¼ë¦¬ë¬¸ 
+SELECT FAQ_NO, TITLE FROM FAQ
+;
+--------------------------------------------------------------------------------
+--==>> FAQ ëª©ë¡ action íŒŒì¼ë¡œ ì¶œë ¥ í™•ì¸ì™„ë£Œ (dto ~ controller) 0808 ì˜¤ì „ 8ì‹œ 55ë¶„
+-- faq ëª©ë¡ ë³´ê¸° : faq-list.action
+-- íŠ¹ì • ê¸€ ë³´ê¸° :  faq-article.action
+--------------------------------------------------------------------------------
+
+--â–£ 08.08 í™” (QnA ê´€ë ¨ ë°ì´í„° ì—°ê²° í™•ì¸) 
+-- ë‚´ ì§ˆë¬¸ ëª©ë¡ ë¦¬ìŠ¤íŠ¸ (QnALists.jsp)  --==>>  question-list.action (ì—°ê²° ì™„ë£Œ)
+-- ë‚´ íŠ¹ì • ì§ˆë¬¸ ì•„í‹°í´ íŽ˜ì´ì§€(ë‹µë³€í¬í•¨)(QnAArticle.jsp)  --==>> question-article.action  (ì—°ê²° ì™„ë£Œ) 
+-- ì§ˆë¬¸í•˜ê¸° ìž‘ì„± íŽ˜ì´ì§€  --==>> ì¸ì„œíŠ¸ ìˆ˜í–‰ê¹Œì§€ ì™„ë£Œ --==>> question-insert-form.action
+
+--------------------------------------------------------------------------------
+--// í…Œì´ë¸” ë°ì´í„° í™•ì¸ 
+SELECT * FROM QUESTION; 
+--  ì§ˆë¬¸ë²ˆí˜¸  ìœ ì €í•€ë²ˆí˜¸ ì œëª©        ë‚´ìš©                  ì§ˆë¬¸ ë‚ ì§œ
+/*
+QN1	UP1	ë“±ì—… ì§ˆë¬¸	            ë“±ì—…ì€ ì–´ë–»ê²Œ í•˜ë‚˜ìš”?	2023-08-07
+QN6	UP2	íƒˆí‡´ ì–´ë–»ê²Œí•´ìš”?	        ì „ ì—¬ê¸¸ íƒˆì¶œí• ê±°ì—ìš”	    2023-08-08
+QN7	UP2	ë¬¸ì˜ì¢€í•˜ê²Ÿì†Œ	        ì‚¬ì‹¤ë»¥ì´ìš”       	    2023-08-08
+QN8	UP2	ë“œë””ì–´ ì—°ê²°ëë‹¤	        ì—íœ´	                2023-08-08
+*/
+
+--â— ë‚´ ì§ˆë¬¸ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ì¿¼ë¦¬ë¬¸  ( ë²ˆí˜¸, ì œëª©, ìž‘ì„±ì¼, ìƒíƒœ(ì—†ìœ¼ë©´ ë‹µë³€ëŒ€ê¸°ìƒíƒœ )    
+SELECT Q.QUESTION_NO AS QUESTIONNO, Q.TITLE AS QUESTIONTITLE
+, Q.CREATED_DATE AS QCREATEDDATE
+, NVL2(A.CREATED_DATE,'ë‹µë³€ì™„ë£Œ','ë‹µë³€ëŒ€ê¸°ì¤‘') AS ISREPLY
+FROM QUESTION Q FULL OUTER JOIN ANSWER A 
+ON Q.QUESTION_NO = A.QUESTION_NO
+WHERE Q.PIN_NO = 'UP2';
+
+--â— íŠ¹ì • ì§ˆë¬¸ê¸€ ìƒì„¸ ì•„í‹°í´ (ì§ˆë¬¸ë§Œ)
+SELECT QUESTION_NO AS QUESTIONNO, TITLE AS QUESTIONTITLE, 
+CONTENT AS QUESTIONCONTENT, CREATED_DATE AS QCREATEDDATE
+FROM QUESTION
+WHERE QUESTION_NO='QN13';	
+
+
+--â— ë¬¸ì˜ê¸€ ìž‘ì„± ì¸ì„œíŠ¸ 
+INSERT INTO QUESTION VALUES('QN'||TO_CHAR(QUESTIONNOSEQ.NEXTVAL)
+, 'UP2'
+,'íƒˆí‡´ ì–´ë–»ê²Œí•´ìš”?' 
+,'ì „ ì—¬ê¸¸ íƒˆì¶œí• ê±°ì—ìš”'
+, SYSDATE)
+;
+--==>> ì¸ì„œíŠ¸ ì™„ë£Œ 
+
+--------------------------------------------------------------------------------
+
+--// ê´€ë¦¬ìž ê³„ì • í™•ì¸ 
+SELECT * FROM ADMIN;
+/*
+AD1	admin001@gmail.com	admin001	2023-08-06	UP16
+AD2	admin002@gmail.com	admin002	2023-08-06	UP17
+*/
+DESC ANSWER;
+
+
+--------------------------------------------------------------------------------
+--â— íŠ¹ì • ì§ˆë¬¸ì— ëŒ€í•œ ë‹µë³€ ë“±ë¡(ì¸ì„œíŠ¸) - ì •ì  êµ¬ì„±  
+INSERT INTO ANSWER (ANSWER_NO, CONTENT, QUESTION_NO, CREATED_DATE, PIN_NO) 
+VALUES ('AN'||TO_CHAR(ANSWERNOSEQ.NEXTVAL)
+        , 'ê°€ì§€ë§ˆì„¸ìš”..'
+        , 'QN6'
+        , SYSDATE
+        , 'UP16'); -- ë‹µë³€ë²ˆí˜¸, ë¬¸ì˜ë²ˆí˜¸, ê´€ë¦¬ìž ë²ˆí˜¸
+--==>> 1 í–‰ ì´(ê°€) ì‚½ìž…ë˜ì—ˆìŠµë‹ˆë‹¤.
+
+SELECT * FROM ANSWER;
+--==>> AN1	ê·¸ëŸ°ê±° ì—†ìŠµë‹ˆë‹¤	QN1	2023-08-08	UP16
+
+COMMIT; -- ì»¤ë°‹ ì™„ë£Œ.
+--------------------------------------------------------------------------------    
+--â—‹ íŠ¹ì • ì§ˆë¬¸ê¸€ ìƒì„¸ ì•„í‹°í´ (ì§ˆë¬¸ - ë‹µë³€ í†µí•©) 
+/*
+SELECT Q.QUESTION_NO, Q.TITLE, Q.CONTENT, Q.CREATED_DATE
+    , A.ANSWER_NO, A.CONTENT,A.CREATED_DATE
+FROM QUESTION Q FULL JOIN ANSWER A 
+ON Q.QUESTION_NO = 'QN1';
+*/
+
+--â— íŠ¹ì • ì§ˆë¬¸ê¸€ì— ëŒ€í•œ ë‹µë³€ ì¶œë ¥ ì¿¼ë¦¬ë¬¸
+SELECT CONTENT AS ANSWERCONTENT,CREATED_DATE AS ANSWERCREATEDDATE
+FROM ANSWER
+WHERE QUESTION_NO='QN7';
+--==>>ê°€ì§€ë§ˆì„¸ìš”..	2023-08-09     -- QN6
+--==>>ê·¸ëŸ°ê±° ì—†ìŠµë‹ˆë‹¤	2023-08-08 -- QN1
+
+--â—[ê´€ë¦¬ìžìš©] ìœ ì € ì „ì²´ ì§ˆë¬¸ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ì¿¼ë¦¬ë¬¸  
+--( ë²ˆí˜¸, ìž‘ì„±ìž ë‹‰ë„¤ìž„, ì œëª©, ìž‘ì„±ì¼, ìƒíƒœ(ì—†ìœ¼ë©´ ë‹µë³€ëŒ€ê¸°ìƒíƒœ )    
+SELECT Q.QUESTION_NO AS QUESTIONNO
+, U.NICKNAME AS NICKNAME
+, Q.TITLE AS QUESTIONTITLE
+, Q.CREATED_DATE AS QCREATEDDATE
+, NVL2(A.CREATED_DATE,'ë‹µë³€ì™„ë£Œ','ë‹µë³€ëŒ€ê¸°ì¤‘') AS ISREPLY
+FROM (QUESTION Q FULL OUTER JOIN ANSWER A 
+ON Q.QUESTION_NO = A.QUESTION_NO) LEFT JOIN USERS U
+ON Q.PIN_NO= U.PIN_NO
+ORDER BY Q.CREATED_DATE DESC;
+
+/*
+SELECT NICKNAME FROM QUESTION Q LEFT JOIN USERS U
+ON Q.PIN_NO= U.PIN_NO;
+-- ë¬¸ì˜ê¸€ ìž‘ì„±ìž ë‹‰ë„¤ìž„ë§Œ ì¶œë ¥ */
+
+
+
+--â— ê´€ë¦¬ìžìš© ì•„í‹°í´ ì¡°íšŒ ( ë‹‰ë„¤ìž„ í¬í•¨) 
+SELECT Q.QUESTION_NO AS QUESTIONNO
+      ,Q.TITLE AS QUESTIONTITLE
+      ,U.NICKNAME AS NICKNAME
+      ,Q.CONTENT AS QUESTIONCONTENT, Q.CREATED_DATE AS QCREATEDDATE
+FROM QUESTION Q LEFT JOIN USERS U 
+ON Q.PIN_NO= U.PIN_NO
+WHERE QUESTION_NO = 'QN13';
+
+
+-- í˜„ìž¬ ê³„ì •ì˜ ëª¨ë“  ì‹œí€€ìŠ¤ ì¡°íšŒ 
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+--ë‹µë³€ ë²ˆí˜¸ ì‹œí€€ìŠ¤ ìƒì„±
+CREATE SEQUENCE ANSWERNOSEQ 
+NOCACHE;
+--==>> Sequence ANSWERNOSEQì´(ê°€) ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
+
+--â— íŠ¹ì • ì§ˆë¬¸ê¸€ì— ë“±ë¡í•œ ë‹µë³€ ìˆ˜ì • 
+UPDATE ANSWER 
+SET CONTENT = 'ê°€ì§€ë§ˆì„¸ìš”..' 
+WHERE QUESTION_NO='QN7';
+--==>> 1 í–‰ ì´(ê°€) ì—…ë°ì´íŠ¸ë˜ì—ˆìŠµë‹ˆë‹¤.
+
+
+--â— íŠ¹ì • ì§ˆë¬¸ê¸€ì— ë“±ë¡í•œ ë‹µë³€ ì‚­ì œ  
+DELETE FROM ANSWER 
+WHERE QUESTION_NO = 'QN7';
+--==>>1 í–‰ ì´(ê°€) ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.
+
+SELECT * FROM FAQ;
+SELECT * FROM ANSWER;
+
+COMMIT;
