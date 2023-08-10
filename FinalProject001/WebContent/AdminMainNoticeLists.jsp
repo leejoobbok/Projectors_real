@@ -63,13 +63,18 @@
 	{
 		margin: 20px 0px;
 		font-size: 16pt;
+		width: 100%;
+		
 		
 	}
 	#mainNoticeLists /* 공지글 테이블*/
 	{
-		border: solid 1px;
+		margin: auto;
+		width: 80%;
 		font-size: 12pt;
 	}
+	th	{	border-bottom: 1px solid black;	}
+	td	{	border-bottom: 1px solid gray;	}
 </style>
 </head>
 
@@ -99,17 +104,15 @@
 			<div id="mainNoticeListBox" name="mainNoticeListBox"> <!-- 테이블 영역 -->
 				<table id="mainNoticeLists">
 					<tr>
-						<th style="width: 10%;">글 번호</th>
+						<th style="width: 15%;">글 번호</th>
 						<th style="width: 75%;">제목</th>
-						<th style="width: 15%;">작성자</th>
 					</tr>
 					<c:forEach var="notice"  items="${lists }">
 						<tr>
 							<td>${notice.adminNoticeNo }</td>
-							<td>
+							<td style="text-align: left;">
 							<a href="adminNoticeArticle.action?adminNoticeNo=${notice.adminNoticeNo }">
 							${notice.title }</a></td>
-							<td><%-- 관리자번호들어갈 자리 --%></td>
 						</tr>
 					</c:forEach>
 				</table>
