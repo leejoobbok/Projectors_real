@@ -4,7 +4,7 @@ public class RecruitDTO
 {
 	private int regionNo, subRegionNo, posNo, toolNo, doTypeNo;
 	private String regionName, subRegionName, posName, toolName, doTypeName;
-	private int countAll, countPos;
+	private int countAll, countPos, applyCount;
 	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
 	
 	private String recruitPosNo;
@@ -178,6 +178,14 @@ public class RecruitDTO
 	public void setRecruitPosNo(String recruitPosNo)
 	{
 		this.recruitPosNo = recruitPosNo;
+	}
+	public int getApplyCount()
+	{
+		return applyCount;
+	}
+	public void setApplyCount(int applyCount)
+	{
+		this.applyCount = applyCount;
 	}
 	
 }
