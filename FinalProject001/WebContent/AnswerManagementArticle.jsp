@@ -251,7 +251,7 @@
 							<hr style="margin-left: 0px; width: 90%">
 							
 							<div>
-								<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">관리자</span>
+								<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">운영자</span>
 								<span class="replydate">답변일시: ${aArticleForAdmin.answerCreatedDate}</span>
 							</div>
 				            <textarea id="writeArea" cols="100" rows="5" name="answerContent" readonly="readonly" disabled="disabled">${aArticleForAdmin.answerContent}
