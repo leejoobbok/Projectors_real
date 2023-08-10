@@ -69,9 +69,12 @@
 	}
 	#mainNoticeLists /* 공지글 테이블*/
 	{
-		width: 100%;
+		margin: auto;
+		width: 80%;
 		font-size: 12pt;
 	}
+	th	{	border-bottom: 1px solid black;	}
+	td	{	border-bottom: 1px solid gray;	}
 </style>
 </head>
 
@@ -107,7 +110,7 @@
 					<c:forEach var="notice"  items="${lists }">
 						<tr>
 							<td>${notice.adminNoticeNo }</td>
-							<td>
+							<td style="text-align: left;">
 							<a href="adminNoticeArticle.action?adminNoticeNo=${notice.adminNoticeNo }">
 							${notice.title }</a></td>
 						</tr>
