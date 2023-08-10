@@ -29,17 +29,43 @@
 	</select>
 
 	<insert id="clearManageReport">
-		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
-		REP_RECRUIT_NO,REP_RESULT_NO, REGU_NO, REGU_PERIOD_NO, PIN_NO)
-		VALUES('RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL),
-		TO_NUMBER(#{repNo}),1, TO_NUMBER(#{reguNo}),TO_NUMBER(#{reguPeriodNo}) , #{adminPinNo})
+		INSERT INTO REP_RECRUIT_RESULT
+		( RECRUIT_RESULT_NO
+		, REP_RECRUIT_NO
+		, REP_RESULT_NO
+		, REGU_NO
+		, REGU_PERIOD_NO
+		, PIN_NO
+		, REGU_DATE )
+		VALUES
+		( 'RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL)
+		, #{repNo}
+		, 1
+		, TO_NUMBER(#{reguNo})
+		, TO_NUMBER(#{reguPeriodNo})
+		, #{adminPinNo}
+		, SYSDATE
+		)
 	</insert>
 
 	<insert id="rejectManageReport">
-		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
-		REP_RECRUIT_NO,
-		REP_RESULT_NO, PIN_NO)
-		VALUES('RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL), TO_NUMBER(#{repNo}), 0, #{adminPinNo})
+		INSERT INTO REP_RECRUIT_RESULT
+		( RECRUIT_RESULT_NO
+		, REP_RECRUIT_NO
+		, REP_RESULT_NO
+		, REGU_NO
+		, REGU_PERIOD_NO
+		, PIN_NO
+		, REGU_DATE )
+		VALUES
+		( 'RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL)
+		, #{repNo}
+		, 0
+		, 0
+		, 0
+		, #{adminPinNo}
+		, SYSDATE
+		)
 	</insert>
 
 </mapper>
