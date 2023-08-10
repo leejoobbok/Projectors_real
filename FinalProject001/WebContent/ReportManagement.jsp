@@ -114,7 +114,6 @@
 </style>
 
 <script type="text/javascript">
-
 function manageReport(button)
 {
 	var row = button.closest('tr');
@@ -137,15 +136,29 @@ function manageReport(button)
         row.querySelector('.reguNo').value = receivedData.param1;
         row.querySelector('.reguPeriodNo').value = receivedData.param2;
         
+        var repNo = row.querySelector('.repNo').value;
+        var reguNo = row.querySelector('.reguPeriodNo').value;
+        var reguPeriodNo = row.querySelector('.reguPeriodNo').value;
+        
         var f = document.forms.reportForm;
-        f.action = 'clearManageReport.action';
+        f.action = 'clearManageReport.action?repNo='+repNo+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
         f.submit();
  	});
     
 }
 
-
-
+function cancelReport(button)
+{
+	var row = button.closest('tr');
+	var repNo = row.querySelector('.repNo').value;
+	if (confirm("정말 신고 처리 취소 하시겠습니까?"))
+	{
+		var f = document.forms.reportForm;
+	    f.action ="rejectManageReport.action?repNo="+repNo;
+	    f.submit();
+	}
+	return;
+}
 
 </script>
 </head>
@@ -157,9 +170,7 @@ function manageReport(button)
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
-		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
-		</div>
+		<c:import url="adminLogo.jsp"></c:import>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
 		</div>
@@ -242,8 +253,8 @@ function manageReport(button)
 						${report.reportDate }
 					</td>
 					<td>
-						<button type="button" class="manageReport" name="repResultNo" value="1" onclick="manageReport(this)">처리</button>
-						<button type="button" class="cancelReport" name="repResultNo" value="0" onclick="cancelReport(this)">반려</button>
+						<button type="button" class="manageReport" name="repResultNo" value="${i.count}" onclick="manageReport(this)">처리</button>
+						<button type="button" class="cancelReport" name="repResultNo" value="${i.count}" onclick="cancelReport(this)">반려</button>
 					</td>
 				</tr>
 			</c:forEach>
