@@ -172,7 +172,7 @@
 		<span id="noticeTitle">
 			제목  : 
 		</span>
-			<input type="text" id="noticeTitleInput" name="noticeTitleInput"
+			<input type="text" id="title" name="title"
 			 placeholder="제목"
 			 style="width: 55%; height: 30pt; font-size: 20pt;"/>
 	
@@ -182,7 +182,7 @@
 		padding-left: 20%; padding-right: 20%; padding-bottom: 0%;" >
 			내용
 		</p>
-		<textarea name="noticeContent" id="noticeContent" cols="70" rows="15"
+		<textarea name="content" id="content" cols="70" rows="15"
 		placeholder="내용 입력" style="font-size:15pt;
 		width: 60%;"
 		></textarea>
