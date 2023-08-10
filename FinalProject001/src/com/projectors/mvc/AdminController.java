@@ -82,11 +82,18 @@ public class AdminController
 	
 	//-- 공지사항 작성
 	@RequestMapping (value = "/noticeInsert.action", method = RequestMethod.POST)
-	public String noticeInsert(AdminNoticeDTO dto)
+	public String noticeInsert(AdminNoticeDTO dto, HttpServletRequest request)
 	{
 		String result = "";
 		
+		HttpSession session = request.getSession();
 		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		dto.setPinNo(pinNo);
+		
+		System.out.println(pinNo);
 		
 		dao.add(dto);
 		

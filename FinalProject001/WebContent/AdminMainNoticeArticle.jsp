@@ -188,7 +188,7 @@
 	<div class="adminInfo" style="text-align: right; font-weight: bold;
 	padding-left: 20%; padding-right: 20%" >
 
-	 	공지번호: ${article.adminNoticeNo } | 작성자: 관리자번호들어갈위치
+	 	공지번호: ${article.adminNoticeNo } | 작성자: ${pinNo }
 	</div>
 	<div id="noticeContentInsert">
 		<p style="font-weight: bold; text-align:left; font-size: 20pt;

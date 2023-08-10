@@ -11,14 +11,7 @@
 <title>공지 작성 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
-	#logoBox 					   /*로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-		/* border: 1px solid; */
-		
-	}
+
 	
 	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
 	{
@@ -148,13 +141,13 @@
 </script>
 </head>
 <body>
-			<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
+		<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
-		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="adminMain.action"><img src="images/tmp_logo.JPG"/></a>
-		</div>	
+
+		<c:import url="adminLogo.jsp"></c:import>
+
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
 		</div>
@@ -172,7 +165,7 @@
 		<span id="noticeTitle">
 			제목  : 
 		</span>
-			<input type="text" id="noticeTitleInput" name="noticeTitleInput"
+			<input type="text" id="title" name="title"
 			 placeholder="제목"
 			 style="width: 55%; height: 30pt; font-size: 20pt;"/>
 	
@@ -182,7 +175,7 @@
 		padding-left: 20%; padding-right: 20%; padding-bottom: 0%;" >
 			내용
 		</p>
-		<textarea name="noticeContent" id="noticeContent" cols="70" rows="15"
+		<textarea name="content" id="content" cols="70" rows="15"
 		placeholder="내용 입력" style="font-size:15pt;
 		width: 60%;"
 		></textarea>
