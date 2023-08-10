@@ -182,8 +182,8 @@
 				<th style="vertical-align: top;">내용</th>
 				<td>
 					<div>
-					<input type="text" id="content" name="content" style="width: 90%; height: 200px;"
-					value="${article.content }">
+					<textarea rows="50" cols="70" id="content" name="content" style="width: 90%; height: 200px;"
+					>${article.content }</textarea>
 					</div>
 				</td>
 			</tr>
