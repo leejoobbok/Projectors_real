@@ -55,17 +55,11 @@
 		border-right: 3px solid black;
 	}
 	
-	.btn
-	{
-		width: 150px;
-	}
-	
-
 	/* ======================================================= */
 	
 	
 	/* ====================== 우측바 ========================= */
-
+	
 	#rightBar
 	{
 		float: right;
@@ -91,6 +85,28 @@
 
 	/* ======================================================= */
 	
+	#answerTitle {font-size: 14pt; font-weight: bold;}
+	
+	.btn		/* 버튼 클래스 공통 */
+	{
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		font-size: 11pt;
+		padding: 4px 10px;
+		border-radius: 12px;
+	}
+	
+	#modifyBtn 						/* 수정 버튼 */
+	{
+		background-color: #fadc6e;
+		color: black;
+	}
+	#deleteBtn					/* 삭제 버튼*/
+	{
+		background-color: #fa6e6e;
+		color: black;
+	}
 	
 	#returnList
 	{
@@ -107,8 +123,14 @@
 		margin-left: 30px;
 		font-size: 11pt;
 	}
-	
+	.replydate				/* 답변 일시*/
+	{
+		font-size: 9pt;
+		color: gray;
+		padding-left: 30px;
+	}
 </style>
+
 <script type="text/javascript">
 	$(function()
 	{	
@@ -125,6 +147,8 @@
 	});
 </script>
 </head>
+
+
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
@@ -143,8 +167,6 @@
 			<hr />
 		</div>
 
-
-
 		<div id="leftBar">
 			<div class="btnHeight">
 				<a href="faqManagement.action">
@@ -160,10 +182,11 @@
 
 		<div id="rightBar">
 			<div>
-				<h2> 1:1 문의 상세</h2>
+				<h2> 1:1 문의 상세 </h2>
 			</div>
 			<hr>
-			<div>	
+			
+			<div>	<!--  ============사용자 문의 상세 내용 출력부분 =========== -->
 				<table class="table">
 					<tr>
 						<th>번호</th>
@@ -186,10 +209,20 @@
 			<hr>
 			
 			
-			<div class="wrapper">
+			<div class="wrapper"> <!--  ============관리자 답변 관련 출력부분 =========== -->
 			
-				<h4>답변</h4>
+				<span id="answerTitle">등록된 답변</span>
+				<c:choose>					<%-- 등록된 답변이 있는 경우 수정/삭제 버튼 출력 --%>
+					<c:when test="${not empty aArticleForAdmin.answerContent}">
+							<button type="submit" id="modifyBtn" class=" btn">수정</button>
+							<button type="submit" id="deleteBtn" class=" btn">삭제</button>
+					</c:when>
+					<c:otherwise>
+						<span> 작성하기 </span>
+					</c:otherwise>
+				</c:choose>
 				<hr style="margin-left: 0px; width: 90%">
+				
 				
 				<div>
 					<span style="font-weight: bold;"><img src="images/adminPic.png" style="width:20px">관리자</span>
@@ -199,10 +232,10 @@
 				    <c:choose>
 				        <c:when test="${not empty aArticleForAdmin.answerContent}">
 				            <p class="reply">${aArticleForAdmin.answerContent}</p>
-				            <span class="reply">${aArticleForAdmin.answerCreatedDate}</span>
+				            <span class="replydate">답변일시: ${aArticleForAdmin.answerCreatedDate}</span>
 				        </c:when>
 				        <c:otherwise>
-				            <!-- If answerContent is null or empty, nothing will be displayed here -->
+				            <!-- answerContent 가 null 이면, 이 부분 출력( 아무것도 나오지 않음 )  -->
 				        </c:otherwise>
 				    </c:choose>
 				</div>
