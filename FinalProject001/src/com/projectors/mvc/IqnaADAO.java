@@ -21,7 +21,7 @@ public interface IqnaADAO // 1:1 문의 답변 DAO 인터페이스
 	public int updateAnswer(QnaADTO dto);
 	
 	// 삭제
-	public int removeAnswer(String answerNo);
+	public int deleteAnswer(String questionNo);
 	
 }
 
