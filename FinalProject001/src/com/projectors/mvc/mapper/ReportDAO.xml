@@ -31,17 +31,15 @@
 	<insert id="clearManageReport">
 		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
 		REP_RECRUIT_NO,REP_RESULT_NO, REGU_NO, REGU_PERIOD_NO, PIN_NO)
-		VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL,
-		#{repNo},TO_NUMBER(#{repResultNo}),
-		TO_NUMBER(#{reguNo}),TO_NUMBER(#{reguPeriodNo}) , #{adminPinNo})
+		VALUES('RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL),
+		TO_NUMBER(#{repNo}),1, TO_NUMBER(#{reguNo}),TO_NUMBER(#{reguPeriodNo}) , #{adminPinNo})
 	</insert>
 
 	<insert id="rejectManageReport">
 		INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO,
 		REP_RECRUIT_NO,
 		REP_RESULT_NO, PIN_NO)
-		VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL, #{repNo},
-		TO_NUMBER(#{repResultNo}), #{adminPinNo})
+		VALUES('RESR'||TO_CHAR(RECRUITRESULTNOSEQ.NEXTVAL), TO_NUMBER(#{repNo}), 0, #{adminPinNo})
 	</insert>
 
 </mapper>

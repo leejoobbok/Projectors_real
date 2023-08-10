@@ -42,8 +42,14 @@
 	{
 		$("#reportComplete").click(function() 
 		{
-		    window.opener.reguNo = $("#reason").val();
-		    window.opener.reguPeriodNo = $("#period").val();
+		    var reguNo = $("#reason").val();
+		    var reguPeriodNo = $("#period").val();
+		    
+		    
+			// 데이터 전달 및 부모 창으로 메시지 보내기
+		    var dataToSend = { param1: reguNo, param2: reguPeriodNo };
+		    window.opener.postMessage(JSON.stringify(dataToSend), window.location.origin);
+		    
 		    window.close();
 		});
 		
@@ -60,7 +66,6 @@
 		</div>	
 
 		<div id="reportBox">
-			<form action="AfterComplete.jsp" id="reportForm">
 				<table style="margin: auto; margin-top: 10%;">
 					<tr>
 						<th colspan="2" style="font-size: x-large;">재제하기</th>
@@ -70,7 +75,7 @@
 					</tr>					
 					<tr>
 						<th>재제대상</th>
-						<td><input type="text" readonly="readonly" value="${reportedNickName }"/></td>						
+						<td><input type="text" readonly="readonly" value="${reportedNickName}"/></td>						
 					</tr>
 					<tr>
 						<th>재제사유</th>
@@ -105,12 +110,11 @@
 					</tr>					
 					<tr style="text-align: center;">
 						<td colspan="2">
-							<button id="reportComplete" >제재하기</button>
+							<button id="reportComplete" value="${row }">제재하기</button>
 							<button id="closeReport">취소하기</button>
 						</td>
 					</tr>
 				</table>
-			</form>
 		</div>
 </body>
 </html>

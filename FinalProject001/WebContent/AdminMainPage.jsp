@@ -167,7 +167,7 @@
 				<a href="q-list-4admin.action"><span>문의 ${newQuestionCnt }건</span></a>
 				<br>
 
-				<a href="ReportManagement.jsp"><span>신고 ${newReportCnt }건</span></a>
+				<a href="reportRecruit.action"><span>신고 ${newReportCnt }건</span></a>
 
 			</p>
 			
