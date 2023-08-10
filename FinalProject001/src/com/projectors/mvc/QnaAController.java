@@ -18,8 +18,8 @@ public class QnaAController
 	@Autowired
 	private SqlSession sqlSession; 
 	
-	// [ 관리자 ] 답변 등록 (인서트) (QnAQInsert.jsp) 
-	@RequestMapping(value="/answer-insert-form.action", method = RequestMethod.GET )
+	// [ 관리자 ] 답변 등록 (인서트 수행) (QnAQInsert.jsp) 
+	@RequestMapping(value="/insert-answer.action", method = RequestMethod.GET )
 	public String qnaAInsert(QnaADTO dto)
 	{
 		String result = "";
@@ -27,9 +27,36 @@ public class QnaAController
 		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);
 		dao.addAnswer(dto);
 		
-		result ="q-article-4admin.action";
+		result = "redirect:q-article-4admin.action?questionNo=" + dto.getQuestionNo();   //-- 페이지 리로드 
 		return result; 
 	}
+	
+	// [ 관리자 ] 답변 수정 (update)  modifyAnswer
+	@RequestMapping(value="/update-answer.action", method = RequestMethod.GET )
+	public String updateAnswer(QnaADTO dto)
+	{
+		String result = "";
+		
+		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);
+		dao.updateAnswer(dto);
+		
+		result = "redirect:q-article-4admin.action?questionNo=" + dto.getQuestionNo();   //-- 페이지 리로드  
+		return result; 
+	}
+	
+	// [관리자 ] 답변 삭제 (delete)  deleteAnswer
+	@RequestMapping(value="/answer-delete.action", method = RequestMethod.GET )
+	public String deleteAnswer(String answerNo, QnaADTO dto)
+	{
+		String result = "";
+		
+		IqnaADAO dao = sqlSession.getMapper(IqnaADAO.class);
+		dao.removeAnswer(answerNo);
+		
+		result = "redirect:q-article-4admin.action?questionNo=" + dto.getQuestionNo();   //-- 페이지 리로드 
+		return result; 
+	}
+	
 	
 	
 	
