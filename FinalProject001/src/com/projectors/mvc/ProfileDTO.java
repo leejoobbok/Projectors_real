@@ -3,13 +3,11 @@ package com.projectors.mvc;
 public class ProfileDTO
 {
 	// 주요 속성 구성
-	private String pinNo, profileNo, id, nickname, count;
-
-	private int positionNo, doTypeNo, regionNo, subRegionNo;
+	private String pinNo ,profileNo, id, nickname, posName, toolName, photourl, subRegionName, regionName;
+	private String posNo, doTypeNo, toolNo, regionNo, subRegionNo;
+	int count;
 	
-	
-	// getter / setter
-	
+	// getter /setter
 	public String getPinNo()
 	{
 		return pinNo;
@@ -42,47 +40,97 @@ public class ProfileDTO
 	{
 		this.nickname = nickname;
 	}
-	public String getCount()
+	public String getPosName()
 	{
-		return count;
+		return posName;
 	}
-	public void setCount(String count)
+	public void setPosName(String posName)
 	{
-		this.count = count;
+		this.posName = posName;
 	}
-	public int getPositionNo()
+	public String getToolName()
 	{
-		return positionNo;
+		return toolName;
 	}
-	public void setPositionNo(int positionNo)
+	public void setToolName(String toolName)
 	{
-		this.positionNo = positionNo;
+		this.toolName = toolName;
 	}
-	public int getDoTypeNo()
+	public String getPhotourl()
+	{
+		return photourl;
+	}
+	public void setPhotourl(String photourl)
+	{
+		this.photourl = photourl;
+	}
+	public String getSubRegionName()
+	{
+		return subRegionName;
+	}
+	public void setSubRegionName(String subRegionName)
+	{
+		this.subRegionName = subRegionName;
+	}
+	public String getRegionName()
+	{
+		return regionName;
+	}
+	public void setRegionName(String regionName)
+	{
+		this.regionName = regionName;
+	}
+	public String getPosNo()
+	{
+		return posNo;
+	}
+	public void setPosNo(String posNo)
+	{
+		this.posNo = posNo;
+	}
+	public String getDoTypeNo()
 	{
 		return doTypeNo;
 	}
-	public void setDoTypeNo(int doTypeNo)
+	public void setDoTypeNo(String doTypeNo)
 	{
 		this.doTypeNo = doTypeNo;
 	}
-	public int getRegionNo()
+	public String getToolNo()
+	{
+		return toolNo;
+	}
+	public void setToolNo(String toolNo)
+	{
+		this.toolNo = toolNo;
+	}
+	public String getRegionNo()
 	{
 		return regionNo;
 	}
-	public void setRegionNo(int regionNo)
+	public void setRegionNo(String regionNo)
 	{
 		this.regionNo = regionNo;
 	}
-	public int getSubRegionNo()
+	public String getSubRegionNo()
 	{
 		return subRegionNo;
 	}
-	public void setSubRegionNo(int subRegionNo)
+	public void setSubRegionNo(String subRegionNo)
 	{
 		this.subRegionNo = subRegionNo;
 	}
-
+	public int getCount()
+	{
+		return count;
+	}
+	public void setCount(int count)
+	{
+		this.count = count;
+	}
+	
+	
+	
 	
 	
 }

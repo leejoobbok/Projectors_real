@@ -17,10 +17,10 @@
 <script type="text/javascript">
 
 
-	var regionChoiceNo = "";
+	var regionChoiceName = "";
 	var subRegionChoiceName = "";
 	var posChoiceNo = "";
-	var doTypeChoiceNo = "";
+	var doTypeChoiceName = "";
 
 	
 	// 지역 선택 → 태그 추가
@@ -43,7 +43,7 @@
 	        newSpan.innerHTML = regionSelectValue + "<button type='submit' class='SearchDelBtn' onclick='regionSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
 	        
-	        regionChoiceNo = regionSelect;
+	        regionChoiceName = regionSelectValue;
 		}
 		
 	}
@@ -60,7 +60,7 @@
             inlineTag.removeChild(inlineTag.firstChild);
         }
         
-        regionChoiceNo = "";
+        regionChoiceName = "";
         subRegionChoiceName = "";
 	}
 	
@@ -162,7 +162,7 @@
 	        newSpan.innerHTML = doTypeSelectValue + "<button type='submit' class='SearchDelBtn' onclick='doSelectDelete()'>x</button>";
 	        inlineTag.appendChild(newSpan);
 	        
-	        doTypeChoiceNo = doTypeSelect;
+	        doTypeChoiceName = doTypeSelectValue;
 		}
 	}
 
@@ -178,7 +178,7 @@
             inlineTag.removeChild(inlineTag.firstChild);
         }
         
-        doTypeChoiceNo = "";
+        doTypeChoiceName = "";
 	}
 	
 	// ajax 를 통해 지역을 선택하면 해당지역의 상세지역 옵션 가져오기
@@ -211,15 +211,45 @@
 	
 	function searchRecruit()
 	{
-		// alert(regionChoiceNo + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceNo);
-		/*
-		var f = document.createElement("searchBtn");
-	    form.action = "searchrecruit.action";
-	    f.submit;
-	    */
+		// alert(regionChoiceName + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceName);
+		
+		if (regionChoiceName=="" && subRegionChoiceName=="" && posChoiceNo=="" && doTypeChoiceName=="")
+		{
+			alert("검색 내용이 없습니다.");
+			return;
+		}
+		
+		if (regionChoiceName=="")
+			regionChoiceName = "%";
+
+		if (subRegionChoiceName=="")
+			subRegionChoiceName = "%";
+
+		if (posChoiceNo=="")
+			posChoiceNo = "%";
+
+		if (doTypeChoiceName=="")
+			doTypeChoiceName = "%";
+		
+		// alert(regionChoiceName + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceName);
+		
+		var url = "searchrecruitlist.action?";
+		url += "regionName=" + regionChoiceName;
+		url += "&subRegionName=" + subRegionChoiceName;
+		url += "&posNo=" + posChoiceNo;
+		url += "&doTypeName=" + doTypeChoiceName;
+	    
+		// 안됨
+	    // window.location.href = url;
 	}
 	
+	function writeRecruit()
+	{
+		window.location.href = 'writerecruit.action';
+	}
 
+	
+	
 </script>
 
 
@@ -304,7 +334,7 @@
 			
 			
 			<div class="writeBtnArea">
-				<button class="writeBtn">공고 작성하기</button>
+				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
 			</div>
 			
 

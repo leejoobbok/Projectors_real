@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.projects.mvc.IProfileDAO">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.projectors.mvc.IProfileDAO">
  
-<!--   
- 		<select id="getProfile" resultType="java.lang.Integer">
-
+ 
+ 		<select id="getProfile" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT PROFILENO,NICKNAME,ID,REGIONNO,REGIONNAME,SUBREGIONNO,SUBREGIONNAME,POSNO,POSNAME
+			FROM PROFILEVIEW
+			WHERE PINNO=#{pinNo}
 		</select>
- --> 
- 
- 	<insert id="profileInsert">
-		INSERT INTO PROFILE
-		( PROFILE_NO
-		, PIN_NO
-		, POS_NO
-		, SUB_REGION_NO
-		, PROFILE_DATE )
-		VALUES
-		( 'PF'||TO_CHAR(PROFILENOSEQ.NEXTVAL)
-		, 'UP33'
-		, 입력받을 포지션 넘버
-		, SYSDATE); 		
- 	
- 	
- 	</insert>
- 
- 
+		
+		
+		<select id="getUserTool"  resultType="com.projectors.mvc.ProfileDTO">
+			SELECT TOOLNAME
+			FROM USER_TOOL_VIEW
+			WHERE PINNO=#{pinNo}
+		</select>
+		
+		
+
  
  </mapper>

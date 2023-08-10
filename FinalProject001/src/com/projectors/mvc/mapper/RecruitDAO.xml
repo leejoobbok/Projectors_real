@@ -15,18 +15,27 @@
         , DOTYPENAME, REGIONNAME, SUBREGIONNAME
 		FROM RECRUITVIEW
 		WHERE DDAY >= 0
-		  AND REGIONNAME IN (SELECT REGION_NAME
-		                     FROM REGION 
-		                     WHERE REGION_NO LIKE '%%')
+		  AND REGIONNAME LIKE '%%'
 		  AND SUBREGIONNAME LIKE '%%'
 		  AND RECRUITNO IN (SELECT RECRUIT_NO
 		                    FROM RECRUIT_POS 
 		                    WHERE POS_NO LIKE '%%')
-		  AND RECRUITNO IN (SELECT RECRUIT_NO
-		                    FROM RECRUIT_TOOL 
-		                    WHERE TOOL_NO LIKE '%%')
+		  AND DOTYPENAME LIKE '%%'
 	</select>
-
+	<!-- 
+	<select resultType="com.projectors.mvc.RecruitDTO" id="searchLists">
+		SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
+        , DOTYPENAME, REGIONNAME, SUBREGIONNAME
+		FROM RECRUITVIEW
+		WHERE DDAY >= 0
+		  AND REGIONNAME LIKE '%' || #{regionName }
+		  AND SUBREGIONNAME LIKE '%' || #{subRegionName }
+		  AND RECRUITNO IN (SELECT RECRUIT_NO
+		                    FROM RECRUIT_POS 
+		                    WHERE POS_NO LIKE '%' || #{posNo })
+		  AND DOTYPENAME LIKE '%' || #{doTypeName }
+	</select>
+	 -->
 	<select resultType="java.lang.String" id="showTool">
 		SELECT TOOL_NAME
 		FROM TOOL
@@ -85,12 +94,11 @@
 	</select>
 	
 	<select resultType="com.projectors.mvc.RecruitDTO" id="recruitMember">
-		SELECT RECRUITPOSNO, POSNAME, COUNTPOS
+		SELECT RECRUITPOSNO, POSNAME, COUNTPOS, APPLYCOUNT
 		FROM RECRUITPOSITIONVIEW 
 		WHERE RECRUITNO = #{regionNo }
 		ORDER BY POSNAME
 	</select>
-	
 	
 	<!--
 	private int regionNo, subRegionNo, posNo, toolNo;

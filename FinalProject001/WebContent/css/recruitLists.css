@@ -1,11 +1,12 @@
 /* @charset "UTF-8"; */
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
+
 
 .inlineTitle {
 	display: inline;
@@ -79,18 +80,18 @@
 	border-radius: 5px;
 	border: 2px solid orange;
 	transition: 0.3s;
-	font-family: 'Pretendard-Regular';
+	font-family: 'SUITE-Regular';
 }
 
 .select option {
 	background-color: #ffb324;
 	color: white;
-	font-family: 'Pretendard-Regular';
+	font-family: 'SUITE-Regular';
 }
 
 .searchBtn {
 	font-size: 14pt;
-	font-family: 'Pretendard-Regular';
+	font-family: 'SUITE-Regular';
 	border-radius: 10px;
 	margin-left: 20px;
 	padding: 5px 15px;
@@ -145,7 +146,7 @@
 .recruitTitle a {
 	text-decoration: none;
 	color: black;
-	font-family: 'Pretendard-Regular';
+	font-family: 'SUITE-Regular';
 	font-size: 18pt;
 }
 
@@ -170,7 +171,7 @@
 }
 
 .toolTag {
-	background-color: #ffd78a;
+	background-color: #ffe8a2;
 	font-size: 11pt;
 	border-radius: 9px;
 	
@@ -188,7 +189,7 @@
 }
 
 .regionTag {
-	background-color: #ffb0ba;
+	background-color: #c7e6fe;
 	font-size: 11pt;
 	border-radius: 9px;
 	
@@ -197,7 +198,20 @@
 }
 
 .writeBtnArea {
+	display: flex;
 }
 
 .writeBtn {
+	margin-left: 73%;
+	
+	font-family: 'SUITE-Regular';
+	
+	border: none;
+	background-color: orange;
+	color: white;
+	font-size: 16pt;
+	font-weight: 500;
+	border-radius: 9px;
+	
+	padding: 5px 12px 5px 12px;
 }

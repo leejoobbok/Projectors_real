@@ -105,7 +105,7 @@
 			
 			<div id="myPageMenus">
 				<span id="myPageTitle">마이페이지</span>
-				<a href="MyPage.jsp">내 프로필</a>
+				<a href="profileview.action">내 프로필</a>
 				<a href="MyPage.jsp">찜한 모집 공고</a>
 				<a href="AccountManagement.jsp">계정관리</a>
 			</div>
@@ -113,7 +113,7 @@
 			
 			<!-- ====== 나의 프로필 ====== -->
 			<div id="myProfile">
-				<c:import url="profileView.action"></c:import>
+				<c:import url="profileview.action"></c:import>
 			</div>
 			
 			
