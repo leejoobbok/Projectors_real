@@ -6,7 +6,10 @@
 
 <select id="lists" resultType="com.projectors.mvc.AdminNoticeDTO">
 	SELECT ADMIN_NOTICE_NO AS adminNoticeNo
-	   , PIN_NO as pinNo
+	   ,(SELECT ADMIN_NO
+	   	 FROM ADMIN
+	   	 WHERE PIN_NO = AN.PIN_NO
+	   	 ) as pinNo
        , TITLE
        , CONTENT
 	FROM ADMIN_NOTICE AN

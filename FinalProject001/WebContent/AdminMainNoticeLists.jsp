@@ -112,7 +112,7 @@
 							<td style="text-align: left;">
 							<a href="adminNoticeArticle.action?adminNoticeNo=${notice.adminNoticeNo }">
 							${notice.title }</a></td>
-							<td>${pinNo }</td>
+							<td>${notice.pinNo }</td>
 						</tr>
 					</c:forEach>
 				</table>
