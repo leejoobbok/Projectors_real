@@ -1,7 +1,6 @@
 package com.projectors.mvc;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -82,7 +81,6 @@ public class LoginController
 				session.setAttribute("pinNo", dao.getUserPin(loginDTO));
 				
 				result="MainPage.jsp";
-				
 				
 			}
 			else
