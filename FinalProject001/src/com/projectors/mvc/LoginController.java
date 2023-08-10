@@ -1,6 +1,7 @@
 package com.projectors.mvc;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sun.javafx.collections.SetAdapterChange;
-import com.sun.org.apache.bcel.internal.generic.DALOAD;
 
 @Controller
 public class LoginController
@@ -47,7 +46,7 @@ public class LoginController
 			if (dao.adminLogin(loginDTO) == 1)
 			{
 				System.out.println("관리자 로그인 성공");
-				result="MainPage.jsp";
+				result="adminMain.action";
 				
 				/*관리자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
@@ -77,10 +76,10 @@ public class LoginController
 				/*사용자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
 				
-				System.out.println(dao.getUserPin(loginDTO));
+				System.out.println("LoginController에서의 핀넘버"+dao.getUserPin(loginDTO));
 				
 				/*세션에 사용자 pin 등록*/
-				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
+				session.setAttribute("pinNo", dao.getUserPin(loginDTO));
 				
 				result="MainPage.jsp";
 				
