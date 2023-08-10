@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,11 +82,18 @@ public class AdminController
 	
 	//-- 공지사항 작성
 	@RequestMapping (value = "/noticeInsert.action", method = RequestMethod.POST)
-	public String noticeInsert(AdminNoticeDTO dto)
+	public String noticeInsert(AdminNoticeDTO dto, HttpServletRequest request)
 	{
 		String result = "";
 		
+		HttpSession session = request.getSession();
 		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
+		
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		dto.setPinNo(pinNo);
+		
+		System.out.println(pinNo);
 		
 		dao.add(dto);
 		

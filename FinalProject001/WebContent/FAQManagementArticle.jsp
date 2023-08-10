@@ -188,9 +188,9 @@
 			<tr>
 				<th style="vertical-align: top;">내용</th>
 				<td>
-					<div>
-					${article.content }
-					</div>
+					<textarea rows="50" cols="70" id="content" name="content" style="width: 90%; height: 200px;"
+					>${article.content }</textarea>
+					
 				</td>
 			</tr>
 			<tr>

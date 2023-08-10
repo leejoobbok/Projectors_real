@@ -26,17 +26,40 @@ a
 	background-color: white;
 }
 
+.submitBtn
+{
+	border: none;
+	padding: 0;
+	background: none;
+	font-size:  16pt;
+	font-weight: bold;
+}
+
+table
+{
+	margin: auto;
+}
+
 </style>
 </head>
 
 <body>
 <div id="menuBar">
-	<a href="adminMain.action">메인</a>
-	<a href="mainNoticeList.action">공지사항</a>
-	<a href="reportRecruit.action">신고관리</a>
-	<a href="faqManagement.action">FAQ/문의관리</a>
-	<a href="ContentsManagement.jsp">컨텐츠관리</a>
-	<a href="UserManagement.jsp">회원관리</a>
+
+	<table>
+		<tr>
+			<th style="border: none;">
+				<form action="adminMain.action" method="GET">
+					<button class="submitBtn" type="submit">메인</button>
+				</form>
+			</th>
+			<th style="border: none;"><a href="mainNoticeList.action">공지사항</a></th>
+			<th style="border: none;"><a href="reportRecruit.action">신고관리</a></th>
+			<th style="border: none;"><a href="faqManagement.action">FAQ/문의관리</a></th>
+			<th style="border: none;"><a href="ContentsManagement.jsp">컨텐츠관리</a></th>
+			<th style="border: none;"><a href="UserManagement.jsp">회원관리</a></th>
+		</tr>
+	</table>
 	<hr>
 </div>
 

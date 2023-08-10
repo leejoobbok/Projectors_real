@@ -153,13 +153,13 @@
 			<c:when test="${member.countPos == 0 }">
 				<li>
 					<span class="position">${member.posName }</span>
-					<span class="recruiting">99명 지원</span>
+					<span class="recruiting">${member.applyCount } 명 지원</span>
 					<button type="button" value="${member.recruitPosNo }" class="applyBtn">지원하기</button>
 				</li>
 			</c:when>
 			<c:otherwise>
 				<li>
-					<span class="position">백엔드</span>
+					<span class="position">${member.posName }</span>
 					<span class="completed">모집완료</span>
 					<button type="button" value="" class="unavailableBtn" disabled="disabled">지원하기</button>
 				</li>
@@ -172,9 +172,42 @@
 			 
 			 
 			 
+
+		<h3 class="replyTitle">댓글<span>(1)</span></h3>
+		<hr class="line3">
+		
+		
+		<div class="replyArea">
+			<ul>
+				<li>
+					<span class="replyUser">사진과닉네임</span>
+				</li>
+				<li>
+					<textarea name="" id="" cols="100" rows="1" class="replyContent" disabled="disabled"> 한줄일때</textarea>
+				</li>
+				<li><hr></li>
+			</ul>
+			<ul>
+				<li>
+					<span class="replyUser">사진과닉네임</span>
+				</li>
+				<li>
+					<textarea name="" id="" cols="100" rows="1" class="replyContent" disabled="disabled"> 한줄일때
+					두줄일때</textarea>
+				</li>
+				<li><hr></li>
+			</ul>
+		</div>
+		
+		
+		<div class="applyInsertArea">
+		<form action="" method="get">
+			<textarea cols="100" rows="3" id="comment" name="comment" placeholder="댓글을 남겨보세요!" class="replyInsertContent"></textarea>
+			<br><button type="submit" class="replyBtn">댓글 등록</button>
+		</form>
+		</div>
 			 
-			 
-			 
+		<hr class="line3">
 			 
 	</div> <!-- end.container -->
 	</div> <!-- end.main -->

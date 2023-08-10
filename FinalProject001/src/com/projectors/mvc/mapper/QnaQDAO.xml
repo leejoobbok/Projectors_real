@@ -41,11 +41,13 @@
 	</select>
 	
 	
-	<select id="adAnswerWrite" resultType="com.projectors.mvc.QnaQDTO"><!-- 관리자가 보는 아티클 페이지의 유저 문의 부분  -->
-		SELECT Q.QUESTION_NO AS QUESTIONNO
-	    ,Q.TITLE AS QUESTIONTITLE
-	    ,U.NICKNAME AS NICKNAME
-	    ,Q.CONTENT AS QUESTIONCONTENT, Q.CREATED_DATE AS QCREATEDDATE
+	<select id="adminQuestionDetail" resultType="com.projectors.mvc.QnaQDTO"><!-- 관리자가 보는 아티클 페이지의 유저 문의 부분  -->
+		SELECT Q.QUESTION_NO AS QUESTIONNO      <!--  문의번호    -->
+      	,Q.PIN_NO AS PINNO                   	<!--  유저 핀번호 -->
+      	,U.NICKNAME AS NICKNAME           		<!--  유저 닉네임 -->
+      	,Q.TITLE AS QUESTIONTITLE        		<!--  문의 제목   -->
+      	,Q.CONTENT AS QUESTIONCONTENT    		<!--  문의 내용   -->
+      	, Q.CREATED_DATE AS QCREATEDDATE  		<!--  작성일시    -->
 		FROM QUESTION Q LEFT JOIN USERS U 
 		ON Q.PIN_NO= U.PIN_NO
 		WHERE QUESTION_NO = #{questionNo}
