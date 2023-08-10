@@ -140,4 +140,70 @@ li {list-style-type: none;}
 	
 }
 
+.replyArea {
+	padding-left: 21%;
+}
+
+.replyTitle {
+    font-family: 'SUITE-Regular';
+	margin-left: 25%;
+	margin-bottom: 5px;
+	margin-top: 60px;
+}
+
+.line3 {
+	width: 63%;
+	border: 0.3px solid #9c9c9c;
+	margin: auto;
+}
+
+.replyUser {
+	font-size: 12pt;
+	font-family: 'SUITE-Regular';
+}
+
+.replyContent {
+	width: 61%;
+	font-size: 11pt;
+	font-family: 'SUITE-Regular';
+	line-height: 30px;
+	resize: none;
+	
+	border: none;
+}
+
+.replyArea ul li hr {
+	margin: 0;
+	margin-left: -20px;
+	margin-top: 8px;
+	
+	width: 70%;
+}
+
+.applyInsertArea {
+	margin-top: 25px;
+	margin-bottom: 30px;
+	padding-left: 23%;
+	padding-right: 30%;
+}
+
+.replyInsertContent {
+	width: 100%;
+	font-size: 11pt;
+	font-family: 'SUITE-Regular';
+	resize: none;
+	padding: 8px 3px 8px 3px;
+}
+
+.replyBtn {
+    font-family: 'SUITE-Regular';
+	width: 100px;
+	height: 25px;
+	font-size: 12pt;
+	background-color: #ffcd29;
+	border: none;
+	border-radius: 4px;
+	margin-left: 0px;
+}
+
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public interface IRecruitDAO
 {
 	public ArrayList<RecruitDTO> lists();
+	// public ArrayList<RecruitDTO> searchLists(String regionName, String subRegionName, String posNo, String doTypeName);
 	public ArrayList<String> showTool(String recruitNo);
 	
 	public ArrayList<RecruitDTO> optionRegion();
