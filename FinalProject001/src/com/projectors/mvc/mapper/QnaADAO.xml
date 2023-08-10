@@ -19,6 +19,18 @@
 		FROM ANSWER
 		WHERE QUESTION_NO=#{questionNo}
 	</select>
+	
+	<update id="updateAnswer"> 	<!-- 답변 수정 쿼리  -->
+		UPDATE ANSWER 
+		SET CONTENT = #{answerContent}
+		WHERE QUESTION_NO=#{questionNo}
+	</update>
+	
+	<delete id="deleteAnswer">  <!-- 답변 삭제 쿼리 -->
+		DELETE FROM ANSWER 
+		WHERE QUESTION_NO=#{questionNo}
+	</delete>
+	
 </mapper>
 
 <!--  QnaADTO 의 속성들 
