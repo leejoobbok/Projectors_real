@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,16 +56,27 @@ public class AdminReportController
 	
 	//-- 공고신고 처리 insert
 	@RequestMapping (value = "/clearManageReport.action", method = RequestMethod.GET)
-	public String clearManageReoprt(ReportDTO dto)
+	public String clearManageReoprt(HttpServletRequest request)
 	{
 		String result = "";
 		
+		HttpSession session = request.getSession();
 		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 		
-		int out = dao.clearManageReport(dto);
-
-		System.out.println("처리 결과 : " + out);
+		ReportDTO dto = new ReportDTO();
 		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setRepNo(request.getParameter("repNo"));
+		dto.setReguNo(request.getParameter("reguNo"));
+		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+		
+		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
+		//System.out.println("repNo : "+request.getParameter("repNo"));
+		//System.out.println("reguNo : "+request.getParameter("reguNo"));
+		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
+		
+		dao.clearManageReport(dto);
+
 		result = "redirect:reportRecruit.action";
 		
 		return result;
@@ -70,15 +84,18 @@ public class AdminReportController
 	
 	//-- 공고신고 반려
 	@RequestMapping (value = "/rejectManageReport.action", method = RequestMethod.GET)
-	public String rejectManageReport(ReportDTO dto)
+	public String rejectManageReport(ReportDTO dto, HttpServletRequest request)
 	{
 		String result = "";
 		
+		HttpSession session = request.getSession();
 		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 		
-		int out = dao.rejectManageReport(dto);
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setReguNo(request.getParameter("repNo"));
 		
-		System.out.println("반려 결과 : " + out);
+		dao.rejectManageReport(dto);
+		
 		
 		result = "redirect:reportRecruit.action";
 		return result;

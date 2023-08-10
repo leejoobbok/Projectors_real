@@ -93,7 +93,7 @@ public class AdminController
 		
 		dto.setPinNo(pinNo);
 		
-		System.out.println(pinNo);
+		//System.out.println(pinNo);
 		
 		dao.add(dto);
 		
