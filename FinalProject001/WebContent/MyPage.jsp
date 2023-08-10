@@ -113,7 +113,7 @@
 			
 			<!-- ====== 나의 프로필 ====== -->
 			<div id="myProfile">
-				<c:import url="ProfileView.jsp"></c:import>
+				<c:import url="profileView.action"></c:import>
 			</div>
 			
 			

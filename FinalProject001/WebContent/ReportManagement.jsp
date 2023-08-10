@@ -114,41 +114,39 @@
 </style>
 
 <script type="text/javascript">
-	$(function()
-	{
-		$(".manageReport").click(function(event) {
-		    event.preventDefault();
 
-		    var newWindow = window.open('managementReport.action?reportedNickName='+$("#reportedNickName").val()
-		    				, 'manageReport', 'left=500,top=300,width=600,height=500,resizable=no');
-		    
-		    newWindow.onbeforeunload = function() 
-		    {
-		        var reguNo = newWindow.reguNo; // 첫 번째 int 값
-		        var reguPeriodNo = newWindow.reguPeriodNo; // 두 번째 int 값
-		        
-		        if (reguNo != undefined && reguPeriodNo != undefined) 
-		        {
-		        	$('#reguNo').val(reguNo);
-		        	$('#reguPeriodNo').val(reguPeriodNo);
-		        	
-		            $('#reportForm').attr('action', 'clearManageReport.action?repResultNo='+$(".manageReport").val());
-		            $('#reportForm').submit(); // 폼 제출
-		    	}
-		        
-		    };
-		});
+function manageReport(button)
+{
+	var row = button.closest('tr');
+    var reportedNickName = row.querySelector('.reportedNickName').value;
+    
+    var newWindow = window.open('managementReport.action?reportedNickName='+reportedNickName
+								, 'manageReport', 'left=500,top=300,width=600,height=500,resizable=no');
+    
+    window.addEventListener('message', function(event) 
+ 	{
+        if (event.origin !== window.location.origin) 
+        {
+            // 안전한 출처 확인
+            return;
+        }
 
-		
-		$(".cancelReport").click(function()
-		{
-			if (confirm("신고처리를 반려하시겠습니까?"))
-			{
-				$('#reportForm').attr('action', 'rejectManageReport.action?repResultNo='+$(".cancelReport").val());
-			}
-		});
-		
-	});
+        // 전달받은 데이터 사용
+        var receivedData = JSON.parse(event.data);
+        
+        row.querySelector('.reguNo').value = receivedData.param1;
+        row.querySelector('.reguPeriodNo').value = receivedData.param2;
+        
+        var f = document.forms.reportForm;
+        f.action = 'clearManageReport.action';
+        f.submit();
+ 	});
+    
+}
+
+
+
+
 </script>
 </head>
 
@@ -216,33 +214,36 @@
 				<th>신고일자</th>
 				<th>신고처리</th><!-- 버튼에 따라 처리결과 value 넘김 -->
 			</tr>
-			<c:forEach var="report" items="${lists }">
-				<tr>
-					<td>${report.repNo }</td>
+			<c:forEach var="report" items="${lists }" varStatus="i">
+				<tr class="${i.count }">
+					<td>
+						${report.repNo }
+						<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
+					</td>
 					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
 						${report.reportedNickName }
-						<input type="hidden" id="reportedNickName" name="reportedUserPinNo" 
+						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
 							value="${report.reportedNickName }" />
-						<input type="hidden" id="reportedUserPinNo" name="reportedUserPinNo" 
+						<input type="hidden" class="reportedUserPinNo" name="reportedUserPinNo" 
 							value="${report.reportedUserPinNo }" />
 					</td>
 					<td>
 						${report.reportNickName }
-						<input type="hidden" id="reportUserPinNo" name="reportUserPinNo" 
+						<input type="hidden" class="reportUserPinNo" name="reportUserPinNo" 
 							value="${report.reportUserPinNo }" />					
 					</td>
 					<td>
 						${report.repReason } 
-						<input type="hidden" id="reguNo" name="reguNo"/>
-						<input type="hidden" id="reguPeriodNo" name="reguPeriodNo"/>
+						<input type="hidden" class="reguNo" name="reguNo"/>
+						<input type="hidden" class="reguPeriodNo" name="reguPeriodNo"/>
 					</td>
 					<td>
 						${report.reportDate }
 					</td>
 					<td>
-						<button type="button" class="manageReport" name="repResultNo" value="1">처리</button>
-						<button type="button" class="cancelReport" name="repResultNo" value="0">반려</button>
+						<button type="button" class="manageReport" name="repResultNo" value="1" onclick="manageReport(this)">처리</button>
+						<button type="button" class="cancelReport" name="repResultNo" value="0" onclick="cancelReport(this)">반려</button>
 					</td>
 				</tr>
 			</c:forEach>

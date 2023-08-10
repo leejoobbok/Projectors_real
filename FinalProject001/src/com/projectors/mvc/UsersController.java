@@ -4,11 +4,9 @@
 
 package com.projectors.mvc;
 
-import java.io.IOException;
-import java.util.Properties;
-import java.util.UUID;
 
-import javax.mail.Session;
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.DispatcherServlet;
 
-import com.sun.javafx.sg.prism.NGShape.Mode;
 
 @Controller
 public class UsersController
@@ -128,6 +124,24 @@ public class UsersController
 		RequestDispatcher dispatcher = request.getRequestDispatcher("repw_ck_ajax.jsp");
 		dispatcher.forward(request, response);
 		
+	}
+	
+	@RequestMapping(value="/userRegist.action",method=RequestMethod.GET)
+	public String userRegist(Model model, UsersDTO usersDTO)
+	{
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		String result="";
+		dao.addPin();
+		dao.addUsers(usersDTO);
+		
+		result="MainPage.jsp";
+				
+		return result;
+		
+		
+		
+	
 	}
 	
 	

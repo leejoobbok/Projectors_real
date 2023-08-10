@@ -307,8 +307,8 @@
 		        $('#userPw').val('').focus();
 		        return false;
 		    }    
-		    var checkNumber = password.search(/[0-9]/g);
-		    var checkEnglish = password.search(/[a-z]/ig);
+		    var checkNumber = userPw.search(/[0-9]/g);
+		    var checkEnglish = userPw.search(/[a-z]/ig);
 		    if(checkNumber <0 || checkEnglish <0){
 		        alert("숫자와 영문자를 혼용하여야 합니다.");
 		        $('#userPw').val('').focus();
@@ -320,37 +320,52 @@
 		        return false;
 		    }
 		        
-		    if(userPw.search(id) > -1){
+		    if(userPw.search(userId) > -1){
 		        alert("비밀번호에 아이디가 포함되었습니다.");
 		        $('#userPw').val('').focus();
 		        return false;
 		    }
 		    return true;
 		}
+				
+	
 		
-		
-
 	});
 	
 	
 	function submitJoin()
 	{
-		if (document.getElementById("finalId").value=='1' && document.getElementById("finalPw").value =='1' && document.getElementById("finalNickname").value=='1'	)
+		
+		if (document.getElementById("finalId").value=='0'|| document.getElementById("finalPw").value =='0' || document.getElementById("finalNickname").value=='0'
+			|| document.getElementById("nickname").value.length < 2)
 		{
-			alert("가입가능!");
+			if (document.getElementById("finalId").value=='0')
+			{
+				alert("아이디 가입 조건이 불충분합니다.");
+				return;
+			}
+			else if (document.getElementById("finalPw").value =='0') 
+			{
+				alert("비밀번호 가입 조건이 불충분합니다.");
+				return;
+			}
+			else if (document.getElementById("finalNickname").value=='0')
+			{
+				alert("닉네임 가입 조건이 불충분합니다.");
+				return;
+			}
+			else if (document.getElementById("nickname").value.length < 2)
+			{
+				alert("닉네임은 최소 2글자 이상 최대 4글자 이내로 지정해야 합니다.")
+			}			
 		}
 		else
 		{
-			alert("응 안돼~~~");		
+			 document.getElementById("registForm").submit();
 		}
 		
 	}
 		
-		
-
-	
-
-
 	
     
 </script>
@@ -373,11 +388,11 @@
 		
 		<div id="wrapper">
 			<div id="joinBox">
-				<form action="createAccount.action">
+				<form action="userRegist.action" id="registForm">
 					<span>이메일(ID)</span>
 					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
-					required="required"/>
-					<button type="button"  onclick="checkId()">아이디 확인</button><br>
+					required="required" oninput="checkId()"/>
+					<!-- <button type="button"  id="checkIdt" onclick="checkId()">아이디 확인</button><br> -->
 					
 			
 					<p id="idCheckResult"></p>
@@ -418,17 +433,17 @@
 					<span>비밀번호 재입력</span>
 					<input type="password" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
 					required="required" oninput="checkRePw()"/>
+	
 					
 					
-					<!-- <button type="button" >재입력 확인</button><br> -->
+					
 					<br />
 					<p id="pwReCheckResult"></p>
 					<br />
 					<span>닉네임</span>
 					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
-					required="required"/>
-					<button type="button"  onclick="checkNickname()">중복 확인</button><br>
-					
+					required="required" oninput="checkNickname()"  maxlength="3"/>
+				<!-- 	<button type="button" id="checkNicknamet" onclick="checkNickname()">중복 확인</button><br>	 -->
 					
 					<p id="nicknameCheckResult"></p>
 					
@@ -439,8 +454,7 @@
 					
 					
 					<!-- == 가입하기 전송 / 유효성 ok → 가입완료 페이지로 ==== -->
-					<button type="button" id="sendJoinBtn" onclick="submitJoin()">가입하기</button>
-					
+					<button type="button" id="sendJoinBtn" onclick="submitJoin()" >가입하기</button>
 		
 				</form>	
 			</div><!-- end of #joinBox div -->
