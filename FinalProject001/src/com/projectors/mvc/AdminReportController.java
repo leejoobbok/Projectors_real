@@ -1,5 +1,7 @@
 package com.projectors.mvc;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -124,6 +126,7 @@ public class AdminReportController
 	
 	//==========================================처리완료===============================================
 	// ※ 공고
+	//-- 리스트 출력
 	@RequestMapping (value = "/reportManageComplete.action", method = RequestMethod.GET)
 	public String reportManageComplete(Model model)
 	{
@@ -131,7 +134,31 @@ public class AdminReportController
 		
 		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 		
-		model.addAttribute("reportManageComplete", dao.recruitReportComplete());
+		model.addAttribute("lists", dao.recruitReportComplete());
+		
+		result = "ReportManagementComplete.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/recruitReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String reportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.searchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.searchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.searchRepNo(searchVal));
+		
+		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+		//System.out.println(lists);
 		
 		result = "ReportManagementComplete.jsp";
 		
