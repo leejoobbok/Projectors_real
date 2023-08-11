@@ -194,10 +194,34 @@
     {	
     	var title = $('#title').val();
     	var content = $('#content').val();
-    	// 로딩 gif 
+    	window.location.href = "insertTeamNotice.action?title="+title+"&content="+content; 
     	
-    	 window.location.href = "insertTeamNotice.action?title="+title+"&content="+content; 
+    	//===================// 로딩 중...
     	
+        var img = new Image();				//-- 이미지 생성 
+        img.src = "images/dot_loading.gif"; // 이미지 경로 
+        img.style.width = "200px";      	// 가로길이
+        img.style.height = "auto";     		// 세로길이
+
+        // 이미지를 추가할 요소 생성
+        var imageContainer = document.createElement("div");
+        imageContainer.style.position = "fixed";
+        imageContainer.style.top = "50%";
+        imageContainer.style.left = "50%";
+        imageContainer.style.transform = "translate(-50%, -50%)";
+        imageContainer.appendChild(img);
+
+        // 요소를 body에 추가
+        document.body.appendChild(imageContainer);
+
+        // 2초 후에 이미지와 요소 제거
+        img.onload = function () {
+            setTimeout(function () {
+                document.body.removeChild(imageContainer);
+            }, 2000); 
+        };
+
+     
     	// 등록 완료 이미지 
     }
 </script>
