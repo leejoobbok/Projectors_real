@@ -16,7 +16,57 @@
 			WHERE PINNO=#{pinNo}
 		</select>
 		
+		<select id="getTotalRate" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT RATENAME, TOTAL_COUNT AS COUNT
+			FROM PROFILE_TOTAL_RATE
+			WHERE PINNO=#{pinNo}
+			ORDER BY RATENO ASC
 		
-
+		</select>
+		
+		<select id="getResult" resultType="java.lang.Integer">
+			SELECT COUNT(*) AS RESULT
+			FROM PROFILE
+			WHERE PIN_NO=#{pinNo}
+		</select>
+		
+		
+		<select id="insertProfile" resultType="com.projectors.mvc.ProfileDTO">
+			INSERT INTO PROFILE
+			( PROFILE_NO
+			, PIN_NO
+			, POS_NO
+			, SUB_REGION_NO
+			, PROFILE_DATE )
+			VALUES
+			( 'PF'||TO_CHAR(PROFILENOSEQ.NEXTVAL)
+			,  #{pinNo}                         
+			,  #{posNo}
+			,  #{subRegionNo}
+			, SYSDATE);
+		</select>
+		
+		<select id="getPosition" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT POS_NO AS POSNO, POS_NAME AS POSNAME
+			FROM POSITION
+		</select>
+		
+		<select id="getSubRegion" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT SR.SUB_REGION_NO AS SUBREGIONNO, SR.SUB_REGION_NAME AS SUBREGIONNAME 
+			FROM SUB_REGION SR 
+			LEFT JOIN REGION R ON SR.REGION_NO = R.REGION_NO
+			WHERE R.REGION_NO=#{regionNo}
+		</select>
+		
+		<select id="getRegion" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT REGION_NO AS REGIONNO, REGION_NAME AS REGIONNAME
+			FROM REGION
+		</select>		
+		
+		<select id="getTool" resultType="com.projectors.mvc.ProfileDTO">
+			SELECT TOOL_NO AS TOOLNO, TOOL_NAME AS TOOLNAME
+			FROM TOOL
+		</select>
+		
  
  </mapper>
