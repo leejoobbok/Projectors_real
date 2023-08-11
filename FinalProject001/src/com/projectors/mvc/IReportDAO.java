@@ -16,4 +16,6 @@ public interface IReportDAO
 	public int clearManageReport(ReportDTO dto);
 	// 공고신고 반려 insert
 	public int rejectManageReport(ReportDTO dto);
+	// 공고신고처리완료 리스트
+	public ArrayList<ReportDTO> recruitReportComplete();
 }
