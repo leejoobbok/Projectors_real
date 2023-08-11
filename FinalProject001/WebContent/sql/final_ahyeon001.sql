@@ -366,10 +366,10 @@ WHERE QUESTION_NO='QN7';
 --●[관리자용] 유저 전체 질문 리스트 조회 쿼리문  
 --( 번호, 작성자 닉네임, 제목, 작성일, 상태(없으면 답변대기상태 )    
 SELECT Q.QUESTION_NO AS QUESTIONNO
-, U.NICKNAME AS NICKNAME
-, Q.TITLE AS QUESTIONTITLE
-, Q.CREATED_DATE AS QCREATEDDATE
-, NVL2(A.CREATED_DATE,'답변완료','답변대기중') AS ISREPLY
+        , U.NICKNAME AS NICKNAME
+        , Q.TITLE AS QUESTIONTITLE
+        , Q.CREATED_DATE AS QCREATEDDATE
+        , NVL2(A.CREATED_DATE,'답변완료','답변대기중') AS ISREPLY
 FROM (QUESTION Q FULL OUTER JOIN ANSWER A 
 ON Q.QUESTION_NO = A.QUESTION_NO) LEFT JOIN USERS U
 ON Q.PIN_NO= U.PIN_NO
@@ -382,19 +382,17 @@ ON Q.PIN_NO= U.PIN_NO;
 
 
 
---● 관리자용 아티클 조회 ( 닉네임 포함) 
-SELECT Q.QUESTION_NO AS QUESTIONNO
-      ,Q.TITLE AS QUESTIONTITLE
-      ,U.NICKNAME AS NICKNAME
-      ,Q.CONTENT AS QUESTIONCONTENT, Q.CREATED_DATE AS QCREATEDDATE
+--● 관리자용 아티클 조회 (유저를 닉네임으로 출력)=> 닉네임만 안가져와짐. 
+-- 어차피 관리자 페이지라 핀넘버가 더 나은 것 같아서 바꾸기로. 
+SELECT Q.QUESTION_NO AS QUESTIONNO      --문의번호
+      ,Q.PIN_NO AS PINNO                -- 유저 핀번호
+      ,U.NICKNAME AS NICKNAME           -- 유저 닉네임
+      ,Q.TITLE AS QUESTIONTITLE         -- 문의 제목
+      ,Q.CONTENT AS QUESTIONCONTENT     -- 문의 내용
+      , Q.CREATED_DATE AS QCREATEDDATE  -- 작성일시
 FROM QUESTION Q LEFT JOIN USERS U 
 ON Q.PIN_NO= U.PIN_NO
 WHERE QUESTION_NO = 'QN13';
-
-
--- 현재 계정의 모든 시퀀스 조회 
-SELECT sequence_name, min_value, max_value, increment_by, last_number
-FROM user_sequences;
 
 --답변 번호 시퀀스 생성
 CREATE SEQUENCE ANSWERNOSEQ 
@@ -416,4 +414,90 @@ WHERE QUESTION_NO = 'QN7';
 SELECT * FROM FAQ;
 SELECT * FROM ANSWER;
 
-COMMIT;
+--------------------------------------------------------------------------------
+--==>> 08.10 목 완료.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--▣ 08.10 목 (오후 3시 ~)// 지원서 관련 
+
+-- 지원서 폼     -> 인서트 수행 (모집자는 자동 처리) 
+-- 지원서 아티클 -> 등록된 지원서를 모집자  / 지원자 입장에서 확인하는 페이지
+--               -> 모집자: 수락/거절 선택 
+
+-->> 지원서에 입력해야하는 데이터는 상세내용뿐! 나머지는 프로필 IMPORT 
+
+--  필요한 데이터 체크 
+SELECT * FROM USERS;     --(회원번호, 핀번호, 아이디, 닉네임, 프사URL) 
+SELECT * FROM PROFILE;   -- (포지션, 세부지역, 가입일)
+SELECT * FROM USER_TOOL; -- (유저 사용 도구)
+
+SELECT * FROM APPLY;     -- 지원서 테이블 
+--( 공고번호,지원 포지션 번호, 회원핀번호, 상세내용) 
+
+--------------------------------------------------------------------------------
+
+--[그냥 써봄] 모집자가 보는 지원서 아티클 (존재하는 지원서 내용 조회)
+-- 프로필 + 상세내용 + 지원서 테이블에 저장된 정보
+
+-- 유저 기능이라서 구분 문자 뺌 
+SELECT SUBSTR(A.APPLY_NO, 3) AS applyNo               -- 지원 번호
+     , SUBSTR(A.RECRUIT_POS_NO,3) AS recruitPosNo      -- 공고 번호
+     , U.ID AS ID                                     -- 유저 아이디 
+     , U.NICKNAME AS nickName                          -- 유저 닉네임  
+     , U.PHOTOURL AS photoUrl                         -- 프로필사진 url
+     , P.SUB_REGION_NO AS subRegionNo                   -- 세부 지역
+FROM (APPLY A FULL OUTER JOIN USERS U 
+      ON A.PIN_NO = U.PIN_NO) RIGHT OUTER JOIN PROFILE P 
+      ON U.PIN_NO = P.PIN_NO
+;
+--==>> 앞에서 데이터 연결 먼저 해야할 것 같아서 보류.
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--▣ 08.11 금 (오전 9시 ~)// 팀 스페이스 관련 작업중 
+
+--==>> 테이블 데이터들 확인.. 
+SELECT * FROM RECRUIT;  -- 모집공고
+SELECT * FROM PROJECT; --(플젝번호, 공고번호, 프로젝트 생성일) 
+SELECT * FROM USER_PIN; -- 회원 식별번호
+SELECT * FROM NOTE; -- 쪽지
+
+SELECT * FROM FEED; -- 담벼락
+--------------------------------------------------------------------------------
+
+--// 팀  스페이스 >  공지 게시판
+
+--● 공지글 리스트로 불러오기 (샘플 데이터 없어서 몇 개 인서트)
+--(스페이스 공지번호, 플젝번호, 공지글제목, 내용, 작성일)  
+SELECT * FROM SPACE_NOTICE;
+
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR()
+
+-- 현재 계정의 모든 시퀀스 조회 
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+-- 스페이스 공지 번호 시퀀스 생성
+CREATE SEQUENCE SPACENOTICENOSEQ
+NOCACHE;
+--==>> Sequence SPACENOTICENOSEQ이(가) 생성되었습니다.
+--------------------------------------------------------------------------------
+
+--● 공지글 등록
+
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
