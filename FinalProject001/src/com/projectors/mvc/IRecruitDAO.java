@@ -19,4 +19,17 @@ public interface IRecruitDAO
 	
 	public ArrayList<RecruitDTO> countPosRecruitMember(String recruitNo);
 	public ArrayList<RecruitDTO> recruitMember(String recruitNo);
+	
+	public ArrayList<RecruitDTO> getAllTools();
+	public ArrayList<RecruitDTO> getAllPos();
+	
+	public void insertRecruit(RecruitDTO dto);
+	public String getRecruitNo(RecruitDTO dto);
+	public void insertRecruitTool(RecruitDTO dto);
+	public void insertRecruitPos(RecruitDTO dto);
+	public String getCapRecruitPosNo(RecruitDTO dto);
+	public void insertApplyPosCap(RecruitDTO dto);
+	public String getCapApplyNo(RecruitDTO dto);
+	public void insertFirstCKCap(RecruitDTO dto);
+	
 }

@@ -159,12 +159,12 @@ li {list-style-type: none;}
 	
 }
 
-/* Webkit 스핀 버튼 스타일 변경 */
+/* Webkit 스핀 버튼 스타일 변경
 .posCount::-webkit-inner-spin-button,
 .posCount::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
 .doType {
 	margin-top: 20px;

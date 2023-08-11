@@ -40,22 +40,31 @@
 	/*===================================================*/
 	#categoryBar 				/* 메뉴 인덱스바 영역*/
 	{	
-		width: 600px;
+		width: 660px;
 		height: 40px;
+		
 		background-color: #fae896;
-		margin-left: 80px;
+		padding: 10px 0px 0px 20px;
+		margin-left: 60px;
+		
+		border-top: 2px solid;
+		border-left: 2px solid;
+		border-right: 2px solid;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 	.index					/*메뉴 인덱스 클래스 영역*/
 	{
 		display: inline;
-		border: 2px solid;  /* 영역 확인용 */
+		/* border: 2px solid;  */			 /* 영역 확인용 */
 		border-radius: 10px;
 		
 		vertical-align: bottom;
 		font-weight: bold;
 		padding: 6px 8px;
 	}			
-		.index a				/* 메뉴 인덱스 글자*/
+	
+	.index a				/* 메뉴 인덱스 글자*/
 	{
 		text-decoration: none;
 		 
@@ -208,12 +217,17 @@
 			</div> 
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
-				<div class="index"><a href="TeamSpace.jsp">메인</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">공지</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">작업실</a></div>
-				<div class="index"><a href="TeamMeetingList.jsp">회의록</a></div>
-				<div class="index"><a href="TeamTotalRecord.jsp">히스토리</a></div>
-				<div class="index"><a href="TeamMemberInfo.jsp">팀 현황</a></div>
+				<div class="index idx1">
+					<a href="TeamSpace.jsp">
+						<img src="images/home.png" style="width:30px;"/>
+					</a>
+				</div>
+				<div class="index idx2"><a href="TeamNoticeList.jsp">공지</a></div>
+				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
+				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
+				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
+				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
+				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
 				
 			<div id="directoryBox">
