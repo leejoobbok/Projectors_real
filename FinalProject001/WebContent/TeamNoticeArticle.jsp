@@ -231,6 +231,8 @@
 		background-color: #d94925;
 	}	
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
 	// 담벼락에 메세지 붙이기
@@ -239,6 +241,7 @@
 		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
 	}
 	
+	//============================================================================
 	// 삭제 버튼 클릭시 확인받기 
 	function deleteTeamNotice() 
 	{
@@ -248,6 +251,33 @@
             window.location.href = "teamNoticeDelete.action?spaceNoticeNo=<%=spaceNoticeNo%>";
         }
     }
+	
+	// 수정하기 버튼 클릭시..
+	function modifyTeamNotice()    // 편집박스 활성화 및 스타일 변경 
+	{ 	
+         $("#teamNoticeTextArea").removeAttr("readonly").removeAttr("disabled"); //--  본문 수정 가능하게 변경, 디자인 명시 
+         $("#title").removeAttr("readonly").removeAttr("disabled");			//-- 제목 부분 수정 가능하게 변경 
+         $("#modifyBtn, #deleteBtn").hide();							   //-- 기존 수정, 삭제 버튼 숨기기 
+         $("#saveBtn").show();											   //-- 변경사항 저장버튼 
+         
+    };
+			
+	// 수정완료 버튼 클릭시 (수정 수행)
+	$("#saveBtn").click(function() {			  // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 제목 뒤에 (수정됨) 표시 추가 
+		
+         $("#teamNoticeTextArea").attr("readonly",true); //-- 편집 불가 속성 추가 		
+         $("#saveBtn").hide();
+         $("#modifyBtn").show();
+         $("#deleteBtn").show();
+         
+         var isModifiedSpan = $("#isModified");		//-- 제목 옆에 수정된 글이면 표시하는 span 요소
+         var modifiedSpan = $("<span>").text("(수정됨)").css("color", "green"); //-- 수정 표시 문구
+         isModifiedSpan.append(" ", modifiedSpan);
+         
+     });
+
+	
+	
 </script>
 
 
@@ -314,30 +344,33 @@
 						</tr>
 						<tr>
 							<td>${teamArticle.spaceNoticeNo }</td>
-							<td>${teamArticle.title }</td>
+							<td>${teamArticle.title }<span id="isModified"></span>
+							</td>
 							<td>${teamArticle.createdDate }</td>
 						</tr>
 						<tr>
     						<td colspan="3">
     							<hr>
-	    						<textarea id="teamNoticeTextArea">${teamArticle.content}
-	    						</textarea>
+    							<form action="teamNoticeModify.action" method="get">	<!--  수정 시 제출하기 위한 폼 태그 -->
+		    						<textarea id="teamNoticeTextArea" name="content" readonly="readonly" disabled="disabled">${teamArticle.content}
+		    						</textarea>
+	    						</form>
     						</td>
 						</tr>
 					</table>
-					 
-					
+						 
+						
 					<div id="bottomBox">
 						
 						<a href="teamNoticeList.action">
 							<button type="button" class="btn" id="backBtn">목록으로</button>
 						</a>
-						
+					
 						<!-- ※ 팀장에게만 보이는 버튼 -->
-						<a href="teamNoticeModify.action">  
-							<button type="button" class="btn" id="modifyBtn">수정하기</button>
-						</a>
-						<button type="button" class="btn" id="deleteBtn" onclick="deleteTeamNotice()">삭제하기</button>
+						<button type="button" id="modifyBtn" class=" btn" onclick="modifyTeamNotice()">수정하기</button>
+						<button type="button" id="deleteBtn" class="btn"  onclick="deleteTeamNotice()">삭제하기</button>
+						<button type="submit" id="saveBtn" class=" btn"  style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
+						
 					</div>
 			
 				</div><!-- end of #workSpaceBox  -->
