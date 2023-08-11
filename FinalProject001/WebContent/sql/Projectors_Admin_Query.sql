@@ -386,8 +386,45 @@ from regulation_period;
     ON RRR.REP_RECRUIT_NO = RR.REP_RECRUIT_NO
     JOIN RECRUIT R
     ON RR.RECRUIT_NO = R.RECRUIT_NO
-    WHERE RRR.REGU_DATE IS NULL;
+    WHERE RRR.REGU_DATE IS NOT NULL;
 --==>> View REPRECRUITNULL이(가) 생성되었습니다.
+--------------------------------------------------
+SELECT ResultNo, repResultNo
+    ,(SELECT CONTENT
+      FROM REGULATION
+      WHERE RRC.reguNo = REGU_NO
+     ) as content
+    ,(SELECT PERIOD
+      FROM REGULATION_PERIOD
+      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+     ) as period
+    , (
+        SELECT NICKNAME
+        FROM USERS
+        WHERE PIN_NO = RRC.reportedUserPinNo
+      ) as reportedNickName 
+    , reportUserPinNo
+    , reguDate, repNo, postNo, reportDate, repReasonNo
+    , (SELECT ADMIN_NO
+       FROM ADMIN
+       WHERE RRC.adminPinNo = PIN_NO
+      ) as adminPinNo
+FROM REPRECRUITCOMPLETE RRC
+ORDER BY REGUDATE DESC
+;
+
+UPDATE REPRECRUITCOMPLETE
+SET ADMINPINNO='UP17'
+WHERE POSTNO='RC7'
+;
+COMMIT;
+-- 스폰지밥(유저O, 관리자X) 자기 공고 자기 신고 처리까지 스스로한 엉뚱한 데이터 update
+
+SELECT *
+FROM USERS;
+--==>> US16	UP18	spb@naver.com	java002	스폰지밥	images/defaulfPhoto.jpg
+
+--------------------------------------------------
 
 -- 쪽지
     CREATE OR REPLACE VIEW REPNOTECOMPLETE
