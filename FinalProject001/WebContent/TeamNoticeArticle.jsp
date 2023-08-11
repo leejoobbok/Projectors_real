@@ -3,19 +3,19 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	String spaceNoticeNo = request.getParameter("spaceNoticeNo"); //-- 이전 페이지로부터 넘겨받은 팀 공지번호
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스 > 공지 - Projectors </title>
+<title>팀 스페이스 > 공지 상세: Projectors </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
 	
 	body { overflow: hidden;} /* 스크롤 제거*/
 	a{text-decoration: none;} 
-	a:hover{text-decoration: underline;}
 	/*===================================================*/
 	#root						   /*루트 박스*/
 	{
@@ -173,20 +173,28 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#teamNoticeListTbl /* 공지글 테이블*/
+	#teamNoticeArticleTbl /* 공지 아티클 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
-		margin:auto;
+		margin:40px 0px 20px 50px;
 		font-size: 12pt;
 		text-align: center;
 	}
+	#teamNoticeTextArea /* 내용 출력 부분 */
+	{
+		width: 88%;
+		height: 400px;
+		magin: 10px;
+		border-radius: 10px;
+		padding: 10px;
+	}
 	/*======================================================*/
 	
-	#pageNumBox				/* 페이지 넘버 영역*/
+	#bottomBox				/* 하단 버튼 3개 영역*/
 	{
 		width: 300px;
-		margin: 10px 0px 0px 360px;
+		margin: 10px auto;
 		padding: 4px;
 	}
 	.btn							/* 버튼 클래스 공통 */
@@ -198,17 +206,30 @@
 		padding: 2px 10px;
 		border-radius: 12px;
 	}
-	#writeBtn
-	{
-		vertical-align: super;	/*베이스 라인을 위로.*/
-		margin-left:6px;
-	}
-	#writeBtn:hover
+	#backBtn:hover					/* 목록으로 버튼*/
 	{	
 		border: 2px solid black;
-		background-color: white;
+		background-color: #dbd1ce;
 		color: black;
 	}
+	#modifyBtn 						/* 수정 버튼 */
+	{	
+		background-color: #fadc6e;
+		color: black;
+	}	
+	#modifyBtn:hover						
+	{	
+		background-color: #f5b576;
+	}	
+	#deleteBtn						/* 삭제 버튼*/
+	{
+		background-color: #fa6e6e;
+		color: black;
+	}
+	#deleteBtn:hover						
+	{	
+		background-color: #d94925;
+	}	
 </style>
 <script type="text/javascript">
 	
@@ -217,7 +238,16 @@
 	{
 		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
 	}
-
+	
+	// 삭제 버튼 클릭시 확인받기 
+	function deleteTeamNotice() 
+	{
+        var confirmDelete = confirm("정말로 삭제하시겠습니까?");
+        
+        if (confirmDelete) {
+            window.location.href = "teamNoticeDelete.action?spaceNoticeNo=<%=spaceNoticeNo%>";
+        }
+    }
 </script>
 
 
@@ -271,34 +301,43 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">공지게시판</span>
-					<a href="TeamNoticeInsert.jsp">  <!-- ※ 팀장에게만 보이는 버튼 -->
-						<button type="button" class="btn" id="writeBtn">공지 작성</button>
-					</a>
 				</div>
 				
-				<!-- ==========[ 팀 공지 리스트 (팀장 뷰) ]========== -->
+				<!-- ==========[ 팀 공지 아티클 상세 보기 영역 ]========== -->
 				<div id="workSpaceBox">
 					
-					<table id="teamNoticeListTbl">
+					<table id="teamNoticeArticleTbl">
 						<tr>
 							<th width="100px">글 번호</th>
 							<th width="500px">제목</th>
 							<th width="200px">작성일</th>
-						</tr> 
-						<c:forEach var="teamNotice" items="${list }">
-						<tr>
-							<td>${teamNotice.spaceNoticeNo }</td>
-							<td>
-								<a href="teamNoticeArticle.action?spaceNoticeNo=SN${teamNotice.spaceNoticeNo}">${teamNotice.title }</a>
-							</td>
-							<td>${teamNotice.createdDate }</td>
 						</tr>
-						</c:forEach>
-					</table><!-- ==== 한 페이지당 n개로 구성 ===== -->
+						<tr>
+							<td>${teamArticle.spaceNoticeNo }</td>
+							<td>${teamArticle.title }</td>
+							<td>${teamArticle.createdDate }</td>
+						</tr>
+						<tr>
+    						<td colspan="3">
+    							<hr>
+	    						<textarea id="teamNoticeTextArea">${teamArticle.content}
+	    						</textarea>
+    						</td>
+						</tr>
+					</table>
 					 
 					
-					<div id="pageNumBox">
-						<span style="text-align: center"> ◀ 이전 1 2 3 4 5 다음 ▶</span>
+					<div id="bottomBox">
+						
+						<a href="teamNoticeList.action">
+							<button type="button" class="btn" id="backBtn">목록으로</button>
+						</a>
+						
+						<!-- ※ 팀장에게만 보이는 버튼 -->
+						<a href="teamNoticeModify.action">  
+							<button type="button" class="btn" id="modifyBtn">수정하기</button>
+						</a>
+						<button type="button" class="btn" id="deleteBtn" onclick="deleteTeamNotice()">삭제하기</button>
 					</div>
 			
 				</div><!-- end of #workSpaceBox  -->
