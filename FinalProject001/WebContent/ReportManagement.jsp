@@ -191,7 +191,7 @@ function cancelReport(button)
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagementComplete.jsp">신고 처리 완료</a>
+			<a href="reportManageComplete.action">신고 처리 완료</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
