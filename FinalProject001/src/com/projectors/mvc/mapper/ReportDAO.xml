@@ -19,6 +19,8 @@
 		FROM REGULATION_PERIOD
 	</select>
 
+	<!-- =================================================================================== -->
+
 	<!-- 공고 신고 처리 대기 -->
 	<select id="reportedRecruitList"
 		resultType="com.projectors.mvc.ReportDTO">
@@ -186,4 +188,59 @@ SELECT ResultNo, repResultNo
 		WHERE repNo = #{searchVal}
 		ORDER BY REGUDATE DESC
 		</select>
+		
+	<!-- =================================================================================== -->
+	<!-- 지원서 신고 처리 대기 리스트 -->
+	<select id="reportedApplyList"
+		resultType="com.projectors.mvc.ReportDTO">
+		SELECT REPORTEDUSERPINNO, REPORTEDNICKNAME
+		,REPORTUSERPINNO, REPORTNICKNAME
+		,REGUDATE, REPNO, POSTNO, REPORTDATE,
+		REPREASON
+		FROM REPAPPLYNULL
+	</select>
+
+	<!-- 지원서 신고 처리 -->
+	<insert id="clearManageApplyReport">
+		INSERT INTO REP_APPLY_RESULT
+		( APPLY_RESULT_NO
+		, REP_APPLY_NO
+		, REP_RESULT_NO
+		, REGU_NO
+		, REGU_PERIOD_NO
+		, PIN_NO
+		, REGU_DATE )
+		VALUES
+		( 'REPA'|| TO_CHAR(REPAPPLYNOSEQ.NEXTVAL)
+		, #{repNo}
+		, 1
+		, TO_NUMBER(#{reguNo})
+		, TO_NUMBER(#{reguPeriodNo})
+		, #{adminPinNo}
+		, SYSDATE
+		)
+	</insert>
+
+	<!-- 지원서 신고 반려 -->
+	<insert id="rejectManageApplyReport">
+		INSERT INTO REP_APPLY_RESULT
+		( APPLY_RESULT_NO
+		, REP_APPLY_NO
+		, REP_RESULT_NO
+		, REGU_NO
+		, REGU_PERIOD_NO
+		, PIN_NO
+		, REGU_DATE )
+		VALUES
+		( 'REPA'|| TO_CHAR(REPAPPLYNOSEQ.NEXTVAL)
+		, #{repNo}
+		, 0
+		, 0
+		, 0
+		, #{adminPinNo}
+		, SYSDATE
+		)
+	</insert>
+	
+	<!-- =================================================================================== -->
 </mapper>

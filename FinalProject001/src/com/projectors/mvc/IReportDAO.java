@@ -27,4 +27,12 @@ public interface IReportDAO
 	public ArrayList<ReportDTO> searchRepNo(String searchVal);
 	
 	
+	// 지원서신고처리대기 리스트
+	public ArrayList<ReportDTO> reportedApplyList();
+	// 지원서신고 처리 insert
+	public int clearManageApplyReport(ReportDTO dto);
+	// 지원서신고 반려 insert
+	public int rejectManageApplyReport(ReportDTO dto);
+	
+	
 }
