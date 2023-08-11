@@ -41,22 +41,31 @@
 	/*===================================================*/
 	#categoryBar 				/* 메뉴 인덱스바 영역*/
 	{	
-		width: 600px;
+		width: 660px;
 		height: 40px;
-		background-color: #fae896;		
-		margin-left: 80px;
+		
+		background-color: #fae896;
+		padding: 10px 0px 0px 20px;
+		margin-left: 60px;
+		
+		border-top: 2px solid;
+		border-left: 2px solid;
+		border-right: 2px solid;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 	.index					/*메뉴 인덱스 클래스 영역*/
 	{
 		display: inline;
-		border: 2px solid;  /* 영역 확인용 */
+		/* border: 2px solid;  */			 /* 영역 확인용 */
 		border-radius: 10px;
 		
 		vertical-align: bottom;
 		font-weight: bold;
 		padding: 6px 8px;
 	}			
-		.index a				/* 메뉴 인덱스 글자*/
+	
+	.index a				/* 메뉴 인덱스 글자*/
 	{
 		text-decoration: none;
 		 
@@ -158,13 +167,13 @@
 	  
 	  background-color: white;
 	  width: 920px;
-	  height:520px;
+	  height:596px;
 	  
 	  border: 2px solid;
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#teamNoticeLists /* 공지글 테이블*/
+	#teamNoticeListTbl /* 공지글 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
@@ -177,10 +186,29 @@
 	#pageNumBox				/* 페이지 넘버 영역*/
 	{
 		width: 300px;
-		margin: auto;
-		padding: 10px;
+		margin: 10px 0px 0px 360px;
+		padding: 4px;
 	}
-
+	.btn							/* 버튼 클래스 공통 */
+	{	
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		font-size: 10pt;
+		padding: 2px 10px;
+		border-radius: 12px;
+	}
+	#writeBtn
+	{
+		vertical-align: super;	/*베이스 라인을 위로.*/
+		margin-left:6px;
+	}
+	#writeBtn:hover
+	{	
+		border: 2px solid black;
+		background-color: white;
+		color: black;
+	}
 </style>
 <script type="text/javascript">
 	
@@ -205,14 +233,20 @@
 			<div id="exitBtn">
 				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
 			</div> 
+			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
-				<div class="index"><a href="TeamSpace.jsp">메인</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">공지</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">작업실</a></div>
-				<div class="index"><a href="TeamMeetingList.jsp">회의록</a></div>
-				<div class="index"><a href="TeamTotalRecord.jsp">히스토리</a></div>
-				<div class="index"><a href="TeamMemberInfo.jsp">팀 현황</a></div>
+				<div class="index idx1">
+					<a href="TeamSpace.jsp">
+						<img src="images/home.png" style="width:30px;"/>
+					</a>
+				</div>
+				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
+				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
+				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
+				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
+				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
+				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
 				
 			<div id="directoryBox">
@@ -237,101 +271,37 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">공지게시판</span>
+					<a href="TeamNoticeInsert.jsp">  <!-- ※ 팀장에게만 보이는 버튼 -->
+						<button type="button" class="btn" id="writeBtn">공지 작성</button>
+					</a>
 				</div>
 				
-				<!-- ==========[ 멤버별 작업실 미리보기(메인)]========== -->
+				<!-- ==========[ 팀 공지 리스트 (팀장 뷰) ]========== -->
 				<div id="workSpaceBox">
 					
-					<table id="teamNoticeLists">
+					<table id="teamNoticeListTbl">
 						<tr>
 							<th width="100px">글 번호</th>
 							<th width="500px">제목</th>
 							<th width="200px">작성일</th>
-						</tr>
+						</tr> 
+						<c:forEach var="teamNotice" items="${list }">
 						<tr>
-							<td>20</td>
-							<td><!-- 공백 포함 28자 /30자 제한 -->
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
+							<td>${teamNotice.spaceNoticeNo }</td>
 							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
+								<a href="teamNoticeArticle.action?spaceNoticeNo=SN${teamNotice.spaceNoticeNo}">${teamNotice.title }</a>
 							</td>
-							<td>203.08.04</td>
+							<td>${teamNotice.createdDate }</td>
 						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-						<tr>
-							<td>19</td>
-							<td>
-								<a href="TeamNoticeArticle.jsp">새로운 콘텐츠 추가 회의는 오프라인으로 진행합니다!</a>
-							</td>
-							<td>203.08.04</td>
-						</tr>
-					</table><!-- ==== 일단 한 페이지당 10개로 구성했음 ===== -->
-					
+						</c:forEach>
+					</table><!-- ==== 한 페이지당 n개로 구성 ===== -->
+					 
 					
 					<div id="pageNumBox">
 						<span style="text-align: center"> ◀ 이전 1 2 3 4 5 다음 ▶</span>
 					</div>
-					
-					
-					<div><!-- ※ 팀장에게만 보이는 버튼 -->
-						<button type="button" ><a href="TeamNoticeInsert.jsp">공지 작성</a></button>
-					</div>
-				</div>
-				
-				
+			
+				</div><!-- end of #workSpaceBox  -->
 				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
 			
@@ -341,4 +311,5 @@
 
 </body>
 </html>
-
+						
+						
