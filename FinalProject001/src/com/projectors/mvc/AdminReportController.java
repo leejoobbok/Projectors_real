@@ -1,7 +1,5 @@
 package com.projectors.mvc;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -107,6 +105,67 @@ public class AdminReportController
 	//-------------------------------------------------
 	
 	// ※ 지원서
+	//-- 지원서 신고 처리대기 리스트 페이지
+	@RequestMapping (value = "/reportApply.action", method = RequestMethod.GET)
+	public String reportedApplyList(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.reportedRecruitList());
+		
+		result = "ReportManagementApply.jsp";
+		
+		return result;
+	}
+	
+	//-- 지원서 신고 처리 insert
+	@RequestMapping (value = "/clearManageReport.action", method = RequestMethod.GET)
+	public String clearManageApplyReoprt(HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		ReportDTO dto = new ReportDTO();
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setRepNo(request.getParameter("repNo"));
+		dto.setReguNo(request.getParameter("reguNo"));
+		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+		
+		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
+		//System.out.println("repNo : "+request.getParameter("repNo"));
+		//System.out.println("reguNo : "+request.getParameter("reguNo"));
+		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
+		
+		dao.clearManageApplyReport(dto);
+
+		result = "redirect:reportApply.action";
+		
+		return result;
+	}
+	
+	//-- 지원서 신고 반려
+	@RequestMapping (value = "/rejectManageReport.action", method = RequestMethod.GET)
+	public String rejectManageApplyReport(ReportDTO dto, HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setReguNo(request.getParameter("repNo"));
+		
+		dao.rejectManageApplyReport(dto);
+		
+		
+		result = "redirect:reportApply.action";
+		return result;
+	}
 	
 	//-------------------------------------------------
 	
