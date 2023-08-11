@@ -137,29 +137,65 @@ public class RecruitController
 	@RequestMapping(value = "/writerecruit.action", method = RequestMethod.GET)
 	public String writerecruit(Model model)
 	{
+		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+		
+		model.addAttribute("tools", dao.getAllTools());
+		model.addAttribute("poss", dao.getAllPos());
+		
 		return "/recruit_jakupjung/RecruitInsert.jsp";
 	}
 	
 	@RequestMapping(value = "/postrecruit.action", method = RequestMethod.POST)
 	public String postrecruit(RecruitDTO dto,
-							 @RequestParam String[] tool,
-							 @RequestParam String[] pos)
+							  @RequestParam String[] posCount,
+							  @RequestParam String[] pos,
+							  @RequestParam String[] tool)
 	{	
-
-		System.out.println("1" + dto.getToolName());
-		dto.setToolName(tool[1]);
-		System.out.println("1" + dto.getToolName());
 		/*
-		for (int i = 0; i < pos.length; i++)
-		{
-			System.out.println(pos[i]);
+		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+		
+		// pinNo 설정 'UP24''UP25''UP26' (임시)
+		dto.setPinNo("UP26");
+		
+		// 모집공고 생성
+		dao.insertRecruit(dto);
+		
+		// 가져온 모집공고 번호 → setter 로 dto 안에 집어넣기
+		dto.setRecruitNo(dao.getRecruitNo(dto));
+		
+		// 모집공고 필요기술 삽입
+		for (int i = 0; i < tool.length; i++) {
+			int intToolNo = Integer.parseInt(tool[i]);
+			dto.setToolNo(intToolNo);
+			dao.insertRecruitTool(dto);
 		}
-		for (int i = 0; i < tool.length; i++)
-		{
-			System.out.println(tool[i]);
+		
+		// 모집공고 필요포지션 삽입
+		for (int i = 0; i < posCount.length; i++) {
+			if (posCount[i] != "0") {
+				int count = Integer.parseInt(posCount[i]);
+				dto.setPosNo(i+1);
+				for (int j = 0; j < count; j++)
+					dao.insertRecruitPos(dto);
+			}
 		}
+		
+		// 팀장이 선택한 포지션의 지원번호 가져오기
+		int posCap = Integer.parseInt(pos[0]);
+		dto.setPosCapNo(posCap);
+		dto.setRecruitPosNo(dao.getCapRecruitPosNo(dto));
+		
+		// 팀장이 선택한 포지션에 자동 지원
+		dao.insertApplyPosCap(dto);
+		
+		// 팀장의 지원서 가져오기
+		dto.setApplyNo(dao.getCapApplyNo(dto));
+		
+		// 팀장 지원서 자동합격
+		dao.insertFirstCKCap(dto);
 		*/
-		//String result = "redirect:recruitlist.action";
+		
+		// String result = "redirect:recruitlist.action";
 		String result = "";
 		return result;
 	}

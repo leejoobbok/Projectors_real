@@ -15,6 +15,10 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
+	// 제목 글자수 제한
+	
+	// 내용 글자수 제한
+
 
 
 </script>
@@ -77,12 +81,13 @@
 		<div class="smallContainer">
 			<span class="smallTitle">사용언어 &amp; 환경</span>
 			<span class="right">최대 8개 선택 가능</span><br><hr class="line2">
-			<input type="checkbox" id="tool1" name="tool" class="tool" value="toolNo"><span class="toolName">Visual Studio Code</span>
-			<input type="checkbox" id="tool2" name="tool" class="tool" value="toolNo"><span class="toolName">Oracle</span>
-			<input type="checkbox" id="tool3" name="tool" class="tool" value="toolNo"><span class="toolName">C#</span>
-			<input type="checkbox" id="tool4" name="tool" class="tool" value="toolNo"><span class="toolName">JavaScript</span>
-			<input type="checkbox" id="tool5" name="tool" class="tool" value="toolNo"><span class="toolName">Jupyter Notebook</span>
-			<br>
+			
+			<c:forEach var="tool" items="${tools }" varStatus="count">
+				<input type="checkbox" id="tool${count.index }" name="tool" class="tool" value="${tool.toolNo }"
+				><span class="toolName">${tool.toolName }</span>
+				<c:if test="${count.index % 5 == 4}"><br></c:if>
+			</c:forEach>
+
 		</div>
 			
 			
@@ -91,30 +96,14 @@
 			<span class="right">최대인원 10명 (팀장 포함)</span><br><hr class="line2">
 			
 			<ul class="ulPos">
+			
+			<c:forEach var="pos" items="${poss }" varStatus="count">
 				<li>
-					<input type="checkbox" id="pos1" name="pos" class="pos" value="posNo"> <span class="posName">백엔드</span>
-					<input type="number" id="posCount1" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
+					<input type="checkbox" id="pos${count.index }" name="pos" class="pos" value="${pos.posNo }"> <span class="posName">${pos.posName }</span>
+					<input type="number" id="posCount${count.index }" name="posCount" class="posCount" value="0"> <span class="posName">명</span>
 				</li>
-				<li>
-					<input type="checkbox" id="pos2" name="pos" class="pos" value="posNo"> <span class="posName">프론트엔드</span>
-					<input type="number" id="posCount2" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
-				</li>
-				<li>
-					<input type="checkbox" id="pos3" name="pos" class="pos" value="posNo"> <span class="posName">프론트엔드</span>
-					<input type="number" id="posCount3" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
-				</li>
-				<li>
-					<input type="checkbox" id="pos4" name="pos" class="pos" value="posNo"> <span class="posName">프론트엔드</span>
-					<input type="number" id="posCount4" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
-				</li>
-				<li>
-					<input type="checkbox" id="pos5" name="pos" class="pos" value="posNo"> <span class="posName">프론트엔드</span>
-					<input type="number" id="posCount5" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
-				</li>
-				<li>
-					<input type="checkbox" id="pos6" name="pos" class="pos" value="posNo"> <span class="posName">프론트엔드</span>
-					<input type="number" id="posCount6" name="posCount" class="posCount" placeholder="0"> <span class="posName">명</span>
-				</li>
+			</c:forEach>
+
 			</ul>
 			<span class="alert">* 자신이 담당할 포지션을 체크(</span>
 			<input type="checkbox" class="alertCheck" checked="checked">
@@ -125,7 +114,7 @@
 			
 		<div class="smallContainer">
 			<span class="smallTitle">진행방식</span>
-			<select id="doType" name="doType" class="doType">
+			<select id="doTypeNo" name="doTypeNo" class="doType">
 				<option value="1">대면</option>
 				<option value="0">비대면</option>
 			</select>
