@@ -8,7 +8,7 @@ String cp = request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>지원서 샘플</title>
+<title>팀원 평가 : Projectors </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
