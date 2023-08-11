@@ -115,7 +115,7 @@ function search()
 	
 	var form = document.forms.searchForm;
 	
-	form.action = "recruitReportManageCompleteSearch.action?searchKey="+searchKey+"&searchVal="+searchVal;
+	form.action = "applyReportManageCompleteSearch.action?searchKey="+searchKey+"&searchVal="+searchVal;
 	form.submit();
 
 }
@@ -159,12 +159,12 @@ function search()
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 완료 - 공고
+			신고 처리 완료 - 지원서
 		</h2> 
 	</div>
 	<div id="subMenuBar">
-		<a href="reportManageComplete.action" style="background-color: gray; color: white; border-radius: 5px;">공고</a>
-		<a href="applyManageComplete.action">지원서</a>
+		<a href="reportManageComplete.action">공고</a>
+		<a href="applyManageComplete.action" style="background-color: gray; color: white; border-radius: 5px;">지원서</a>
 		<a href="commManageComplete.action">댓글</a>
 		<a href="noteManageComplete.action">쪽지</a>
 		<!-- <a href="reportTeamSpace.action">팀스페이스</a> -->
