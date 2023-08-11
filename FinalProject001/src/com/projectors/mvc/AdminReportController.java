@@ -124,6 +124,20 @@ public class AdminReportController
 	
 	//==========================================처리완료===============================================
 	// ※ 공고
+	@RequestMapping (value = "/reportManageComplete.action", method = RequestMethod.GET)
+	public String reportManageComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("reportManageComplete", dao.recruitReportComplete());
+		
+		result = "ReportManagementComplete.jsp";
+		
+		return result;
+	}
+	
 	// ※ 지원서
 	// ※ 팀스페이스
 	// ※ 댓글
