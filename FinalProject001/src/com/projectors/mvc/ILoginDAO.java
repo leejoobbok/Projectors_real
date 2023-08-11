@@ -21,7 +21,6 @@ public interface ILoginDAO
 	//-- 로그인 기록
 	
 	public int loginRec(String pinNo);
-	
-	
+
 	
 }

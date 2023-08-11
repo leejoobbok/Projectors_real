@@ -57,16 +57,22 @@
 	
 </style>
 
-
-
 </head>
 <body>
 	<div id="ProfileContainer"> <!-- 프로필 전체 컨테이너 -->
-	
 		<div id="profileTitleBox">
-			<h2 id="profileTitle">이준복 님의 프로필</h2>
+			<h2 id="profileTitle"> 나의 프로필</h2>
 		</div>
 		
+		
+		
+		
+ 
+<c:set var="result" value="${result}" scope="session"/>
+<c:choose>
+        <c:when test="${result == 1 }">
+             
+  	
 		<div id="profileImgContainer">
 			<div id="profileImgBox">
 				<img style="width:100px; height: 100px; margin:20px; border-radius: 6px"
@@ -85,8 +91,7 @@
 				<table>
 					<tr>
 						<td>
-							<button type="submit" id="updateBtn"><a href="ProfileUpdate.jsp">프로필 수정</a>
-							</button>
+							<button type="button" onclick="location.href='profileUpdate.action'"> 수정 </button>
 						</td>
 					</tr>
 					<tr>
@@ -106,7 +111,7 @@
 						<th>사용 가능 도구</th>
 						<td>
 						<c:forEach var="utool" items="${utool}">
-							<td style="margin: %">${utool.toolName}</td>
+							【${utool.toolName}】
 						</c:forEach>
 						</td>
 					</tr> 
@@ -114,16 +119,44 @@
 						<th>지역 </th>
 						<td>${profileDTO.regionName } | ${profileDTO.subRegionName }</td>
 					</tr>
+					</table>
+					<br /><br />
 
-<!-- 					<tr>
-						<th>희망 진행 방식 </th>
-						<td></td>
-						</tr> 
--->
-				</table>
-			</form>
-		</div><!-- end of #ProfileBox div-->
-		
+					<div id=rateBox>
+						
+						<table border="1px solid black">
+						<p>평가</p>
+							<c:forEach var="totalRate" items="${totalRate}">
+							<tr>
+								<th>${totalRate.rateName }</th>
+								<td>${totalRate.count }</td>
+							</tr>	
+							</c:forEach>
+							
+						</table>
+					</div>
+				</form>
+
+
+<!-- 
+			<table>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</table>
+-->			
+		</div> <!-- end of #ProfileBox div-->
+         
+        </c:when> 
+        <c:otherwise>
+            등록된 프로필이 존재하지 않습니다!
+            <br />
+            <button type="button" onclick="location.href='profileInsertForm.action'">등록하러 가기</button>
+		</c:otherwise>	
+</c:choose>
+	
 	</div> <!-- end of #wrapper div -->
 </body>
 </html>
