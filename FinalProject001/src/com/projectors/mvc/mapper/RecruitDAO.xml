@@ -100,11 +100,82 @@
 		ORDER BY POSNAME
 	</select>
 	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="getAllTools">
+		SELECT TOOL_NO AS TOOLNO, TOOL_NAME AS TOOLNAME
+		FROM TOOL
+	</select>
+	
+	<select resultType="com.projectors.mvc.RecruitDTO" id="getAllPos">
+		SELECT POS_NO AS POSNO, POS_NAME AS POSNAME
+		FROM POSITION
+	</select>
+	
+	<!-- ↓ 모집공고 insert -->
+	<insert id="insertRecruit">
+		INSERT INTO RECRUIT (RECRUIT_NO, PIN_NO, DO_TYPE_NO, TITLE, CONTENT, CREATED_DATE, PRJ_START, PRJ_END)
+		VALUES ('RC'||TO_CHAR(RECRUITNOSEQ.NEXTVAL), #{pinNo }, #{doTypeNo }, #{title }, #{content }, SYSDATE
+		      , TO_DATE(#{prjStart } || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+		      , TO_DATE(#{prjEnd } || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS'))
+	</insert>
+	
+	<select resultType="java.lang.String" id="getRecruitNo">
+		SELECT R.RECRUIT_NO
+		FROM RECRUIT R
+		WHERE R.CREATED_DATE = (SELECT MAX(CREATED_DATE) FROM RECRUIT)
+		  AND R.PIN_NO = #{pinNo }
+	</select>
+	
+	<insert id="insertRecruitTool">
+		INSERT INTO RECRUIT_TOOL (RECRUIT_TOOL_NO, RECRUIT_NO, TOOL_NO)
+		VALUES ('RT'||TO_CHAR(RTOOLNOSEQ.NEXTVAL)
+		     , #{recruitNo }
+		     , #{toolNo })
+	</insert>
+	
+	<insert id="insertRecruitPos">
+		INSERT INTO RECRUIT_POS (RECRUIT_POS_NO, RECRUIT_NO, POS_NO) 
+		VALUES ('RP'||TO_CHAR(RECRUITPOSSEQ.NEXTVAL)
+		     , #{recruitNo }
+		     , #{posNo })
+	</insert>
+	
+	<select resultType="java.lang.String" id="getCapRecruitPosNo">
+		SELECT RECRUIT_POS_NO
+		FROM RECRUIT_POS
+		WHERE POS_NO = #{posCapNo }
+		  AND RECRUIT_NO = #{recruitNo }
+		  AND ROWNUM = 1
+	</select>
+	
+	<insert id="insertApplyPosCap">
+		INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE)
+		VALUES ('AP'||TO_CHAR(APPLYNOSEQ.NEXTVAL)
+		      , #{recruitPosNo }
+		      , #{pinNo }
+		      , '모집공고 작성자 자동 지원'
+		      , SYSDATE)
+	</insert>
+	
+	<select resultType="java.lang.String" id="getCapApplyNo">
+		SELECT APPLY_NO
+		FROM APPLY
+		WHERE RECRUIT_POS_NO = #{recruitPosNo }
+	</select>
+	
+	<insert id="insertFirstCKCap">
+		INSERT INTO FIRST_CK (FIRST_CK_NO, APPLY_NO, PASS_DATE)
+		VALUES ('FS'||TO_CHAR(FIRSTCKSEQ.NEXTVAL), #{applyNo }, SYSDATE)
+	</insert>
+	
+	
 	<!--
 	private int regionNo, subRegionNo, posNo, toolNo;
 	private String regionName, subRegionName, posName, toolName;
 	private int countAll, countPos;
 	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
+	
+	private int posCapNo;
+	private String recruitPosNo, applyNo;
 	-->
 	
 </mapper>

@@ -333,6 +333,7 @@
 			</div> <!-- end.search -->
 			
 			
+			
 			<div class="writeBtnArea">
 				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
 			</div>
