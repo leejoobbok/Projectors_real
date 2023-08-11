@@ -389,30 +389,62 @@ from regulation_period;
     WHERE RRR.REGU_DATE IS NOT NULL;
 --==>> View REPRECRUITNULL이(가) 생성되었습니다.
 --------------------------------------------------
-SELECT ResultNo, repResultNo
-    ,(SELECT CONTENT
-      FROM REGULATION
-      WHERE RRC.reguNo = REGU_NO
-     ) as content
-    ,(SELECT PERIOD
-      FROM REGULATION_PERIOD
-      WHERE RRC.reguPeriod = REGU_PERIOD_NO
-     ) as period
-    , (
-        SELECT NICKNAME
-        FROM USERS
-        WHERE PIN_NO = RRC.reportedUserPinNo
-      ) as reportedNickName 
-    , reportUserPinNo
-    , reguDate, repNo, postNo, reportDate, repReasonNo
-    , (SELECT ADMIN_NO
-       FROM ADMIN
-       WHERE RRC.adminPinNo = PIN_NO
-      ) as adminPinNo
-FROM REPRECRUITCOMPLETE RRC
-ORDER BY REGUDATE DESC
+    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RRC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RRC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RRC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPRECRUITCOMPLETE RRC
+		ORDER BY REGUDATE DESC
 ;
 
+	    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RRC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RRC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RRC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPRECRUITCOMPLETE RRC
+		WHERE  LIKE '%AD1%'
+		ORDER BY REGUDATE DESC
+        ;
+        
+        SELECT PIN_NO as adminPinNo
+		FROM ADMIN
+		WHERE ADMIN_NO = 'AD1'
+        ;
+        
 UPDATE REPRECRUITCOMPLETE
 SET ADMINPINNO='UP17'
 WHERE POSTNO='RC7'
