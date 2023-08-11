@@ -225,13 +225,15 @@ function cancelReport(button)
 				<th>신고일자</th>
 				<th>신고처리</th><!-- 버튼에 따라 처리결과 value 넘김 -->
 			</tr>
+			<c:choose>
+				<c:when test="${not empty lists }">
 			<c:forEach var="report" items="${lists }" varStatus="i">
 				<tr class="${i.count }">
 					<td>
 						${report.repNo }
 						<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
 					</td>
-					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
+					<td><a href="applyarticle.action?applyNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
 						${report.reportedNickName }
 						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
@@ -258,6 +260,13 @@ function cancelReport(button)
 					</td>
 				</tr>
 			</c:forEach>
+			</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="7">신고 내역이 없습니다.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</table>
 	</form>
 	</div>

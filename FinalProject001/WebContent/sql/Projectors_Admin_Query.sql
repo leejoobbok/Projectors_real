@@ -399,7 +399,32 @@ from regulation_period;
     ON A.APPLY_NO = RA.APPLY_NO
     WHERE RAR.REGU_DATE IS NOT NULL;
 --==>> View REPAPPLYNULL이(가) 생성되었습니다
-        
+---------------------------------------------
+    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		ORDER BY REGUDATE DESC
+;
+
 -- 공고
     CREATE OR REPLACE VIEW REPRECRUITCOMPLETE
     AS

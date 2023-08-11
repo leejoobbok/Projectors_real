@@ -242,5 +242,122 @@ SELECT ResultNo, repResultNo
 		)
 	</insert>
 	
+	<!-- 지원서 신고 완료 리스트 -->
+	<select id="applyReportComplete" resultType="com.projectors.mvc.ReportDTO">
+	    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		ORDER BY REGUDATE DESC
+	</select>
+	
+	
+	<!-- 지원서 신고 완료 리스트 검색 -->	
+	<!-- adminNo 로 검색 -->
+	<select id="applySearchAdminPinNo" resultType="com.projectors.mvc.ReportDTO">
+    	SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		WHERE adminPinNo = (SELECT PIN_NO
+							FROM ADMIN
+							WHERE ADMIN_NO = #{searchVal})
+		ORDER BY REGUDATE DESC
+	</select>
+	
+	<!-- 닉네임으로 검색 -->
+	<select id="applySearchReportedUserPinNo" resultType="com.projectors.mvc.ReportDTO">
+    	SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		WHERE reportedUserPinNo = ( SELECT PIN_NO
+                                    FROM USERS
+                                    WHERE NickName = #{searchVal})
+		ORDER BY REGUDATE DESC
+	</select>
+	
+	<!-- 신고번호로 검색 -->
+	<select id="applySearchRepNo" resultType="com.projectors.mvc.ReportDTO">
+    	SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		WHERE repNo = #{searchVal}
+		ORDER BY REGUDATE DESC
+		</select>
+	
 	<!-- =================================================================================== -->
 </mapper>
