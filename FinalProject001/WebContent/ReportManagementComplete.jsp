@@ -128,12 +128,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagement.jsp">신고 처리 대기</a>
+			<a href="reportRecruit.action">신고 처리 대기</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ReportManagementComplete.jsp">신고 처리 완료</a>
+			<a href="reportManageComplete.action">신고 처리 완료</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -144,6 +144,13 @@
 		<h2>
 			신고 처리 완료 
 		</h2> 
+	</div>
+	<div id="subMenuBar">
+		<a href="reportManageComplete.action" style="background-color: gray; color: white; border-radius: 5px;">공고</a>
+		<a href="applyManageComplete.action">지원서</a>
+		<a href="commManageComplete.action">댓글</a>
+		<a href="noteManageComplete.action">쪽지</a>
+		<!-- <a href="reportTeamSpace.action">팀스페이스</a> -->
 	</div>
 		<hr />
 		<br />
@@ -158,7 +165,8 @@
 		<input type="text" style="width: 30%;"/>
 		<button>검색</button>
 	</div>
-
+	<br>
+	
 	<div>
 		<table class="table">
 			<tr>
@@ -170,51 +178,17 @@
 				<th>재제일자</th>
 				<th>관리자번호</th>
 			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>1003</td>
-				<td><a href="">1234</a></td><!-- 해당 신고번호 내용 확인할 수 있는 창 -->
-				<td><a href="">말랑콩떡</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
-				<td>욕설</td>
-				<td>14일</td>
-				<td>2023-08-03</td>
-				<td>1</td>
-			</tr>
+				<c:forEach var="list" items="${reportManageComplete }">
+				<tr>
+					<td>${list.resultNo}</td>
+					<td>${list.repNo}</td>
+					<td><a href="">${list.reportedNickName }</a></td><!-- 해당 유저 프로필 확인할 수 있는 창 -->
+					<td>${list.content }</td>
+					<td>${list.period }일</td>
+					<td>${list.reguDate }</td>
+					<td>${list.adminPinNo }</td>
+				</tr>
+				</c:forEach>
 			
 		</table>	
 	</div>
