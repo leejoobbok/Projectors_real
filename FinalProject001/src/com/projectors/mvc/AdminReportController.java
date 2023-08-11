@@ -121,7 +121,7 @@ public class AdminReportController
 	}
 	
 	//-- 지원서 신고 처리 insert
-	@RequestMapping (value = "/clearManageReport.action", method = RequestMethod.GET)
+	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
 	public String clearManageApplyReoprt(HttpServletRequest request)
 	{
 		String result = "";
@@ -149,7 +149,7 @@ public class AdminReportController
 	}
 	
 	//-- 지원서 신고 반려
-	@RequestMapping (value = "/rejectManageReport.action", method = RequestMethod.GET)
+	@RequestMapping (value = "/rejectManageApplyReport.action", method = RequestMethod.GET)
 	public String rejectManageApplyReport(ReportDTO dto, HttpServletRequest request)
 	{
 		String result = "";
@@ -225,6 +225,42 @@ public class AdminReportController
 	}
 	
 	// ※ 지원서
+	//-- 리스트 출력
+	@RequestMapping (value = "/applyManageComplete.action", method = RequestMethod.GET)
+	public String applyReportComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.applyReportComplete());
+		
+		result = "ReportManagementCompleteApply.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/applyReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String applyReportCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.applySearchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.applySearchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.applySearchRepNo(searchVal));
+		
+		
+		result = "ReportManagementCompleteApply.jsp";
+		
+		return result;
+	}
 	// ※ 팀스페이스
 	// ※ 댓글
 	// ※ 쪽지
