@@ -176,14 +176,15 @@
 </style>
 <script type="text/javascript">
 	
-	//○윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능
+	/*
+	//○ 윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능 (적용 안돼서 주석처리..)
 	function setFixedSize() {
 	  window.resizeTo(1400, 1000); // #root 의 가로 세로
 	}
 	//페이지 최초 로드 또는 리사이징 시도 시 호출
 	window.onload = setFixedSize;
 	window.onresize = setFixedSize;
-	//-------------------------------> 적용이 안됨 ㅡㅡ;; 이거 되면 전체 페이지 어그러지는거 신경꺼도되는데..
+	-------------------------------------------------*/
 	
 	// 담벼락에 메세지 붙이기
     function sendFeed()
