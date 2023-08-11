@@ -17,26 +17,32 @@ public class TeamNoticeController
 	private SqlSession sqlSession;
 	
 	// ● 공지글 등록 (팀장)
-	/*
 	@RequestMapping (value = "/insertTeamNotice.action", method = RequestMethod.GET)
-	public String insertTeamNotice(TeamNoticeDTO dto)
+	public String teamNoticeInsert(TeamNoticeDTO dto)
 	{
-
+		String result = "";
+		
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		dao.add(dto); 
+		
+		result="redirect:teamNoticeList.action";
+		
+		return result;
 	}
-	*/
+	
 	
 	//● 공지글 수정 (팀장)
 	@RequestMapping(value = "/teamNoticeModify.action", method = RequestMethod.GET)
 	public String teamNoticeModify(TeamNoticeDTO dto)
 	{
+		//System.out.println(dto.getContent());  //-- 수정한 내용 확인 
 		String result = "";
 		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		
 		dao.modify(dto);
-		//sqlSession.commit(); //-- 수정사항 커밋 
 		
-		result = "redirect:teamNoticeArticle.action?spaceNoticeNo="+dto.getSpaceNoticeNo();
+		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
 		
 		return result;
 	}
