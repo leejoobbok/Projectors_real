@@ -3,7 +3,23 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.projectors.mvc.IReportDAO">
+	<!-- 처리 사유(공통) -->
+	<select id="punishContent"
+		resultType="com.projectors.mvc.ReportDTO">
+		SELECT TO_CHAR(REGU_NO) AS reguNo
+		, CONTENT
+		FROM REGULATION
+	</select>
 
+	<!-- 제재 기간(공통) -->
+	<select id="periods" resultType="com.projectors.mvc.ReportDTO">
+		SELECT TO_CHAR(REGU_PERIOD_NO)
+		AS reguPeriodNo
+		, TO_CHAR(PERIOD) AS period
+		FROM REGULATION_PERIOD
+	</select>
+
+	<!-- 공고 신고 처리 대기 -->
 	<select id="reportedRecruitList"
 		resultType="com.projectors.mvc.ReportDTO">
 		SELECT REPORTEDUSERPINNO, REPORTEDNICKNAME
@@ -13,20 +29,7 @@
 		FROM REPRECRUITNULL
 	</select>
 
-	<select id="punishContent"
-		resultType="com.projectors.mvc.ReportDTO">
-		SELECT TO_CHAR(REGU_NO) AS reguNo
-		, CONTENT
-		FROM REGULATION
-	</select>
-
-	<select id="periods" resultType="com.projectors.mvc.ReportDTO">
-		SELECT TO_CHAR(REGU_PERIOD_NO)
-		AS reguPeriodNo
-		, TO_CHAR(PERIOD) AS period
-		FROM REGULATION_PERIOD
-	</select>
-
+	<!-- 공고 신고 처리 -->
 	<insert id="clearManageReport">
 		INSERT INTO REP_RECRUIT_RESULT
 		( RECRUIT_RESULT_NO
@@ -47,6 +50,7 @@
 		)
 	</insert>
 
+	<!-- 공고 신고 반려 -->
 	<insert id="rejectManageReport">
 		INSERT INTO REP_RECRUIT_RESULT
 		( RECRUIT_RESULT_NO
@@ -66,5 +70,28 @@
 		, SYSDATE
 		)
 	</insert>
+
+	<!-- 공고 신고 완료 리스트 -->
+	<select id="recruitReportComplete" resultType="com.projectors.mvc.ReportDTO">
+		SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RRC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , (
+		        SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RRC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo, adminPinNo, reportDate, repReasonNo
+		FROM REPRECRUITCOMPLETE RRC
+		ORDER BY REGUDATE DESC
+	</select>
+	
 
 </mapper>
