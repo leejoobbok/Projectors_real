@@ -16,6 +16,15 @@ public interface IReportDAO
 	public int clearManageReport(ReportDTO dto);
 	// 공고신고 반려 insert
 	public int rejectManageReport(ReportDTO dto);
+	
 	// 공고신고처리완료 리스트
 	public ArrayList<ReportDTO> recruitReportComplete();
+	// 공고신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> searchAdminPinNo(String searchVal);
+	// 공고신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> searchReportedUserPinNo(String searchVal);
+	// 공고신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> searchRepNo(String searchVal);
+	
+	
 }
