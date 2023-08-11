@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>신고 관리 : Projectors</title>
 
-
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -101,7 +100,25 @@
 </style>
 
 <script type="text/javascript">
+function search()
+{
+	var searchKey = document.getElementById("searchKey").value;
+	var searchVal = document.getElementById("searchVal").value;
+	
+	//alert(searchVal);
+	
+	if (searchVal=="")
+	{
+		alert("검색어를 입력하세요");
+		return;
+	}
+	
+	var form = document.forms.searchForm;
+	
+	form.action = "recruitReportManageCompleteSearch.action?searchKey="+searchKey+"&searchVal="+searchVal;
+	form.submit();
 
+}
 </script>
 </head>
 
@@ -142,7 +159,7 @@
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 완료 
+			신고 처리 완료 - 공고
 		</h2> 
 	</div>
 	<div id="subMenuBar">
@@ -156,14 +173,16 @@
 		<br />
 	
 	<div id="userSearch">
-		신고 검색
-		<select id="searchKey" name="searchKey">
-			<option value="1">관리자번호</option>
-			<option value="2">닉네임</option>
-			<option value="3">신고번호</option>
-		</select>
-		<input type="text" style="width: 30%;"/>
-		<button>검색</button>
+		<form action="" id="searchForm">
+				<select id="searchKey" name="searchKey">
+					<option value="1">관리자번호</option>
+					<option value="2">닉네임</option>
+					<option value="3">신고번호</option>
+				</select>
+				<input type="text" id="searchVal" name="searchVal" 
+				required="required" placeholder="검색어를 입력하세요(대소문자 구별 및 전체입력)" style="width: 30%;"/>
+			<button type="button" id="searchBtn" onclick="search()">검색</button>
+		</form>
 	</div>
 	<br>
 	
@@ -178,7 +197,7 @@
 				<th>재제일자</th>
 				<th>관리자번호</th>
 			</tr>
-				<c:forEach var="list" items="${reportManageComplete }">
+				<c:forEach var="list" items="${lists }">
 				<tr>
 					<td>${list.resultNo}</td>
 					<td>${list.repNo}</td>
@@ -186,7 +205,10 @@
 					<td>${list.content }</td>
 					<td>${list.period }일</td>
 					<td>${list.reguDate }</td>
-					<td>${list.adminPinNo }</td>
+					<td>
+						${list.adminNo }
+						<input type="hidden" id="adminPinNo" value="${list.adminPinNo }"/>
+					</td>
 				</tr>
 				</c:forEach>
 			
