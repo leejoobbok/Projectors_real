@@ -87,8 +87,6 @@ public class QnaAController
 	}
 	
 	
-	
-	
 }
 //-- 아현 메모)
 // dto, dao.xml, idao는 질문과 답변 분리했으나, 컨트롤러는 질문-답변 같이 출력할 때 충돌 피하기 위해 통합. (08.08 )

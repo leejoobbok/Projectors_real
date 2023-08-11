@@ -214,7 +214,7 @@
 			</div>
 			<div id="exitBtn">
 				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
-			</div> 
+			</div>  
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">

@@ -263,8 +263,8 @@
     };
 			
 	// 수정완료 버튼 클릭시 (수정 수행)
-	$("#saveBtn").click(function() {			  // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 제목 뒤에 (수정됨) 표시 추가 
-		
+	function saveTeamNotice() 
+	{			 					 // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 제목 뒤에 (수정됨) 표시 추가 
          $("#teamNoticeTextArea").attr("readonly",true); //-- 편집 불가 속성 추가 		
          $("#saveBtn").hide();
          $("#modifyBtn").show();
@@ -274,7 +274,13 @@
          var modifiedSpan = $("<span>").text("(수정됨)").css("color", "green"); //-- 수정 표시 문구
          isModifiedSpan.append(" ", modifiedSpan);
          
-     });
+         var teamNoticeTextArea = document.getElementById("teamNoticeTextArea").value;
+         
+         alert(teamNoticeTextArea);
+         
+         window.location.href = "teamNoticeModify.action?spaceNoticeNo=<%=spaceNoticeNo%>&content=" + teamNoticeTextArea;
+         
+     };
 
 	
 	
@@ -335,44 +341,40 @@
 				
 				<!-- ==========[ 팀 공지 아티클 상세 보기 영역 ]========== -->
 				<div id="workSpaceBox">
-					
-					<table id="teamNoticeArticleTbl">
-						<tr>
-							<th width="100px">글 번호</th>
-							<th width="500px">제목</th>
-							<th width="200px">작성일</th>
-						</tr>
-						<tr>
-							<td>${teamArticle.spaceNoticeNo }</td>
-							<td>${teamArticle.title }<span id="isModified"></span>
-							</td>
-							<td>${teamArticle.createdDate }</td>
-						</tr>
-						<tr>
-    						<td colspan="3">
-    							<hr>
-    							<form action="teamNoticeModify.action" method="get">	<!--  수정 시 제출하기 위한 폼 태그 -->
-		    						<textarea id="teamNoticeTextArea" name="content" readonly="readonly" disabled="disabled">${teamArticle.content}
-		    						</textarea>
-	    						</form>
-    						</td>
-						</tr>
-					</table>
-						 
+					<form action="teamNoticeModify.action" method="get">	<!--  수정 시 제출하기 위한 폼 태그 -->
+						<table id="teamNoticeArticleTbl">
+							<tr>
+								<th width="100px">글 번호</th>
+								<th width="500px">제목</th>
+								<th width="200px">작성일</th>
+							</tr>
+							<tr>
+								<td>${teamArticle.spaceNoticeNo }</td>
+								<td>${teamArticle.title }<span id="isModified"></span>
+								</td>
+								<td>${teamArticle.createdDate }</td>
+							</tr>
+							<tr>
+	    						<td colspan="3">
+	    							<hr>
+		    						<textarea id="teamNoticeTextArea" name="content" readonly="readonly" disabled="disabled"
+		    						>${teamArticle.content}</textarea>
+	    						</td>
+							</tr>
+						</table>
 						
-					<div id="bottomBox">
+						<div id="bottomBox">
+							
+							<a href="teamNoticeList.action">
+								<button type="button" class="btn" id="backBtn">목록으로</button>
+							</a>
 						
-						<a href="teamNoticeList.action">
-							<button type="button" class="btn" id="backBtn">목록으로</button>
-						</a>
-					
-						<!-- ※ 팀장에게만 보이는 버튼 -->
-						<button type="button" id="modifyBtn" class=" btn" onclick="modifyTeamNotice()">수정하기</button>
-						<button type="button" id="deleteBtn" class="btn"  onclick="deleteTeamNotice()">삭제하기</button>
-						<button type="submit" id="saveBtn" class=" btn"  style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
-						
-					</div>
-			
+							<!-- ※ 팀장에게만 보이는 버튼 -->
+							<button type="button" id="modifyBtn" class=" btn" onclick="modifyTeamNotice()">수정하기</button>
+							<button type="button" id="deleteBtn" class="btn"  onclick="deleteTeamNotice()">삭제하기</button>
+							<button type="button" id="saveBtn" class=" btn"  onclick="saveTeamNotice()" style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
+						</div>
+					</form>
 				</div><!-- end of #workSpaceBox  -->
 				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
