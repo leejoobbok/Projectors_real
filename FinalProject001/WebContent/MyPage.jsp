@@ -74,12 +74,9 @@
 	
 	#myProfile	/*내 프로필 영역*/
 	{
-		padding: 24px;
+	
 	}
-	#myPick /* 찜한 공고 영역*/
-	{
-	}
-
+	
 </style>
 
 
@@ -116,14 +113,14 @@
 				<c:import url="profileview.action"></c:import>
 			</div>
 			
-			
+		
 			<!-- ===== 내가 찜한 모집공고 ====== -->
-			<hr>
+<%-- 			<hr>
 			<div id="myPick">
 				<h2 class="smallTitile">찜한 모집 공고</h2>
 				<c:import url="PickedPost.jsp"></c:import>
 			</div>
-			
+			 --%>
 		</div><!-- end of #myPageBox div -->
 			
 	</div><!-- end of #root div -->

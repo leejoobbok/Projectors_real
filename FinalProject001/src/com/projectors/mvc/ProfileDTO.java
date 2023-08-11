@@ -5,9 +5,37 @@ public class ProfileDTO
 	// 주요 속성 구성
 	private String pinNo ,profileNo, id, nickname, posName, toolName, photourl, subRegionName, regionName;
 	private String posNo, doTypeNo, toolNo, regionNo, subRegionNo;
+	private String rateNo, rateName;
+	private int result;
 	int count;
 	
+	
 	// getter /setter
+	
+	public int getResult()
+	{
+		return result;
+	}
+	public void setResult(int result)
+	{
+		this.result = result;
+	}
+	public String getRateName()
+	{
+		return rateName;
+	}
+	public void setRateName(String rateName)
+	{
+		this.rateName = rateName;
+	}
+	public String getRateNo()
+	{
+		return rateNo;
+	}
+	public void setRateNo(String rateNo)
+	{
+		this.rateNo = rateNo;
+	}
 	public String getPinNo()
 	{
 		return pinNo;
