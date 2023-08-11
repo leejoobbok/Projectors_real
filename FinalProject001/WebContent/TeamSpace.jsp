@@ -139,8 +139,8 @@
 	#lineNoticeBox 	/* 한 줄 공지 영역*/
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 30px;   /* 고정 top 마진 */
-	  right: 20px; /* 고정 우측 마진 */
+	  top: 30px;         /* 고정 top 마진 */
+	  right: 20px;      /* 고정 우측 마진 */
 	  
 	  background-color: white;
 	  width: 920px;
@@ -215,6 +215,7 @@
 			<div id="exitBtn">
 				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
 			</div> 
+			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
 				<div class="index idx1">
@@ -222,7 +223,7 @@
 						<img src="images/home.png" style="width:30px;"/>
 					</a>
 				</div>
-				<div class="index idx2"><a href="TeamNoticeList.jsp">공지</a></div>
+				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
 				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>

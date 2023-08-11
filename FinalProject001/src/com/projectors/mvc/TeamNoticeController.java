@@ -1,7 +1,7 @@
 package com.projectors.mvc;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,7 @@ public class TeamNoticeController
 	{
 		String result = "";
 		
-		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		
 		ReportDTO dto = new ReportDTO();
 		
@@ -46,4 +45,84 @@ public class TeamNoticeController
 	}
 	*/
 	
+	//● 공지글 수정 (팀장)
+	
+	//● 공지글 삭제 (팀장)
+	@RequestMapping(value = "/teamNoticeDelete.action", method = RequestMethod.GET)
+	public String teamNoticeDelete(String spaceNoticeNo)
+	{
+		String result = "";
+		
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		
+		dao.delete(spaceNoticeNo);
+		
+		result = "redirect:teamNoticeList.action";
+		
+		return result;
+	}
+	//=========================================================================
+	
+	//● 공지글 리스트로 불러오기 (모든 팀원)
+	@RequestMapping(value = "/teamNoticeList.action", method = RequestMethod.GET)
+	public String teamNoticeList(Model model)
+	{
+		String result = "";
+		
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		
+		model.addAttribute("list", dao.getList());
+		
+		result = "TeamNoticeList.jsp";
+		
+		return result;
+	}
+	
+	//● 공지글 아티클 읽기 (모든 팀원)
+	@RequestMapping(value = "/teamNoticeArticle.action", method = RequestMethod.GET)
+	public String teamNoticeArticle(String spaceNoticeNo, Model model)
+	{
+		String result = "";
+		
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		
+		model.addAttribute("teamArticle", dao.viewArticle(spaceNoticeNo));
+		
+		result = "TeamNoticeArticle.jsp";
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
