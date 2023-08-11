@@ -40,22 +40,31 @@
 	/*===================================================*/
 	#categoryBar 				/* 메뉴 인덱스바 영역*/
 	{	
-		width: 600px;
+		width: 660px;
 		height: 40px;
+		
 		background-color: #fae896;
-		margin-left: 80px;
+		padding: 10px 0px 0px 20px;
+		margin-left: 60px;
+		
+		border-top: 2px solid;
+		border-left: 2px solid;
+		border-right: 2px solid;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 	.index					/*메뉴 인덱스 클래스 영역*/
 	{
 		display: inline;
-		border: 2px solid;  /* 영역 확인용 */
+		/* border: 2px solid;  */			 /* 영역 확인용 */
 		border-radius: 10px;
 		
 		vertical-align: bottom;
 		font-weight: bold;
 		padding: 6px 8px;
 	}			
-		.index a				/* 메뉴 인덱스 글자*/
+	
+	.index a				/* 메뉴 인덱스 글자*/
 	{
 		text-decoration: none;
 		 
@@ -130,8 +139,8 @@
 	#lineNoticeBox 	/* 한 줄 공지 영역*/
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 30px;   /* 고정 top 마진 */
-	  right: 20px; /* 고정 우측 마진 */
+	  top: 30px;         /* 고정 top 마진 */
+	  right: 20px;      /* 고정 우측 마진 */
 	  
 	  background-color: white;
 	  width: 920px;
@@ -176,14 +185,15 @@
 </style>
 <script type="text/javascript">
 	
-	//○윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능
+	/*
+	//○ 윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능 (적용 안돼서 주석처리..)
 	function setFixedSize() {
 	  window.resizeTo(1400, 1000); // #root 의 가로 세로
 	}
 	//페이지 최초 로드 또는 리사이징 시도 시 호출
 	window.onload = setFixedSize;
 	window.onresize = setFixedSize;
-	//-------------------------------> 적용이 안됨 ㅡㅡ;; 이거 되면 전체 페이지 어그러지는거 신경꺼도되는데..
+	-------------------------------------------------*/
 	
 	// 담벼락에 메세지 붙이기
     function sendFeed()
@@ -205,14 +215,20 @@
 			<div id="exitBtn">
 				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
 			</div> 
+			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
-				<div class="index"><a href="TeamSpace.jsp">메인</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">공지</a></div>
-				<div class="index"><a href="TeamNoticeList.jsp">작업실</a></div>
-				<div class="index"><a href="TeamMeetingList.jsp">회의록</a></div>
-				<div class="index"><a href="TeamTotalRecord.jsp">히스토리</a></div>
-				<div class="index"><a href="TeamMemberInfo.jsp">팀 현황</a></div>
+				<div class="index idx1">
+					<a href="TeamSpace.jsp">
+						<img src="images/home.png" style="width:30px;"/>
+					</a>
+				</div>
+				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
+				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
+				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
+				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
+				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
+				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
 				
 			<div id="directoryBox">

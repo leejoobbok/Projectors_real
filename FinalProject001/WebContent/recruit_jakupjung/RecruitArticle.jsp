@@ -167,6 +167,12 @@
 		</c:choose>
 		</c:forEach>
 		</ul>
+		
+		
+		<div class="etcBtnBox">
+			<button class="reportBtn">신고</button>
+			<button class="removeBtn">삭제</button>
+		</div> <!-- end.etcBtnBox -->
 		</div>
 			 
 			 

@@ -14,11 +14,14 @@ public class ReportDTO
 	//-- 신고처리일자
 	
 	// 신고 처리 후 주요 속성 구성
-	private String resultNo, repResultNo, reguNo, reguPeriodNo, adminPinNo;
-	//-- 신고처리결과번호, 결과처리번호(0:반려, 1: 처리), 제재 사유, 제재기간, 관리자pinNo 
+	private String resultNo, repResultNo, reguNo, reguPeriodNo, adminPinNo, adminNo;
+	//-- 신고처리결과번호, 결과처리번호(0:반려, 1: 처리), 제재 사유, 제재기간, 관리자pinNo , 관리자 번호
 	
 	// 신고 처리시 필요한 처벌유형내용, 처벌기간 리스트
 	private String content, period;
+	
+	// 검색기능
+	private String searchKey, searchVal;
 	
 	// getter / setter
 	public String getReportedUserPinNo()
@@ -133,6 +136,14 @@ public class ReportDTO
 	{
 		this.adminPinNo = adminPinNo;
 	}
+	public String getAdminNo()
+	{
+		return adminNo;
+	}
+	public void setAdminNo(String adminNo)
+	{
+		this.adminNo = adminNo;
+	}
 	public String getContent()
 	{
 		return content;
@@ -149,4 +160,21 @@ public class ReportDTO
 	{
 		this.period = period;
 	}
+	public String getSearchKey()
+	{
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey)
+	{
+		this.searchKey = searchKey;
+	}
+	public String getSearchVal()
+	{
+		return searchVal;
+	}
+	public void setSearchVal(String searchVal)
+	{
+		this.searchVal = searchVal;
+	}
+
 }

@@ -171,9 +171,9 @@
 			</div>
 			
 			<div  id="lookAroundBox">
-				<button type="button" id="lookAroundBtn">
-					<a href="#a" id="lookAround">모집 공고 둘러보기</a>
-				</button>
+				<a href="#a" id="lookAround">
+					<button type="button" id="lookAroundBtn">모집 공고 둘러보기</button>
+				</a>
 			</div>
 			
 			

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고처리대기-공고 : Projectors</title>
+<title>신고처리대기-지원서 : Projectors</title>
 
 
 <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -200,12 +200,12 @@ function cancelReport(button)
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 대기 - 공고
+			신고 처리 대기 - 지원서
 		</h2> 
 	</div>
 	<div id="subMenuBar">
-		<a href="reportRecruit.action" style="background-color: gray; color: white; border-radius: 5px;">공고</a>
-		<a href="reportApply.action">지원서</a>
+		<a href="reportRecruit.action">공고</a>
+		<a href="reportApply.action" style="background-color: gray; color: white; border-radius: 5px;">지원서</a>
 		<a href="reportComm.action">댓글</a>
 		<a href="reportNote.action">쪽지</a>
 		<!-- <a href="reportTeamSpace.action">팀스페이스</a> -->
@@ -218,7 +218,7 @@ function cancelReport(button)
 		<table class="table">
 			<tr>
 				<th>신고번호</th>
-				<th>공고번호</th><!-- 클릭시 해당 게시물 이동 -->
+				<th>지원서번호</th><!-- 클릭시 해당 게시물 이동 -->
 				<th>피신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
 				<th>신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
 				<th>사유</th>
@@ -233,7 +233,7 @@ function cancelReport(button)
 						${report.repNo }
 						<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
 					</td>
-					<td><a href="recruitarticle.action?recruitNo=${report.postNo }">${report.postNo }</a></td>
+					<td><a href="applyarticle.action?applyNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
 						${report.reportedNickName }
 						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 

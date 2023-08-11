@@ -217,7 +217,15 @@ expression must have same datatype as corresponding expression
 -- 지원서
     CREATE OR REPLACE VIEW REPAPPLYNULL
     AS
-    SELECT A.PIN_NO AS reportedUserPinNo
+    SELECT ( SELECT NICKNAME
+            FROM USERS 
+            WHERE PIN_NO = A.PIN_NO 
+            )AS reportedNickName 
+        , A.PIN_NO AS reportedUserPinNo
+        , ( SELECT NICKNAME
+            FROM USERS
+            WHERE PIN_NO = RA.PIN_NO 
+            )AS reportNickName
         , RA.PIN_NO AS reportUserPinNo
         , RAR.REGU_DATE AS reguDate
         , RA.REP_APPLY_NO AS repNo
@@ -234,6 +242,19 @@ expression must have same datatype as corresponding expression
     ON A.APPLY_NO = RA.APPLY_NO
     WHERE RAR.REGU_DATE IS NULL;
 --==>> View REPAPPLYNULL이(가) 생성되었습니다
+
+SELECT *
+FROM REPORT_APPLY
+;
+SELECT *
+FROM REP_APPLY_RESULT
+;
+
+
+SELECT REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASON
+FROM REPAPPLYNULL
+;
+
         
 -- 공고
     CREATE OR REPLACE VIEW REPRECRUITNULL
@@ -268,9 +289,10 @@ DESC REPRECRUITNULL;
 /*
 REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASONNO
 */
-SELECT REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASONNO
+SELECT REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, REPREASON
 FROM REPRECRUITNULL
 ;
+
 -- 쪽지
     CREATE OR REPLACE VIEW REPNOTENULL
     AS
@@ -309,8 +331,20 @@ FROM REP_RECRUIT_RESULT
 
 -- 공고 신고처리 insert
 INSERT INTO REP_RECRUIT_RESULT(RECRUIT_RESULT_NO, REP_RECRUIT_NO, REP_RESULT_NO, REGU_NO, REGU_PERIOD_NO, PIN_NO)
-VALUES(RESR||RECRUITRESULTNOSEQ.NEXTVAL, ?, ?, ? , ?, ?)
+VALUES('RESR'||RECRUITRESULTNOSEQ.NEXTVAL, ?, ?, ? , ?, ?)
 ;
+
+-- 지원서 신고 처리 insert
+		INSERT INTO REP_APPLY_RESULT
+		( APPLY_RESULT_NO
+		, REP_APPLY_NO
+		, REP_RESULT_NO
+		, REGU_NO
+		, REGU_PERIOD_NO
+		, PIN_NO
+VALUES( 'REPA'||TO_CHAR(REPAPPLYNOSEQ.NEXTVAL), ?, ?, ? , ?, ?)
+;
+
 
 desc REGULATION_PERIOD;
 
@@ -365,7 +399,32 @@ from regulation_period;
     ON A.APPLY_NO = RA.APPLY_NO
     WHERE RAR.REGU_DATE IS NOT NULL;
 --==>> View REPAPPLYNULL이(가) 생성되었습니다
-        
+---------------------------------------------
+    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RAC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RAC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RAC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RAC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPAPPLYCOMPLETE RAC
+		ORDER BY REGUDATE DESC
+;
+
 -- 공고
     CREATE OR REPLACE VIEW REPRECRUITCOMPLETE
     AS
@@ -386,8 +445,77 @@ from regulation_period;
     ON RRR.REP_RECRUIT_NO = RR.REP_RECRUIT_NO
     JOIN RECRUIT R
     ON RR.RECRUIT_NO = R.RECRUIT_NO
-    WHERE RRR.REGU_DATE IS NULL;
+    WHERE RRR.REGU_DATE IS NOT NULL;
 --==>> View REPRECRUITNULL이(가) 생성되었습니다.
+--------------------------------------------------
+    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RRC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RRC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RRC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPRECRUITCOMPLETE RRC
+		ORDER BY REGUDATE DESC
+;
+
+	    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RRC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RRC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RRC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+		FROM REPRECRUITCOMPLETE RRC
+		WHERE  LIKE 
+		ORDER BY REGUDATE DESC
+        ;
+        
+        SELECT PIN_NO as adminPinNo
+		FROM ADMIN
+		WHERE ADMIN_NO = 'AD1'
+        ;
+        
+UPDATE REPRECRUITCOMPLETE
+SET ADMINPINNO='UP17'
+WHERE POSTNO='RC7'
+;
+COMMIT;
+-- 스폰지밥(유저O, 관리자X) 자기 공고 자기 신고 처리까지 스스로한 엉뚱한 데이터 update
+
+SELECT *
+FROM USERS;
+--==>> US16	UP18	spb@naver.com	java002	스폰지밥	images/defaulfPhoto.jpg
+
+--------------------------------------------------
 
 -- 쪽지
     CREATE OR REPLACE VIEW REPNOTECOMPLETE

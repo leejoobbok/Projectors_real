@@ -49,7 +49,7 @@ table
 	<table>
 		<tr>
 			<th style="border: none;">
-				<form action="adminMain.action" method="GET">
+				<form action="adminMain.action" method="POST">
 					<button class="submitBtn" type="submit">메인</button>
 				</form>
 			</th>

@@ -105,6 +105,67 @@ public class AdminReportController
 	//-------------------------------------------------
 	
 	// ※ 지원서
+	//-- 지원서 신고 처리대기 리스트 페이지
+	@RequestMapping (value = "/reportApply.action", method = RequestMethod.GET)
+	public String reportedApplyList(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.reportedRecruitList());
+		
+		result = "ReportManagementApply.jsp";
+		
+		return result;
+	}
+	
+	//-- 지원서 신고 처리 insert
+	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
+	public String clearManageApplyReoprt(HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		ReportDTO dto = new ReportDTO();
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setRepNo(request.getParameter("repNo"));
+		dto.setReguNo(request.getParameter("reguNo"));
+		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+		
+		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
+		//System.out.println("repNo : "+request.getParameter("repNo"));
+		//System.out.println("reguNo : "+request.getParameter("reguNo"));
+		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
+		
+		dao.clearManageApplyReport(dto);
+
+		result = "redirect:reportApply.action";
+		
+		return result;
+	}
+	
+	//-- 지원서 신고 반려
+	@RequestMapping (value = "/rejectManageApplyReport.action", method = RequestMethod.GET)
+	public String rejectManageApplyReport(ReportDTO dto, HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setReguNo(request.getParameter("repNo"));
+		
+		dao.rejectManageApplyReport(dto);
+		
+		
+		result = "redirect:reportApply.action";
+		return result;
+	}
 	
 	//-------------------------------------------------
 	
@@ -124,7 +185,82 @@ public class AdminReportController
 	
 	//==========================================처리완료===============================================
 	// ※ 공고
+	//-- 리스트 출력
+	@RequestMapping (value = "/reportManageComplete.action", method = RequestMethod.GET)
+	public String reportManageComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.recruitReportComplete());
+		
+		result = "ReportManagementComplete.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/recruitReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String reportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.searchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.searchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.searchRepNo(searchVal));
+		
+		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+		//System.out.println(lists);
+		
+		result = "ReportManagementComplete.jsp";
+		
+		return result;
+	}
+	
 	// ※ 지원서
+	//-- 리스트 출력
+	@RequestMapping (value = "/applyManageComplete.action", method = RequestMethod.GET)
+	public String applyReportComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.applyReportComplete());
+		
+		result = "ReportManagementCompleteApply.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/applyReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String applyReportCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.applySearchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.applySearchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.applySearchRepNo(searchVal));
+		
+		
+		result = "ReportManagementCompleteApply.jsp";
+		
+		return result;
+	}
 	// ※ 팀스페이스
 	// ※ 댓글
 	// ※ 쪽지
