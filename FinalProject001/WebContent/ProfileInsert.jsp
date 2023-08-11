@@ -93,7 +93,49 @@
 		border-radius: 14px;
 		padding: 2px 8px;
 	}
+	
 </style>
+<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	function changeSubRegion()
+	{
+		var regionNo = document.getElementById("regionNo").value;
+		
+		var url ="changeSubRegionList.action?regionNo="+regionNo;
+			
+		ajax = createAjax();
+		
+		ajax.open("GET", url, true);
+		
+		ajax.onreadystatechange = function()
+		{
+			
+			if (ajax.readyState == 4 && ajax.status == 200)
+			{
+				callSubRegion();
+				
+				
+			}
+		};
+	
+		ajax.send("");
+	}
+	
+	
+	function callSubRegion()
+	{
+		var data = ajax.responseText;
+		
+		
+		document.getElementById("subRegionNo").innerHTML=data;
+		
+
+	}
+		
+	
+</script>
+
 
 </head>
 
@@ -134,18 +176,15 @@
 					6	PLANNING
 					 -->
 					<span class="profileItem">희망 포지션</span><br>
-					<select id="positionNo" name="positionNo">
-							<option>=== 선택해주세요 ===</option>
-							<!-- 코어 태그 반복문 들어갈 자리  -->
-							<option value="1">프론트엔드</option>
-							<option value="2">백엔드</option>
-							<option value="3">풀스택</option>
-							<option value="4">퍼블리싱</option>
-							<option value="5">디자인</option>
-							<option value="6">기획</option>
+					<select id="posNo" name="posNo">
+							<option value="0">=== 선택해주세요 ===</option>
+							<!-- 코어 태그 반복문으로 포지션 리스트 출력  -->
+						<c:forEach var="positionList" items="${positionList}">
+							<option value="${positionList.posNo}">${positionList.posName }</option>		
+						</c:forEach>
 					</select>
 					<span id="msg_false"> 희망 포지션을 선택해주세요.</span>
-					
+						
 					<br><br>
 					
 					
@@ -153,11 +192,38 @@
 					<span class="profileItem">사용 도구</span>
 					<span style="font-size:8pt;">(다중선택 가능)</span>
 					<span id="msg_false"> 사용 가능한 도구를 1개 이상 선택해주세요!</span>
-				
+					<br />
+					<br />
+						<c:forEach var="tool" items="${toolList}" varStatus="loopStatus">
+						    <c:if test="${loopStatus.count == 1}">
+						    
+						        <b>==================== 언어 ===================</b>
+						    </c:if>
+							<c:if test="${loopStatus.count == 11}">
+						       <hr />
+						       <b>=============== IDE 등 개발 환경 =================</b>
+						       <br />
+						    </c:if>
+						    <c:if test="${loopStatus.count == 21}">
+						    	<hr />
+						        <b>============= 프레임워크 / 라이브러리 ===========</b>
+						        <br />
+						    </c:if>
+						    <c:if test="${loopStatus.index % 4 == 0}">
+						        <br>
+						    </c:if>
+				<!--여기  -->		    
+						    ┃<label>${tool.toolName}
+						        <input type="checkbox" id="tool${tool.toolNo}"
+						               name="toolCheckBox" value="${tool.toolNo}"/>	
+						    </label>
+						</c:forEach>
 					<br>
 					
-				    <!-- ==================== 언어 ===================-->
-					<!-- 코어 태그 반복문 들어갈 자리  -->
+<!-- 					
+					
+				    ==================== 언어 ===================
+					코어 태그 반복문 들어갈 자리 
 					<label>Java<input type="checkbox" id="java" name="java"></label>
 					<label>Javascript<input type="checkbox" id="js" name="js"></label>
 					<label>HTML<input type="checkbox" id="html" name="html"></label>
@@ -166,39 +232,38 @@
 					<label>Go<input type="checkbox" id="go" name="go"></label>
 					
 					<hr>
-					<!-- =============== IDE 등 개발 환경 ==================-->
-					<!-- 코어 태그 반복문 들어갈 자리  -->
+					=============== IDE 등 개발 환경 ==================
+					코어 태그 반복문 들어갈 자리 
 					<label>Eclipse<input type="checkbox" id="eclipse" name="eclipse"></label>
 					<label>VsCode<input type="checkbox" id="vscode" name="vscode"></label>
 					
 					<hr>
-					<!-- =============== 프레임워크 / 라이브러리 ===========-->
-					<!-- 코어 태그 반복문 들어갈 자리  -->
+					=============== 프레임워크 / 라이브러리 ===========
+					코어 태그 반복문 들어갈 자리 
 					<label>Spring<input type="checkbox" id="spring" name="spring"></label>
 					<label>React<input type="checkbox" id="react" name="react"></label>
-					<hr>
 					
+					
+					 -->
 					<br>
 					<span class="profileItem">지역</span>
 					<span id="msg_false"> 지역을 선택해주세요!</span>
 					<br>
-					<select id="regionNo" name="regionNo">
+					<select id="regionNo" name="regionNo" onchange="changeSubRegion()">
 						<option>=== 지역 선택 ===</option>
-					<!-- 코어 태그 반복문 들어갈 자리  -->
-						<option>1</option>
-						<option>2</option>
+						
+						<c:forEach var="region" items="${regionList}">
+							<option value="${region.regionNo }">${region.regionName }</option>
+						</c:forEach>
 					</select>
 					<select id="subRegionNo" name="subRegionNo">
-						<option>=== 상세 지역 선택===</option>
-					<!-- 코어 태그 반복문 들어갈 자리  -->
-						<option>1-a</option>
-						<option>1-b</option>
+						<option>========상세 지역 선택=========</option>				
 					</select>
 					<br>
 					<br>
 					<span class="profileItem">진행 방식</span>
 					<span id="msg_false"> 선호하는 방식을 선택해주세요!</span><br>
-
+<!--여기  -->
 			  		<input type='radio' name='doType' value='1' />대면
 			  		<input type='radio' name='doType' value='2' />비대면
 					<br>
