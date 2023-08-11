@@ -21,9 +21,9 @@ public interface IReportDAO
 	public ArrayList<ReportDTO> recruitReportComplete();
 	// 공고신고처리완료 - 관리자 ID 검색
 	public ArrayList<ReportDTO> searchAdminPinNo(String searchVal);
-	// 공고신고처리완료 - 관리자 ID 검색
+	// 공고신고처리완료 - 유저 닉네임 검색
 	public ArrayList<ReportDTO> searchReportedUserPinNo(String searchVal);
-	// 공고신고처리완료 - 관리자 ID 검색
+	// 공고신고처리완료 - 신고 번호 검색
 	public ArrayList<ReportDTO> searchRepNo(String searchVal);
 	
 	
@@ -33,6 +33,15 @@ public interface IReportDAO
 	public int clearManageApplyReport(ReportDTO dto);
 	// 지원서신고 반려 insert
 	public int rejectManageApplyReport(ReportDTO dto);
+	
+	// 지원서 신고처리완료 리스트
+	public ArrayList<ReportDTO> applyReportComplete();
+	// 지원서 신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> applySearchAdminPinNo(String searchVal);
+	// 지원서 신고처리완료 - 유저 닉네임 검색
+	public ArrayList<ReportDTO> applySearchReportedUserPinNo(String searchVal);
+	// 지원서 신고처리완료 - 신고 번호 검색
+	public ArrayList<ReportDTO> applySearchRepNo(String searchVal);
 	
 	
 }
