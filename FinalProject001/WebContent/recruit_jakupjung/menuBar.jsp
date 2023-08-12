@@ -31,7 +31,7 @@
 	<br>
 		<a class="Main_category" href="MainPage.jsp">메인</a>
 		<a class="Main_category" href="MainNoticeLists.jsp">공지</a>
-		<a class="Main_category" href="PostLists.jsp">공고 둘러보기</a>
+		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
 		<a class="Main_category" href="MyApply.jsp">나의 지원 이력</a>
 		<a class="Main_category" href="MyPostLists.jsp">나의 모집 공고</a>
 		<a class="Main_category" href="MyProjectHistory.jsp">나의 프로젝트</a>
