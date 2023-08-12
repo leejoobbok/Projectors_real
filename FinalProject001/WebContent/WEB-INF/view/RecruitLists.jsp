@@ -234,7 +234,11 @@
 	}
 	
 	function writeRecruit() {
-		window.location.href = 'writerecruit.action';
+		var member = '${pinNo}';
+		if (!(member == null && member == ""))
+			window.location.href = 'writerecruit.action';
+		else
+			alert("회원만 모집공고 작성이 가능합니다.");
 	}
 
 	
@@ -251,9 +255,18 @@
 	<div class="header">
 	
 		<!-- header -->
-		<div class="header-member">
-			<c:import url="memberBar.jsp"></c:import>
-		</div>	
+		<c:choose>
+		<c:when test="${pinNo!=null || pinNo!='' }">
+			<div class="header-member">
+				<c:import url="memberBar.jsp"></c:import>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="header-member">
+				<c:import url="GuestBar.jsp"></c:import>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		
 		<div class="header-logo">
 			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
