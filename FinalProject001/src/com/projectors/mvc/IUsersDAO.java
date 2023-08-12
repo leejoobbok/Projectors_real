@@ -29,4 +29,11 @@ public interface IUsersDAO
 	
 	public int checknickname(String nickname);
 	
+	
+	//-- 프로필 이미지 관련 메소드
+	public String getPhotourl(String pinNo);
+	
+	public void removePhoto(String pinNo);
+	
+	public void updatePhoto(UsersDTO usersDTO);
 }
