@@ -205,8 +205,8 @@
 								{
 									if ($("#submitCheck:checked").length > 0)
 									{
-										alert("전송");
-										// $('#myForm').submit();
+										// alert("전송");
+										$('#myForm').submit();
 									}
 									else {
 										$('#correctAlart').fadeIn(300); }
