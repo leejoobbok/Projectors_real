@@ -9,6 +9,7 @@ public interface IReportDAO
 	// 신고 처벌 - 기간
 	public ArrayList<ReportDTO> periods();
 	
+	//--------------------------------------------------------------------------------------
 	
 	// 공고신고처리대기 리스트
 	public ArrayList<ReportDTO> reportedRecruitList();
@@ -26,6 +27,7 @@ public interface IReportDAO
 	// 공고신고처리완료 - 신고 번호 검색
 	public ArrayList<ReportDTO> searchRepNo(String searchVal);
 	
+	//--------------------------------------------------------------------------------------
 	
 	// 지원서신고처리대기 리스트
 	public ArrayList<ReportDTO> reportedApplyList();
@@ -42,6 +44,24 @@ public interface IReportDAO
 	public ArrayList<ReportDTO> applySearchReportedUserPinNo(String searchVal);
 	// 지원서 신고처리완료 - 신고 번호 검색
 	public ArrayList<ReportDTO> applySearchRepNo(String searchVal);
+	
+	//--------------------------------------------------------------------------------------
+	
+	// 쪽지 리스트
+	public ArrayList<ReportDTO> reportedNoteList();
+	// 쪽지 신고 처리 insert
+	public int clearManageNoteReport(ReportDTO dto);
+	// 쪽지 신고 반려 insert
+	public int rejectManageNoteReport(ReportDTO dto);
+	
+	// 쪽지 신고처리완료 리스트
+	public ArrayList<ReportDTO> noteReportComplete();
+	// 쪽지 신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> noteSearchAdminPinNo(String searchVal);
+	// 쪽지 신고처리완료 - 유저 닉네임 검색
+	public ArrayList<ReportDTO> noteSearchReportedUserPinNo(String searchVal);
+	// 쪽지 신고처리완료 - 신고 번호 검색
+	public ArrayList<ReportDTO> noteSearchRepNo(String searchVal);
 	
 	
 }
