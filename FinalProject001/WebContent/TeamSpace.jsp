@@ -108,31 +108,36 @@
 	#feed					/* 담벼락 영역 */
 	{
 		float: left;
-		width: 260px;
+		width: 268px;
 		height: 430px;
 		
 		text-align: center;
 		padding: 5px;
 		margin: 0px 20px 10px 20px;
-		border: 3px solid lightgreen;
+		
+		border: 3px solid #757575;
 		border-radius: 10px;
+		background-color: #a8adad;
 	}
 
 	#feedContent			/* 담벼락 입력된 공간 */
 	{
 		width: 240px;
-		background-color: #d5ffc4;
+		background-color: #d5e9eb;
 		margin: auto;
 		margin-top: 10px;
 		border-radius: 10px;
 	}
 	#feedInsert 			/* 담벼락 입력 창*/
 	{
-		width: 240px;
+		width: 220px;
 		margin: auto;
 		margin-top: 10px ;
+		padding: 10px;
+		
 		border-radius: 10px;
 		text-align: left;
+	
 	}
 	
     /*===================================================*/
@@ -183,6 +188,7 @@
 	  padding: 10px;
 	}
 </style>
+
 <script type="text/javascript">
 	
 	/*
@@ -243,7 +249,7 @@
 				<div id="feed" name="FeedSector">
 					<textarea id="feedContent" name="feedContent" id="" cols="50" rows="15" readonly="readonly"></textarea>
 					<br>
-					<textarea id="feedInsert" name="feedInsert"" cols="50 " rows="5"
+					<textarea id="feedInsert" name="feedInsert"" cols="50 " rows="2"
 								placeholder="내용을 입력하세요."></textarea>
 					<br>
 					<button type="submit" id="feedBtn" name="feedBtn" onclick="sendFeed()">보내기</button>
