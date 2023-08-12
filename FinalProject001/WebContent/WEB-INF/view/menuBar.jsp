@@ -12,13 +12,25 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+	.Main_category_Outer {
+		width : 1300px;
+		margin: auto;
+		padding-top: 15px;
+	}
+
 	.Main_category {
+    	font-family: 'SUITE-Regular';
 		text-decoration: none;
 		padding: 4px 14px 4px 14px;
-		font-size: 16pt;
+		font-size: 17pt;
 		font-weight: bold;
-		color: black;
-		background-color: white;
 	}
 	.Main_category a:hover { color: orange; }
 	.Main_category a:active { color: gold; }
@@ -26,18 +38,18 @@
 </head>
 
 <body>
-
-	<div class="Main_category">
+	<div style="background-color: white;">
+	<div class="Main_category_Outer">
 	<br>
-		<a class="Main_category" href="MainPage.jsp">메인</a>
-		<a class="Main_category" href="MainNoticeLists.jsp">공지</a>
+		<a class="Main_category" href="">메인</a>
+		<a class="Main_category" href="">공지</a>
 		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
-		<a class="Main_category" href="MyApply.jsp">나의 지원 이력</a>
-		<a class="Main_category" href="MyPostLists.jsp">나의 모집 공고</a>
-		<a class="Main_category" href="MyProjectHistory.jsp">나의 프로젝트</a>
-		<a class="Main_category" href="TeamSpace.jsp">팀 스페이스</a>
-		<hr>
+		<a class="Main_category" href="">나의 지원 이력</a>
+		<a class="Main_category" href="">나의 모집 공고</a>
+		<a class="Main_category" href="">나의 프로젝트</a>
+		<a class="Main_category" href="">팀 스페이스</a>
 	</div>
-
+		<hr style="width: 90%;"><br>
+	</div>
 </body>
 </html>

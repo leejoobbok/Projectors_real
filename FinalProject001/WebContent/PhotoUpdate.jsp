@@ -64,12 +64,33 @@
 	}
 </style>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
+<script type="text/javascript">
+
+	function removePhoto()
+	{
+		var removeConfirm = confirm("정말 삭제하시겠습니까?");
+		
+		if (removeConfirm)
+		{
+			return "removePhoto.action";
+		}
+		else if(!removeConfirm)
+		{
+			/* alert("삭제를 취소"); */
+			return;
+		}
+	}
+
+</script>
+
 
 </head>
 
 
 <body>
-	
+	<form action="updatePhoto.action">
 	<div id="outerBox">
 	
 		<h1 id="PhotoTitle">프로필 사진 편집</h1>
@@ -79,18 +100,19 @@
 			<div id="photoBox"></div>
 
 			<div id="fileSelectBox">
-				<input type="file" value="profileImage"/> 
+				<input type="file" id="photourl" name="photourl" value="${photourl}"/> 
 				<br>
 				
 			</div>
 			<div id="btnArea"> 
-				<button type=submit>삭제</button><!-- 기본이미지로 대체  -->
+				<button type=button onclick="removePhoto()">삭제</button><!-- 기본이미지로 대체  -->
 				<button type=submit>완료</button><!-- update 수행 		 -->
-				<button onclick="window.close()">취소</button><!-- 그냥 창 닫기  -->
+				<button onclick="window.close()">나가기</button><!-- 그냥 창 닫기  -->
 			</div>
 			
 		</div><!-- end of #innerBox div -->
 	</div>
+	</form>
 </body>
 </html>
 

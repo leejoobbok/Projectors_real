@@ -153,7 +153,7 @@
 			</a>
 		</div>
 		<div class="btnHeight">
-			<a href="AnswerManagement.jsp">
+			<a href="q-list-4admin.action">
 				<button type="button" class="btn">1:1 문의 답변</button>
 			</a>
 		</div>

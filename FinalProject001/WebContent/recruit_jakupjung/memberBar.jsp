@@ -26,6 +26,7 @@
 	{
 		font-size: 15pt;
 		font-weight: bold;
+		border-bottom-color: white;
 	}
 	.btn
 	{	

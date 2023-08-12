@@ -55,5 +55,26 @@
 		,#{userPw}
 		,#{nickname})
 	</insert>
+	
+	<select id="getPhotourl" resultType="java.lang.String">
+		SELECT PHOTOURL
+		FROM USERS
+		WHERE PIN_NO=#{pinNo}
+	
+	</select>
+	
+	
+	<update id="removePhoto">
+		UPDATE USERS
+		SET PHOTOURL='images/defaulfPhoto.jpg'
+		WHERE PIN_NO=${pinNo}	
+	</update>
+  
+  
+  	<update id="updatePhoto">
+  		UPDATE USERS
+  		SET PHOTOURL=${photourl}
+  		WHERE PIN_NO=${pinNo}
+  	</update>
   
 </mapper>

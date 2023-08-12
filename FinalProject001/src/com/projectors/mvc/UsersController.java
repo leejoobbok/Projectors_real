@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,9 +141,86 @@ public class UsersController
 		return result;
 		
 		
-		
 	
 	}
+	
+	
+	@RequestMapping(value="photoUpdateForm.action", method=RequestMethod.GET)
+	public String photoUpdateForm(Model model, HttpServletRequest request)
+	{
+		String url="";
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		
+		String photourl = dao.getPhotourl(pinNo);
+		
+		model.addAttribute("photourl", photourl);
+		
+		url="PhotoUpdate.jsp";
+		return url;
+	}
+	
+	
+	
+	
+	@RequestMapping(value="/removePhoto.action", method=RequestMethod.GET)
+	public String removePhoto(HttpServletRequest request)
+	{
+		
+		String url="";	
+		
+		HttpSession session = request.getSession();
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		
+		dao.removePhoto(pinNo);
+		
+		url="redirect:photoUpdateForm.action";
+		
+		return url;
+		
+	}
+	
+	
+	@RequestMapping(value="/updatePhoto.action", method=RequestMethod.GET)
+	public String updatePhoto(HttpServletRequest request)
+	{
+		String url ="";
+		
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		UsersDTO usersDTO = new UsersDTO();
+		
+		
+		
+		usersDTO.setPhotourl((String)session.getAttribute("pinNo"));
+		usersDTO.setPhotourl(request.getParameter("photourl"));
+		
+		System.out.println((String)session.getAttribute("pinNo"));
+		System.out.println(request.getParameter("photourl"));
+		
+		
+		dao.updatePhoto(usersDTO);
+		
+		url="redirect:photoUpdateForm.action";
+		
+		return url;
+	}
+	
+	
+	
+
+	
 	
 	
 	
