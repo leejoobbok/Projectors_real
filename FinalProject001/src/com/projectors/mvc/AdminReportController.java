@@ -174,7 +174,62 @@ public class AdminReportController
 	//-------------------------------------------------
 	
 	// ※ 쪽지
+	//-- 쪽지 신고 처리대기 리스트 페이지
+	@RequestMapping (value = "/reportNote.action", method = RequestMethod.GET)
+	public String reportedNoteList(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.reportedNoteList());
+		
+		result = "ReportManagementNote.jsp";
+		
+		return result;
+	}
 	
+	//-- 쪽지 신고 처리 insert
+	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
+	public String clearManageNoteReoprt(HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		ReportDTO dto = new ReportDTO();
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setRepNo(request.getParameter("repNo"));
+		dto.setReguNo(request.getParameter("reguNo"));
+		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+		
+		dao.clearManageNoteReport(dto);
+
+		result = "redirect:reportNote.action";
+		
+		return result;
+	}
+	
+	//-- 쪽지 신고 반려
+	@RequestMapping (value = "/rejectManageNoteReport.action", method = RequestMethod.GET)
+	public String rejectManageNoteReport(ReportDTO dto, HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setReguNo(request.getParameter("repNo"));
+		
+		dao.rejectManageNoteReport(dto);
+		
+		
+		result = "redirect:reportNote.action";
+		return result;
+	}
 	//-------------------------------------------------
 	
 	// ※ 팀스페이스
@@ -264,6 +319,45 @@ public class AdminReportController
 	// ※ 팀스페이스
 	// ※ 댓글
 	// ※ 쪽지
+	//-- 리스트 출력
+	@RequestMapping (value = "/noteManageComplete.action", method = RequestMethod.GET)
+	public String noteManageComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.noteReportComplete());
+		
+		result = "ReportManagementCompleteNote.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/noteReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String noteReportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.noteSearchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.noteSearchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.noteSearchRepNo(searchVal));
+		
+		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+		//System.out.println(lists);
+		
+		result = "ReportManagementCompleteNote.jsp";
+		
+		return result;
+	}
+	
 
 	//==========================================처리완료===============================================
 
