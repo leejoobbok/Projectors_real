@@ -215,22 +215,12 @@
 		
 		if (regionChoiceName=="" && subRegionChoiceName=="" && posChoiceNo=="" && doTypeChoiceName=="")
 		{
-			alert("검색 내용이 없습니다.");
-			return;
+			// alert("확인");
+			$('.alertbox').fadeIn(1000);
+			$('.alertbox').fadeOut(3000);
 		}
 		
-		if (regionChoiceName=="")
-			regionChoiceName = "%";
-
-		if (subRegionChoiceName=="")
-			subRegionChoiceName = "%";
-
-		if (posChoiceNo=="")
-			posChoiceNo = "%";
-
-		if (doTypeChoiceName=="")
-			doTypeChoiceName = "%";
-		
+		alertBox.style.display = 'none';
 		// alert(regionChoiceName + " / " + subRegionChoiceName + " / " + posChoiceNo + " / " + doTypeChoiceName);
 		
 		var url = "searchrecruitlist.action?";
@@ -243,12 +233,10 @@
 	    // window.location.href = url;
 	}
 	
-	function writeRecruit()
-	{
+	function writeRecruit() {
 		window.location.href = 'writerecruit.action';
 	}
 
-	
 	
 </script>
 
@@ -278,19 +266,18 @@
 	</div>
 	
 	<div class="main">
-		<h2 class="pageTitle">모집공고 둘러보기</h2>
 		<br>
-		
-		<div class="container">
-			
+			<div class="outerFilter">
 			<div class="filter">
 				<h3 class="inlineTitle">조건 검색</h3>
 				<div class="inlineTagReg"></div>
 				<div class="inlineTagPos"></div>
 				<div class="inlineTagDo"></div>
 			</div> <!-- end.filter -->
+			</div> <!-- end.outerFilter -->
 			
 			<div class="search">
+			
 				<ul>
 					<li>
 						<span>지역</span>
@@ -329,19 +316,21 @@
 						<button type="button" class="searchBtn" id="searchBtn" onclick="searchRecruit()">검색</button>
 					</li>
 				</ul>
-				<hr style="width: 70%">
+				
+				<div class="alertbox">검색 내용이 없습니다.</div>
+				
+				<hr style="width: 1000px;">
 			</div> <!-- end.search -->
 			
 			
 			
+			<div class="recruitLists">
+			
 			<div class="writeBtnArea">
 				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
 			</div>
+			<h2 class="smallTitle">모집공고 둘러보기</h2>
 			
-
-			
-			<div class="recruitLists">
-				
 				<c:forEach var="recruit" items="${lists }" varStatus="status">
 					<div class="recruitList">
 					<ul>
@@ -370,8 +359,7 @@
 								</c:forEach>
 						</li>
 						<li>
-							<p>${recruit.content }
-						    </p>
+							<p class="dotdot"><span>${recruit.content }</span></p>
 						</li>
 						<li>
 							<c:forEach var="tool" items="${tools[status.index] }">

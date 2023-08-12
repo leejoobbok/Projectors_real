@@ -7,36 +7,58 @@
     font-style: normal;
 }
 
+.alertbox {
+	font-family: 'SUITE-Regular';
+	font-weight: 400;
+	background-color: #efefef;
+	margin: auto;
+	width: 800px;
+	padding: 5px;
+	color: #4a4806;
+	border-radius: 5px;
+	display: none;
+}
+
+.smallTitle {
+	text-align: left;
+	margin-left: 5px;
+    font-family: 'SUITE-Regular';
+    letter-spacing: 0.08em;
+}
 
 .inlineTitle {
+    font-family: 'SUITE-Regular';
 	display: inline;
 }
 
 .inlineTagReg, .inlineTagPos, .inlineTagDo {
     display: inline;
-    text-align: center;
+}
+
+.outerFilter {
+	width: 840px;
+	margin: auto;
 }
 
 .filter
 {
 	display: inline-block;
-	margin-left: 27.5%;
 }
 
 .searchTag
 {	
+    font-family: 'SUITE-Regular';
 	border: none;
 	border-radius: 10px;
 	margin-top: 10px;
 	margin-left: 10px;
 	
-	padding: 1px 3px 1px 6px;
+	padding: 2px 4px 2px 7px;
 	
 	background-color: orange;
 	color: white;
 	
 	font-size: 12pt;
-	font-weight: bold;
 }
 
 .SearchDelBtn
@@ -59,11 +81,19 @@
 
 .search
 {	
+    font-family: 'SUITE-Regular';
 	text-align: center;
-	margin-top: 6px;
+	margin: auto;
+	/* margin-top: 6px; */
 	font-size: 13pt;
 	font-weight: bold;
+	width: 1200px;
 	
+}
+
+.search span {
+	font-family: 'SUITE-Regular';
+	margin-right: 6px;
 }
 
 .search li
@@ -106,7 +136,7 @@
 }
 
 .recruitLists {
-	width: 1150px;
+	width: 970px;
 	margin: auto;
 	text-align: center;
 	margin-top: 50px;
@@ -128,8 +158,12 @@
 	list-style-type: none;
 }
 
+.recruitList li span {
+	font-family: 'SUITE-Regular';
+}
+
 .recruitList li:first-child {
-	font-weight: bold;
+    letter-spacing: 0.05em;
 	font-size: 11pt;
 	margin-bottom: 10px;
 }
@@ -139,8 +173,14 @@
 }
 
 .recruitList li:nth-child(3) {
-	font-size:11pt; 
-	font-weight:bold;
+	font-size:12pt;
+}
+
+.dotdot {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 870px;
 }
 
 .recruitTitle a {
@@ -198,11 +238,12 @@
 }
 
 .writeBtnArea {
-	display: flex;
+	text-align: right;
+	margin-bottom: -55px;
 }
 
 .writeBtn {
-	margin-left: 73%;
+	margin-left: 70%;
 	
 	font-family: 'SUITE-Regular';
 	
