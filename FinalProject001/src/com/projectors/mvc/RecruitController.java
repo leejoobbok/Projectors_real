@@ -45,7 +45,7 @@ public class RecruitController
 	    model.addAttribute("dotypes", dao.optionDoType());
 	    model.addAttribute("poss", dao.optionPos());
 	    
-		String result = "/recruit_jakupjung/RecruitLists.jsp";
+		String result = "/WEB-INF/view/RecruitLists.jsp";
 		return result;
 	}
 	/*
@@ -133,7 +133,7 @@ public class RecruitController
 		model.addAttribute("countPos", dao.countPosRecruitMember(recruitNo));
 		model.addAttribute("recruitMember", dao.recruitMember(recruitNo));
 		
-		String result = "/recruit_jakupjung/RecruitArticle.jsp";
+		String result = "/WEB-INF/view/RecruitArticle.jsp";
 		return result;
 	}
 
@@ -145,7 +145,7 @@ public class RecruitController
 		model.addAttribute("tools", dao.getAllTools());
 		model.addAttribute("poss", dao.getAllPos());
 		
-		return "/recruit_jakupjung/RecruitInsert.jsp";
+		return "/WEB-INF/view/RecruitInsert.jsp";
 	}
 	
 	@RequestMapping(value = "/postrecruit.action", method = RequestMethod.POST)
