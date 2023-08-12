@@ -79,7 +79,7 @@
 		padding-bottom: 4px;
 		font-weight: bold;
 	}
-	#ProfileUpdateBtns				/* 버튼 영역 */
+	#ProfileInsertBtns				/* 버튼 영역 */
 	{
 		padding: 10px 0px;
 	}	
@@ -132,6 +132,62 @@
 		
 
 	}
+	
+	
+	$(document).ready(function() {
+
+	    $("#insertFormSubmit").click(function()
+	    {
+	      
+	    	if (document.getElementsByName('posNo')[0].value==0)
+			{
+	    		alert("희망 포지션을 입력해주세요(필수).");
+	    		return;
+			}
+	    	else if (document.getElementsByName('regionNo')[0].value==0)
+			{
+	    		alert("지역을 입력해주세요(필수).");
+	    		return;
+	    		
+			}
+	    	else if(document.getElementsByName("subRegionNo")[0].value==0)
+	    	{
+	    		alert("세부지역을 입력해주세요(필수).");
+	    		return;
+	    	}
+	    	else
+    		{
+	    		if($("input[name=toolCheckBox]").is(":checked")==false)
+	        	{
+		    		alert("도구 체크된 것이 없어용");
+		    		
+		    		document.getElementById("toolException").value="1";
+		    		
+		    		/*히든 도구없음 체크박스 체크 ㅇ */
+		    		document.getElementById("noTool").checked =true;
+		    	
+	        		document.getElementById("insertForm").submit();
+	        	}
+		        else
+		        {
+					alert("도구 체크된 것이 있다!!!!!");	
+					
+					document.getElementById("toolException").value="0";
+					
+					/*히든 도구없음 체크박스 체크 해제 */
+					document.getElementById("noTool").checked =false;
+					
+					
+					document.getElementById("insertForm").submit();
+		        }
+    		}
+	    	
+	    	
+	        
+	    	
+	    });
+
+	});
 		
 	
 </script>
@@ -164,7 +220,7 @@
 	
 			<div id="profileUpdateBox">	<!-- 항목 작성 영역 -->
 			
-				<form action="ProfileView.jsp">
+				<form id="insertForm" action="profileInsert.action">
 					
 					<!-- 프로필 이미지<input type="file" value="profileImage"/>  별도 jsp 파일로 뺌 --> 
 					<!-- 
@@ -194,7 +250,10 @@
 					<span id="msg_false"> 사용 가능한 도구를 1개 이상 선택해주세요!</span>
 					<br />
 					<br />
+						<!-- 널값 넘겨주면 에러나서 만든 히든 체크박스 value는 toolTable에 없는 값  -->
+						<input type="checkbox" id="noTool" name="toolCheckBox" hidden="hidden" value="0">
 						<c:forEach var="tool" items="${toolList}" varStatus="loopStatus">
+						  
 						    <c:if test="${loopStatus.count == 1}">
 						    
 						        <b>==================== 언어 ===================</b>
@@ -218,6 +277,8 @@
 						               name="toolCheckBox" value="${tool.toolNo}"/>	
 						    </label>
 						</c:forEach>
+					<!-- 도구 선택 있나 없나 체크용 히든  -->
+					<input type="hidden" id="toolException" name="toolException" value="1">
 					<br>
 					
 <!-- 					
@@ -249,27 +310,29 @@
 					<span class="profileItem">지역</span>
 					<span id="msg_false"> 지역을 선택해주세요!</span>
 					<br>
-					<select id="regionNo" name="regionNo" onchange="changeSubRegion()">
-						<option>=== 지역 선택 ===</option>
+					<select id="regionNo" name="regionNo" onchange="changeSubRegion()" >
+						<option value="0">=== 지역 선택 ===</option>
 						
 						<c:forEach var="region" items="${regionList}">
 							<option value="${region.regionNo }">${region.regionName }</option>
 						</c:forEach>
 					</select>
-					<select id="subRegionNo" name="subRegionNo">
-						<option>========상세 지역 선택=========</option>				
+					<select id="subRegionNo" name="subRegionNo" >
+						<option value="0">========상세 지역 선택=========</option>				
 					</select>
 					<br>
 					<br>
+<!-- 				
 					<span class="profileItem">진행 방식</span>
 					<span id="msg_false"> 선호하는 방식을 선택해주세요!</span><br>
-<!--여기  -->
+
 			  		<input type='radio' name='doType' value='1' />대면
 			  		<input type='radio' name='doType' value='2' />비대면
 					<br>
-					
-					<div id="ProfileUpdateBtns">
-						<button type="submit">저장</button>
+				 -->	
+					<div id="ProfileInsertBtns">
+						<button type="submit" hidden="hidden"></button>
+						<button type="button" id="insertFormSubmit">저장</button>
 						<button type="button" onclick="location.href='MyPage.jsp'">취소</button>
 					</div>
 					
