@@ -196,8 +196,9 @@
     	var content = $('#content').val();
     	window.location.href = "insertTeamNotice.action?title="+title+"&content="+content; 
     	
-    	//===================// 로딩 중...
     	
+    	/*
+    	//===================// 로딩 중..
         var img = new Image();				//-- 이미지 생성 
         img.src = "images/dot_loading.gif"; // 이미지 경로 
         img.style.width = "200px";      	// 가로길이
@@ -220,9 +221,10 @@
                 document.body.removeChild(imageContainer);
             }, 2000); 
         };
-
-     
-    	// 등록 완료 이미지 
+		*/ 
+		// 이 방법 적용 안 돼서 수업때 배운 방식으로 바꿔야할듯.
+		// ( 웹스터디 > 에이젝스쿼리04 > 웹 컨텐츠 > AjaxTest06.jsp )
+		// 중요한 기능은 아니라서 일단 패스 
     }
 </script>
 
