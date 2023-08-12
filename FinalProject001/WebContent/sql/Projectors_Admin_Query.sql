@@ -296,7 +296,15 @@ FROM REPRECRUITNULL
 -- 쪽지
     CREATE OR REPLACE VIEW REPNOTENULL
     AS
-    SELECT N.SENDER AS reportedUserPinNo
+    SELECT (SELECT NICKNAME
+            FROM USERS 
+            WHERE PIN_NO = N.SENDER
+            )AS reportedNickName 
+        , N.SENDER AS reportedUserPinNo
+        , ( SELECT NICKNAME
+            FROM USERS
+            WHERE PIN_NO = RN.PIN_NO
+          ) AS reportNickName
         , RN.PIN_NO AS reportUserPinNo
         , RNR.REGU_DATE AS reguDate
         , RN.REP_NOTE_NO AS repNo
@@ -313,7 +321,27 @@ FROM REPRECRUITNULL
     ON N.NOTE_NO = RN.NOTE_NO
     WHERE RNR.REGU_DATE IS NULL;
 --==>> View REPNOTENULL이(가) 생성되었습니다.
+        SELECT REPORTEDUSERPINNO, REPORTEDNICKNAME
+            ,REPORTUSERPINNO, REPORTNICKNAME
+            ,REGUDATE, REPNO, POSTNO, REPORTDATE,
+            REPREASON
+		FROM REPNOTENULL
+        ;
 
+    select *
+    from report_note;
+    
+CREATE SEQUENCE REPNOTENOSEQ
+NOCACHE;
+--==>> Sequence REPNOTENOSEQ이(가) 생성되었습니다.
+
+SELECT *
+FROM NOTE;
+
+SELECT *
+  FROM all_sequences
+ WHERE sequence_owner = 'PROJECTORS';
+    
 -- 신고처리 창에서 필요한 처벌 유형, 처벌기간
 SELECT REGU_NO AS reguNo
     , CONTENT
@@ -469,35 +497,10 @@ from regulation_period;
 		      ) as adminNo
 		    , adminPinNo
 		    , reportDate, repReasonNo
-		FROM REPRECRUITCOMPLETE RRC
-		ORDER BY REGUDATE DESC
-;
+    FROM REPRECRUITCOMPLETE RRC
+    ORDER BY REGUDATE DESC
+    ;
 
-	    SELECT ResultNo, repResultNo
-		    ,(SELECT CONTENT
-		      FROM REGULATION
-		      WHERE RRC.reguNo = REGU_NO
-		     ) as content
-		    ,(SELECT PERIOD
-		      FROM REGULATION_PERIOD
-		      WHERE RRC.reguPeriod = REGU_PERIOD_NO
-		     ) as period
-		    , ( SELECT NICKNAME
-		        FROM USERS
-		        WHERE PIN_NO = RRC.reportedUserPinNo
-		      ) as reportedNickName 
-		    , reportUserPinNo
-		    , reguDate, repNo, postNo
-		    , (SELECT admin_no
-		       FROM ADMIN
-		       WHERE RRC.adminPinNo = pin_no
-		      ) as adminNo
-		    , adminPinNo
-		    , reportDate, repReasonNo
-		FROM REPRECRUITCOMPLETE RRC
-		WHERE  LIKE 
-		ORDER BY REGUDATE DESC
-        ;
         
         SELECT PIN_NO as adminPinNo
 		FROM ADMIN
@@ -538,7 +541,34 @@ FROM USERS;
     JOIN NOTE N
     ON N.NOTE_NO = RN.NOTE_NO
     WHERE RNR.REGU_DATE IS NOT NULL;
---==>> View REPNOTENULL이(가) 생성되었습니다.
+--==>> View REPNOTECOMPLETE이(가) 생성되었습니다.
+---------------------------------------------
+    SELECT ResultNo, repResultNo
+		    ,(SELECT CONTENT
+		      FROM REGULATION
+		      WHERE RNC.reguNo = REGU_NO
+		     ) as content
+		    ,(SELECT PERIOD
+		      FROM REGULATION_PERIOD
+		      WHERE RNC.reguPeriod = REGU_PERIOD_NO
+		     ) as period
+		    , ( SELECT NICKNAME
+		        FROM USERS
+		        WHERE PIN_NO = RNC.reportedUserPinNo
+		      ) as reportedNickName 
+		    , reportUserPinNo
+		    , reguDate, repNo, postNo
+		    , (SELECT admin_no
+		       FROM ADMIN
+		       WHERE RNC.adminPinNo = pin_no
+		      ) as adminNo
+		    , adminPinNo
+		    , reportDate, repReasonNo
+    FROM REPNOTECOMPLETE RNC
+    ORDER BY REGUDATE DESC
+    ;
+
+
 
 --==============================================================================
 select *

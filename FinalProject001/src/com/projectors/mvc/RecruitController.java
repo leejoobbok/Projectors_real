@@ -3,6 +3,9 @@ package com.projectors.mvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +45,7 @@ public class RecruitController
 	    model.addAttribute("dotypes", dao.optionDoType());
 	    model.addAttribute("poss", dao.optionPos());
 	    
-		String result = "/recruit_jakupjung/RecruitLists.jsp";
+		String result = "/WEB-INF/view/RecruitLists.jsp";
 		return result;
 	}
 	/*
@@ -130,7 +133,7 @@ public class RecruitController
 		model.addAttribute("countPos", dao.countPosRecruitMember(recruitNo));
 		model.addAttribute("recruitMember", dao.recruitMember(recruitNo));
 		
-		String result = "/recruit_jakupjung/RecruitArticle.jsp";
+		String result = "/WEB-INF/view/RecruitArticle.jsp";
 		return result;
 	}
 
@@ -142,20 +145,23 @@ public class RecruitController
 		model.addAttribute("tools", dao.getAllTools());
 		model.addAttribute("poss", dao.getAllPos());
 		
-		return "/recruit_jakupjung/RecruitInsert.jsp";
+		return "/WEB-INF/view/RecruitInsert.jsp";
 	}
 	
 	@RequestMapping(value = "/postrecruit.action", method = RequestMethod.POST)
-	public String postrecruit(RecruitDTO dto,
+	public String postrecruit(RecruitDTO dto, HttpServletRequest request,
 							  @RequestParam String[] posCount,
 							  @RequestParam String[] pos,
 							  @RequestParam String[] tool)
 	{	
-		/*
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+
+		HttpSession session = request.getSession();
+		String pinNo = (String)session.getAttribute("pinNo");
 		
-		// pinNo 설정 'UP24''UP25''UP26' (임시)
-		dto.setPinNo("UP26");
+		System.out.println("pinNo : " + pinNo);
+		
+		dto.setPinNo(pinNo);
 		
 		// 모집공고 생성
 		dao.insertRecruit(dto);
@@ -181,6 +187,7 @@ public class RecruitController
 		}
 		
 		// 팀장이 선택한 포지션의 지원번호 가져오기
+		
 		int posCap = Integer.parseInt(pos[0]);
 		dto.setPosCapNo(posCap);
 		dto.setRecruitPosNo(dao.getCapRecruitPosNo(dto));
@@ -193,10 +200,9 @@ public class RecruitController
 		
 		// 팀장 지원서 자동합격
 		dao.insertFirstCKCap(dto);
-		*/
 		
-		// String result = "redirect:recruitlist.action";
-		String result = "";
+		
+		String result = "redirect:recruitlist.action";
 		return result;
 	}
 	

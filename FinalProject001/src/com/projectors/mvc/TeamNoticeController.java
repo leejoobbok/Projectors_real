@@ -17,35 +17,36 @@ public class TeamNoticeController
 	private SqlSession sqlSession;
 	
 	// ● 공지글 등록 (팀장)
-	/*
 	@RequestMapping (value = "/insertTeamNotice.action", method = RequestMethod.GET)
-	public String insertTeamNotice(HttpServletRequest request)
+	public String teamNoticeInsert(TeamNoticeDTO dto)
 	{
 		String result = "";
 		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		dao.add(dto); 
 		
-		ReportDTO dto = new ReportDTO();
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setRepNo(request.getParameter("repNo"));
-		dto.setReguNo(request.getParameter("reguNo"));
-		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-		
-		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
-		//System.out.println("repNo : "+request.getParameter("repNo"));
-		//System.out.println("reguNo : "+request.getParameter("reguNo"));
-		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
-		
-		dao.clearManageReport(dto);
-
-		result = "redirect:reportRecruit.action";
+		result="redirect:teamNoticeList.action";
 		
 		return result;
 	}
-	*/
+	
 	
 	//● 공지글 수정 (팀장)
+	@RequestMapping(value = "/teamNoticeModify.action", method = RequestMethod.GET)
+	public String teamNoticeModify(TeamNoticeDTO dto)
+	{
+		//System.out.println(dto.getContent());  //-- 수정한 내용 확인 
+		String result = "";
+		
+		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
+		
+		dao.modify(dto);
+		
+		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
+		
+		return result;
+	}
+	
 	
 	//● 공지글 삭제 (팀장)
 	@RequestMapping(value = "/teamNoticeDelete.action", method = RequestMethod.GET)

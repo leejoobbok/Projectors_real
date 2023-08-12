@@ -14,8 +14,7 @@
 
 <update id="modify">
 	UPDATE SPACE_NOTICE
-	SET TITLE = #{title}
-	,CONTENT= #{content}
+	SET CONTENT= #{content}
 	WHERE SPACE_NOTICE_NO = #{spaceNoticeNo}
 </update>
 
@@ -29,8 +28,8 @@
 	, TITLE AS title
 	, CREATED_DATE AS createdDate
 	FROM  SPACE_NOTICE
-	WHERE PRJ_NO ='PJ1' 		<!-- (임시)프로젝트 번호 정적 구성 -->
-	ORDER BY CREATED_DATE DESC  <!-- 최신 순 정렬 -->
+	WHERE PRJ_NO ='PJ1'
+	ORDER BY spaceNoticeNo DESC  <!-- 최신 순 정렬 -->
 </select>
 
 <select id="viewArticle" resultType="com.projectors.mvc.TeamNoticeDTO"> 
