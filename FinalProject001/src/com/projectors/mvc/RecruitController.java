@@ -44,7 +44,7 @@ public class RecruitController
 	    model.addAttribute("regions", dao.optionRegion());
 	    model.addAttribute("dotypes", dao.optionDoType());
 	    model.addAttribute("poss", dao.optionPos());
-	    
+
 		String result = "/WEB-INF/view/RecruitLists.jsp";
 		return result;
 	}
