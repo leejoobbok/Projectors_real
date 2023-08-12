@@ -56,7 +56,7 @@ public class ProfileController
 
 		ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
 
-		System.out.println(utool);
+		/* System.out.println(utool); */
 
 		model.addAttribute("utool", utool);
 
@@ -64,7 +64,7 @@ public class ProfileController
 
 		ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
 
-		System.out.println("평가출력의" + totalRate);
+		/* System.out.println("평가출력의" + totalRate); */
 
 		model.addAttribute("totalRate", totalRate);
 
@@ -106,14 +106,51 @@ public class ProfileController
 		return url;
 
 	}
+/*profileUpdate.action*/
+	
+	@RequestMapping(value = "/profileUpdateForm.action", method = RequestMethod.GET)
+	public String profileUpdate(Model model, HttpServletRequest request)
+	{	
+		String url="";
 
-	
-	
+		IProfileDAO dao = sqlSession.getMapper(IProfileDAO.class);
+		
+		HttpSession session = request.getSession();
+
+		String pinNo = (String) session.getAttribute("pinNo");
+
+		// 1. 포지션 기존 유저 데이터 SELECT OPTION 출력
+		ArrayList<ProfileDTO> positionList = dao.getUpdatePosition(pinNo);
+
+		model.addAttribute("positionList", positionList);
+
+		// 2. 기존 유저 데이터 도구 번호 출력 checkBox
+		ArrayList<ProfileDTO> toolList = dao.getUpdateTool(pinNo);
+
+		model.addAttribute("toolList",toolList);
+
+		
+		//3. 기존 유저 데이터 지역 번호와 이름 출력
+		ArrayList<ProfileDTO> regionList = dao.getUpdateRegion(pinNo);
+		
+		model.addAttribute("regionList", regionList);
+		
+		
+		//4. 기존 유저 데이터 세부 지역 번호와 이름 출력
+		ArrayList<ProfileDTO> updateSubRegionList = dao.getUpdateSubRegion(pinNo);
+		
+		model.addAttribute("updateSubRegionList", updateSubRegionList);
+		
+		
+		
+		url="ProfileUpdateForm.jsp";
+		return url;
+		
+	}
 	
 	
 	  @RequestMapping(value="/changeSubRegionList.action", method = RequestMethod.GET)
-	  public void subRegionList(HttpServletRequest request, HttpServletResponse
-	  response) throws ServletException, IOException 
+	  public void subRegionList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	  {
 	  
 		  
@@ -126,12 +163,12 @@ public class ProfileController
 		  
 		  ArrayList<ProfileDTO> subRegionList = dao.getSubRegion(regionNo);
 		  
-		  result+="<option>========상세 지역 선택=========</option>";
+		  result += "<option value='0'>========상세 지역 선택=========</option>";
 		  for (ProfileDTO subRegion : subRegionList)
 		  {
 			result+="<option value="+subRegion.getSubRegionNo()+">"+subRegion.getSubRegionName()+"</option>";
 		  
-			System.out.println(result);
+			/* System.out.println(result); */
 		  }
 		  
 		  request.setAttribute("result", result);
@@ -141,6 +178,132 @@ public class ProfileController
 		  
 	  
 	  }
+	  
+	  
+	  
+	  @RequestMapping(value="/profileInsert.action",method = RequestMethod.GET)
+	  public String profileInsert(ProfileDTO profileDTO, HttpServletRequest request)
+	  {
+		  String url="";
+		  
+		  IProfileDAO dao = sqlSession.getMapper(IProfileDAO.class);
+
+		  HttpSession session = request.getSession();
+		  
+		  String pinNo = (String) session.getAttribute("pinNo");
+		  
+		  profileDTO.setPinNo(pinNo);
+		  
+			/* System.out.println("컨트롤러까지는 넘어갔음"); */
+		  
+		  
+		  String[] toolNoArr = request.getParameterValues("toolCheckBox");
+		  
+			/*
+			 * System.out.println("posNo:"+profileDTO.getPosNo());
+			 * System.out.println("regionNo:"+profileDTO.getRegionNo());
+			 * System.out.println("subRegionNo"+profileDTO.getSubRegionNo());
+			 */
+		  
+		  System.out.println("체크박스 예외처리 여부"+request.getParameter("toolException"));
+		  int toolException = Integer.parseInt(request.getParameter("toolException"));
+		  
+		  
+		  // 프로필 생성
+		  dao.insertProfile(profileDTO);
+		  
+		  // 유저 도구 입력을 위한 dto 인스턴스 새로 만들기
+		  ProfileDTO userToolDTO = new ProfileDTO();
+		  
+		  /*도구 입력되었을 때만 USER_TOOL 테이블에 데이터 입력*/
+		  if (toolException == 0)
+		  {
+			// 기존 유저 도구가 있는 경우
+			if (dao.chekUserTool(pinNo) > 0)
+			{
+				dao.removeUserTool(pinNo);
+			}
+			
+			// 공용
+			
+			for (String toolNo : toolNoArr)
+			{
+				 userToolDTO.setPinNo(pinNo);
+				 userToolDTO.setToolNo(Integer.parseInt(toolNo));
+				 
+				 dao.userToolInsert(userToolDTO);
+			}
+			
+		  }
+		  
+		  url = "redirect:MyPage.jsp";
+		  return url;
+		  
+	  }
+	  
+	  
+	  @RequestMapping(value="/profileUpdate.action",method = RequestMethod.GET)
+	  public String profileUpdate(ProfileDTO profileDTO, HttpServletRequest request)
+	  {
+		  String url="";
+		  
+		  IProfileDAO dao = sqlSession.getMapper(IProfileDAO.class);
+
+		  HttpSession session = request.getSession();
+		  
+		  String pinNo = (String) session.getAttribute("pinNo");
+		  
+		  profileDTO.setPinNo(pinNo);
+		  
+			/* System.out.println("컨트롤러까지는 넘어갔음"); */
+		  
+		  
+		  String[] toolNoArr = request.getParameterValues("toolCheckBox");
+		  
+			/*
+			 * System.out.println("posNo:"+profileDTO.getPosNo());
+			 * System.out.println("regionNo:"+profileDTO.getRegionNo());
+			 * System.out.println("subRegionNo"+profileDTO.getSubRegionNo());
+			 */
+		  
+		  System.out.println("체크박스 예외처리 여부"+request.getParameter("toolException"));
+		  int toolException = Integer.parseInt(request.getParameter("toolException"));
+		  
+		  
+		  // 프로필 생성
+		  dao.updateProfile(profileDTO);
+		  
+		  // 유저 도구 입력을 위한 dto 인스턴스 새로 만들기
+		  ProfileDTO userToolDTO = new ProfileDTO();
+		  
+		  /*도구 입력되었을 때만 USER_TOOL 테이블에 데이터 입력*/
+		  if (toolException == 0)
+		  {
+			// 기존 유저 도구가 있는 경우
+			if (dao.chekUserTool(pinNo) > 0)
+			{
+				dao.removeUserTool(pinNo);
+			}
+			
+			// 공용 - 이후 다시 기존 유저 도구 입력 - 프라이머리키가 여러개라 이렇게 삭제 입력 반복으로 업데이트
+			for (String toolNo : toolNoArr)
+			{
+				 userToolDTO.setPinNo(pinNo);
+				 userToolDTO.setToolNo(Integer.parseInt(toolNo));
+				 
+				 dao.userToolInsert(userToolDTO);
+			}
+			
+		  }
+		  
+		  url = "redirect:MyPage.jsp";
+		  return url;
+		  
+	  }
+	  
+	  
+	  
+	  
 	  
 
 }

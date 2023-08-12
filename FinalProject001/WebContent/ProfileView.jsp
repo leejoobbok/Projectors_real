@@ -80,9 +80,16 @@
 				  src="${profileDTO.photourl}">
 			</div>
 			<div style="margin: 30px 16px;">
+			<button type="submit"
+				 onclick="window.open('<%= request.getContextPath()%>/photoUpdateForm.action','photoUpdate',
+				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>
+			
+			
+<%-- 			
 				<button type="submit"
 				 onclick="window.open('<%= request.getContextPath()%>/PhotoUpdate.jsp','photoUpdate',
 				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>
+ --%>				 
 			</div><!-- location 주소창 보이기 속성은 오페라에서만 동작 -->
 		</div>
 				
@@ -91,7 +98,7 @@
 				<table>
 					<tr>
 						<td>
-							<button type="button" onclick="location.href='profileUpdate.action'"> 수정 </button>
+							<button type="button" onclick="location.href='profileUpdateForm.action'"> 수정 </button>
 						</td>
 					</tr>
 					<tr>

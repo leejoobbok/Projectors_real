@@ -136,7 +136,7 @@
 	
 	$(document).ready(function() {
 
-	    $("#insertFormSubmit").click(function()
+	    $("#updateFormSubmit").click(function()
 	    {
 	      
 	    	if (document.getElementsByName('posNo')[0].value==0)
@@ -166,7 +166,7 @@
 		    		/*히든 도구없음 체크박스 체크 ㅇ */
 		    		document.getElementById("noTool").checked =true;
 		    	
-	        		document.getElementById("insertForm").submit();
+	        		document.getElementById("updateForm").submit();
 	        	}
 		        else
 		        {
@@ -178,7 +178,7 @@
 					document.getElementById("noTool").checked =false;
 					
 					
-					document.getElementById("insertForm").submit();
+					document.getElementById("updateForm").submit();
 		        }
     		}
 	    	
@@ -220,7 +220,7 @@
 	
 			<div id="profileUpdateBox">	<!-- 항목 작성 영역 -->
 			
-				<form id="insertForm" action="profileInsert.action">
+				<form id="updateForm" action="profileUpdate.action">
 					
 					<!-- 프로필 이미지<input type="file" value="profileImage"/>  별도 jsp 파일로 뺌 --> 
 					<!-- 
@@ -236,7 +236,14 @@
 							<option value="0">=== 선택해주세요 ===</option>
 							<!-- 코어 태그 반복문으로 포지션 리스트 출력  -->
 						<c:forEach var="positionList" items="${positionList}">
-							<option value="${positionList.posNo}">${positionList.posName }</option>		
+							   <c:choose>
+        							<c:when test="${positionList.pinNo != null}">
+            							<option value="${positionList.posNo}" selected="selected">${positionList.posName }</option>
+						        </c:when>         
+						        <c:otherwise>
+						           		<option value="${positionList.posNo}">${positionList.posName }</option>
+						         </c:otherwise>
+						    	</c:choose>
 						</c:forEach>
 					</select>
 					<span id="msg_false"> 희망 포지션을 선택해주세요.</span>
@@ -271,11 +278,23 @@
 						    <c:if test="${loopStatus.index % 4 == 0}">
 						        <br>
 						    </c:if>
-				<!--여기  -->		    
-						    ┃<label>${tool.toolName}
-						        <input type="checkbox" id="tool${tool.toolNo}"
-						               name="toolCheckBox" value="${tool.toolNo}"/>	
-						    </label>
+				<!--여기  -->
+							 <c:choose>
+        							<c:when test="${tool.pinNo != null}">
+            							┃<label>${tool.toolName}
+						       				 <input type="checkbox" id="tool${tool.toolNo}" name="toolCheckBox" value="${tool.toolNo}"
+						       				 checked="checked"/>	
+						    			  </label>
+						        </c:when>         
+						        <c:otherwise>
+						           		┃<label>${tool.toolName}
+						       				 <input type="checkbox" id="tool${tool.toolNo}" name="toolCheckBox" value="${tool.toolNo}"/>	
+						    			  </label>
+						         </c:otherwise>
+					    	</c:choose>
+				
+						    
+						    
 						</c:forEach>
 					<!-- 도구 선택 있나 없나 체크용 히든  -->
 					<input type="hidden" id="toolException" name="toolException" value="1">
@@ -312,13 +331,29 @@
 					<br>
 					<select id="regionNo" name="regionNo" onchange="changeSubRegion()" >
 						<option value="0">=== 지역 선택 ===</option>
-						
 						<c:forEach var="region" items="${regionList}">
-							<option value="${region.regionNo }">${region.regionName }</option>
+						<c:choose>
+   							<c:when test="${region.pinNo != null}">
+           							<option value="${region.regionNo }" selected="selected">${region.regionName }</option>
+					        </c:when>         
+					        <c:otherwise>
+					           		<option value="${region.regionNo }">${region.regionName }</option>
+					         </c:otherwise>
+				    	</c:choose>
 						</c:forEach>
 					</select>
 					<select id="subRegionNo" name="subRegionNo" >
-						<option value="0">========상세 지역 선택=========</option>				
+						<option value="0">========상세 지역 선택=========</option>
+						<c:forEach var="updateSubRegion" items="${updateSubRegionList}">
+						<c:choose>
+   							<c:when test="${updateSubRegion.pinNo != null}">
+           							<option value="${updateSubRegion.subRegionNo }" selected="selected">${updateSubRegion.subRegionName }</option>
+					        </c:when>         
+					        <c:otherwise>
+					           		<option value="${updateSubRegion.subRegionNo }">${updateSubRegion.subRegionName }</option>
+					         </c:otherwise>
+				    	</c:choose>
+						</c:forEach>				
 					</select>
 					<br>
 					<br>
@@ -332,7 +367,7 @@
 				 -->	
 					<div id="ProfileInsertBtns">
 						<button type="submit" hidden="hidden"></button>
-						<button type="button" id="insertFormSubmit">저장</button>
+						<button type="button" id="updateFormSubmit">저장</button>
 						<button type="button" onclick="location.href='MyPage.jsp'">취소</button>
 					</div>
 					

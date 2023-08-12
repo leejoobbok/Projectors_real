@@ -29,11 +29,27 @@ public interface IProfileDAO
 	
 	public ArrayList<ProfileDTO> getSubRegion(String regionNo);
 
+	// ajax 처리를 위한 메소드-----------------
 	public ArrayList<ProfileDTO> getRegion();
 	
 	public ArrayList<ProfileDTO> getPosition();
 	
 	public ArrayList<ProfileDTO> getTool();
+	//------------------------------------=====
+	
+	public int chekUserTool(String pinNo);
+	
+	public void removeUserTool(String pinNo);
+	
+	public void userToolInsert(ProfileDTO profileDTO);
 	
 	
+	// 프로필 수정시 기존 회원 데이터 값을 가지고 오기 위한 메소드
+	public ArrayList<ProfileDTO> getUpdatePosition(String pinNo);
+	
+	public ArrayList<ProfileDTO> getUpdateRegion(String pinNo);
+	
+	public ArrayList<ProfileDTO> getUpdateSubRegion(String pinNo);
+	
+	public ArrayList<ProfileDTO> getUpdateTool(String pinNo);
 }
