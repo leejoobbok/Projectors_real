@@ -3,7 +3,7 @@ package com.projectors.mvc;
 public class FeedDTO
 {
 	private int feedNo;							   // 담벼락 번호
-	private String finalNo, content, createdDate;  // 최종합류번호, 내용, 등록일
+	private String finalNo, nickName, content, createdDate;  // 최종합류번호, 작성자 닉네임, 내용, 등록일
 	
 	// getter setter
 	public int getFeedNo()
@@ -22,6 +22,14 @@ public class FeedDTO
 	{
 		this.finalNo = finalNo;
 	}
+	public String getNickName()
+	{
+		return nickName;
+	}
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
+	}
 	public String getContent()
 	{
 		return content;
@@ -38,6 +46,5 @@ public class FeedDTO
 	{
 		this.createdDate = createdDate;
 	}
-	
 	
 }
