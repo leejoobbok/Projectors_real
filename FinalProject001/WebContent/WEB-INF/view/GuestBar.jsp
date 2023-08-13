@@ -40,6 +40,9 @@
 		width: 20px;
 		height: 20px;
 	}
+	.btn:hover {
+		color: orange;
+	}
 	
 </style>
 
@@ -47,17 +50,14 @@
 
 	$(function()
 	{
-		// 마이페이지
 		$("#loginBtn").click(function()
 		{
-			// alert("마이페이지");
-			$(location).attr("href", "MyPage.jsp");
+			$(location).attr("href", "loginForm.action");
 		});
 		
 		// 문의
 		$("#faqBtn").click(function()
 		{
-			// alert("문의");
 			$(location).attr("href", "FAQLists.jsp");
 		});
 		
