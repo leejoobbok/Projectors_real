@@ -4,7 +4,7 @@ public class MyProjectDTO
 {
 	// 주요 속성 구성
 	// 필수 예상 변수
-	private String pinNo, recruitNo, projectState, prjNo;
+	private String pinNo, recruitNo, recruitName, projectState, prjNo, dDay;
 	private String finalNo;
 	
 	private int count;
@@ -14,7 +14,49 @@ public class MyProjectDTO
 	private String recruitPosNo, posName;
 	
 	private int posNo;	
+	
+	private String prjStart, prjEnd;
 	// getter/ setter 구성
+
+	public String getPrjStart()
+	{
+		return prjStart;
+	}
+
+	public String getdDay()
+	{
+		return dDay;
+	}
+
+	public void setdDay(String dDay)
+	{
+		this.dDay = dDay;
+	}
+
+	public void setPrjStart(String prjStart)
+	{
+		this.prjStart = prjStart;
+	}
+
+	public String getPrjEnd()
+	{
+		return prjEnd;
+	}
+
+	public void setPrjEnd(String prjEnd)
+	{
+		this.prjEnd = prjEnd;
+	}
+
+	public String getRecruitName()
+	{
+		return recruitName;
+	}
+
+	public void setRecruitName(String recruitName)
+	{
+		this.recruitName = recruitName;
+	}
 
 	public String getPinNo()
 	{
