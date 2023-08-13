@@ -109,33 +109,17 @@
 	#feed					/* 담벼락 영역 */
 	{
 		float: left;
-		width: 260px;
+		width: 268px;
 		height: 430px;
 		
 		text-align: center;
 		padding: 5px;
 		margin: 0px 20px 10px 20px;
-		border: 3px solid lightgreen;
+		
+		border: 3px solid #757575;
 		border-radius: 10px;
+		background-color: #a8adad;
 	}
-
-	#feedContent			/* 담벼락 입력된 공간 */
-	{
-		width: 240px;
-		background-color: #d5ffc4;
-		margin: auto;
-		margin-top: 10px;
-		border-radius: 10px;
-	}
-	#feedInsert 			/* 담벼락 입력 창*/
-	{
-		width: 240px;
-		margin: auto;
-		margin-top: 10px ;
-		border-radius: 10px;
-		text-align: left;
-	}
-	
     /*===================================================*/
 	#titleBox 	/* 타이틀 영역 */
 	{
@@ -235,13 +219,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	// 담벼락에 메세지 붙이기
-    function sendFeed()
-	{
-		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
-	}
-	
-	//============================================================================
 	// 삭제 버튼 클릭시 확인받기 
 	function deleteTeamNotice() 
 	{
@@ -279,13 +256,8 @@
          alert(teamNoticeTextArea);
          
          window.location.href = "teamNoticeModify.action?spaceNoticeNo=<%=spaceNoticeNo%>&content=" + teamNoticeTextArea;
-         
      };
-
-	
-	
 </script>
-
 
 </head>
 <body>
@@ -309,7 +281,7 @@
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
-				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
+				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
 				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
 				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
 				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
@@ -324,13 +296,8 @@
 				
 				
 				<!-- ==============[ 담벼락 ] ============= -->
-				<div id="feed" name="FeedSector">
-					<textarea id="feedContent" name="feedContent" id="" cols="50" rows="15" readonly="readonly"></textarea>
-					<br>
-					<textarea id="feedInsert" name="feedInsert"" cols="50 " rows="5"
-								placeholder="내용을 입력하세요."></textarea>
-					<br>
-					<button type="submit" id="feedBtn" name="feedBtn" onclick="sendFeed()">보내기</button>
+				<div id="feed">
+					<jsp:include page="loadFeed.action" />
 				</div>
 				
 				<!-- ===========[ 타이틀 (공지게시판)  ]=========== -->

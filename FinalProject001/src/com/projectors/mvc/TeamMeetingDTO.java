@@ -3,7 +3,7 @@ package com.projectors.mvc;
 public class TeamMeetingDTO
 {	
 	// 회의게시판번호, 최종합류번호(작성자), 제목, 내용, 첨부파일url, 작성일, 회의날짜
-	private String meetingNo, finalNo, title, content, fileUrl, createdDate, meetingDate;
+	private String meetingNo, finalNo, nickName, title, content, fileUrl, createdDate, meetingDate;
 	
 	// getter setter 
 	
@@ -25,6 +25,16 @@ public class TeamMeetingDTO
 	public void setFinalNo(String finalNo)
 	{
 		this.finalNo = finalNo;
+	}
+	
+	public String getNickName()
+	{
+		return nickName;
+	}
+
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
 	}
 
 	public String getTitle()
