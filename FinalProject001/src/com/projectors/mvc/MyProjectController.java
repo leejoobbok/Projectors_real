@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +19,7 @@ public class MyProjectController
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value="/myproject.action", method = RequestMethod.GET)
-	public String myProject(HttpServletRequest request)
+	public String myProject(Model model, HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		
@@ -28,11 +29,9 @@ public class MyProjectController
 		
 		String url="";
 	
-		MyProjectDTO projectInfo =  dao.presentProject(pinNo);
+		MyProjectDTO projectInfoDTO =  dao.presentProject(pinNo);
 		
-		
-		
-		
+		model.addAttribute("projectInfoDTO", projectInfoDTO);
 		
 		url="MyProjectHistory.jsp";
 		
