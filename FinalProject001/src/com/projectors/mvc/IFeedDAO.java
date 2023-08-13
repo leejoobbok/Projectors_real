@@ -8,6 +8,6 @@ public interface IFeedDAO
 	public ArrayList<FeedDTO> loadFeed();
 	
 	// 담벼락에 메세지 등록
-	public int add(FeedDTO dto);
+	public int addFeed(FeedDTO dto);
 	
 }
