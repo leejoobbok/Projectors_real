@@ -4,6 +4,11 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	/* 
+	String pinNo = (String)request.getAttribute("pinNo");
+	if (pinNo != null)
+		pinNo = pinNo.trim();
+	 */
 %>
 <!DOCTYPE html>
 <html>
@@ -29,8 +34,7 @@
 	 
 	function moveArticle(recruitNo)
 	{
-		alert(recruitNo);
-		//recruitarticle.action
+		window.location.href = 'recruitarticle.action?recruitNo=' + recruitNo;
 	}
 	 
 </script>
@@ -46,7 +50,7 @@
 	
 		<!-- header -->
 		<c:choose>
-		<c:when test="${pinNo!=null || pinNo!='' }">
+		<c:when test="${not empty pinNo}">
 			<div class="header-member">
 				<c:import url="memberBar.jsp"></c:import>
 			</div>
@@ -59,7 +63,7 @@
 		</c:choose>
 		
 		<div class="header-logo">
-			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
+			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
 	</div>
@@ -72,7 +76,7 @@
 	<div class="mainContainer">
 		
 		<div class="bannerOuter">
-			프로젝터스에 오신 것을 환영합니다.
+			프로젝터스에 오신 것을 환영합니다. <br>[ 정상로그인 검토 : ${pinNo } ]
 		</div>
 		
 		<button id="goRecruitLists" class="goRecruitListsBtn">모집공고 둘러보기</button>
@@ -83,7 +87,7 @@
 			<div class="recruitList">
 				
 				<c:forEach var="list" items="${lists }" varStatus="status">
-				<div class="recruit" onclick="moveArticle(${list.recruitNo })">
+				<div class="recruit" onclick="moveArticle('${list.recruitNo }')">
 				<ul class="ul1">
 					<li>마감일 | ${list.deadlineDate }</li>
 					<li>${list.title }</li>

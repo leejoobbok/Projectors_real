@@ -233,6 +233,7 @@
 	    // window.location.href = url;
 	}
 	
+	// 프로필 미작성자 / 이미 지원 / 모집 / 팀프로젝트가 있는 사람 예외처리
 	function writeRecruit() {
 		var member = '${pinNo}';
 		if (!(member == null && member == ""))
@@ -241,6 +242,9 @@
 			alert("회원만 모집공고 작성이 가능합니다.");
 	}
 
+	function cannotWriteRecruit() {
+		alert("회원만 모집공고 작성이 가능합니다.");
+	}
 	
 </script>
 
@@ -256,7 +260,7 @@
 	
 		<!-- header -->
 		<c:choose>
-		<c:when test="${pinNo!=null || pinNo!='' }">
+		<c:when test="${not empty pinNo}">
 			<div class="header-member">
 				<c:import url="memberBar.jsp"></c:import>
 			</div>
@@ -269,7 +273,7 @@
 		</c:choose>
 		
 		<div class="header-logo">
-			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
+			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
 	</div>
@@ -340,7 +344,16 @@
 			<div class="recruitLists">
 			
 			<div class="writeBtnArea">
+			
+			<c:choose>
+			<c:when test="${not empty pinNo}">
 				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" class="guestBtn" onclick="cannotWriteRecruit()">공고 작성하기</button>
+			</c:otherwise>
+			</c:choose>
+			
 			</div>
 			<h2 class="smallTitle">모집공고 둘러보기</h2>
 			

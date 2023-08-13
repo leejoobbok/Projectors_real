@@ -15,12 +15,12 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	
-	@font-face {
-    font-family: 'Happiness-Sans-Title';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
-    font-weight: normal;
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
     font-style: normal;
-	}
+}
 
 	.memberMenu
 	{
@@ -33,8 +33,11 @@
 		border: 0;
   		background-color: transparent;
 		font-size: 11pt;
-		font-family:'Happiness-Sans-Title';
+    	font-family: 'SUITE-Regular';
 		
+	}
+	.btn:hover {
+		color: orange;
 	}
 	.profileImg
 	{
@@ -83,7 +86,7 @@
 <body>
 	<div class="memberMenu">
 		
-		<button type="button" class="btn" id="myBtn" ><img class="profileImg" src="<%=cp %>/images/adminPic.png"> 말랑콩떡</button>
+		<button type="button" class="btn" id="myBtn" >마이페이지</button>
 		
 		<button type="button" class="btn" id="msgBtn" >쪽지</button>
 		
