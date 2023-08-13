@@ -121,18 +121,7 @@
 		border-radius: 10px;
 		background-color: #a8adad;
 	}
-	#feedContent			/* 담벼락 입력된 공간 */
-	{	
-		position: absolute;
-		top: 280px;
-		left: 40px;
-		width: 242px;
-		height: 320px;
-		background-color: #d5e9eb;
-		margin: auto;
-		margin-top: 10px;
-		border-radius: 10px;
-	}
+	
 	
 	
 	
@@ -198,11 +187,7 @@
 	window.onresize = setFixedSize;
 	-------------------------------------------------*/
 	
-	// 담벼락에 메세지 붙이기
-    function sendFeed()
-	{
-		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
-	}
+	
 
 </script>
 
@@ -244,9 +229,7 @@
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
-					<div id="feedContent">
-						<jsp:include page="loadFeed.action" />
-					</div>
+					<jsp:include page="loadFeed.action" />
 				</div>	
 				
 				<!-- ===========[ 상단 한 줄 공지 ]=========== -->
