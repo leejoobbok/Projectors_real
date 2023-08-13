@@ -196,7 +196,15 @@ expression must have same datatype as corresponding expression
 -- 댓글 
     CREATE OR REPLACE VIEW REPCOMMNULL
     AS
-    SELECT C.PIN_NO AS reportedUserPinNo
+    SELECT ( SELECT NICKNAME
+            FROM USERS 
+            WHERE PIN_NO = C.PIN_NO 
+            )AS reportedNickName
+        , C.PIN_NO AS reportedUserPinNo
+        , ( SELECT NICKNAME
+            FROM USERS
+            WHERE PIN_NO = RC.PIN_NO 
+            )AS reportNickName
         , RC.PIN_NO AS reportUserPinNo
         , RCR.REGU_DATE AS reguDate
         , RC.REP_COMM_NO AS repNo
@@ -403,7 +411,7 @@ from regulation_period;
     JOIN COMMENTS C
     ON C.COMM_NO = RC.COMM_NO
     WHERE RCR.REGU_DATE IS NOT NULL;
---==>> View REPCOMMNULL이(가) 생성되었습니다.
+--==>> View REPCOMMCOMPLETE이(가) 생성되었습니다.
 
 -- 지원서
     CREATE OR REPLACE VIEW REPAPPLYCOMPLETE
