@@ -16,8 +16,53 @@
 </insert>
 
 <update id="modify">
-	
+	UPDATE MEETING 
+	SET TITLE = #{title}
+	    ,CONTENT = #{content}
+	    ,FILEURL = #{fileUrl}
+	    ,MEETING_DATE = #{meetingDate}
+	WHERE MEETING_NO = #{meetingNo}
 </update>
 
+<delete id="delete">
+	DELETE FROM MEETING
+	WHERE MEETING_NO = #{meetingNo}
+</delete>
+
+<select id="getList" resultType="com.projectors.mvc.TeamMeetingDTO">
+	SELECT SUBSTR(M.MEETING_NO,3) meetingNo
+      , U.NICKNAME nickName
+      , M.TITLE title
+      , M.CREATED_DATE createdDate
+      , M.MEETING_DATE meetingDate
+	FROM MEETING M JOIN FINAL F
+	ON M.FINAL_NO = F.FINAL_NO              
+	    JOIN FIRST_CK FC 
+	    ON F.FIRST_CK_NO = FC.FIRST_CK_NO 
+	        JOIN APPLY A 
+	        ON FC.APPLY_NO = A.APPLY_NO 
+	            JOIN USERS U 
+	            ON A.PIN_NO = U.PIN_NO  
+	WHERE M.FINAL_NO IN('FN1','FN2','FN3') <!-- 같은 팀원들(정적구성) -->
+</select>
+
+<select id="viewArticle" resultType="com.projectors.mvc.TeamMeetingDTO">
+	SELECT SUBSTR(M.MEETING_NO,3) meetingNo
+      , M.TITLE title
+      , M.CONTENT content
+      , NVL(M.FILEURL,'첨부파일없음') fileUrl
+      , U.NICKNAME nickName
+      , M.CREATED_DATE createdDate
+      , M.MEETING_DATE meetingDate
+	FROM MEETING M JOIN FINAL F
+	ON M.FINAL_NO = F.FINAL_NO             
+	    JOIN FIRST_CK FC 
+	    ON F.FIRST_CK_NO = FC.FIRST_CK_NO 
+	        JOIN APPLY A 
+	        ON FC.APPLY_NO = A.APPLY_NO 
+	            JOIN USERS U 
+	            ON A.PIN_NO = U.PIN_NO  
+	WHERE MEETING_NO = #{meetingNo}
+</select>
 
 </mapper>

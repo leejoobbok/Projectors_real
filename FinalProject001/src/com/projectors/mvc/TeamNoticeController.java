@@ -30,52 +30,40 @@ public class TeamNoticeController
 		return result;
 	}
 	
-	
 	//● 공지글 수정 (팀장)
 	@RequestMapping(value = "/teamNoticeModify.action", method = RequestMethod.GET)
 	public String teamNoticeModify(TeamNoticeDTO dto)
 	{
-		//System.out.println(dto.getContent());  //-- 수정한 내용 확인 
 		String result = "";
 		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
-		
 		dao.modify(dto);
 		
 		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
-		
 		return result;
 	}
-	
 	
 	//● 공지글 삭제 (팀장)
 	@RequestMapping(value = "/teamNoticeDelete.action", method = RequestMethod.GET)
 	public String teamNoticeDelete(String spaceNoticeNo)
 	{
 		String result = "";
-		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
-		
 		dao.delete(spaceNoticeNo);
 		
 		result = "redirect:teamNoticeList.action";
-		
 		return result;
 	}
 	//=========================================================================
-	
 	//● 공지글 리스트로 불러오기 (모든 팀원)
 	@RequestMapping(value = "/teamNoticeList.action", method = RequestMethod.GET)
 	public String teamNoticeList(Model model)
 	{
 		String result = "";
-		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
-		
 		model.addAttribute("list", dao.getList());
 		
 		result = "TeamNoticeList.jsp";
-		
 		return result;
 	}
 	
@@ -84,28 +72,12 @@ public class TeamNoticeController
 	public String teamNoticeArticle(String spaceNoticeNo, Model model)
 	{
 		String result = "";
-		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
-		
 		model.addAttribute("teamArticle", dao.viewArticle(spaceNoticeNo));
 		
 		result = "TeamNoticeArticle.jsp";
-		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

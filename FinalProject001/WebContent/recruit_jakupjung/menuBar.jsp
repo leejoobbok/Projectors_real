@@ -32,6 +32,9 @@
 		font-size: 17pt;
 		font-weight: bold;
 	}
+	.Main_category:hover {
+		color: orange;
+	}
 	.Main_category a:hover { color: orange; }
 	.Main_category a:active { color: gold; }
 </style>
