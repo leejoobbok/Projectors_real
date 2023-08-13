@@ -247,7 +247,7 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">회의록</span>
-					<a href="TeamMeetingWrite.jsp">  <!-- ※ 팀원 모두 사용 -->
+					<a href="insertMeeting.action">  <!-- ※ 팀원 모두 사용 -->
 						<button type="button" class="btn" id="writeBtn">회의록 작성</button>
 					</a>
 				</div>
