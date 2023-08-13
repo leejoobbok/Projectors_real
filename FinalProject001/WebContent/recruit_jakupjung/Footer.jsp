@@ -42,6 +42,7 @@
 	{
 		margin-top: 30px;
 		text-align: center;
+		width: 100%;
 	}
 	
 </style>

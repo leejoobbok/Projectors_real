@@ -4,6 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 	body { overflow: hidden;} /* 스크롤 제거*/
 	a{text-decoration: none;} 
 	a:hover{text-decoration: underline;}
+	li{text-decoration: none;}
 	/*===================================================*/
 	#root						   /*루트 박스*/
 	{
@@ -119,26 +121,9 @@
 		border-radius: 10px;
 		background-color: #a8adad;
 	}
-
-	#feedContent			/* 담벼락 입력된 공간 */
-	{
-		width: 240px;
-		background-color: #d5e9eb;
-		margin: auto;
-		margin-top: 10px;
-		border-radius: 10px;
-	}
-	#feedInsert 			/* 담벼락 입력 창*/
-	{
-		width: 220px;
-		margin: auto;
-		margin-top: 10px ;
-		padding: 10px;
-		
-		border-radius: 10px;
-		text-align: left;
 	
-	}
+	
+	
 	
     /*===================================================*/
 	#lineNoticeBox 	/* 한 줄 공지 영역*/
@@ -188,6 +173,7 @@
 	  padding: 10px;
 	}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 <script type="text/javascript">
 	
@@ -201,11 +187,7 @@
 	window.onresize = setFixedSize;
 	-------------------------------------------------*/
 	
-	// 담벼락에 메세지 붙이기
-    function sendFeed()
-	{
-		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
-	}
+	
 
 </script>
 
@@ -246,14 +228,9 @@
 				
 				
 				<!-- ==============[ 담벼락 ] ============= -->
-				<div id="feed" name="FeedSector">
-					<textarea id="feedContent" name="feedContent" id="" cols="50" rows="15" readonly="readonly"></textarea>
-					<br>
-					<textarea id="feedInsert" name="feedInsert"" cols="50 " rows="2"
-								placeholder="내용을 입력하세요."></textarea>
-					<br>
-					<button type="submit" id="feedBtn" name="feedBtn" onclick="sendFeed()">보내기</button>
-				</div>
+				<div id="feed">
+					<jsp:include page="loadFeed.action" />
+				</div>	
 				
 				<!-- ===========[ 상단 한 줄 공지 ]=========== -->
 				<div id="lineNoticeBox">

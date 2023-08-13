@@ -62,6 +62,24 @@ public interface IReportDAO
 	public ArrayList<ReportDTO> noteSearchReportedUserPinNo(String searchVal);
 	// 쪽지 신고처리완료 - 신고 번호 검색
 	public ArrayList<ReportDTO> noteSearchRepNo(String searchVal);
+
+	//--------------------------------------------------------------------------------------
+	
+	// 댓글 리스트
+	public ArrayList<ReportDTO> reportedCommList();
+	// 댓글 신고 처리 insert
+	public int clearManageCommReport(ReportDTO dto);
+	// 댓글 신고 반려 insert
+	public int rejectManageCommReport(ReportDTO dto);
+	
+	// 댓글 신고처리완료 리스트
+	public ArrayList<ReportDTO> commReportComplete();
+	// 댓글 신고처리완료 - 관리자 ID 검색
+	public ArrayList<ReportDTO> commSearchAdminPinNo(String searchVal);
+	// 댓글 신고처리완료 - 유저 닉네임 검색
+	public ArrayList<ReportDTO> commSearchReportedUserPinNo(String searchVal);
+	// 댓글 신고처리완료 - 신고 번호 검색
+	public ArrayList<ReportDTO> commSearchRepNo(String searchVal);
 	
 	
 }
