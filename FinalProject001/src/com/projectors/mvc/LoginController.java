@@ -80,7 +80,8 @@ public class LoginController
 				/*세션에 사용자 pin 등록*/
 				session.setAttribute("pinNo", dao.getUserPin(loginDTO));
 				
-				result="MainPage.jsp";
+				// result="MainPage.jsp";
+				result="redirect:projectorsmain.action";
 				
 			}
 			else
