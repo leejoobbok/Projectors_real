@@ -170,7 +170,62 @@ public class AdminReportController
 	//-------------------------------------------------
 	
 	// ※ 댓글
+	//-- 댓글 신고 처리대기 리스트 페이지
+	@RequestMapping (value = "/reportComm.action", method = RequestMethod.GET)
+	public String reportedCommList(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.reportedCommList());
+		
+		result = "ReportManagementComm.jsp";
+		
+		return result;
+	}
 	
+	//-- 댓글 신고 처리 insert
+	@RequestMapping (value = "/clearManageCommReport.action", method = RequestMethod.GET)
+	public String clearManageCommReport(HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		ReportDTO dto = new ReportDTO();
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setRepNo(request.getParameter("repNo"));
+		dto.setReguNo(request.getParameter("reguNo"));
+		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+		
+		dao.clearManageCommReport(dto);
+
+		result = "redirect:reportComm.action";
+		
+		return result;
+	}
+	
+	//-- 댓글 신고 반려
+	@RequestMapping (value = "/rejectManageCommReport.action", method = RequestMethod.GET)
+	public String rejectManageCommReport(ReportDTO dto, HttpServletRequest request)
+	{
+		String result = "";
+		
+		HttpSession session = request.getSession();
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+		dto.setReguNo(request.getParameter("repNo"));
+		
+		dao.rejectManageCommReport(dto);
+		
+		
+		result = "redirect:reportComm.action";
+		return result;
+	}	
 	//-------------------------------------------------
 	
 	// ※ 쪽지
@@ -318,6 +373,46 @@ public class AdminReportController
 	}
 	// ※ 팀스페이스
 	// ※ 댓글
+	//-- 리스트 출력
+	@RequestMapping (value = "/commManageComplete.action", method = RequestMethod.GET)
+	public String commReportComplete(Model model)
+	{
+		String result = "";
+		
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		model.addAttribute("lists", dao.commReportComplete());
+		
+		result = "ReportManagementCompleteComm.jsp";
+		
+		return result;
+	}
+	//-- 검색 리스트 출력
+	@RequestMapping (value = "/commReportManageCompleteSearch.action", method = RequestMethod.GET)
+	public String commReportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	{
+		String result = "";
+
+		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		
+		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.commSearchAdminPinNo(searchVal));
+		else if (searchKey.equals("2")) 
+			model.addAttribute("lists", dao.commSearchReportedUserPinNo(searchVal));
+		else
+			model.addAttribute("lists", dao.commSearchRepNo(searchVal));
+		
+		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+		//System.out.println(lists);
+		
+		result = "ReportManagementCompleteComm.jsp";
+		
+		return result;
+	}
+	
+	
 	// ※ 쪽지
 	//-- 리스트 출력
 	@RequestMapping (value = "/noteManageComplete.action", method = RequestMethod.GET)
