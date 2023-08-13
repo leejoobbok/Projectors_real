@@ -36,7 +36,7 @@ a
 	<a href="recruitlist.action">공고 둘러보기</a>
 	<a href="MyApply.jsp">나의 지원 이력</a>
 	<a href="MyPostLists.jsp">나의 모집 공고</a>
-	<a href="MyProjectHistory.jsp">나의 프로젝트</a>
+	<a href="myproject.action">나의 프로젝트</a>
 	<a href="TeamSpace.jsp">팀 스페이스</a>
 	<hr>
 </div>
