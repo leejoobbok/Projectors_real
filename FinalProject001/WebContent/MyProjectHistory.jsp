@@ -207,7 +207,7 @@
 		<h2>
 			프로젝트
 			<button type="button" id="showRecruit" name="showRecruit" class="blackBtn"
-			onclick="showRecruit()"	>
+			onclick= "window.location.href='recruitarticle.action?recruitNo=${projectInfoDTO.recruitNo }'"	>
 				현재 프로젝트 공고 보러가기
 			</button>
 			<button type="button" class="ingMember"
@@ -215,8 +215,10 @@
 				팀 스페이스
 			</button>
 		</h2> 
-		주차 시스템 프로젝트 (<span id="dDay">D-14</span>)
-		<p>진행 기간 (2023.01.25 ~ 2023.08.17)</p>
+		${projectInfoDTO.recruitName} (<span id="dDay">D-${projectInfoDTO.dDay }</span>)
+		<br />
+		<h4>나의 포지션: ${projectInfoDTO.posName }</h4>
+		<p>진행 기간 (${projectInfoDTO.prjStart } ~ ${projectInfoDTO.prjEnd })</p>
 
 	</div>
 		
