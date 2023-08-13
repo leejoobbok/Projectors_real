@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스 > 공지 - Projectors </title>
+<title>팀 스페이스 > 회의록 - Projectors </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
@@ -109,31 +109,16 @@
 	#feed					/* 담벼락 영역 */
 	{
 		float: left;
-		width: 260px;
+		width: 268px;
 		height: 430px;
 		
 		text-align: center;
 		padding: 5px;
 		margin: 0px 20px 10px 20px;
-		border: 3px solid lightgreen;
+		
+		border: 3px solid #757575;
 		border-radius: 10px;
-	}
-
-	#feedContent			/* 담벼락 입력된 공간 */
-	{
-		width: 240px;
-		background-color: #d5ffc4;
-		margin: auto;
-		margin-top: 10px;
-		border-radius: 10px;
-	}
-	#feedInsert 			/* 담벼락 입력 창*/
-	{
-		width: 240px;
-		margin: auto;
-		margin-top: 10px ;
-		border-radius: 10px;
-		text-align: left;
+		background-color: #a8adad;
 	}
 	
     /*===================================================*/
@@ -173,7 +158,7 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#teamNoticeListTbl /* 공지글 테이블*/
+	#teamMeetingListTbl /* 회의록 목록 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
@@ -212,11 +197,7 @@
 </style>
 <script type="text/javascript">
 	
-	// 담벼락에 메세지 붙이기
-    function sendFeed()
-	{
-		document.getElementById("feedContent").value += document.getElementById("feedInsert").value;
-	}
+	
 
 </script>
 
@@ -243,7 +224,7 @@
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
-				<div class="index idx4"><a href="TeamMeetingList.jsp">회의록</a></div>
+				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
 				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
 				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
 				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
@@ -258,20 +239,15 @@
 				
 				
 				<!-- ==============[ 담벼락 ] ============= -->
-				<div id="feed" name="FeedSector">
-					<textarea id="feedContent" name="feedContent" id="" cols="50" rows="15" readonly="readonly"></textarea>
-					<br>
-					<textarea id="feedInsert" name="feedInsert"" cols="50 " rows="5"
-								placeholder="내용을 입력하세요."></textarea>
-					<br>
-					<button type="submit" id="feedBtn" name="feedBtn" onclick="sendFeed()">보내기</button>
-				</div>
+				<div id="feed">
+					<jsp:include page="loadFeed.action" />
+				</div>	
 				
 				<!-- ===========[ 타이틀 (회의록 게시판)  ]=========== -->
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">회의록</span>
-					<a href="TeamMeetingInsert.jsp">  <!-- ※ 팀원 모두 사용 -->
+					<a href="TeamMeetingWrite.jsp">  <!-- ※ 팀원 모두 사용 -->
 						<button type="button" class="btn" id="writeBtn">회의록 작성</button>
 					</a>
 				</div>
@@ -282,17 +258,20 @@
 					<table id="teamMeetingListTbl">
 						<tr>
 							<th width="100px">글 번호</th>
-							<th width="300px">제목</th>
+							<th width="400px">제목</th>
 							<th width="200px">회의날짜</th>
 							<th width="200px">작성일</th>
+							<th width="100px">작성자</th>
 						</tr> 
 						<c:forEach var="teamMeeting" items="${list }">
 						<tr>
-							<td>${teamMeeting.spaceNoticeNo }</td>
+							<td>${teamMeeting.meetingNo }</td>
 							<td>
-								<a href="teamMeetingArticle.action?spaceNoticeNo=SN${teamNotice.spaceNoticeNo}">${teamNotice.title }</a>
+								<a href="teamMeetingArticle.action?meetingNo=MT${teamMeeting.meetingNo}">${teamMeeting.title}</a>
 							</td>
+							<td>${teamMeeting.meetingDate }</td>
 							<td>${teamMeeting.createdDate }</td>
+							<td>${teamMeeting.nickName }</td>
 						</tr>
 						</c:forEach>
 					</table><!-- ==== 한 페이지당 n개로 구성 ===== -->
