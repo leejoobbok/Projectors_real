@@ -8,7 +8,7 @@ public interface ITeamMeetingDAO
 	public int add(TeamMeetingDTO dto);			// 등록
 	public int modify(TeamMeetingDTO dto);		// 수정
 	public int delete(String meetingNo);		// 삭제
-	public ArrayList<TeamMeetingDTO> viewArticle(); // 아티클 조회
+	public TeamMeetingDTO viewArticle(String meetingNo); // 아티클 조회
 	
 }
 // dto 속성
