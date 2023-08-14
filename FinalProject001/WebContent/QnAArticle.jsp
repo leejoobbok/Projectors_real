@@ -12,26 +12,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
-	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
-	#logoBox 					   /*로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-		/* border: 1px solid; */
-	}
-	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
-	{
-		text-align: right;
-	}
-	#menuBar					/*메뉴바(메인|공지..)*/
-	{
-		text-align: center;
-		position :sticky;  
-		padding-top: 32px;
-	    top: -32px;
-	}
-	/*==========================================================*/
 
 	/* 헤더 */
 	div>h1
@@ -115,14 +95,30 @@
 <body>
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		
-		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
-			<c:import url="UpperBar.jsp"></c:import>
+		<div class="header">
+	
+		<!-- header -->
+		<c:choose>
+		<c:when test="${not empty pinNo}">
+			<div class="header-member">
+				<c:import url="memberBar.jsp"></c:import>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="header-member">
+				<c:import url="GuestBar.jsp"></c:import>
+			</div>
+		</c:otherwise>
+		</c:choose>
+		
+		<div class="header-logo">
+			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
-		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="MainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
-		</div>	
-		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
-			<c:import url="Bar.jsp"></c:import>
+		
+		</div>
+		
+		<div class="header-menu">
+			<c:import url="menuBar.jsp"></c:import>
 		</div>
 		<!-- ============================================================= -->
 		
