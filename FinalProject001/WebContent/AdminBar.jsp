@@ -56,7 +56,7 @@ table
 			<th style="border: none;"><a href="mainNoticeList.action">공지사항</a></th>
 			<th style="border: none;"><a href="reportRecruit.action">신고관리</a></th>
 			<th style="border: none;"><a href="faqManagement.action">FAQ/문의관리</a></th>
-			<th style="border: none;"><a href="ContentsManagement.jsp">컨텐츠관리</a></th>
+			<th style="border: none;"><a href="contentsManagement.action">컨텐츠관리</a></th>
 			<th style="border: none;"><a href="UserManagement.jsp">회원관리</a></th>
 		</tr>
 	</table>
