@@ -26,6 +26,14 @@ public class ProfileController
 	@Autowired
 	private SqlSession sqlSession;
 
+	@RequestMapping(value="/mypage.action", method = RequestMethod.GET)
+	public String myPage()
+	{
+		return "/WEB-INF/view/MyPage.jsp";
+	}
+	
+	
+	
 	@RequestMapping(value = "/profileview.action", method = RequestMethod.GET)
 	public String profileView(Model model, HttpServletRequest request)
 	{
@@ -68,7 +76,7 @@ public class ProfileController
 
 		model.addAttribute("totalRate", totalRate);
 
-		url = "ProfileView.jsp";
+		url = "/WEB-INF/view/ProfileView.jsp";
 
 		return url;
 
@@ -102,7 +110,7 @@ public class ProfileController
 		model.addAttribute("regionList", regionList);
 		
 		
-		url = "ProfileInsert.jsp";
+		url = "/WEB-INF/view/ProfileInsert.jsp";
 		return url;
 
 	}
@@ -143,7 +151,7 @@ public class ProfileController
 		
 		
 		
-		url="ProfileUpdateForm.jsp";
+		url="/WEB-INF/view/ProfileUpdateForm.jsp";
 		return url;
 		
 	}
@@ -236,7 +244,7 @@ public class ProfileController
 			
 		  }
 		  
-		  url = "redirect:MyPage.jsp";
+		  url = "redirect:mypage.action";
 		  return url;
 		  
 	  }
@@ -296,13 +304,33 @@ public class ProfileController
 			
 		  }
 		  
-		  url = "redirect:MyPage.jsp";
+		  url = "redirect:mypage.action";
 		  return url;
 		  
 	  }
 	  
 	  
+	  @RequestMapping(value="/accountManage.action", method = RequestMethod.GET)
+	  public String accountManageMent()
+	  {
+		  
+		  
+		  return "/WEB-INF/view/AccountManagement.jsp";
+	  }
 	  
+	  
+	  @RequestMapping(value="/changePassword.action", method = RequestMethod.GET)
+	  public String changePassword()
+	  {
+		  return "/WEB-INF/view/ChangePassword.jsp";
+		  
+	  }
+	  
+	  @RequestMapping(value="/leave.action", method = RequestMethod.GET)
+	  public String leave()
+	  {
+		  return "/WEB-INF/view/Leave.jsp";
+	  }
 	  
 	  
 
