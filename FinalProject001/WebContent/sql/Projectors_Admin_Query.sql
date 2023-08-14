@@ -301,6 +301,9 @@ SELECT REPORTEDUSERPINNO, REPORTUSERPINNO, REGUDATE, REPNO, POSTNO, REPORTDATE, 
 FROM REPRECRUITNULL
 ;
 
+select *
+from recruit;
+
 -- ÂÊÁö
     CREATE OR REPLACE VIEW REPNOTENULL
     AS
@@ -345,6 +348,13 @@ NOCACHE;
 
 SELECT *
 FROM NOTE;
+
+		SELECT SUM(COUNTALL) AS COUNTALL
+		     , SUM(COUNTPOS) AS COUNTPOS
+		     , RECRUITNO
+		FROM RECRUITPOSITIONVIEW
+		WHERE RECRUITNO LIKE '%' || 'RC1'
+		GROUP BY RECRUITNO;
 
 SELECT *
   FROM all_sequences
@@ -577,6 +587,8 @@ FROM USERS;
     ;
 
 
+select *
+from users;
 
 --==============================================================================
 select *
@@ -590,3 +602,5 @@ set pin_no ='UP5'
 where RECRUIT_NO='RC8';
 
 commit;
+--==============================================================================
+
