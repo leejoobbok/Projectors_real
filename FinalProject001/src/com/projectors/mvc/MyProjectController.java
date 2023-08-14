@@ -56,7 +56,7 @@ public class MyProjectController
 		}
 		
 		
-		url="MyProjectHistory.jsp";
+		url="/WEB-INF/view/MyProjectHistory.jsp";
 		
 		return url;
 	}
@@ -101,7 +101,7 @@ public class MyProjectController
 		
 		
 	
-		url="MyPastProjectHistory.jsp";
+		url="/WEB-INF/view/MyPastProjectHistory.jsp";
 		
 		return url;
 	}
