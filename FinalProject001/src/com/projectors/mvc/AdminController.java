@@ -33,7 +33,7 @@ public class AdminController
 		model.addAttribute("newReportCnt", dao.newReportCnt());
 		model.addAttribute("newQuestionCnt", dao.newQuestionCnt());
 		
-		result = "/AdminMainPage.jsp";
+		result = "/WEB-INF/view/AdminMainPage.jsp";
 		
 		return result;
 	}
