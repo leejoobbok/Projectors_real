@@ -44,7 +44,7 @@
 	<div style="background-color: white;">
 	<div class="Main_category_Outer">
 	<br>
-		<a class="Main_category" href="">메인</a>
+		<a class="Main_category" href="projectorsmain.action">메인</a>
 		<a class="Main_category" href="">공지</a>
 		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
 		<a class="Main_category" href="">나의 지원 이력</a>
