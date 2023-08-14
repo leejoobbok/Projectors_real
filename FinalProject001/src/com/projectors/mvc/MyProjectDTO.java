@@ -16,7 +16,19 @@ public class MyProjectDTO
 	private int posNo;	
 	
 	private String prjStart, prjEnd;
+	
+	private String nickname;
 	// getter/ setter 구성
+
+	public String getNickname()
+	{
+		return nickname;
+	}
+
+	public void setNickname(String nickname)
+	{
+		this.nickname = nickname;
+	}
 
 	public String getPrjStart()
 	{
