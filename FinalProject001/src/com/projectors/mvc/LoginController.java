@@ -57,7 +57,7 @@ public class LoginController
 				/*세션에 관리자 pin 등록*/
 				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
 				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
-				dao.loginRec(dao.getUserPin(loginDTO));
+				/* dao.loginRec(dao.getUserPin(loginDTO)); */
 				
 			}
 			else

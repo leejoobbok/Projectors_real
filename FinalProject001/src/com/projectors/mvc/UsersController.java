@@ -232,7 +232,7 @@ public class UsersController
 		
 		model.addAttribute("lists", dao.list());
 		
-		result = "UserManagement.jsp";
+		result = "/WEB-INF/view/UserManagement.jsp";
 		
 		return result;
 	}
@@ -250,7 +250,7 @@ public class UsersController
 		else if (searchKey.equals("2"))
 			model.addAttribute("lists", dao.searchNickname(searchValue));
 			
-		result = "UserManagement.jsp";
+		result = "/WEB-INF/view/UserManagement.jsp";
 			
 		return result;
 	}
