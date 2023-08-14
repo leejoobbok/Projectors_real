@@ -11,6 +11,8 @@ public class LoginDTO
    	//-- 로그인 시 데이터 조회 되었는지 확인하는 COUNT (0 또는 1)
    	
    	private String managerCheck;
+   	
+   	private String logInDate;
 
 	public String getAdminNo()
 	{
@@ -70,6 +72,16 @@ public class LoginDTO
 	public void setManagerCheck(String managerCheck)
 	{
 		this.managerCheck = managerCheck;
+	}
+
+	public String getLogInDate()
+	{
+		return logInDate;
+	}
+
+	public void setLogInDate(String logInDate)
+	{
+		this.logInDate = logInDate;
 	}
 
    	
