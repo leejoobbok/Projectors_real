@@ -167,12 +167,12 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="MyProjectHistory.jsp">진행 중인 프로젝트</a>
+			<a href="myproject.action">진행 중인 프로젝트</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="MyPastProjectHistory.jsp">과거 프로젝트 이력</a>
+			<a href="myPastProject.action">과거 프로젝트 이력</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
@@ -192,7 +192,8 @@
 		</h2>
 		
 		<div class="right-left">	
-			<p id="pastProjectCount">과거 프로젝트 수 <b>17</b></p>		
+			<p id="pastProjectCount">과거 프로젝트 수 
+			<b>${checkPastProject}</b></p>		
 		</div>
 		<div id="projectInfo">
 			<table id="pastPrjLists">
@@ -206,13 +207,24 @@
 					<th>팀 스페이스</th>
 					<th>평가</th>
 				</tr>
+				<c:choose>
+					<c:when test="${checkPastProject == 0 }">
+						<td colspan="8"><b>진행되었던 과거 프로젝트 이력이 존재하지 않습니다.</b></td>
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>	
+				
+			
+				<c:forEach var="pastProject" items="${pastProjectDTO}">
 				<tr>
-					<td>8211</td>
-					<td>키오스크 프로젝트</td>
-					<td>2023.10.21 ~ 2024.02.07</td>
-					<td>9</td>
-					<td>백엔드</td>
-					<td><span class="prjStatus">완료</span></td>
+					<td>${pastProject.prjNo }</td>
+					<td>${pastProject.recruitName }</td>
+					<td>${pastProject.prjStart } ~ ${pastProject.prjEnd }</td>
+					<td>${pastProject.count }</td>
+					<td>${pastProject.posName }</td>
+					<td><span class="prjStatus">완료(정적)</span></td>
 					<td>
 						<button type="button" class="ingMember"
 						onclick="moveToTeamSpace()">
@@ -226,206 +238,7 @@
 						</button>
 					</td>
 				</tr>
-				<tr>
-					<td>9567</td>
-					<td>여행 플래너 프로젝트</td>
-					<td>2023.07.01 ~ 2023.08.19</td>
-					<td>4</td>
-					<td>프론트엔드</td>
-					<td><span class="prjStatus">완료(이탈)</span></td>
-					<td>
-						<button type="button" class="outMember" disabled="disabled"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="outMember" disabled="disabled"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
-						<tr>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td>:</td>
-					<td><span class="prjStatus">:</span></td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="moveToTeamSpace()">
-							이동
-						</button>
-					</td>
-					<td>
-						<button type="button" class="ingMember"
-						onclick="rateAllMember()">
-							팀원 평가
-						</button>
-					</td>
-				</tr>
+				</c:forEach>			
 
 			</table>			
 		</div>
