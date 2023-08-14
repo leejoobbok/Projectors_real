@@ -13,6 +13,7 @@
 
 <style>
 	
+	*{font-size: 10pt;}
 	ul, li{list-style: none;}
 	ul
 	{
@@ -39,11 +40,11 @@
 		display: inline-block;
 		text-align: left;
 		background-color: #fcf153;
+		
 		margin: 8px 0px;
 		margin-bottom: 2px;
 		padding: 4px 10px;
 		border-radius: 10px;
-		
 		width: 180px;
 		
 	}
