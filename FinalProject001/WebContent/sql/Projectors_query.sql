@@ -1950,7 +1950,8 @@ FROM (
     LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
     LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
     WHERE SYSDATE > REC.PRJ_END AND AP.PIN_NO = 'UP42'
-) COMBINED_RESULTS;
+) COMBINED_RESULTS
+ORDER BY PRJ_END DESC;
 
 
 
@@ -2008,5 +2009,145 @@ WHERE AP.PIN_NO = 'UP42' AND PRJ.PRJ_NO NOT IN
                                                                                                          )
                                         );
                                         
+
+
+
+-- 멤버 정보 확인
+SELECT FN.FINAL_NO AS FINALNO, US.NICKNAME AS NICKNAME, POS.POS_NAME AS POSNAME
+FROM RECRUIT_POS RP
+LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+LEFT JOIN USERS US ON AP.PIN_NO = US.PIN_NO
+LEFT JOIN POSITION POS ON RP.POS_NO = POS.POS_NO
+LEFT JOIN FIRST_CK FS ON AP.APPLY_NO = FS.APPLY_NO
+LEFT JOIN FINAL FN ON FS.FIRST_CK_NO = FN.FIRST_CK_NO
+WHERE RP.RECRUIT_NO='RC4';
+
+-- 멤버 구성 확인
+SELECT POS.POS_NAME AS POSNAME, COUNT(POS.POS_NAME) AS COUNT
+FROM RECRUIT_POS RP
+LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+LEFT JOIN USERS US ON AP.PIN_NO = US.PIN_NO
+LEFT JOIN POSITION POS ON RP.POS_NO = POS.POS_NO
+LEFT JOIN FIRST_CK FS ON AP.APPLY_NO = FS.APPLY_NO
+LEFT JOIN FINAL FN ON FS.FIRST_CK_NO = FN.FIRST_CK_NO
+WHERE RP.RECRUIT_NO='RC4'
+GROUP BY POS.POS_NAME;
+
+
+
+-- 멤버수 확인
+SELECT COUNT(FN.FINAL_NO) AS COUNT
+FROM RECRUIT_POS RP
+LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+LEFT JOIN USERS US ON AP.PIN_NO = US.PIN_NO
+LEFT JOIN POSITION POS ON RP.POS_NO = POS.POS_NO
+LEFT JOIN FIRST_CK FS ON AP.APPLY_NO = FS.APPLY_NO
+LEFT JOIN FINAL FN ON FS.FIRST_CK_NO = FN.FIRST_CK_NO
+WHERE RP.RECRUIT_NO='RC4';
+
+
+-- 현재 진행 중인 공고아 있는지 확인 (예외처리용)
+SELECT COUNT(*)
+FROM PROJECT PRJ
+LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
+WHERE AP.PIN_NO = 'UP42' AND PRJ.PRJ_NO NOT IN 
+                                         ( SELECT DISTINCT PRJ_NO
+                                            FROM (
+                                                -- (1) 개인 나가기 된 프로젝트 조회
+                                                SELECT PRJ.PRJ_NO
+                                                FROM MEMBER_OUT MO
+                                                LEFT JOIN FINAL FN ON MO.FINAL_NO = FN.FINAL_NO
+                                                LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+                                                LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+                                                LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
+                                                LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN PROJECT PRJ ON REC.RECRUIT_NO = PRJ.RECRUIT_NO
+                                                WHERE AP.PIN_NO = 'UP42'
+                                                
+                                                UNION
+                                                
+                                                -- (2) PROJECT_STOP에 있는 프로젝트 리스트 가져오기
+                                                SELECT PS.PRJ_NO
+                                                FROM PROJECT_STOP PS
+                                                LEFT JOIN PROJECT PRJ ON PS.PRJ_NO = PRJ.PRJ_NO
+                                                LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+                                                LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+                                                WHERE AP.PIN_NO = 'UP42'
+                                                
+                                                UNION
+                                                
+                                                -- (3) 정상 완료된 프로젝트 조회
+                                                SELECT PRJ.PRJ_NO
+                                                FROM PROJECT PRJ
+                                                LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+                                                LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+                                                WHERE SYSDATE > REC.PRJ_END AND AP.PIN_NO = 'UP42'
+                                                                                                         )
+                                        );
+
+
+-- 과거 진행 중인 공고가 있는지 확인 (예외처리용)
+SELECT DISTINCT COUNT(*) AS COUNT
+FROM (
+    -- (1) 개인 나가기된 프로젝트 조회
+    SELECT PRJ.PRJ_NO, REC.RECRUIT_NO, REC.TITLE, REC.PRJ_START, REC.PRJ_END, POS.POS_NAME
+    FROM MEMBER_OUT MO
+    LEFT JOIN FINAL FN ON MO.FINAL_NO = FN.FINAL_NO
+    LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+    LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+    LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
+    LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN PROJECT PRJ ON REC.RECRUIT_NO = PRJ.RECRUIT_NO
+    LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
+    WHERE AP.PIN_NO = 'UP42'
+    
+    UNION
+    
+    -- (2) PROJECT_STOP에 있는 프로젝트 리스트 가져오기
+    SELECT PS.PRJ_NO, REC.RECRUIT_NO, REC.TITLE, REC.PRJ_START, REC.PRJ_END, POS.POS_NAME
+    FROM PROJECT_STOP PS
+    LEFT JOIN PROJECT PRJ ON PS.PRJ_NO = PRJ.PRJ_NO
+    LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+    LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+    LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
+    WHERE AP.PIN_NO = 'UP42'
+    
+    UNION
+    
+    -- (3) 정상 완료된 프로젝트 조회
+    SELECT PRJ.PRJ_NO, REC.RECRUIT_NO, REC.TITLE, REC.PRJ_START, REC.PRJ_END, POS.POS_NAME
+    FROM PROJECT PRJ
+    LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+    LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+    LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
+    WHERE SYSDATE > REC.PRJ_END AND AP.PIN_NO = 'UP42'
+) COMBINED_RESULTS
+ORDER BY PRJ_END DESC;
+
+-- 로그인 로그 기록 남기기
+DESC LOGIN_REC;
+/*
+LOGIN_REC  NOT NULL NUMBER       
+PIN_NO     NOT NULL VARCHAR2(16) 
+LOGIN_DATE          DATE         
+*/
+
+-- 로그인 로그 시퀀스 생성
+CREATE SEQUENCE LOGINRECSEQ
+NOCACHE;
+
+
+SELECT * FROM LOGIN_REC;
+
+
+SELECT *
+FROM 
 
 
