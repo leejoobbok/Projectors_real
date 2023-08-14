@@ -29,7 +29,7 @@ public class ApplyController
 		model.addAttribute("recruitInfo", dao.recruitInfo(recruitPosNo));
 		System.out.println(5);
 		
-		return "/recruit_jakupjung/ApplyForm.jsp";
+		return "/WEB-INF/view/ApplyForm.jsp";
 	}
 
 	

@@ -135,10 +135,17 @@ public class UsersController
 		dao.addPin();
 		dao.addUsers(usersDTO);
 
-		return "redirect:projectorsmain.action";
-		
+		return "aftercreateaccount.action";
 		
 	}
+	
+	@RequestMapping(value="/aftercreateaccount.action", method=RequestMethod.GET)
+	public String afterCreateAccount()
+	{
+		return "/WEB-INF/view/AfterCreateAccount.jsp";
+		
+	}
+	
 	
 	
 	@RequestMapping(value="photoUpdateForm.action", method=RequestMethod.GET)
@@ -156,7 +163,7 @@ public class UsersController
 		
 		model.addAttribute("photourl", photourl);
 		
-		url="PhotoUpdate.jsp";
+		url="/WEB-INF/view/PhotoUpdate.jsp";
 		return url;
 	}
 	

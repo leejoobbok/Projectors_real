@@ -91,7 +91,7 @@ public class QnaQController
 		
 		model.addAttribute("qListForAdmin", dao.getAllQList());
 		//result = "/WEB-INF/view/AnswerManagement.jsp";
-		result = "AnswerManagement.jsp";
+		result = "/WEB-INF/view/AnswerManagement.jsp";
 		return result;
 	}
 	
@@ -110,7 +110,7 @@ public class QnaQController
 		    model.addAttribute("qArticleForAdmin", qArticleForAdmin);
 			model.addAttribute("aArticleForAdmin", aArticleForAdmin);
 			
-			result = "AnswerManagementArticle.jsp";
+			result = "/WEB-INF/view/AnswerManagementArticle.jsp";
 			
 			System.out.println();
 		    return result; 
