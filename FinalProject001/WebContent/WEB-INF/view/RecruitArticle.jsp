@@ -27,7 +27,7 @@ $().ready(function()
 	$("#reportBtn").click(function()
 	{
 		var recruitNo = $(this).val();
-        var url = popUpRecruitReport.action?recruitNo= + recruitNo;
+        var url = 'popUpRecruitReport.action?recruitNo=' + recruitNo;
         var options = "left=500,top=300,width=520,height=520,resizable=no,location=no";
         
         window.open(url, 'reportRecruit', options);
