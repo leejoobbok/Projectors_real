@@ -47,8 +47,8 @@
 		<a class="Main_category" href="projectorsmain.action">메인</a>
 		<a class="Main_category" href="">공지</a>
 		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
-		<a class="Main_category" href="">나의 지원 이력</a>
-		<a class="Main_category" href="">나의 모집 공고</a>
+		<a class="Main_category" href="myapply.action">나의 지원 이력</a>
+		<a class="Main_category" href="mypost.action">나의 모집 공고</a>
 		<a class="Main_category" href="myproject.action">나의 프로젝트</a>
 		<a class="Main_category" href="">팀 스페이스</a>
 	</div>
