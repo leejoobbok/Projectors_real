@@ -36,4 +36,9 @@ public interface IUsersDAO
 	public void removePhoto(String pinNo);
 	
 	public void updatePhoto(UsersDTO usersDTO);
+	
+	//-- 회원 검색 관련 메소드
+	public ArrayList<UsersDTO> searchId(String searchValue);
+	public ArrayList<UsersDTO> searchNickname(String searchValue);
+
 }
