@@ -15,4 +15,13 @@ public interface IMyProjectDAO
 	public String getProjectNo(String recruitNo);
 	
 	public ArrayList<MyProjectDTO> getMember(String recruitNo);
+	
+	public ArrayList<MyProjectDTO> positionCount(String recruitNo);
+	
+	public int getMemberCount(String recruitNo);
+	
+	public int checkPresentProject(String pinNo);
+	
+	public int checkPastProject(String pinNo);
+
 }

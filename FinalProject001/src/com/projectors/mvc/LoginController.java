@@ -57,6 +57,7 @@ public class LoginController
 				/*세션에 관리자 pin 등록*/
 				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
 				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
+				dao.loginRec(dao.getUserPin(loginDTO));
 				
 			}
 			else
@@ -75,10 +76,11 @@ public class LoginController
 				/*사용자 핀 번호 찾는 메소드로
 				  핀번호 구하고 세션에 넣을 자리*/
 				
-				System.out.println("LoginController에서의 핀넘버"+dao.getUserPin(loginDTO));
+				System.out.println("LoginController_사용자 핀넘버 : "+dao.getUserPin(loginDTO));
 				
 				/*세션에 사용자 pin 등록*/
 				session.setAttribute("pinNo", dao.getUserPin(loginDTO));
+				dao.loginRec(dao.getUserPin(loginDTO));
 				
 				// result="MainPage.jsp";
 				result="redirect:projectorsmain.action";
