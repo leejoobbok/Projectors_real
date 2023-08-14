@@ -48,10 +48,16 @@
 	#msgListTable   /* 테이블 */
 	{
 		width: 714px;
+		margin: auto;
+
 	}
 	
 	#tHead	/* 리스트의 th */
-	{font-size: 11pt; font-weight: bold;}
+	{
+		font-size: 11pt; 
+		font-weight: bold;
+		background-color: pink;
+	}
 	
 	.rows	/* 리스트 row들 */
 	{
@@ -114,83 +120,95 @@
 				<button type=button  class="btn">보낸 쪽지 </button>	
 			</div>
 			<hr>
-				<table id="msgListTable">
-					<tr id="tHead">
-						<th>확인</th>
-						<th>보낸 사람</th>
-						<th>내용</th>
-						<th>발송 일시</th>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Closed.png" style="width:30px"></td>
-						<td>관리자</td>
-						<td>
-							<a href="MsgRead.jsp">[안내] 이용 규칙 위반으로 계정이 7일간 정지됩니다. 상세 내용: 어쩌구..</a>
-						</td>
-						<td>2023.08.05 [10:35]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>진주는펄</td>
-						<td>
-							<a href="MsgRead.jsp">안녕 나는 반짝이는 진주야~*^^* 나랑 프로젝트 할래?</a>
-						</td>
-						<td>2023.08.03 [10:03]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Closed.png" style="width:30px"></td>
-						<td>송풍기</td>
-						<td>
-							<a href="MsgRead.jsp">난 우주 최고 짐승돌 송풍기야 ^_6 내 유튜브 구독해줘♡</a>
-						</td>
-						<td>2023.08.02 [14:01]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>운영자</td>
-						<td>
-							<a href="MsgRead.jsp">[안내] 제출하신 지원서가 처리되었습니다. 결과를 확인해주세요!</a>
-						</td>
-						<td>2023.08.01 [09:30]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>운영자</td>
-						<td>
-							<a href="MsgRead.jsp">[안내] 등록하신 공고의 모집이 완료되었습니다! 26일 단 하루! 꼭 접속...</a>
-						</td>
-						<td>2023.06.24 [11:29]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>운영자</td>
-						<td>
-							<a href="MsgRead.jsp">[안내] 확인하지 않은 지원서가 2개 있습니다! </a>
-						</td>
-						<td>2023.06.12 [10:35]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>운영자</td>
-						<td>
-							<a href="MsgRead.jsp">[안내] 모집글을 올리셨네요! 중요한 사항을 몇 가지 안내해드립니다..</a>
-						</td>
-						<td>2023.06.12 [09:30]</td>
-					</tr>
-					<tr class="rows">
-						<td><img src="images/Opened.png" style="width:30px"></td>
-						<td>운영자</td>
-						<td>
-							<a href="MsgRead.jsp">새로운 프로젝터 한아둘셋 님! 만나서 반갑습니다 :)... </a>
-						</td>
-						<td>2023.06.12 [09:30]</td>
-					</tr>
-				</table>
-				<hr>
-				
-				<div id="pageNumBox">
-					<p> ◀ 1 2 3 4 5 ▶</p>
-				</div>
+			<table id="msgListTable">
+				<tr id="tHead">
+					<th style="width:5%">확인</th>
+					<th style="width:10%;">보낸 사람</th>
+					<th style="width:64%">제목</th>
+					<th style="width:16%">발송 일시</th>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Closed.png" style="width:30px"></td>
+					<td style="font-weight: bold;">
+						<a href="">관리자</a>
+					</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 계정 정지가 해제되었습니다.</a>
+					</td>
+					<td>2023.08.11 [10:15]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Closed.png" style="width:30px"></td>
+					<td style="font-weight: bold;">
+						<a href="">관리자</a>
+					</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 이용 규칙 위반으로 계정이 7일간 정지됩니다.</a>
+					</td>
+					<td>2023.08.05 [10:35]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>진주는펄</td>
+					<td>
+						<a href="MsgRead.jsp">안녕 나는 반짝이는 진주야~*^^* 나랑 프로젝트 할래?</a>
+					</td>
+					<td>2023.08.03 [10:03]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Closed.png" style="width:30px"></td>
+					<td>송풍기</td>
+					<td>
+						<a href="MsgRead.jsp">난 우주 최고 짐승돌 송풍기야 ^_6 내 유튜브 구독해줘♡</a>
+					</td>
+					<td>2023.08.02 [14:01]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>운영자</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 제출하신 지원서가 처리되었습니다. 결과를 확인해주세요!</a>
+					</td>
+					<td>2023.08.01 [09:30]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>운영자</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 등록하신 공고의 모집이 완료되었습니다! </a>
+					</td>
+					<td>2023.06.24 [11:29]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>운영자</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 확인하지 않은 지원서가 2개 있습니다! </a>
+					</td>
+					<td>2023.06.12 [10:35]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>운영자</td>
+					<td>
+						<a href="MsgRead.jsp">[안내] 모집글을 올리셨네요! 중요한 사항을 몇 가지 안내해드립니다.</a>
+					</td>
+					<td>2023.06.12 [09:30]</td>
+				</tr>
+				<tr class="rows">
+					<td><img src="images/Opened.png" style="width:30px"></td>
+					<td>운영자</td>
+					<td>
+						<a href="MsgRead.jsp">새로운 프로젝터 한아둘셋 님! 만나서 반갑습니다 :)</a>
+					</td>
+					<td>2023.06.12 [09:30]</td>
+				</tr>
+			</table>
+			<hr>
+			
+			<div id="pageNumBox">
+				<p> ◀ 1 2 3 4 5 ▶</p>
+			</div>
 			
 		</div><!-- end of #innerBox div -->
 	</div>
