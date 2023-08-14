@@ -9,6 +9,8 @@ public class UsersDTO
 	private String userPwCk;
 	private int count;
 	
+	private String joinDate;
+	
 	//getter / setter
 	public String getUserNo()
 	{
@@ -74,13 +76,14 @@ public class UsersDTO
 	{
 		this.count = count;
 	}
+	public String getJoinDate()
+	{
+		return joinDate;
+	}
+	public void setJoinDate(String joinDate)
+	{
+		this.joinDate = joinDate;
+	}
 
-	
-	
-
-
-	
-
-	
 	
 }
