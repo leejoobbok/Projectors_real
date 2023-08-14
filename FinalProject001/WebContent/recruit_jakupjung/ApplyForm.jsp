@@ -75,7 +75,7 @@
 			<span class="smallTitle">나의 프로필</span><button class="updateProfileBtn">프로필 수정하기</button><br>
 			<div class="myProfile">
 				<div class="photo">
-					<img class="img" alt="profileImg" src="<%=cp %>/images/${memberInfo.photoUrl }">
+					<img class="img" alt="profileImg" src="<%=cp %>/${memberInfo.photoUrl }">
 				</div>
 				<div class="etc">
 				닉네임 : ${memberInfo.nickName }<br>
@@ -98,40 +98,6 @@
 			<button class="submitBtn">제출하기</button>
 			</div>
 			
-			
-			<!-- 
-			프로필 가져오기
-			<span class="smallTitle">나의 프로필</span><button class="updateProfileBtn">프로필 수정하기</button><br>
-			<div class="myProfile">
-				<div class="photo">
-				 ㅁㅁㅁㅁㅁㅁ<br>
-				 ㅁㅁㅁㅁㅁㅁ<br>
-				 ㅁㅁㅁㅁㅁㅁ<br>
-				 ㅁㅁㅁㅁㅁㅁ<br>
-				 ㅁㅁㅁㅁㅁㅁ<br>
-				</div>
-				<div class="etc">
-				닉네임 : ㅁㅁㅁ<br>
-				활동지역 : ㅁㅁㅁ<br>
-				사용가능 언어 및 환경<br>
-				: &nbsp; <span>Java &nbsp;&nbsp;</span><span>JavaScript</span>
-				</div>
-			</div>
-			
-			
-			지원 폼
-			<div class="applyFormOuter">
-			
-			<span class="smallTitle">지원하는 프로젝트</span> : ㅁㅁㅁㅁㅁㅁ<br>
-			<span class="smallTitle">지원하는 포지션</span> : ㅁㅁㅁㅁㅁㅁ<br><br>
-			
-			<textarea class="applyContent" rows="10" cols="70" placeholder="전달하고 싶은 내용을 작성해주세요."></textarea>
-			</div>end.applyFormOuter
-			
-			<div class="submitBtnDiv">
-			<button class="submitBtn">제출하기</button>
-			</div>
-			 -->
 			
 			</div><!-- end.myProfileOuter -->
 		</div> <!-- end.container -->
