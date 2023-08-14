@@ -124,8 +124,10 @@ String cp = request.getContextPath();
 		<div id="myPageBox">
 
 			<div id="myPageMenus">
-				<span id="myPageTitle">마이페이지</span> <a href="MyPage.jsp">내 프로필</a> <a
-					href="MyPage.jsp">찜한 모집 공고</a> <a href="#myAccount" id="myAccount">계정관리</a>
+				<span id="myPageTitle">마이페이지</span> <a href="mypage.action">내
+					프로필</a>
+				<!-- <a href="MyPage.jsp">찜한 모집 공고</a> -->
+				<a href="accountManage.action" id="myAccount">계정관리</a>
 			</div>
 
 			<!-- ===== 계정 관리 =====-->
@@ -133,10 +135,12 @@ String cp = request.getContextPath();
 				<!-- <h2 class="smallTitile">계정 관리</h2> -->
 
 				<!-- 비밀번호 변경 -->
-				<c:import url="ChangePassword.jsp"></c:import>
+				<button type="button" onclick="window.location.href='changePassword.action'">비밀번호 변경</button>
+				<%-- <c:import url="changePassword.action"></c:import> --%>
 
 				<!-- 회원 탈퇴 -->
-				<c:import url="Leave.jsp"></c:import>
+				<button type="button" onclick="window.location.href='leave.action'">회원 탈퇴</button>
+				<%-- <c:import url="Leave.jsp"></c:import> --%>
 			</div>
 
 		</div>
