@@ -49,7 +49,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.reportedRecruitList());
 		
-		result = "ReportManagement.jsp";
+		result = "/WEB-INF/view/ReportManagement.jsp";
 		
 		return result;
 	}
