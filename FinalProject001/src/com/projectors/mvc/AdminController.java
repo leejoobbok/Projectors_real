@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -227,17 +230,40 @@ public class AdminController
 	
 	//========================================= 문의관리 > FAQ ====================================
 	
-	//========================= 문의관리 > 1:1 문의에 답변 등록 ====================================
+	//=================================== 공고 리스트 관리 ========================================
+	@RequestMapping (value = "/contentsManagement.action", method = RequestMethod.GET)
+	public String recruitist(Model model, String recruitNo)
+	{
+		String result = "";
+		
+		IRecruitDAO dao = sqlSession.getMapper(IRecruitDAO.class);
+		List<ArrayList<RecruitDTO>> members = new ArrayList<ArrayList<RecruitDTO>>();
+		
+		model.addAttribute("lists", dao.lists());
+		
+		for (int i=0; i < dao.lists().size(); i++)
+		{
+			recruitNo = dao.lists().get(i).getRecruitNo();
+			members.add(dao.countRecruitMember(recruitNo));
+		}
+		
+	    model.addAttribute("members", members);
+		
+
+		String result = "ContentsManagement.jsp";
 	
+		return result;
+	}
+	//=================================== 공고 리스트 관리 ========================================
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	//========================= 문의관리 > 1:1 문의에 답변 등록 ====================================
+	//================================== 스페이스 리스트 관리 =====================================
+	@RequestMapping (value = "/contentsManagement.action", method = RequestMethod.GET)
+	public String spacelist(Model model, String recruitNo)
+	{
+		String result = "";
+		
+		return result;
+	}
+	//================================== 스페이스 리스트 관리 =====================================
 
 }
