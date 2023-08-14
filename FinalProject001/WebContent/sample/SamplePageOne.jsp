@@ -9,23 +9,34 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴명 :projectors</title>
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxOne.css">
 </head>
 
 <body>
 
 
 <div class="wrapper">
+<!-- ★★★★★★★★★★★★★★★★★★★★★★★★ -->
+
 
 	<div class="header">
 	
 		<!-- header -->
-		<div class="header-member">
-			<c:import url="memberBar.jsp"></c:import>
-		</div>	
+		<c:choose>
+		<c:when test="${not empty pinNo}">
+			<div class="header-member">
+				<c:import url="memberBar.jsp"></c:import>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="header-member">
+				<c:import url="GuestBar.jsp"></c:import>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		
 		<div class="header-logo">
-			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
+			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
 	</div>
@@ -35,6 +46,7 @@
 	</div>
 	
 	
+<!-- ★★★★★★★★★★★★★★★★★★★★★★★★ -->
 	
 	<div class="main">
 		<h2 class="pageTitle">모집공고 둘러보기</h2>
