@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>신고하기 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <style type="text/css">
 
@@ -36,7 +37,9 @@
 	}
 	
 </style>
+
 <script type="text/javascript">
+
 	$(function()
 	{
 		$("#reportInsert").click(function()
