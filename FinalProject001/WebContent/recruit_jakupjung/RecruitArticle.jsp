@@ -20,10 +20,21 @@ $().ready(function()
 {
 	$(".applyBtn").click(function()
 	{
-		var applyNo = $(this).val();
-		alert(applyNo);
-	})
-})
+		// alert($(this).val());
+		window.location.href = "applyform.action?recruitPosNo=" + $(this).val();
+	});
+	
+	$("#reportBtn").click(function()
+	{
+		var recruitNo = $(this).val();
+        var url = 'popUpRecruitReport.action?recruitNo=' + recruitNo;
+        var options = "left=500,top=300,width=520,height=520,resizable=no,location=no";
+        
+        window.open(url, 'reportRecruit', options);
+ 		    
+	});
+	
+});
 
 </script>
 </head>
@@ -187,12 +198,10 @@ $().ready(function()
 		
 		
 		<div class="etcBtnBox">
-			<button class="reportBtn">신고</button>
-			<button class="removeBtn">삭제</button>
+			<button id="reportBtn" class="reportBtn" type="button" value="${article.recruitNo }">신고</button>
+			<button class="removeBtn" value="${article.recruitNo }">삭제</button>
 		</div> <!-- end.etcBtnBox -->
 		</div>
-			 
-			 
 			 
 			 
 

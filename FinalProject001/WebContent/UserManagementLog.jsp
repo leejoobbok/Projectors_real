@@ -207,14 +207,12 @@ function search()
 			<table class="table userList">
 				<tr>
 					<th>아이디</th>
-					<th>닉네임</th>
-					<th>가입일자</th>
+					<th>로그인일자</th>
 				</tr>
 				<c:forEach var="user" items="${lists }">
 				<c:if test="${not empty user.userNo }">
 					<tr>
 						<td>${user.userId }</td>
-						<td><a href="프로필주소?pinNo=${user.pinNo}">${user.nickname }</a></td>
 						<td>${user.joinDate }</td>
 					</tr>
 				</c:if>

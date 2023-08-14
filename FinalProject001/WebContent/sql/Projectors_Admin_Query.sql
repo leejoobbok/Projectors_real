@@ -604,3 +604,26 @@ where RECRUIT_NO='RC8';
 commit;
 --==============================================================================
 
+-- 회원 관리 조회
+SELECT UP.PIN_NO AS pinNo
+    , USER_NO AS userNo
+    , ID AS userId
+    , NICKNAME AS nickName
+    , UP.JOIN_DATE AS joinDate
+FROM USERS U
+RIGHT JOIN USER_PIN UP
+ON U.PIN_NO = UP.PIN_NO
+;
+
+-- 회원 관리 검색 (유저 아이디)
+
+SELECT UP.PIN_NO AS pinNo
+    , USER_NO AS userNo
+    , ID AS userId
+    , NICKNAME AS nickName
+    , UP.JOIN_DATE AS joinDate
+FROM USERS U
+RIGHT JOIN USER_PIN UP
+ON U.PIN_NO = UP.PIN_NO
+WHERE U.ID LIKE 'spb@naver.com' || '%'
+;
