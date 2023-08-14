@@ -67,10 +67,89 @@
 		border-bottom: 1px solid gray;
 	}
 	
+		/* ====================== 좌측바 ========================= */
+	#leftBar
+	{
+		float: left;
+		width: 20%;
+		height : 300px;
+		text-align: center;
+	}
+	
+	.btnHeight
+	{
+		padding: 10px;
+		border-right: 3px solid black;
+	}
+	
+	/* ======================================================= */
+	
+	
+	/* ====================== 우측바 ========================= */
+	#rightBar
+	{
+		float: right;
+		width: 70%;
+		padding : 0% 5% 0% 5%;
+	}
+	
+	.blackBtn
+	{
+		font-size: x-small;
+		color: white;
+		background-color: black;
+		border: none;
+	}
+	.table
+	{
+		text-align: auto;
+		width: 100%;
+	}
+	
+	th
+	{
+		border-bottom: 1px solid gray;
+	}
+	
+	td
+	{
+		text-align: center;
+	}
+	
+	.right-left { width: 80%;}
+	.right-right { width: 10%;}
+	/* ======================================================= */
+	
+	#paging
+	{
+		margin: auto;
+		text-align: center;
+	}
+	.userList
+	{
+		width: 80%;
+	}
+	
 </style>
 
 <script type="text/javascript">
+function search()
+{
+	var searchKey = document.getElementById("searchKey").value;
+	var searchValue = document.getElementById("searchValue").value;
+	
+	if (searchValue=="")
+	{
+		alert("검색어를 입력하세요");
+		return;
+	}
+	
+	var form = document.forms.searchForm;
+	
+	form.action = "userSearchManagement.action?searchKey="+searchKey+"&searchValue="+searchValue;
+	form.submit();
 
+}
 </script>
 </head>
 
@@ -92,16 +171,37 @@
 		</div>
 		<!-- ============================================================= -->
 	
+	<div>
+	<h1> 회원 관리</h1>
+	<hr />
+	</div>
+	<br />
+	
+	<div id="leftBar">
+	<div class="btnHeight">
+		<button type="button">
+			<a href="userManagement.action">유저 관리</a>
+		</button>
+	</div>
+	<div class="btnHeight">
+		<button type="button">
+			<a href="userManagementLog.action">로그 관리</a>
+		</button>
+	</div>
+	</div><!-- end #leftBar -->
+	
+	<div id="rightBar">
+		<form action="" id="searchForm" name="searchForm">
 		<div id="userSearch">
-			유저 검색
+			<span style="font-weight: bold;">유저 검색</span>
 			<select id="searchKey" name="searchKey">
 				<option value="1">아이디</option>
 				<option value="2">닉네임</option>
 			</select>
-			<input type="text" style="width: 30%;"/>
-			<button>검색</button>
+			<input type="text" style="width: 30%;" id="searchValue" name="searchValue"/>
+			<button type="button" id="searchBtn" onclick="search()">검색</button>
 		</div>
-		
+		</form>
 		<div id="userList">
 		<!-- 닉네임 클릭 시 해당 유저 프로필 확인 -->
 			<table class="table userList">
@@ -110,16 +210,15 @@
 					<th>닉네임</th>
 					<th>가입일자</th>
 				</tr>
-				<tr>
-					<td>aigo@naver.com</td>
-					<td><a href="">아이고</a></td>
-					<td>2023.07.25</td>
-				</tr>
-				<tr>
-					<td>haigo@naver.com</td>
-					<td><a href="">하이고</a></td>
-					<td>2023.07.27</td>
-				</tr>
+				<c:forEach var="user" items="${lists }">
+				<c:if test="${not empty user.userNo }">
+					<tr>
+						<td>${user.userId }</td>
+						<td><a href="프로필주소?pinNo=${user.pinNo}">${user.nickname }</a></td>
+						<td>${user.joinDate }</td>
+					</tr>
+				</c:if>
+				</c:forEach>
 			</table>
 		</div>
 		
@@ -127,7 +226,7 @@
 		<div id="paging">
 			[페이징 처리처리처리처리]
 		</div>
-		
+	</div>
 	</div><!-- end of #root div -->
 
 </body>
