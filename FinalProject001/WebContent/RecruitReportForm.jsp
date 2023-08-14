@@ -3,12 +3,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+	String recruitNo = request.getParameter("recruitNo"); //-- 이전 페이지로부터 넘겨받은 공고번호 
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고하기 : Projectors</title>
+<title>모집 공고 신고 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
@@ -52,6 +54,7 @@
 			window.close();
 		});
 	});
+
 </script>
 </head>
 <body>
@@ -60,7 +63,7 @@
 		</div>	
 
 		<div id="reportBox">
-			<form action="AfterReport.jsp" id="reportForm">
+			<form action="sendRecruitReport.action" id="reportForm">
 				<table style="margin: auto; margin-top: 10%;">
 					<tr>
 						<th colspan="2" style="font-size: x-large;">신고하기</th>
@@ -69,21 +72,20 @@
 						<th colspan="2"><hr /></th>
 					</tr>					
 					<tr>
-						<th>신고대상</th>
-						<td><input type="text" readonly="readonly" value="닉네임"/></td>						
-					</tr>
-					<tr>
 						<th>신고사유</th>
 						<td>
-							<select name="reason" id="reason">
+							<select name="repReason" id="repReason">
 								<option selected="selected">-- 사유 선택 --</option>
-								<option value="1">욕설/비방</option>
-								<option value="2">관련없는 내용</option>
-								<option value="3">...</option>
-								<option value="4">...</option>
-								<option value="5">...</option>
+								<option value="1">부적절한 언어 사용</option>
+								<option value="2">저작권 침해</option>
+								<option value="3">도배 및 광고</option>
+								<option value="4">개인정보 침해</option>
+								<option value="5">허위사실유포</option>
 							</select>
 						</td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="recruitNo" value="<%=recruitNo%>"></td>
 					</tr>
 					<tr style="text-align: center;">
 						<td colspan="2" style="color: red; font-size: x-small;">
@@ -95,8 +97,8 @@
 					</tr>					
 					<tr style="text-align: center;">
 						<td colspan="2">
-							<button id="reportInsert" >신고하기</button>
-							<button id="closeReport">취소하기</button>
+							<button type="button" id="reportInsert">신고하기</button>
+							<button type="button" id="closeReport">취소하기</button>
 						</td>
 					</tr>
 				</table>

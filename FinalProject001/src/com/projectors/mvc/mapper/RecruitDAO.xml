@@ -12,7 +12,7 @@
 		WHERE DDAY >= 0
 	 -->
 	 	SELECT RECRUITNO, PINNO, DEADLINEDATE, DDAY, PRJSTART, PRJEND, TITLE, CONTENT
-        , DOTYPENAME, REGIONNAME, SUBREGIONNAME
+        	, DOTYPENAME, REGIONNAME, SUBREGIONNAME
 		FROM RECRUITVIEW
 		WHERE DDAY >= 0
 		  AND REGIONNAME LIKE '%%'
@@ -21,6 +21,7 @@
 		                    FROM RECRUIT_POS 
 		                    WHERE POS_NO LIKE '%%')
 		  AND DOTYPENAME LIKE '%%'
+		ORDER BY DDAY DESC
 	</select>
 	<!-- 
 	<select resultType="com.projectors.mvc.RecruitDTO" id="searchLists">
@@ -49,7 +50,7 @@
 		     , SUM(COUNTPOS) AS COUNTPOS
 		     , RECRUITNO
 		FROM RECRUITPOSITIONVIEW
-		WHERE RECRUITNO LIKE '%' || #{recruitNo } || '%'
+		WHERE RECRUITNO LIKE '%' || #{recruitNo }
 		GROUP BY RECRUITNO
 	</select>
 	

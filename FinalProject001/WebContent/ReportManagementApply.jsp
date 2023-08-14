@@ -185,14 +185,14 @@ function cancelReport(button)
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<button type="button">
-			<a href="reportRecruit.action">신고 처리 대기</a>
-		</button>
+		<a href="reportRecruit.action">
+			<button type="button">신고 처리 대기</button>
+		</a>
 	</div>
 	<div class="btnHeight">
-		<button type="button">
-			<a href="reportManageComplete.action">신고 처리 완료</a>
-		</button>
+		<a href="reportManageComplete.action">
+			<button type="button">신고 처리 완료</button>
+		</a>
 	</div>
 </div><!-- end #leftBar -->
 

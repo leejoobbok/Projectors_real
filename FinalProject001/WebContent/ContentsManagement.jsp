@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>공고리스트 관리 : Projectors</title>
 
-
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/recruitLists.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -87,10 +87,6 @@
 	.right-left { width: 80%;}
 	.right-right { width: 10%;}
 	/* ======================================================= */
-	#userSearch
-	{
-		text-align: center;
-	}	
 	#paging
 	{
 		margin: auto;
@@ -129,7 +125,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ContentsManagement.jsp">공고리스트관리</a>
+			<a href="contentsManagement.action">공고리스트관리</a>
 		</button>
 	</div>
 	<div class="btnHeight">
@@ -148,18 +144,6 @@
 	</div>
 		<hr />
 		<br />
-
-	
-	<div id="userSearch">
-		공고 검색
-		<select id="searchKey" name="searchKey">
-			<option value="1">제목</option>
-			<option value="2">닉네임</option>
-			<option value="3">공고번호</option>
-		</select>
-		<input type="text" style="width: 30%;"/>
-		<button>검색</button>
-	</div>
 	<br>
 	
 	<div>
@@ -168,18 +152,44 @@
 				<th>공고번호</th>
 				<th>제목</th>
 				<th>모집인원</th>
-				<th>지원자수</th>
-				<th>게시일</th>
+				<th>모집마감일</th>
 				<th>상태</th>
 			</tr>
+			<!-- 
 			<tr>
 				<td>1234</td>
-				<td><a href="">어쩌구저쩌구 프로젝트</a></td><!-- 해당 프로젝트 공고 열기 -->
+				<td><a href="">어쩌구저쩌구 프로젝트</a></td>해당 프로젝트 공고 열기
 				<td>1/5</td>
-				<td>999</td>
 				<td>2023-07-23</td>
 				<td>모집중</td>
 			</tr>
+			-->
+			<c:forEach var="recruit" items="${lists }" varStatus="status">
+			<tr>
+				<td>${recruit.recruitNo }</td>
+				<td><a href="recruitarticle.action?recruitNo=${recruit.recruitNo }">${recruit.title }</td>
+				<td> 
+					<c:forEach var="member" items="${members[status.index] }">
+						${member.countPos } / ${member.countAll }
+					</c:forEach> 
+				</td>
+				<td>${recruit.deadlineDate }</td>
+				<td>
+					<c:forEach var="member" items="${members[status.index] }">
+						<c:choose>
+							<c:when test="${Integer.parseInt(member.countAll) - Integer.parseInt(member.countPos) == 0 }">
+								<span class="endStatus">모집마감</span>
+							</c:when>
+							<c:otherwise>
+						      	<span class="recruitStatus">모집중</span>
+							</c:otherwise>
+						</c:choose> 
+					</c:forEach>
+				</td>
+			</tr>
+			</c:forEach>
+			
+			
 		</table>	
 	</div>
 
