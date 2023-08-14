@@ -43,6 +43,15 @@
 	</select>
 	
 	
+	<insert id="loginRec">
+		INSERT INTO LOGIN_REC
+		VALUES
+		( LOGINRECSEQ.NEXTVAL
+		, #{pinNo}
+		, SYSDATE)
+	</insert>
+	
+	
 	
 	
 	
