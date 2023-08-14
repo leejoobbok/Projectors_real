@@ -82,15 +82,8 @@
 			<div style="margin: 30px 16px;">
 			<button type="submit"
 				 onclick="window.open('<%= request.getContextPath()%>/photoUpdateForm.action','photoUpdate',
-				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>
-			
-			
-<%-- 			
-				<button type="submit"
-				 onclick="window.open('<%= request.getContextPath()%>/PhotoUpdate.jsp','photoUpdate',
-				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>
- --%>				 
-			</div><!-- location 주소창 보이기 속성은 오페라에서만 동작 -->
+				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>	 
+			</div>
 		</div>
 				
 		<div id="ProfileTextBox">
@@ -168,5 +161,4 @@
 </body>
 </html>
 
-
-
+<!-- location 주소창 보이기 속성은 오페라에서만 동작 -->
