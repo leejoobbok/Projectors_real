@@ -32,7 +32,7 @@ public class UsersController
 	{
 		String result = "";
 
-		result = "CreateAccount.jsp";
+		result = "/WEB-INF/view/CreateAccount.jsp";
 
 		return result;
 
@@ -132,16 +132,12 @@ public class UsersController
 	{
 		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
 		
-		String result="";
 		dao.addPin();
 		dao.addUsers(usersDTO);
-		
-		result="MainPage.jsp";
-				
-		return result;
+
+		return "redirect:projectorsmain.action";
 		
 		
-	
 	}
 	
 	
