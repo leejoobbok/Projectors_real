@@ -45,7 +45,7 @@ public class QnaQController
 	
 		model.addAttribute("questionList", dao.getQuestionList(pinNo));
 		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
-		result = "QnALists.jsp";
+		result = "/WEB-INF/view/QnALists.jsp";
 		
 		return result; 
 	}
@@ -63,7 +63,7 @@ public class QnaQController
 	    model.addAttribute("questionArticle", questionArticle);
 		model.addAttribute("answerArticle", answerArticle); 
 
-	    return "QnAArticle.jsp";
+	    return "/WEB-INF/view/QnAArticle.jsp";
 	}
 	//=========================================================================
 	
