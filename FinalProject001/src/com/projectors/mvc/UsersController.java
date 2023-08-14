@@ -218,7 +218,39 @@ public class UsersController
 	}
 	
 	
+	// 관리자의 회원관리 시 필요한 메소드
+	// 회원 리스트
+	@RequestMapping (value = "/userManagement.action", method = RequestMethod.GET)
+	public String userList(Model model)
+	{
+		String result = "";
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		model.addAttribute("lists", dao.list());
+		
+		result = "UserManagement.jsp";
+		
+		return result;
+	}
 	
+	//회원 검색
+	@RequestMapping (value ="/userSearchManagement.action", method = RequestMethod.GET )
+	public String searchUserList(Model model, String searchKey, String searchValue)
+	{
+		String result = "";
+		
+		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
+		
+		if (searchKey.equals("1"))
+			model.addAttribute("lists", dao.searchId(searchValue));
+		else if (searchKey.equals("2"))
+			model.addAttribute("lists", dao.searchNickname(searchValue));
+			
+		result = "UserManagement.jsp";
+			
+		return result;
+	}
 
 	
 	
