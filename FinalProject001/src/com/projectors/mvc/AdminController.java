@@ -250,20 +250,14 @@ public class AdminController
 	    model.addAttribute("members", members);
 		
 
-		String result = "ContentsManagement.jsp";
+		result = "ContentsManagement.jsp";
 	
 		return result;
 	}
 	//=================================== 공고 리스트 관리 ========================================
 	
 	//================================== 스페이스 리스트 관리 =====================================
-	@RequestMapping (value = "/contentsManagement.action", method = RequestMethod.GET)
-	public String spacelist(Model model, String recruitNo)
-	{
-		String result = "";
-		
-		return result;
-	}
+	
 	//================================== 스페이스 리스트 관리 =====================================
 
 }
