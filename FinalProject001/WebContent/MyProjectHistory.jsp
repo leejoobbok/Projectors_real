@@ -191,17 +191,21 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="MyProjectHistory.jsp">진행 중인 프로젝트</a>
+			<a href="myproject.action">진행 중인 프로젝트</a>
 		</button>
 	</div>
 	<div class="btnHeight">
 		<button type="button">
-			<a href="MyPastProjectHistory.jsp">과거 프로젝트 이력</a>
+			<a href="myPastProject.action">과거 프로젝트 이력</a>
 		</button>
 	</div>
 </div><!-- end #leftBar -->
 
-
+<c:choose>
+	<c:when test="${checkPresentProject == 0 }">
+		<h1>현재 진행 중인 프로젝트가 존재하지 않습니다.</h1>
+	</c:when>
+	<c:otherwise>
 <div id="rightBar">
 	<div>
 		<h2>
@@ -231,8 +235,11 @@
 		</h2>
 		
 		<div class="right-left">	
-			<b><p>프론트엔드 1/1 | 백엔드 1/2 </p></b>
-			<p id="memberCount">프로젝트 인원  ▶ <b>2</b> / 3</p>		
+			<c:forEach var="position" items="${positionDTO }">
+				${position.posName } <b> ${position.count } </b>명 | 
+			</c:forEach>
+			<br /><br />
+					
 		</div>
 		<div id="projectInfo">
 			<table id="prjMemberLists">
@@ -240,46 +247,27 @@
 					<th>멤버 번호</th>
 					<th>닉네임</th>
 					<th>포지션</th>
+					<!-- 
 					<th>상태</th>
 					<th>평가</th>
+					 -->
 				</tr>
+				<c:forEach var="member" items="${memberDTO }">
 				<tr>
-					<td>1548211</td>
-					<td>감자퉤김</td>
-					<td>프론트엔드</td>
-					<td><span class="ing">참여 중</span></td>
+					<td>${member.finalNo }</td>
+					<td>${member.nickname }</td>
+					<td>${member.posName }</td>
+				<!-- <td><span class="ing">참여 중</span></td> -->
+				<!--
 					<td>
 						<button type="button" class="ingMember"
 						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
 							평가
 						</button>
-					</td>
+					</td> 
+				-->
 				</tr>
-				<tr>
-					<td>1524511</td>
-					<td>단호박사</td>
-					<td>백엔드</td>
-					<td><span class="out">이탈</span></td>
-					<td>
-						<button type="button" class="outMember"
-						onclick="rateOneMember()">
-							평가
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>2015611</td>
-					<td>양념치킨</td>
-					<td>백엔드</td>
-					<td><span class="ing">참여 중</span></td>
-					<td>
-						<button type="button" class="ingMember" 
-						onclick="alert('프로젝트가 끝나지 않은 멤버는 평가할 수 없습니다.')">
-							평가
-						</button>
-					</td>
-				</tr>
-
+				</c:forEach>
 			</table>			
 				
 		</div>
@@ -290,7 +278,8 @@
 
 
 </div><!-- end #rightBar -->
-
+	</c:otherwise>
+</c:choose>
 
 </body>
 </html>
