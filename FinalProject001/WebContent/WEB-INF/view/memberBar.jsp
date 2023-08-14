@@ -75,7 +75,7 @@
 		$("#logoutBtn").click(function()
 		{
 			// alert("로그아웃");
-			// $(location).attr("href", "");
+			 $(location).attr("href", "logout.action");
 		});
 		
 	});
