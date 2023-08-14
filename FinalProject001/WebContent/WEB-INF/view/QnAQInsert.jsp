@@ -115,7 +115,7 @@
 		
 		$("#returnList").click(function()
 		{
-			window.location.href="question-list.action?pinNo=UP2";  // 정적 구성 
+			window.location.href="question-list.action";
 		});
 	});
 </script>
@@ -164,7 +164,7 @@
 		<a href="faq-list.action">
 			<button type="button" class="btnHeight">FAQ</button>
 		</a>
-		<a href="question-list.action?pinNo=UP2">	<!-- 정적 구성 -->
+		<a href="question-list.action">	<!-- 정적 구성 -->
 			<button type="button" class="btnHeight">1:1문의</button>
 		</a>
 	</div><!-- end #leftBar -->
@@ -177,7 +177,7 @@
 	<br>
 	
 	<div>
-		<form action="question-insert-form.action" id="insertForm" method="GET">
+		<form action="questioninsert.action" id="insertForm" method="GET">
 			<table class="table">
 				<tr>
 					<th colspan="2"><hr></th>

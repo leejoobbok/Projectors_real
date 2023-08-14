@@ -132,7 +132,7 @@
 	{
 		$("#writeQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="questioninsertform.action";
 		});
 		
 	});
@@ -181,7 +181,7 @@
 		</a>
 	</div>
 	<div class="btnHeight">
-		<a href="question-list.action?pinNo=UP2"> <!-- 정적 구성 -->
+		<a href="question-list.action">
 			<button type="button" class="btn">1:1문의</button>
 		</a>
 	</div>

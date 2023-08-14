@@ -11,99 +11,9 @@
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 
-<style type="text/css">
-	
-	
-	*
-	{
-		font-size: 12pt;
-		font-weight: bold;
-	}
-	#root{padding-top: 100px}
-	
-	#logoBox 					/*import 로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-	}
-	
-	#wrapper					/* 가입 영역 박스 */
-	{	
-		width: 540px;
-		margin: 10px auto;
-		border: 1px solid;
-		border-radius: 20px;
-		padding: 30px 30px 30px 50px;
-	}
-	/*==================================================*/
-	
-	#joinTitile 			/* 타이틀 */
-	{	
-		font-size: 16pt;
-		margin-left: 680px;
-	}
-	
-	#joinBox span		/* 항목 글씨길이 고정*/
-	{	
-		display: inline-block;
-		width: 140px;
-		margin: 2px;
-	}
-	button						/* 버튼*/
-	{
-		background-color: black;
-		color: white;
-		border-radius: 14px;
-		
-		font-size: 10pt;
-	}
-	input::placeholder  		/*플레이스 홀더*/
-	{
-	  color: gray;
-	  font-size: 10pt;
-	  text-align: center;
-	}
-	
-	#msg_false, #msg_true  		/* 메세지 공통*/
-	{
-		font-size: 8pt;
-		margin-left: 150px;
-	}
-/* 	
-	#idCheckResult				/* 중복 체크 메세지 */
-	{
-		color: red;
-	    display: none;
-	}
-*/
-	#sendPinBtn					/*인증번호 발송 버튼*/
-	{
-		margin-left: 150px;
-		/* display: none; */
-	}	
-	a:link,a:visited,a:hover,a:active /*하이퍼링크 스타일 전체제거*/
-	{ 
-		text-decoration: none;
-	  	color: w
-	  	hite;
-	}	
-	
-	#sendJoinBtn  /*가입하기 버튼 (유효성 검사 후 전송)*/
-	{	
-		display: block;
-		width: 180px;
-		font-size: 16pt;
-		margin: 30px 200px 0px 180px;
-	}
-	
-	#idCheckResult, #pwReCheckResult, #nicknameCheckResult
-	{
-		color:red;
-		float:none;
-		font-size: xx-small;
-	}
-	
-</style>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxOne.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/login.css">
+
 <script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
@@ -375,32 +285,36 @@
 
 
 <body>
-	<div id="root">
+	<div class="wrapper">
 	
 		<!-- ========== 로고만 import ======================== -->
 		<div class="header-logo">
-			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
+			<a href="projectorsmain.action"><img style="width: 400px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		<!-- ================================================= -->
 		
+		<div class="titleBox">
+		<span class="joinTitle">회원가입</span>
+		</div>
 		
-		<h2 id="joinTitile">회원가입</h2>
-		
-		<div id="wrapper">
+		<div class="joinOuterBox">
 			<div id="joinBox">
 				<form action="userRegist.action" id="registForm">
+				
+				
 					<span>이메일(ID)</span>
 					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
 					required="required" oninput="checkId()"/>
-					<!-- <button type="button"  id="checkIdt" onclick="checkId()">아이디 확인</button><br> -->
 					
-			
-					<p id="idCheckResult"></p>
+					<!-- <button type="button"  id="checkIdt" onclick="checkId()">아이디 확인</button><br> -->
+					<div class="Checkalert">
+					<span id="idCheckResult" class="alertCheck"></span>
+					</div>
+					
 					<!--
 					<p id="msg_false">이미 사용중이거나 사용 불가한 아이디입니다.</p>
 					<p id="msg_true">사용 가능한 아이디입니다. 인증번호 발송 버튼을 눌러 인증을 완료해주세요.</p>
-					-->
-<!-- 		
+	
 					<button type="button" id="sendPinBtn"  onclick="checkEmail()">인증번호 발송</button><br>
 					<p id="msgSend"></p>
 					<br />
@@ -415,8 +329,7 @@
 					<button type="button">인증번호 확인</button><br>
 					
 					<p id="emailCheckResult"></p>
-					
- -->			
+ 					-->			
 					
 					<br />
 					<span>비밀번호 </span>
@@ -429,24 +342,23 @@
 					<p id="msg_false">잘못된 비밀번호입니다. 8~16자 영문 숫자 조합으로 입력해주세요.</p>
 					<p id="msg_true">사용가능한 비밀번호입니다. 아래에도 동일하게 입력해주세요.</p> 
 					-->
+					
 					<br />
 					<span>비밀번호 재입력</span>
 					<input type="password" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
 					required="required" oninput="checkRePw()"/>
-	
+					<div class="Checkalert">
+					<span id="pwReCheckResult" class="alertCheck"></span>
+					</div>
 					
-					
-					
-					<br />
-					<p id="pwReCheckResult"></p>
 					<br />
 					<span>닉네임</span>
 					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
 					required="required" oninput="checkNickname()"  maxlength="3"/>
 				<!-- 	<button type="button" id="checkNicknamet" onclick="checkNickname()">중복 확인</button><br>	 -->
-					
-					<p id="nicknameCheckResult"></p>
-					
+					<div class="Checkalert">
+					<span id="nicknameCheckResult" class="alertCheck"></span>
+					</div>
 					
 					<input type="hidden" id="finalId" name="finalId" value="0"/>
 					<input type="hidden" id="finalPw" name="finalPw" value="0"/>
