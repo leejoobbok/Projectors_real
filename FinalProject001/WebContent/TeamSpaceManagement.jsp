@@ -129,7 +129,7 @@
 <div id="leftBar">
 	<div class="btnHeight">
 		<button type="button">
-			<a href="ContentsManagement.jsp">공고리스트관리</a>
+			<a href="contentsManagement.action">공고리스트관리</a>
 		</button>
 	</div>
 	<div class="btnHeight">
