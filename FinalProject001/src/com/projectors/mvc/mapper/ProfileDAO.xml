@@ -139,9 +139,7 @@
 			ORDER BY R.REGION_NO
 		</select>
 		
-		
-
-			
+	
 		
 		<select id="getTool" resultType="com.projectors.mvc.ProfileDTO">
 			SELECT TOOL_NO AS TOOLNO, TOOL_NAME AS TOOLNAME
