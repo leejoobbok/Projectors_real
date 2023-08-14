@@ -16,6 +16,14 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
+$().ready(function()
+{
+	$(".applyBtn").click(function()
+	{
+		var applyNo = $(this).val();
+		alert(applyNo);
+	})
+})
 
 </script>
 </head>
@@ -28,7 +36,7 @@
 	
 		<!-- header -->
 		<c:choose>
-		<c:when test="${pinNo!=null || pinNo!='' }">
+		<c:when test="${not empty pinNo}">
 			<div class="header-member">
 				<c:import url="memberBar.jsp"></c:import>
 			</div>
@@ -41,7 +49,7 @@
 		</c:choose>
 		
 		<div class="header-logo">
-			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
+			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
 	</div>
