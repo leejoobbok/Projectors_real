@@ -23,7 +23,7 @@ public class LoginController
 	{
 		String result = "";
 
-		result = "Login.jsp";
+		result = "/WEB-INF/view/Login.jsp";
 
 		return result;
 	}
@@ -94,6 +94,17 @@ public class LoginController
 		}
 		
 		return result;
+	}
+	
+	
+	@RequestMapping(value="/logout.action", method=RequestMethod.GET)
+	public String logOut(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+
+		return "redirect:projectorsmain.action";
 	}
 
 }
