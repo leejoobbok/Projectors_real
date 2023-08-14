@@ -5,6 +5,9 @@
 package com.projectors.mvc;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,31 +26,41 @@ public class QnaQController
 	 
 	 
 	 
-	// (유저) 문의글 인서트 (QnAQInsert.jsp) 
-	@RequestMapping(value="/question-insert-form.action", method = RequestMethod.GET )
-	public String qnaQInsert(QnaQDTO dto)
+	// (유저) 문의글 작성창 이동
+	@RequestMapping(value="/questioninsertform.action", method = RequestMethod.GET )
+	public String questioninsertform()
 	{
-		String result = "";
-		
+		return "/WEB-INF/view/QnAQInsert.jsp"; 
+	}
+	 
+	// (유저) 문의글 insert
+	@RequestMapping(value="/questioninsert.action", method = RequestMethod.GET )
+	public String questioninsert(QnaQDTO dto, HttpServletRequest request)
+	{
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);
+
+		HttpSession session = request.getSession();
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		dto.setPinNo(pinNo);
+		
 		dao.insert(dto);
 		
-		result ="question-list.action";
-		return result; 
+		return "redirect:question-list.action"; 
 	}
 	
 	// (유저)나의 질문 리스트 출력 (QnALists.jsp) 
 	@RequestMapping(value="/question-list.action", method = RequestMethod.GET)
-	public String qList(String pinNo, Model model)
+	public String qList(Model model, HttpServletRequest request)
 	{	
-		String result = "";
 		IqnaQDAO dao = sqlSession.getMapper(IqnaQDAO.class);	
+		
+		HttpSession session = request.getSession();
+		String pinNo = (String)session.getAttribute("pinNo");
 	
 		model.addAttribute("questionList", dao.getQuestionList(pinNo));
-		/* result = "/WEB-INF/view/MyQuestionLists.jsp"; */
-		result = "/WEB-INF/view/QnALists.jsp";
 		
-		return result; 
+		return "/WEB-INF/view/QnALists.jsp"; 
 	}
 	
 	
