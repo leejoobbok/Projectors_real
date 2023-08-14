@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.projectors.mvc.IRecruitDAO">
+<mapper namespace="com.projectors.mvc.IApplyDAO">
 
-	<select resultType="com.projectors.mvc.RecruitDTO" id="memberInfo">
+	<select resultType="com.projectors.mvc.ApplyDTO" id="memberInfo">
 		SELECT (SELECT POS_NAME
 		        FROM POSITION
 		        WHERE POS_NO = B.POS_NO) AS POSNAME
@@ -19,7 +19,7 @@
 	</select>
 	<!-- com.projectors.mvc.RecruitDTO -->
 	
-	<select resultType="com.projectors.mvc.RecruitDTO" id="recruitPosNo">
+	<select resultType="com.projectors.mvc.ApplyDTO" id="recruitInfo">
 		SELECT (SELECT TITLE
 		        FROM RECRUIT
 		        WHERE RECRUIT_NO = A.RECRUIT_NO) AS TITLE
@@ -27,7 +27,7 @@
 		        FROM POSITION
 		        WHERE POS_NO = A.POS_NO) AS POSNAME
 		FROM RECRUIT_POS A
-		WHERE RECRUIT_POS_NO = #{recruitPosNo}
+		WHERE A.RECRUIT_POS_NO = #{recruitPosNo}
 	</select>
 
 	<!-- 
