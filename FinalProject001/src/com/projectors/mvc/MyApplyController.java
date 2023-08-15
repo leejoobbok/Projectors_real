@@ -1,8 +1,9 @@
 package com.projectors.mvc;
 
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -10,12 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MyApplyController
 {
 	@Autowired
-	private SqlSessionFactory sessionFactory;
+	private SqlSession sqlsession;
 	
 	@RequestMapping(value="/myapply.action",method = RequestMethod.GET )
-	public String myApply()
+	public String myApply(Model model)
 	{
-		
 		return "/WEB-INF/view/MyApply.jsp";
+	}
+	
+
+	@RequestMapping(value="/mypastapply.action",method = RequestMethod.GET )
+	public String mypastapply(Model model)
+	{
+		return "/WEB-INF/view/MyPastApply.jsp";
 	}
 }
