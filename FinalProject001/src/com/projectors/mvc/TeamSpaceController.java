@@ -64,14 +64,5 @@ public class TeamSpaceController
 		
 		return url;
 	}
-	
-	//팀 스페이스 나가기(메인으로)
-	@RequestMapping(value="/projectorsmain.action", method= RequestMethod.GET)
-	public String backTomain()
-	{
-		String url="";
-		url="/WEB-INF/view/ProjectorsMainPage.jsp";
-		return url;
-	}
 
 }
