@@ -72,7 +72,7 @@
 				<div class="articleDiv">	
 				<c:set var="faq" value="${faqArticle}"/>
 				
-					<div>
+					<div class="article1">
 					<hr class="tableLine1">
 						<span class="faqArticleNum">번호</span>
 						<span class="faqArticleNum2">${faq.faqNo}</span>
@@ -81,7 +81,7 @@
 					<hr class="tableLine2">
 					</div>
 					
-	              	<div>
+	              	<div class="article2">
 						<span class="faqArticleContent">내용</span>
 						<span class="faqArticleContent2">${faq.content}</span>
 			            <hr class="tableLine1">
