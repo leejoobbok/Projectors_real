@@ -4,11 +4,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	/* 
-	String pinNo = (String)request.getAttribute("pinNo");
-	if (pinNo != null)
-		pinNo = pinNo.trim();
-	 */
 %>
 <!DOCTYPE html>
 <html>
@@ -21,17 +16,19 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
+	function DoneApply(recruitPosNo) {
+		window.location.href = 'applyinsert.action?recruitPosNo=' + recruitPosNo;
+	}
 
-	 
+	function updateProfile() {
+		window.location.href = '';
+	}
+	
 </script>
-
 </head>
-
 <body>
 
-
 <div class="wrapper">
-
 	<div class="main">
 		
 		<div class="container">
@@ -42,7 +39,9 @@
 			<h3>지원하기</h3>
 			
 			<!-- 프로필 가져오기 -->
-			<span class="smallTitle">나의 프로필</span><button class="updateProfileBtn">프로필 수정하기</button><br>
+			<span class="smallTitle">나의 프로필</span>
+			<button type="button" class="updateProfileBtn" onclick="updateProfile()">프로필 수정하기</button><br>
+			
 			<div class="myProfile">
 				<div class="photo">
 					<img class="img" alt="profileImg" src="<%=cp %>/${memberInfo.photoUrl }">
@@ -61,18 +60,22 @@
 			<span class="smallTitle">지원하는 프로젝트</span> : ${recruitInfo.title }<br>
 			<span class="smallTitle">지원하는 포지션</span> : ${recruitInfo.posName }<br><br>
 			
-			<textarea id="content" class="applyContent" rows="10" cols="70" placeholder="전달하고 싶은 내용을 작성해주세요."></textarea>
+			<form action="applyinsert.action" method="post">
+			
+			<textarea id="content" name="content" class="applyContent" rows="10" cols="70" 
+					placeholder="전달하고 싶은 내용을 작성해주세요."></textarea>
 			</div><!-- end.applyFormOuter -->
+			<input type="hidden" id="recruitPosNo" name="recruitPosNo" value="${recruitInfo.recruitPosNo }">
 			
 			<div class="submitBtnDiv">
-			<button class="submitBtn">제출하기</button>
+			<button type="submit" class="submitBtn">제출하기</button>
 			</div>
 			
+			</form>
 			
 			</div><!-- end.myProfileOuter -->
 		</div> <!-- end.container -->
 	</div> <!-- end.main -->
-	
 </div>
 
 
