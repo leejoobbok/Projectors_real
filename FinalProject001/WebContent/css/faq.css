@@ -134,8 +134,7 @@ a {text-decoration: none;}
 .faqArticleContent, .faqArticleContent2 {
 	display: inline-block;
     font-family: 'SUITE-Regular';
-    font-size: 14pt; 
-	width: 9%;
+    font-size: 14pt;
 	height: 300px;
 	padding-top: 10px;
 }
