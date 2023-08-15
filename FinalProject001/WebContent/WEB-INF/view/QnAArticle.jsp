@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -8,94 +8,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의 작성하기 : Projectors</title>
+<title>QnA :projectors</title>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/qna.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<style type="text/css">
 
-	/* 헤더 */
-	div>h1
-	{
-		padding-left : 5%; 
-	}
-
-	/* ====================== 좌측바 ========================= */
-
-	#leftBar
-	{
-		float: left;
-		width: 20%;
-		height : 300px;
-		text-align: center;
-	}
-	
-	.btnHeight
-	{
-		padding: 10px;
-		border-right: 3px solid black;
-	}
-	.btn
-	{
-		width: 150px;
-	}
-	/* ======================================================= */
-	
-	
-	/* ====================== 우측바 ========================= */
-
-	#rightBar
-	{
-		float: right;
-		width: 70%;
-		padding : 0% 5% 0% 5%;
-	}
-	
-	.blackBtn
-	{
-		font-size: x-small;
-		color: white;
-		background-color: black;
-		border: none;
-	}
-
-	.table
-	{
-		text-align: auto;
-		width: 90%;
-	}
-	
-	#rightBar-left
-	{
-		float: left;
-		width: 80%;
-	}
-	#rightBar-right
-	{
-		float: right;
-		width: 20%;
-		right: 0px;
-		bottom: 0px;		
-	}
-	
-	/* ======================================================= */
-	
-	
-	
-</style>
 <script type="text/javascript">
 	$(function()
 	{
-		$("#returnList").click(function()
+		$("#returnList").click(function() 
 		{
-			window.location.href="question-list.action?pinNo=UP2"; //정적 구성 
+			window.location.href="question-list.action";
 		});
+		
 	});
 </script>
+
 </head>
+
 <body>
-	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
-		
-		<div class="header">
+
+
+<div class="wrapper">
+
+	<div class="header">
 	
 		<!-- header -->
 		<c:choose>
@@ -115,90 +51,111 @@
 			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
-		</div>
+	</div>
+	
+	<div class="header-menu">
+		<c:import url="menuBar.jsp"></c:import>
+	</div>
+	
+	
+	<div class="main">
+		<h2 class="pageTitle">FAQ / 문의</h2>
 		
-		<div class="header-menu">
-			<c:import url="menuBar.jsp"></c:import>
-		</div>
-		<!-- ============================================================= -->
+		<div class="container">
 		
-<div>
-<h1>FAQ / 문의</h1>
-<hr />
+			<div class="left">
+			
+				<div class="btnHeight">
+					<a href="faq-list.action">
+						<button type="button" class="btn" id="faqButton">FAQ</button>
+					</a>
+				</div>
+				<div class="btnHeight">
+				
+				<c:choose>
+				<c:when test="${not empty pinNo}">
+					<a href="question-list.action">
+						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="">
+						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					</a>
+				</c:otherwise>
+				</c:choose>
+				
+				</div>
+			</div><!-- left -->
+			
+			  
+			<div class="right">
+				<span class="titleText1">내 문의 내역</span>
+				<br>
+
+				<div class="articleDiv">	
+				<c:set var="qArticle" value="${questionArticle}" />
+				<c:set var="aArticle" value="${answerArticle}"/>
+				
+					<div class="article1">
+					<hr class="tableLine1">
+						<span class="qnaArticleTitle">제목</span>
+						<span class="qnaArticleTitle2">${qArticle.questionTitle}</span>
+						<span class="qnaArticleDate">작성일시</span>
+						<span class="qnaArticleDate2">${qArticle.qCreatedDate}</span>
+					<hr class="tableLine2">
+					</div>
+					
+	              	<div class="article2">
+						<span class="qnaArticleContent">내용</span>
+						<span class="qnaArticleContent2">${qArticle.questionContent}</span>
+			            <hr class="tableLine1">
+	              	</div>
+	              	
+					<div class="article4">
+			            <hr class="tableLine1">
+						<span class="anstitle2">관리자 답변</span>
+					</div>
+					
+				
+					<c:choose>
+					<c:when test="${empty aArticle}">
+						<div class="alertEmptyAnswer">아직 답변이 작성되지 않았습니다.<hr class="tableLine1"></div>
+					</c:when>
+					<c:otherwise>
+						
+		              	<div class="article3">
+				            <hr class="tableLine2">
+							<span class="ansArticleContent">내용</span>
+							<span class="ansArticleContent2">${aArticle.answerContent}</span>
+		              	</div>
+		              	
+						<div class="article1">
+							<span class="ansArticleDate">답변일시</span>
+							<span class="ansArticleDate2">${aArticle.answerCreatedDate}</span>
+				            <hr class="tableLine1">
+						</div>
+					
+					</c:otherwise>
+					</c:choose>
+					
+				</div><!-- articleDiv -->
+				
+				<div class="paging">
+					<button id="returnList">목록으로</button>
+				</div>
+			
+			</div><!-- right -->
+			
+		</div> <!-- container -->
+	</div><!-- main -->
+	
+	<div class="footer">
+		<!-- footer -->
+		<c:import url="Footer.jsp"></c:import>
+	</div>
 </div>
-<br />
 
-
-<div id="leftBar">
-	<div class="btnHeight">
-		<a href="faq-list.action">
-			<button type="button" class="btn">FAQ</button>
-		</a>
-	</div>
-	<div class="btnHeight">
-		<a href="question-list.action?pinNo=UP2"> <!-- 정적 구성 -->
-			<button type="button" class="btn">1:1문의</button>
-		</a>
-	</div>
-</div><!-- end #leftBar -->
-
-
-<div id="rightBar">
-	<div>
-		<h2> 1 : 1 문의 상세 </h2>
-	</div>
-	<br>
-	
-	<div>	
-		<table class="table">
-			<tr>
-				<th colspan="4"><hr /></th>
-			</tr>
-			<tr>
-				<th style="width: 10%;">번호</th>
-				<th style="width: 30%;">제목</th>
-				<th style="width: 40%;">내용</th>
-				<th style="width: 20%;">작성일</th>
-			</tr>
-			<tr>
-				<th colspan="4"><hr /></th>
-			</tr>
-			<c:set var="qArticle" value="${questionArticle}" />
-	        <tr>
-	            <td>${qArticle.questionNo}</td>
-	            <td>${qArticle.questionTitle}</td>
-	            <td>${qArticle.questionContent}</td>
-	            <td>${qArticle.qCreatedDate}</td>
-	        </tr>
-			<tr>
-				<th colspan="4"><hr /></th>
-			</tr>
-		</table>
-	</div>
-	
-	<div>
-		<table class="table">
-			<tr>
-				<th>내용</th>
-				<th>답변일시</th>
-			</tr>
-			<c:set var="aArticle" value="${answerArticle}"/>
-			<tr style="background-color: lightgray;">
-				<td>${aArticle.answerContent}</td>
-				<td>${aArticle.answerCreatedDate}</td>
-			</tr>			
-		</table>
-	</div>
-	<br>
-	
-	<div style="text-align: center;">
-		<button id="returnList">목록으로</button>
-	</div>
-	<br>
-
-</div><!-- end #rightBar -->
-
-<!-- footer 넣을 자리	 -->
 
 </body>
 </html>
