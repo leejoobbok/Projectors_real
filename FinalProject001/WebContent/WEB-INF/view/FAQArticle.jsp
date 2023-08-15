@@ -8,9 +8,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메뉴명 :projectors</title>
+<title>FAQ :projectors</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/faq.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(function()
+	{
+		$("#returnList").click(function()
+		{
+			window.location.href="faq-list.action";
+		});
+		
+	});
+</script>
+
 </head>
 
 <body>
@@ -58,9 +71,20 @@
 					</a>
 				</div>
 				<div class="btnHeight">
+				
+				<c:choose>
+				<c:when test="${not empty pinNo}">
 					<a href="question-list.action">
 						<button type="button" class="btn" id="qnaButton">1:1문의</button>
 					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="">
+						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					</a>
+				</c:otherwise>
+				</c:choose>
+				
 				</div>
 			</div><!-- left -->
 			
