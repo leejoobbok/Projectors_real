@@ -100,3 +100,23 @@ button:hover {
 button:active {
 	background-color: orange;
 }
+
+.completeApply, .btnContainer {
+	margin: auto;
+	text-align: center;
+	margin-top: 160px;
+}
+
+.completeApply {
+    font-family: 'SUITE-Regular';
+    font-size: 22pt;
+}
+
+.goMain, .goMyApply {
+    font-family: 'SUITE-Regular';
+    font-size: 15pt;
+	width: 160px;
+	height: 42px;
+	border: none;
+	background-color: #dfdfdf;
+	border-radius: 10px;}
