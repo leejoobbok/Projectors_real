@@ -196,7 +196,7 @@
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
-				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
+				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
 			</div>  
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->

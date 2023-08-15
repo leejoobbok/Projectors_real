@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,7 @@ public class TeamSpaceController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 팀 스페이스 메인으로 이동 
+	// 팀 스페이스 메인으로 이동
 	@RequestMapping(value="/teamSpaceMain.action", method = RequestMethod.GET)
 	public String teamSpaceMain()
 	{
@@ -22,6 +25,7 @@ public class TeamSpaceController
 				
 		return url;
 	}
+
 	
 	// 팀 공지게시판 메인으로 이동 
 	@RequestMapping(value="/teamNoticeList.action", method = RequestMethod.GET)
@@ -61,6 +65,13 @@ public class TeamSpaceController
 		return url;
 	}
 	
-	
+	//팀 스페이스 나가기(메인으로)
+	@RequestMapping(value="/projectorsmain.action", method= RequestMethod.GET)
+	public String backTomain()
+	{
+		String url="";
+		url="/WEB-INF/view/ProjectorsMainPage.jsp";
+		return url;
+	}
 
 }
