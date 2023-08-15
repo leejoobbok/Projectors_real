@@ -132,25 +132,40 @@
 	{
 		$("#writeQnA").click(function()
 		{
-			window.location.href="QnAQInsert.jsp";
+			window.location.href="questioninsertform.action";
 		});
 		
 	});
 </script>
 </head>
+
 <body>
-	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
+	<div class="header">
+	
+		<!-- header -->
+		<c:choose>
+		<c:when test="${not empty pinNo}">
+			<div class="header-member">
+				<c:import url="memberBar.jsp"></c:import>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="header-member">
+				<c:import url="GuestBar.jsp"></c:import>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		
-		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
-			<c:import url="UpperBar.jsp"></c:import>
+		<div class="header-logo">
+			<a href=""><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
-		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="MainPage.jsp"><img src="images/tmp_logo.JPG"/></a>
-		</div>	
-		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
-			<c:import url="Bar.jsp"></c:import>
-		</div>
-		<!-- ============================================================= -->
+		
+	</div>
+	
+	<div class="header-menu">
+		<c:import url="menuBar.jsp"></c:import>
+	</div>
+	
 		
 <div>
 <h1>FAQ / 문의</h1>
@@ -166,7 +181,7 @@
 		</a>
 	</div>
 	<div class="btnHeight">
-		<a href="question-list.action?pinNo=UP2"> <!-- 정적 구성 -->
+		<a href="question-list.action">
 			<button type="button" class="btn">1:1문의</button>
 		</a>
 	</div>
