@@ -14,28 +14,23 @@
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxOne.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/login.css">
 
-<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp %>/js/ajax.js"></script>
 
 <script type="text/javascript">
+
     function checkId() 
     {
-    	
 		var userId = document.getElementById("userId").value;
-		
 		var url = "idcheck.action?userId="+userId;
 		
 		ajax = createAjax();
-		
 		ajax.open("GET", url, true);
 		
 		ajax.onreadystatechange = function()
 		{
-			
-			
 			if(ajax.readyState == 4 && ajax.status == 200)
 			{
-				
 				callBack();
 			}
 		};
@@ -46,18 +41,14 @@
     function checkEmail()
     {
         var userEmail = document.getElementById("userId").value;
-        
         var url = "emailcheck.action?userEmail="+userEmail
-		
         ajax.open("GET",url,true);
         
 		ajax.onreadystatechange = function()
 		{
-			
 			if(ajax.readyState == 4 && ajax.status == 200)
 			{
 				var data = ajax.responseText;
-				
 				document.getElementById("hiddenEmailCk").value = data;
 				
 				alert("이메일이 전송되었습니다 인증번호 입력란에 올바른 인증번호를 입력해주세요.");
@@ -68,18 +59,13 @@
 		
 		ajax.send("");
     } 
-*/
-        
-        
-/* 
+
     function inputCkEmail()
     {
     	var inputCkEmail = document.getElementById("inputCkEmail").value;
-    	
     	var url="inputCkEmail.action?"+inputCkEmail
     		
     	ajax = createAjax();
-    	
 		ajax.open("GET", url, true);
     	
 		ajax.onreadystatechange = function()
@@ -87,13 +73,11 @@
 			if(ajax.readyState == 4 && ajax.status == 200)
 			{
 				var data = ajax.responseText;
-				
 				data = parseInt(data);
 
 				if (data == document.getEmelementById("hiddenEmailCk").value)
 				{	
 					document.getElementById("EmailCkResult").value="1";
-				
 					document.getElementById("emailCheckResult").innerText="인증이 완료되었습니다..";
 				}
 			}
@@ -118,13 +102,11 @@
 			if(ajax.readyState == 4 && ajax.status == 200)
 			{
 				callBack();
-				
 			}
 		};
+		
 		ajax.send("");
     }
-    
-    
     
     function checkRePw()
     {
@@ -143,21 +125,18 @@
 			if(ajax.readyState == 4 && ajax.status == 200)
 			{
 				callBack();
-				
 			}
 		};
+		
 		ajax.send("");
     }
 
     
-		
 	function callBack()
 	{
 		var data = ajax.responseText;
 		
 		data = parseInt(data);
-		
-		
 		
 		// 아이디 중복 x
 		if (data == 0)
@@ -302,7 +281,7 @@
 				<form action="userRegist.action" id="registForm">
 				
 				
-					<span>이메일(ID)</span>
+					<span class="smallCheckListTitle">이메일(ID)</span>
 					<input type="text" id="userId" name="userId" placeholder="이메일 입력(ex.abd1223@test.com)"
 					required="required" oninput="checkId()"/>
 					
@@ -332,7 +311,7 @@
  					-->			
 					
 					<br />
-					<span>비밀번호 </span>
+					<span class="smallCheckListTitle">비밀번호 </span>
 					<input type="password" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"
 					required="required"/>
 					<!-- <button type="button">비밀번호 확인</button><br> -->
@@ -344,7 +323,7 @@
 					-->
 					
 					<br />
-					<span>비밀번호 재입력</span>
+					<span class="smallCheckListTitle">비밀번호 재입력</span>
 					<input type="password" id="userPwCk" name="userPwCk" placeholder="비밀번호를 동일하게 입력해주세요."
 					required="required" oninput="checkRePw()"/>
 					<div class="Checkalert">
@@ -352,7 +331,7 @@
 					</div>
 					
 					<br />
-					<span>닉네임</span>
+					<span class="smallCheckListTitle">닉네임</span>
 					<input type="text" id="nickname" name="nickname" placeholder="최소 2글자, 최대 4글자" 
 					required="required" oninput="checkNickname()"  maxlength="3"/>
 				<!-- 	<button type="button" id="checkNicknamet" onclick="checkNickname()">중복 확인</button><br>	 -->
