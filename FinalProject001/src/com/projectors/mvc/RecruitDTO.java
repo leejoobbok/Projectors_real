@@ -5,7 +5,7 @@ public class RecruitDTO
 	private int regionNo, subRegionNo, posNo, toolNo, doTypeNo;
 	private String regionName, subRegionName, posName, toolName, doTypeName;
 	private int countAll, countPos, applyCount;
-	private String recruitNo, pinNo, deadlineDate, dDay, prjStart, prjEnd, title, content;
+	private String recruitNo, pinNo, nickName, deadlineDate, dDay, prjStart, prjEnd, title, content;
 	
 	private int posCapNo;
 	private String recruitPosNo, applyNo;
@@ -250,5 +250,15 @@ public class RecruitDTO
 	public void setPosCapNo(int posCapNo)
 	{
 		this.posCapNo = posCapNo;
+	}
+
+	public String getNickName()
+	{
+		return nickName;
+	}
+
+	public void setNickName(String nickName)
+	{
+		this.nickName = nickName;
 	}
 }

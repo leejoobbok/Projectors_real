@@ -32,41 +32,11 @@
 
 <div class="wrapper">
 
-	<div class="header">
-	
-		<!-- header -->
-		<c:choose>
-		<c:when test="${not empty pinNo}">
-			<div class="header-member">
-				<c:import url="memberBar.jsp"></c:import>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div class="header-member">
-				<c:import url="GuestBar.jsp"></c:import>
-			</div>
-		</c:otherwise>
-		</c:choose>
-		
-		<div class="header-logo">
-			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
-		</div>	
-		
-	</div>
-	
-	<div class="header-menu">
-		<c:import url="menuBar.jsp"></c:import>
-	</div>
-	
-	
-	
-	
 	<div class="main">
 		
 		<div class="container">
 		<c:set var="memberInfo" value="${memberInfo }" />
 		<c:set var="recruitInfo" value="${recruitInfo }" />
-		
 		
 			<div class="myProfileOuter">
 			<h3>지원하기</h3>
@@ -103,11 +73,6 @@
 		</div> <!-- end.container -->
 	</div> <!-- end.main -->
 	
-	
-	<div class="footer">
-		<!-- footer -->
-		<c:import url="Footer.jsp"></c:import>
-	</div>
 </div>
 
 
