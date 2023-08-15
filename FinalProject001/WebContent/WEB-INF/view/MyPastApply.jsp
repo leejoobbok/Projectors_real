@@ -8,20 +8,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ :projectors</title>
+<title>나의 지원 :projectors</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/faq.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/myapply.css">
 
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(function()
 	{
-		$("#returnList").click(function()
+		$("#WriteQnA").click(function()
 		{
-			window.location.href="faq-list.action";
+			window.location.href="questioninsertform.action";
 		});
-		
 	});
+
 </script>
 
 </head>
@@ -59,62 +60,45 @@
 	
 	
 	<div class="main">
-		<h2 class="pageTitle">FAQ / 문의</h2>
+		<h2 class="pageTitle">나의 지원 이력</h2>
 		
 		<div class="container">
 		
 			<div class="left">
 			
 				<div class="btnHeight">
-					<a href="faq-list.action">
-						<button type="button" class="btn" id="faqButton">FAQ</button>
+					<a href="myapply.action">
+						<button type="button" class="btn" id="nowButton">현재 지원</button>
 					</a>
 				</div>
 				<div class="btnHeight">
-				
-				<c:choose>
-				<c:when test="${not empty pinNo}">
-					<a href="question-list.action">
-						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					<a href="mypastapply.action">
+						<button type="button" class="btn" id="pastButton">과거 지원</button>
 					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="">
-						<button type="button" class="btn" id="qnaButton">1:1문의</button>
-					</a>
-				</c:otherwise>
-				</c:choose>
-				
 				</div>
+				
 			</div><!-- left -->
 			
 			  
 			<div class="right">
-				<span class="titleText1">FAQ: 자주하는 질문</span>
+				<span class="titleText1">과거 지원 이력</span>
 				<br>
-
-				<div class="articleDiv">	
-				<c:set var="faq" value="${faqArticle}"/>
 				
-					<div class="article1">
-					<hr class="tableLine1">
-						<span class="faqArticleNum">번호</span>
-						<span class="faqArticleNum2">${faq.faqNo}</span>
-						<span class="faqArticleTitle">제목</span>
-						<span class="faqArticleTitle2">${faq.title}</span>
-					<hr class="tableLine2">
-					</div>
-					
-	              	<div class="article2">
-						<span class="faqArticleContent">내용</span>
-						<span class="faqArticleContent2">${faq.content}</span>
-			            <hr class="tableLine1">
-	              	</div>
+				<div class="listsDiv">	
+				
+				<div class="applyPast">
+				없음
+				</div>
+				
+				지원서 번호 | <a href=""> 프로젝트 제목</a> | 프로젝트 기간 | 모집
+				중인 포지션별 인원 | 내가 지원한 포지션 | 지원 일자 | 모집자 답변 | <span id="recruitStatus">상태</span>|
+				<a href="">내지원서 상세보기</a>
+				
 					
 				</div><!-- listsDiv -->
 				
 				<div class="paging">
-					<button id="returnList">목록으로</button>
+					<span>[페이징처리]</span>
 				</div>
 			
 			</div><!-- right -->

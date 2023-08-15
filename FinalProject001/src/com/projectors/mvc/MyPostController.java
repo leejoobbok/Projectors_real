@@ -1,7 +1,6 @@
 package com.projectors.mvc;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MyPostController
 {
 	@Autowired
-	private SqlSessionFactory sessionFactory;
+	private SqlSession session;
 	
 	
 	@RequestMapping(value="/mypost.action",method = RequestMethod.GET )
-	public String myApply()
+	public String mypost()
 	{
-		
 		return "/WEB-INF/view/MyPostLists.jsp";
+	}
+
+	@RequestMapping(value="/mypastpost.action",method = RequestMethod.GET )
+	public String mypastpost()
+	{
+		return "/WEB-INF/view/MyPastPostLists.jsp";
 	}
 }

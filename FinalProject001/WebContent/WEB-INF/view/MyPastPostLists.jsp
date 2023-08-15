@@ -89,7 +89,7 @@
 			
 			  
 			<div class="right">
-				<span class="titleText1">현재 모집 이력</span>
+				<span class="titleText1">과거 모집 이력</span>
 				<br>
 				
 				<div class="listsDiv">	
@@ -97,75 +97,55 @@
 				<!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★시작 -->
 				
 				
-				<div>
-			<h2>
-				모집 중인 공고
-				<button type="button" id="showRecruit" name="showRecruit"
-					class="blackBtn" onclick="showRecruit()">모집공고 보러가기</button>
-			</h2>
-			프로젝트 명
-		</div>
-		<hr />
-		<br />
-
-		<div>
-			<h2>모집 마감일</h2>
-			2023.07.31 (D-1)
-		</div>
-		<hr />
-		<br />
-
-		<div>
-			<h2>신규 지원자</h2>
-			<hr />
-			<br />
-			<form action="">
-				<table class="table">
-					<tr>
-						<th>지원포지션</th>
-						<th>지원자</th>
-						<th>사용가능언어</th>
-						<th>내용</th>
-						<th></th>
-					</tr>
-					<tr>
-						<td>웹프론트엔드A</td>
-						<td>말랑콩떡</td>
-						<td>JavaScript, JSTL ...</td>
-						<td>첫 프로젝트지만 잘...</td>
-						<td>
-							<button type="button" class="blackBtn showApply" value="">지원서
-								보러가기</button>
-						</td>
-					</tr>
-					<tr>
-						<td>웹백엔드A</td>
-						<td>햄찌사랑</td>
-						<td>Java, Phython ...</td>
-						<td>백엔드만큼은 자부심 있슴다!</td>
-						<td>
-							<button type="button" class="blackBtn showApply" value="">지원서
-								보러가기</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<hr />
-		<br />
-		<div>
-			<div class="right-left">
-				<p>모집 현황 &nbsp; 1 / 4</p>
-			</div>
-			<div class="right-right">
-				<button class="blackBtn" style="background-color: red;">모집
-					취소하기</button>
-			</div>
-			<hr>
-			<br>
-
-			
-		</div>
+<table class="table">
+			<!-- 8개 -->
+			<tr>
+				<th>게시물 번호</th>
+				<th>제목</th>
+				<th>모집 인원</th>
+				<th>합류 인원</th>
+				<th>모집시작일</th>
+				<th>프로젝트 기간</th>
+				<th>지원서</th>
+				<th>상태</th>
+			</tr>
+			<tr>
+				<td>18997</td>
+				<td>
+					<a href="PostFormSample.jsp">주차 시스템  프로젝트</a>
+				</td>
+				<td>프론트엔드 0/4 | 백엔드 0/7</td>
+				<td>프론트엔드 4  | 백엔드 7</td>
+				<td>22.03.02</td>
+				<td>23.03.25~23.06.10</td>
+				<td>읽음 32 |  안읽음 0</td>
+				<td>마감(모집완료)</td>
+			</tr>
+			<tr>
+				<td>14221</td>
+				<td>
+					<a href="PostFormSample.jsp">스포츠 분석 시스템</a>
+				</td>
+				<td>프론트엔드 1/2 | 백엔드 2/4</td>
+				<td>-</td>
+				<td>21.07.08</td>
+				<td>22.08.27~22.10.15</td>
+				<td>읽음 3 | 안읽음 0</td>
+				<td>마감(기간만료)</td>
+			</tr>
+			<tr>
+				<td>12354</td>
+				<td>
+					<a href="PostFormSample.jsp">웹 메신저 ‘코코넛톡</a>
+				</td>
+				<td>프론트엔드 0/2 | 백엔드 0/5</td>
+				<td>-</td>
+				<td>21.04.01</td>
+				<td>21.05.01~21.05.20</td>
+				<td>읽음 3| 안읽음 1</td>
+				<td>모집 취소</td>
+			</tr>
+		</table>
 
 					
 					
@@ -174,7 +154,13 @@
 					
 					
 				</div><!-- listsDiv -->
+				
+				<div class="paging">
+					<span>[페이징처리]</span>
+				</div>
+			
 			</div><!-- right -->
+			
 		</div> <!-- container -->
 	</div><!-- main -->
 	

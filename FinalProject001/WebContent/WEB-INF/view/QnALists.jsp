@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -8,99 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 문의 : Projectors</title>
+<title>QnA :projectors</title>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/qna.css">
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<style type="text/css">
-	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
-	#logoBox 					   /*로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-		/* border: 1px solid; */
-	}
-	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
-	{
-		text-align: right;
-	}
-	#menuBar					/*메뉴바(메인|공지..)*/
-	{
-		text-align: center;
-		position :sticky;  
-		padding-top: 32px;
-	    top: -32px;
-	}
-	/*==========================================================*/
-
-	/* 헤더 */
-	div>h1
-	{
-		padding-left : 5%; 
-	}
-
-	/* ====================== 좌측바 ========================= */
-
-	#leftBar
-	{
-		float: left;
-		width: 20%;
-		height : 300px;
-		text-align: center;
-	}
-
-	.btn
-	{
-		width: 150px;
-		padding: 10px;
-		border-right: 3px solid black;
-	}
-	/* ======================================================= */
-	
-	
-	/* ====================== 우측바 ========================= */
-
-	#rightBar
-	{
-		float: right;
-		width: 70%;
-		padding : 0% 5% 0% 5%;
-	}
-	
-	.blackBtn
-	{
-		font-size: x-small;
-		color: white;
-		background-color: black;
-		border: none;
-	}
-
-	.table
-	{
-		text-align: auto;
-		width: 90%;
-	}
-	
-	#rightBar-left
-	{
-		float: left;
-		width: 80%;
-	}
-	#rightBar-right
-	{
-		float: right;
-		width: 20%;
-		right: 0px;
-		bottom: 0px;		
-	}
-	td{text-align: center;}
-	/* ======================================================= */
-	
-	
-	
-</style>
 <script type="text/javascript">
+
 	$(function()
 	{
 		$("#WriteQnA").click(function()
@@ -108,13 +22,17 @@
 			window.location.href="questioninsertform.action";
 		});
 	});
+
 </script>
+
 </head>
 
-
 <body>
-	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
-			<div class="header">
+
+
+<div class="wrapper">
+
+	<div class="header">
 	
 		<!-- header -->
 		<c:choose>
@@ -134,103 +52,95 @@
 			<a href="projectorsmain.action"><img style="width: 530px;" src="<%=cp %>/images/NEXTART_LOGO.png"/></a>
 		</div>	
 		
-		</div>
-	
-		<div class="header-menu">
-		<c:import url="menuBar.jsp"></c:import>
-		</div>
-		<!-- ============================================================= -->
-		
-	<div>
-		<h1>FAQ / 문의</h1>
-		<hr />
 	</div>
-	<br>
-
-	<div id="leftBar">
-			<a href="faq-list.action">
-				<button type="button" class="btn">FAQ</button>
-			</a>	
-			<a href="question-list.action?pinNo=UP2"> <!--  여기 특정 유저 아이디 받아온거 넣어줘야함 일단 정적 구성 -->
-				<button type="button" class="btn">1:1문의</button>
-			</a>
-	</div><!-- end #leftBar -->
-
-	<div id="rightBar">
-		<div>
-			<h2>	1 : 1 질문 </h2>
-		</div>
-		<div>
-			<div id="rightBar-left">
-				<h3>내 문의 내역</h3>
-			</div>
-			<br>
-			<div id="rightBar-right">
-				<button id="WriteQnA" class="blackBtn">글 작성하기</button>
-			</div>
-		</div>
-		<br>
 	
-		<div>	
-			<table class="table">
-				<tr>
-					<th colspan="4"><hr /></th>
-				</tr>
-				<tr>
-					<th style="width: 15%;">번호</th>
-					<th style="width: 55%;">제목</th>
-					<th style="width: 20%;">작성일</th>
-					<th style="width: 10%;">답변여부</th>
-				</tr>
-				<tr>
-					<th colspan="4"><hr /></th>
-				</tr>
-				<c:forEach var="question" items="${questionList}">
-					<tr>
-						<td>${question.questionNo}</td> 			<!-- 문의 번호 -->
-						<td><a href="question-article.action?questionNo=${question.questionNo}">${question.questionTitle}</a></td> 		<!-- 제목 -->
-						<td>${question.qCreatedDate}</td> 			<!-- 작성일 -->
-						<td>${question.isReply}</td> 				<!-- 답변여부 -->
-					</tr>	
-				</c:forEach>
+	<div class="header-menu">
+		<c:import url="menuBar.jsp"></c:import>
+	</div>
+	
+	
+	<div class="main">
+		<h2 class="pageTitle">FAQ / 문의</h2>
+		
+		<div class="container">
+		
+			<div class="left">
+			
+				<div class="btnHeight">
+					<a href="faq-list.action">
+						<button type="button" class="btn" id="faqButton">FAQ</button>
+					</a>
+				</div>
+				<div class="btnHeight">
 				
-			</table>
-		</div>
-		<br>
-		<div>
-			[페이징처리]
-		</div>
-	</div><!-- end #rightBar -->
+				<c:choose>
+				<c:when test="${not empty pinNo}">
+					<a href="question-list.action">
+						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="">
+						<button type="button" class="btn" id="qnaButton">1:1문의</button>
+					</a>
+				</c:otherwise>
+				</c:choose>
+				
+				</div>
+			</div><!-- left -->
+			
+			  
+			<div class="right">
+				<span class="titleText1">내 문의 내역</span>
+				<br>
+				
+				<div class="listsDiv">	
+				
+					<div class="btnRight">
+						<button id="WriteQnA">1:1 문의 작성</button>
+					</div>
+				
+					<div>
+					<hr class="tableLine1">
+						<span class="qnaListNum">번호</span>
+						<span class="qnaListTitle">제목</span>
+						<span class="qnaListDate">작성일</span>
+						<span class="qnaListAns">답변여부</span>
+					<hr class="tableLine1">
+					</div>
+					
+	                <c:forEach var="question" items="${questionList}">
+	              	<div>
+	            		 <span class="qnaListNum2">${question.questionNo}</span>
+	            		 <span class="qnaListTitle2"><a href="question-article.action?questionNo=${question.questionNo}"
+	            		 								>${question.questionTitle}</a></span>
+	            		 <span class="qnaListDate2">${question.qCreatedDate}</span>
+	            		 <span class="qnaListAns2">${question.isReply}</span>
+	              	<hr class="tableLine2">
+	              	</div>
+	                </c:forEach>
+	                
+	                <c:if test="${empty questionList}">
+						<div class="alertEmptyAnswer">작성한 1:1 문의가 없습니다.<hr class="tableLine1"></div>
+					</c:if>
+					
+				</div><!-- listsDiv -->
+				
+				<div class="paging">
+					<span>[페이징처리]</span>
+				</div>
+			
+			</div><!-- right -->
+			
+		</div> <!-- container -->
+	</div><!-- main -->
+	
+	<div class="footer">
+		<!-- footer -->
+		<c:import url="Footer.jsp"></c:import>
+	</div>
+</div>
 
-<!-- footer 넣을 자리	 -->
 
 </body>
 </html>
-
-
-
-<!--  정적 구성 
-			<tr>
-				<td>4</td>
-				<td><a href="QnAArticle.jsp">눈이 뻐근해요</a></td>
-				<td>2023-08-02</td>
-				<td>답변대기</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td><a href="QnAArticle.jsp">졸려요</a></td>
-				<td>2023-07-25</td>
-				<td>답변완료</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td><a href="QnAArticle.jsp">이메일 바꾸고싶어요</a></td>
-				<td>2023-07-23</td>
-				<td>답변완료</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td><a href="QnAArticle.jsp">닉네임 변경 안돼요?</a></td>
-				<td>2023-07-15</td>
-				<td>답변완료</td>
-			</tr> -->
