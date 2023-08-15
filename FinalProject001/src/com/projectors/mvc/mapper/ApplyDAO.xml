@@ -26,9 +26,29 @@
 		     , (SELECT POS_NAME
 		        FROM POSITION
 		        WHERE POS_NO = A.POS_NO) AS POSNAME
+		     , RECRUIT_POS_NO AS RECRUITPOSNO
 		FROM RECRUIT_POS A
 		WHERE A.RECRUIT_POS_NO = #{recruitPosNo}
 	</select>
+	
+	<insert id="applyInsert">
+		INSERT INTO APPLY (APPLY_NO, RECRUIT_POS_NO, PIN_NO, CONTENT, APPLY_DATE)
+		VALUES ('AP'||TO_CHAR(APPLYNOSEQ.NEXTVAL)
+		      , #{recruitPosNo}
+		      , #{pinNo}
+		      , #{content}
+		      , SYSDATE)
+	</insert>
+	
+	<select resultType="com.projectors.mvc.ApplyDTO" id="applyArticle">
+		SELECT APPLYNO, RECRUITPOSNO, RECRUITNO, POSNAME, PINNO, CONTENT
+		        , (SELECT TITLE FROM RECRUIT WHERE RECRUIT_NO = A.RECRUITNO) AS TITLE
+		FROM APPLYVIEW A
+		WHERE APPLYNO = #{applyNo}
+	</select>
+
+
+
 
 	<!-- 
 	private String pinNo, profileNo, nickName, applyNo, recruitNo, recruitPosNo, content;
