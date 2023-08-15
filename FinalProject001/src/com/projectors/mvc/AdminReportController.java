@@ -407,7 +407,7 @@ public class AdminReportController
 		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
 		//System.out.println(lists);
 		
-		result = "ReportManagementCompleteComm.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
 		
 		return result;
 	}
@@ -448,7 +448,7 @@ public class AdminReportController
 		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
 		//System.out.println(lists);
 		
-		result = "ReportManagementCompleteNote.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteNote.jsp";
 		
 		return result;
 	}
