@@ -253,7 +253,7 @@
          
          var teamNoticeTextArea = document.getElementById("teamNoticeTextArea").value;
          
-         alert(teamNoticeTextArea);
+         //alert(teamNoticeTextArea);
          
          window.location.href = "teamNoticeModify.action?spaceNoticeNo=<%=spaceNoticeNo%>&content=" + teamNoticeTextArea;
      };

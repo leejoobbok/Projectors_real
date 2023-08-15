@@ -12,7 +12,7 @@ public class TeamSpaceController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
+	// 팀 스페이스 메인으로 이동 
 	@RequestMapping(value="/teamSpaceMain.action", method = RequestMethod.GET)
 	public String teamSpaceMain()
 	{
@@ -23,20 +23,33 @@ public class TeamSpaceController
 		return url;
 	}
 	
-	@RequestMapping(value="/teamSpaceNoticeLists.action", method = RequestMethod.GET)
+	// 팀 공지게시판 메인으로 이동 
+	@RequestMapping(value="/teamNoticeList.action", method = RequestMethod.GET)
 	public String teamSpaceNoticeLists()
 	{
 		String url="";
+
+		url="/WEB-INF/view/TeamNoticeList.jsp";
 		
-		
-		
-		url="/WEB-INF/view/TeamNoticeInsert.jsp";
+		return url;
+	}
+	
+	// 내 작업실로 이동
+	
+	// 회의록 게시판 메인으로 이동 
+	@RequestMapping(value="/TeamMeetingList.action", method = RequestMethod.GET)
+	public String TeamMeetingList()
+	{
+		String url="";
+
+		url="/WEB-INF/view/TeamMeetingList.jsp";
 		
 		return url;
 	}
 	
 	
 	
+	// 팀 멤버정보로 이동 
 	@RequestMapping(value="/teamMemberInfo.action", method= RequestMethod.GET)
 	public String teamMemberInfo()
 	{

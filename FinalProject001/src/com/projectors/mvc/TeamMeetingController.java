@@ -31,6 +31,7 @@ public class TeamMeetingController
 	{
 		String result = "";
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
+
 		dao.modify(dto);
 		
 		result = "redirect:teamMeetingArticle.action?meetingNo=" + dto.getMeetingNo();
