@@ -25,7 +25,7 @@ public class TeamNoticeController
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		dao.add(dto); 
 		
-		result="redirect:teamNoticeList.action";
+		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
 		
 		return result;
 	}

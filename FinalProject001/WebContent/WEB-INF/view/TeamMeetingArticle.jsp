@@ -3,7 +3,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	String meetingNo = request.getParameter("meetingNo"); //-- 이전 페이지로부터 넘겨받은 회의록 번호
+	String meetingNo = request.getParameter("meetingNo");
 %>
 <!DOCTYPE html>
 <html>
@@ -156,7 +156,7 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#meetingArticleTbl /* 공지 아티클 테이블*/
+	#meetingArticleTbl /* 회의록 아티클 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
@@ -164,7 +164,31 @@
 		font-size: 12pt;
 		text-align: center;
 	}
-	#meetingTextArea /* 내용 출력 부분 */
+	.firstTr
+	{
+		background-color: #bfbbb4;
+	}
+	input[id="title"]		/* 제목 인풋 태그 스타일 초기화*/
+	{
+	   border: none;
+	   outline: none;
+	   background: none;
+	   padding: 0;
+	   margin: 0;
+	 }
+	 
+	 
+	#title		 /*회의록 제목 */
+	{
+	   width: 200px;
+	   font-size: 12pt;
+	   text-align: center;
+	}  
+	#meetingDate, #createdDate
+	{
+		font-size: 10pt;
+	}
+	#meetingTextArea /* 내용 출력 부분 */                                             
 	{
 		width: 88%;
 		height: 400px;
@@ -219,12 +243,12 @@
 <script type="text/javascript">
 	
 	// 삭제 버튼 클릭시 확인받기 
-	function deleteTeamNotice() 
-	{
+	function deleteMeeting() 
+	{	
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
         
         if (confirmDelete) {
-            window.location.href = "deleteMeeting.action?meetingNo=<%=meetingNo%>";
+            window.location.href ="deleteMeeting.action?meetingNo=<%=meetingNo%>";
         }
     }
 	
@@ -233,26 +257,64 @@
 	{ 	
          $("#meetingTextArea").removeAttr("readonly").removeAttr("disabled"); //--  본문 수정 가능하게 변경, 디자인 명시 
          $("#title").removeAttr("readonly").removeAttr("disabled");			//-- 제목 부분 수정 가능하게 변경 
+         $("#title").css({ "border": "1px solid #ccc",						//-- 제목 수정 가능표시를 위해 input  스타일 복구
+         				   "padding": "4px",
+         				   "border-radius":"10px"});
+       
+         $("#title").focus(function() {
+             $(this).css({
+                 "border": "2px solid black",  // 선택중일 때 스타일 변경 
+                 "padding": "4px",
+                 "border-radius": "10px"
+             });
+         });
+         $("#title").blur(function() {			// 선택중이 아닐때 복구 
+             $(this).css({
+            	 "border": "1px solid #ccc",						
+				  "padding": "4px",
+				  "border-radius":"10px"
+             });
+         });
+
          $("#modifyBtn, #deleteBtn").hide();							   //-- 기존 수정, 삭제 버튼 숨기기 
          $("#saveBtn").show();											   //-- 변경사항 저장버튼 
          
     };
 			
-	// 수정완료 버튼 클릭시 (수정 수행)
+	// 수정 완료 버튼 클릭시 (수정 수행)
 	function saveMeeting() 
 	{			 					 // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 제목 뒤에 (수정됨) 표시 추가 
-         $("#meetingTextArea").attr("readonly",true); //-- 편집 불가 속성 추가 		
+		
+         $("#title").attr("readonly",true); 		  //-- 제목에 편집 불가 속성 추가 
+         $("#title").css({ "border": "none",						//-- 제목 스타일 복구
+			   "padding": "4px",
+			   "border-radius":"10px"});
+         $("#meetingTextArea").attr("readonly",true); //-- 내용에 편집 불가 속성 추가 		
          $("#saveBtn").hide();
          $("#modifyBtn").show();
          $("#deleteBtn").show();
          
-         var isModifiedSpan = $("#isModified");		//-- 제목 옆에 수정된 글이면 표시하는 span 요소
-         var modifiedSpan = $("<span>").text("(수정됨)").css("color", "green"); //-- 수정 표시 문구
-         isModifiedSpan.append(" ", modifiedSpan);
+         var isModifiedSpan = $("#isModified");		//-- 수정됨 표시를 붙일 대상 
+		 var modifiedSpan = $("<span>").text("(수정됨)").css({  //-- 수정 표시 문구
+		        	    "color": "green",
+		        	    "font-size": "8pt"
+         });
+          
+         //====== 넘기는 값 처리 
+         var title = document.getElementById("title").value;
+         var content = document.getElementById("meetingTextArea").value;
+         var fileUrl = document.getElementById("fileUrl").textContent;
          
-         var meetingTextArea = document.getElementById("meetingTextArea").value;
-
-         window.location.href = "modifyMeeting.action?meetingNo=<%=meetingNo%>&content=" + meetingTextArea;
+         alert(fileUrl);
+         if (fileUrl === undefined) {
+             fileUrl = null;
+         }                         
+         
+         //수정 가능한 3가지 값을 (제목, 내용, 첨부파일경로) 실제로 제출해서 수정
+         window.location.href = "modifyMeeting.action?meetingNo=<%=meetingNo%>&title=" +title+ "&content=" +content+ "&fileUrl=" +fileUrl;
+	 	 
+	 
+   
      };
 </script>
 
@@ -285,7 +347,7 @@
 			</div>
 				
 			<div id="directoryBox">
-				
+			
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
 					여기 뭐 넣져??
@@ -305,24 +367,27 @@
 				
 				<!-- ==========[ 회의록 아티클 상세 보기 영역 ]========== -->
 				<div id="workSpaceBox">
-					<form action="meetingModify.action" method="get">	<!--  수정 시 제출하기 위한 폼 태그 -->
+				<form action="modifyMeeting.action" method="get"> 	<!-- 수정 제출 폼 -->
 						<table id="meetingArticleTbl">
-							<tr>
+							<tr class="firstTr">
 								<th width="100px">글 번호</th>
-								<th width="500px">제목</th>
-								<th width="200px">회의날짜</th>
-								<th width="200px">작성일</th>
+								<th width="300px">제목</th>
 								<th width="200px">작성자</th>
+								<th width="160px">회의일시</th>
+								<th width="160px">작성일시</th>
 							</tr>
 							
 							<tr>
-								<td>${meetingArticle.meetingNo }</td>
-								<td>
-									${meetingArticle.title }<span id="isModified"></span>
+								<td>${meetingArticle.meetingNo }
 								</td>
-								<td>${meetingArticle.meetingDate }</td>
-								<td>${meetingArticle.createdDate }</td>
+								<td> 
+									<input id="title" name="title" type="text" readonly="readonly" disabled="disabled"
+									 value="${meetingArticle.title }"/>
+									 <span id="isModified"></span>
+								</td>
 								<td>${meetingArticle.nickName }</td>
+								<td>${meetingArticle.meetingDate}</td>
+								<td>${meetingArticle.createdDate }</td>
 							</tr>
 							<tr>
 	    						<td colspan="5">
@@ -332,7 +397,9 @@
 	    						</td>
 							</tr>
 							<tr>
-								<td colspan="5">${meetingArticle.fileUrl }</td>
+								<td colspan="5">
+									<span id="fileUrl" name="fileUrl">${meetingArticle.fileUrl }</span>
+								</td>
 							</tr>
 						</table>
 						
@@ -347,7 +414,7 @@
 							<button type="button" id="deleteBtn" class="btn"  onclick="deleteMeeting()">삭제하기</button>
 							<button type="button" id="saveBtn" class=" btn"  onclick="saveMeeting()" style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
 						</div>
-					</form>
+					</form> 
 				</div><!-- end of #workSpaceBox  -->
 				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->

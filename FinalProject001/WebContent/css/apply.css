@@ -12,6 +12,7 @@
     font-size: 15pt;
 	width: 700px;
 	margin: auto;
+	margin-top: 80px;
 }
 
 .applyFormOuter {
@@ -38,12 +39,11 @@
 	margin-left: 12px;
 	
     font-family: 'SUITE-Regular';
-    font-size: 12pt;
+    font-size: 11pt;
 	width: 130px;
-	height: 28px;
+	height: 24px;
 	border: none;
-	background-color: orange;
-	color: white;
+	background-color: #dfdfdf;
 	border-radius: 10px;
 }
 
@@ -88,20 +88,35 @@
 	width: 150px;
 	height: 40px;
 	border: none;
-	background-color: orange;
-	color: white;
+	background-color: #dfdfdf;
 	border-radius: 10px;
 }
 
 button:hover {
-	color: black;
-	font-weight: bold;
-	border: 3px solid orange;
-	background-color: white;	
+	background-color: #717171;
+	color: white;
 }
 
 button:active {
-	color: black;
 	background-color: orange;
-	font-weight: bold;
 }
+
+.completeApply, .btnContainer {
+	margin: auto;
+	text-align: center;
+	margin-top: 160px;
+}
+
+.completeApply {
+    font-family: 'SUITE-Regular';
+    font-size: 22pt;
+}
+
+.goMain, .goMyApply {
+    font-family: 'SUITE-Regular';
+    font-size: 15pt;
+	width: 160px;
+	height: 42px;
+	border: none;
+	background-color: #dfdfdf;
+	border-radius: 10px;}

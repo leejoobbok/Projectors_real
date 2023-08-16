@@ -1,5 +1,8 @@
 package com.projectors.mvc;
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,7 @@ public class TeamSpaceController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
+	// 팀 스페이스 메인으로 이동
 	@RequestMapping(value="/teamSpaceMain.action", method = RequestMethod.GET)
 	public String teamSpaceMain()
 	{
@@ -22,32 +25,6 @@ public class TeamSpaceController
 				
 		return url;
 	}
-	
-	@RequestMapping(value="/teamSpaceNoticeLists.action", method = RequestMethod.GET)
-	public String teamSpaceNoticeLists()
-	{
-		String url="";
-		
-		
-		
-		url="/WEB-INF/view/TeamNoticeInsert.jsp";
-		
-		return url;
-	}
-	
-	
-	
-	@RequestMapping(value="/teamMemberInfo.action", method= RequestMethod.GET)
-	public String teamMemberInfo()
-	{
-		String url="";
-		
-		
-		url="/WEB-INF/view/TeamMemberInfo.jsp";
-		
-		return url;
-	}
-	
-	
+
 
 }

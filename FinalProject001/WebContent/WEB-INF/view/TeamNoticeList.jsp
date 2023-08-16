@@ -211,13 +211,13 @@
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
-				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
+				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
 			</div> 
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
 				<div class="index idx1">
-					<a href="TeamSpace.jsp">
+					<a href="teamSpaceMain.action">
 						<img src="images/home.png" style="width:30px;"/>
 					</a>
 				</div>
@@ -246,7 +246,7 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">공지게시판</span>
-					<a href="teamSpaceNoticeLists.action">  <!-- ※ 팀장에게만 보이는 버튼 -->
+					<a href="insertTeamNotice.action">  <!-- ※ 팀장에게만 보이는 버튼 -->
 						<button type="button" class="btn" id="writeBtn">공지 작성</button>
 					</a>
 				</div>

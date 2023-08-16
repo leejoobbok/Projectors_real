@@ -90,10 +90,10 @@
 	            console.error("AJAX 요청 실패:", status, error);
 	        }
 	    });
-
 	}
-
 </script>
+
+
 </head>
 <body>
 
@@ -107,6 +107,7 @@
 	    </li>
 	    </c:forEach>
 	</ul>
+	
 </div>
 <div id="sendArea">
 	<form action="" method="get">
@@ -117,3 +118,5 @@
 
 </body>
 </html>
+
+

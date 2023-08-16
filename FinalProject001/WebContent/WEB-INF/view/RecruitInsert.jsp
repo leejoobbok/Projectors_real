@@ -368,7 +368,7 @@
 			<input id="submitCheck" type="checkbox"> 작성하신 공고는 수정할 수 없습니다. 정확히 작성하셨나요?
 			</span><br>
 			<span id="correctAlart" class="lengthAlart">동의해주세요.<br></span>
-			<button type="button" class="insertBtn" onclick="">등록하기</button><br>
+			<button type="button" class="insertBtn">등록하기</button><br>
 			<span id="submitAlart" class="lengthAlart"></span>
 		</div>	
 		

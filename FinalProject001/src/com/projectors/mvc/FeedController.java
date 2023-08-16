@@ -1,5 +1,6 @@
 package com.projectors.mvc;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ public class FeedController
 {
 	@Autowired
 	private SqlSession sqlSession;
+	
 	
 	//● 담벼락 메세지 불러오기 (특정 팀 스페이스)
 	@RequestMapping(value = "/loadFeed.action", method = RequestMethod.GET)
@@ -44,3 +46,4 @@ public class FeedController
 	}
 	
 }
+

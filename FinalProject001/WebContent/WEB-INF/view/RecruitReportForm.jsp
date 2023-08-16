@@ -11,35 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>모집 공고 신고 : Projectors</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/report.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<style type="text/css">
-
-	*
-	{
-		font-size: 12pt;
-		font-weight: bold;
-	}
-	
-	#logoBox 					   /*로고 이미지*/
-	{
-		padding-top: 100px;
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-	}
-	
-	#reportBox
-	{
-		width: 500px;
-		height: 300px;
-		margin: auto;
-		border: 3px solid black;
-	}
-	
-</style>
-
 <script type="text/javascript">
 
 	$(function()
@@ -66,13 +39,13 @@
 			<form action="sendRecruitReport.action" id="reportForm">
 				<table style="margin: auto; margin-top: 10%;">
 					<tr>
-						<th colspan="2" style="font-size: x-large;">신고하기</th>
+						<th colspan="2" class="popupTitle">신고하기</th>
 					</tr>
 					<tr>
 						<th colspan="2"><hr /></th>
 					</tr>					
 					<tr>
-						<th>신고사유</th>
+						<th class="popupSmallTitle">신고사유</th>
 						<td>
 							<select name="repReason" id="repReason">
 								<option selected="selected">-- 사유 선택 --</option>
@@ -88,7 +61,7 @@
 						<td><input type="hidden" name="recruitNo" value="<%=recruitNo%>"></td>
 					</tr>
 					<tr style="text-align: center;">
-						<td colspan="2" style="color: red; font-size: x-small;">
+						<td colspan="2" style="color: red; font-size: 10pt;">
 							※ 허위 신고 시, 재제를 받을 수 있습니다.
 						</td>
 					</tr>

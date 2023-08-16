@@ -18,9 +18,13 @@
 <update id="modify">
 	UPDATE MEETING 
 	SET TITLE = #{title}
-	    ,CONTENT = #{content}
-	    ,FILEURL = #{fileUrl}
-	    ,MEETING_DATE = #{meetingDate}
+	,CONTENT = #{content}
+	    <if test="fileUrl != null">
+         ,FILEURL = #{fileUrl, jdbcType=VARCHAR}
+        </if>
+        <if test="fileUrl == null">
+        ,FILEURL = NULL
+        </if> 
 	WHERE MEETING_NO = #{meetingNo}
 </update>
 

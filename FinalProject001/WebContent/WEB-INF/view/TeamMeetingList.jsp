@@ -166,6 +166,10 @@
 		font-size: 12pt;
 		text-align: center;
 	}
+	.firstTr
+	{
+		background-color: #bfbbb4;
+	}
 	/*======================================================*/
 	
 	#pageNumBox				/* 페이지 넘버 영역*/
@@ -256,7 +260,7 @@
 				<div id="workSpaceBox">
 					
 					<table id="teamMeetingListTbl">
-						<tr>
+						<tr class="firstTr">
 							<th width="100px">글 번호</th>
 							<th width="400px">제목</th>
 							<th width="200px">회의날짜</th>

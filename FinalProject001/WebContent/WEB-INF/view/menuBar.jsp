@@ -45,7 +45,7 @@
 	<div class="Main_category_Outer">
 	<br>
 		<a class="Main_category" href="projectorsmain.action">메인</a>
-		<a class="Main_category" href="">공지</a>
+		<a class="Main_category" href="noticelists.action">공지</a>
 		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
 		<a class="Main_category" href="myapply.action">나의 지원 이력(공사중)</a>
 		<a class="Main_category" href="mypost.action">나의 모집 공고(공사중)</a>
