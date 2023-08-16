@@ -5,6 +5,7 @@
 	String cp = request.getContextPath();
 	String meetingNo = request.getParameter("meetingNo");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -402,6 +403,7 @@
 								</td>
 							</tr>
 						</table>
+						
 						
 						<div id="bottomBox">
 							
