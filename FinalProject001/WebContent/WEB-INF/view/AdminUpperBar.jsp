@@ -26,9 +26,9 @@
 <body>
 	<div id="upperBarMenus">
 	
-		<a href="MainPage.jsp"><img src="images/adminPic.png" style="width: 20px; height: 20px;"/> 관리자</a>
+		<img src="images/adminPic.png" style="width: 20px; height: 20px;"/> 관리자
 		
-		<a href="MainPage.jsp">로그아웃</a>
+		<a href="logout.action">로그아웃</a>
 		
 	</div>
 </body>

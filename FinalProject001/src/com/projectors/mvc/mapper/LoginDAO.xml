@@ -42,7 +42,7 @@
 		WHERE ADMIN_ID=#{id} AND ADMIN_PW=#{pw}
 	</select>
 	
-	
+	<!-- 로그인 로그 기록 -->
 	<insert id="loginRec">
 		INSERT INTO LOGIN_REC
 		VALUES
@@ -51,14 +51,29 @@
 		, SYSDATE)
 	</insert>
 	
+	<select id="findLoginRec" resultType="com.projectors.mvc.LoginDTO">
+		SELECT LOGIN_REC as logInRecNo
+		     , PIN_NO as pinNo
+		     , TO_CHAR(LOGIN_DATE, 'YYYY-MM-DD HH24:MI:SS') as logInDate
+		FROM LOGIN_REC
+		ORDER BY logInRecNo DESC
+	</select>
 	
+	<!-- 로그아웃 로그 기록 -->
+	<insert id="logoutRec">
+		INSERT INTO LOGOUT_REC
+		VALUES
+		( LOGOUTRECSEQ.NEXTVAL
+		, #{pinNo}
+		, SYSDATE)
+	</insert>
 	
+	<select id="findLogoutRec" resultType="com.projectors.mvc.LoginDTO">
+		SELECT LOGOUT_REC as logOutRecNo
+		     , PIN_NO as pinNo
+		     , TO_CHAR(LOGOUT_DATE, 'YYYY-MM-DD HH24:MI:SS') as logOutDate
+		FROM LOGOUT_REC
+		ORDER BY logOutRecNo DESC
+	</select>
 	
-	
-	
-	
-	
-	
-	
-
 </mapper>

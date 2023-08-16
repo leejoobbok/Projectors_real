@@ -12,7 +12,9 @@ public class LoginDTO
    	
    	private String managerCheck;
    	
-   	private String logInDate;
+   	private String logInRecNo, logOutRecNo;
+   	
+   	private String logInDate, logOutDate;
 
 	public String getAdminNo()
 	{
@@ -79,9 +81,39 @@ public class LoginDTO
 		return logInDate;
 	}
 
+	public String getLogInRecNo()
+	{
+		return logInRecNo;
+	}
+
+	public void setLogInRecNo(String logInRecNo)
+	{
+		this.logInRecNo = logInRecNo;
+	}
+
 	public void setLogInDate(String logInDate)
 	{
 		this.logInDate = logInDate;
+	}
+
+	public String getLogOutRecNo()
+	{
+		return logOutRecNo;
+	}
+
+	public void setLogOutRecNo(String logOutRecNo)
+	{
+		this.logOutRecNo = logOutRecNo;
+	}
+
+	public String getLogOutDate()
+	{
+		return logOutDate;
+	}
+
+	public void setLogOutDate(String logOutDate)
+	{
+		this.logOutDate = logOutDate;
 	}
 
    	

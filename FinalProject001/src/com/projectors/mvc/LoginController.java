@@ -57,7 +57,7 @@ public class LoginController
 				/*세션에 관리자 pin 등록*/
 				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
 				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
-				/* dao.loginRec(dao.getUserPin(loginDTO)); */
+				dao.loginRec(dao.getAdminPin(loginDTO));
 				
 			}
 			else
@@ -96,15 +96,53 @@ public class LoginController
 		return result;
 	}
 	
+	// 로그인 로그 리스트 출력
+	@RequestMapping (value = "/userManagementLog.action", method = RequestMethod.GET)
+	public String logInLog(Model model)
+	{
+		String result = "";
+		
+		ILoginDAO dao = sqlSession.getMapper(ILoginDAO.class);
+		
+		model.addAttribute("lists", dao.findLoginRec());
+		
+		result = "/WEB-INF/view/UserManagementLog.jsp";
+		
+		return result;
+	}
 	
+	// 로그 아웃
 	@RequestMapping(value="/logout.action", method=RequestMethod.GET)
 	public String logOut(HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		
+		ILoginDAO dao = sqlSession.getMapper(ILoginDAO.class);
+		
+		String pinNo=  (String)session.getAttribute("pinNo");
+		
+		dao.logoutRec(pinNo);
+		
+		System.out.println(pinNo +  " : 로그아웃 레코드 남기고 종료!");
+		
 		session.invalidate();
 
 		return "redirect:projectorsmain.action";
+	}
+	
+	@RequestMapping (value = "/userManagementLogOut.action", method = RequestMethod.GET )
+	// 로그아웃 로그 리스트 출력
+	public String logOutLog(Model model)
+	{
+		String result = "";
+		
+		ILoginDAO dao = sqlSession.getMapper(ILoginDAO.class);
+		
+		model.addAttribute("lists", dao.findLogoutRec());
+
+		result = "/WEB-INF/view/UserManagementLogOut.jsp";
+		
+		return result;
 	}
 
 }

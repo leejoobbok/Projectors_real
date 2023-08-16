@@ -233,7 +233,7 @@
 				
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
-					여기 뭐 넣져??
+					
 				</div>
 				
 				
@@ -246,7 +246,7 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">공지게시판</span>
-					<a href="insertTeamNotice.action">  <!-- ※ 팀장에게만 보이는 버튼 -->
+					<a href="writeTeamNotice.action">  <!-- ※ 팀장에게만 보이는 버튼 -->
 						<button type="button" class="btn" id="writeBtn">공지 작성</button>
 					</a>
 				</div>
