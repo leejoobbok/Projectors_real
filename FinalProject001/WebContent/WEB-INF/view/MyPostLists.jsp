@@ -214,7 +214,7 @@
 			                     <c:choose>
 			                        <c:when test="${checkPresentO == 0}">
 			                           <tr>
-			                              <td colspan="1">합격 지원자가 없습니다.</td>
+			                              <td colspan="4">합격 지원자가 없습니다.</td>
 			                           </tr>
 			                        </c:when>
 			                        <c:otherwise>

@@ -1,5 +1,7 @@
 package com.projectors.mvc;
 
+import java.util.ArrayList;
+
 public interface ILoginDAO
 {
 	public int count();
@@ -19,8 +21,12 @@ public interface ILoginDAO
 
 	
 	//-- 로그인 기록
-	
 	public void loginRec(String pinNo);
-
 	
+	public ArrayList<LoginDTO> findLoginRec();
+
+	//-- 로그아웃 기록
+	public void logoutRec(String pinNo);
+	
+	public ArrayList<LoginDTO> findLogoutRec();
 }

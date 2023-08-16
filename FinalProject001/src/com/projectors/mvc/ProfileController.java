@@ -27,9 +27,51 @@ public class ProfileController
 	private SqlSession sqlSession;
 
 	@RequestMapping(value="/mypage.action", method = RequestMethod.GET)
-	public String myPage()
+	public String myPage(Model model,HttpServletRequest request)
 	{
-		return "/WEB-INF/view/MyPage.jsp";
+		String url="";
+		
+		IProfileDAO profileDAO = sqlSession.getMapper(IProfileDAO.class);
+		
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		
+		// 0 프로필 유무 확인
+
+		int result = profileDAO.getResult(pinNo);
+
+		System.out.println(result);
+
+		model.addAttribute("result", result);
+
+		// 1 프로필 내용
+
+		ProfileDTO profileDTO = profileDAO.getProfile(pinNo);
+
+		model.addAttribute("profileDTO", profileDTO);
+
+		// 2 사용 기술
+
+		ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
+
+		/* System.out.println(utool); */
+
+		model.addAttribute("utool", utool);
+
+		// 3 평가 출력
+
+		ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
+
+		/* System.out.println("평가출력의" + totalRate); */
+
+		model.addAttribute("totalRate", totalRate);
+
+		url = "/WEB-INF/view/MyPage.jsp";
+
+		return url;
+		
+		
 	}
 	
 	

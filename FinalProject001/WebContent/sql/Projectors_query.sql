@@ -2434,3 +2434,29 @@ SELECT SUM(COUNTALL) AS COUNTALL
 FROM RECRUITPOSITIONVIEW 
 WHERE RECRUITNO = 'RC5'
 GROUP BY POSNAME;
+
+SELECT * FROM RECRUIT;
+
+SELECT * FROM USERS
+;
+
+
+COMMIT;
+
+/*
+US6	UP6	도라에몽@naver.com	java002$	도라에몽	c://WebStudy
+US7	UP7	노진구@naver.com	java002$	노진구	c://WebStudy
+US8	UP8	비실이@naver.com	java002$	비실이	c://WebStudy
+US9	UP9	퉁퉁이@naver.com	java002$	퉁퉁이	c://WebStudy
+US10	UP10	이슬이@naver.com	java002$	이슬이	c://WebStudy
+*/
+
+SELECT * FROM USERS;
+
+COMMIT;
+
+
+
+UPDATE USERS SET  PHOTOURL='images/defaultPhoto.jpg';
+
+COMMIT;
