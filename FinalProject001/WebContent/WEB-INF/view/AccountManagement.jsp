@@ -15,6 +15,12 @@ String cp = request.getContextPath();
 
 <style type="text/css">
 
+*
+{
+	text-align: center;
+	margin: auto;
+}
+
 /* ---------- 상단 고정 스타일(메뉴바까지) ----------*/
 #logoBox /*로고 이미지*/ {
 	text-align: center;
@@ -127,7 +133,8 @@ String cp = request.getContextPath();
 				<span id="myPageTitle">마이페이지</span> <a href="mypage.action">내
 					프로필</a>
 				<!-- <a href="MyPage.jsp">찜한 모집 공고</a> -->
-				<a href="accountManage.action" id="myAccount">계정관리</a>
+				<!-- <a href="accountManage.action" id="myAccount">계정관리</a> -->
+				▶계정관리
 			</div>
 
 			<!-- ===== 계정 관리 =====-->
