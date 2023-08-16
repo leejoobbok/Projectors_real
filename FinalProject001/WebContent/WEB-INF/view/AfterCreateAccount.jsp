@@ -81,7 +81,7 @@
 				<p id="welcomeMsg">프로필을 작성하고 프로젝트에 참여해보아요~!</p>
 			</div>
 			
-				<button type="button"><a href="mainpage.action">메인 페이지로</a></button>
+				<button type="button"><a href="projectorsmain.action">메인 페이지로</a></button>
 				<button type="button"><a href="profileInsertForm.action">프로필 작성하기</a></button>
 			<br>
 		</div>	
