@@ -219,13 +219,15 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
+	var spaceNoticeNo = <%=spaceNoticeNo%>;
+	
 	// 삭제 버튼 클릭시 확인받기 
 	function deleteTeamNotice() 
 	{
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
         
         if (confirmDelete) {
-            window.location.href = "teamNoticeDelete.action?spaceNoticeNo=<%=spaceNoticeNo%>";
+            window.location.href = "teamNoticeDelete.action?spaceNoticeNo="+spaceNoticeNo;
         }
     }
 	
@@ -255,7 +257,7 @@
          
          //alert(teamNoticeTextArea);
          
-         window.location.href = "teamNoticeModify.action?spaceNoticeNo=<%=spaceNoticeNo%>&content=" + teamNoticeTextArea;
+         window.location.href = "teamNoticeModify.action?spaceNoticeNo="+spaceNoticeNo+"&content=" + teamNoticeTextArea;
      };
 </script>
 
@@ -291,7 +293,7 @@
 				
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
-					여기 뭐 넣져??
+					
 				</div>
 				
 				

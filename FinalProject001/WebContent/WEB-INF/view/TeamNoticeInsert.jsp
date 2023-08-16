@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스 > 회의록 작성하기 - Projectors </title>
+<title>팀 스페이스 > 공지 등록 - Projectors </title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
@@ -97,52 +97,34 @@
 	}
 
     /*===================================================*/
-    .smallTitleBox   /* 소제목 박스들 공통 클래스 */
-    {	
-     	position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-   		height:30px;  
-    	font-size: 16px;
-	  	font-weight: bold;
-	  	
-	  	text-align: center;
-	  	border: 2px solid ; 
-	 	border-radius: 12px;
-	  	padding: 10px 4px 4px 4px;
-    }
-    #titleIndex		/* 제목 제목박스 */
+    
+    #titleIndex		/* 제목 (초록 div) */
     {
+    	 position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
     	 top: 60px;  /* 고정 top 마진 */
-	  	 left: 182px; /* 고정 왼쪽 마진 */
+	  	 left: 182px; /* 고정 우측 마진 */
+	  	
+	  	 height:30px;  
 	  	 width: 50px;
+	 	 border: 2px solid ; 
+	 	 border-radius: 12px;
+	  
+	 	 font-size: 16px;
+	  	 font-weight: bold;
 	  	 background-color: #c6fa96;
+	 	 text-align: center;
+	 	 padding: 10px 4px 4px 4px;
     }
     
-    #meetingDateIndex /* 회의 날짜제목 박스*/
-    {
-    	 top: 116px;  /* 고정 top 마진 */
-	  	 left: 182px; /* 고정 왼쪽 마진 */
-	  	 width: 80px;
-	  	 background-color: pink;
-    }
-    #fileUrlIndex /* 첨부 파일 제목 박스*/
-    {
-    	 top: 116px;  /* 고정 top 마진 */
-	  	 left: 500px; /* 고정 왼쪽 마진 */
-	  	 width: 80px;
-	  	 background-color: #a0c2f2;
-    }
-    
-     /*===================================================*/
 	#title 	/* 제목 작성란 (input 박스) */
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 60px;  			/* 고정 top 마진 */
-	  right: 180px; 	/* 고정 우측 마진 */
+	  right: 170px; 	/* 고정 우측 마진 */
 	  
 	  height: 30px;
 	  background-color: white;
 	  width: 850px;
-	  
 	  border: 2px solid;
 	  border-radius: 12px;
 	  
@@ -155,7 +137,7 @@
 	#content		/* 내용 작성란 */
 	{	
 		 position: absolute; 
-		 top: 150px;
+		 top: 110px;
 		 right: 152px;
 		 
 		 font-size: 16px;
@@ -166,45 +148,9 @@
 		 border: 2px solid gray;
 		 
 		 width: 900px;
-		 height:460px;
+		 height:500px;
 	}
 	
-	#meetingDate  /* 회의 날짜 작성란 */
-	{
-	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 116px;  			/* 고정 top 마진 */
-	  left: 284px; 			/* 고정 왼쪽 마진 */
-	  
-	  height: 30px;
-	  background-color: white;
-	  width: 180px;
-	  border: 2px solid;
-	  border-radius: 12px;
-	  
-	  font-size: 16px;
-	  font-weight: bold;
-	  text-align: left;
- 	  padding: 10px 4px 4px 10px;
-	}
-	
-	#fileUrl /* 첨부파일 선택란 */
-	{
-	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 116px;  			/* 고정 top 마진 */
-	  right: 180px; 			/* 고정 오른쪽 마진 */
-	  
-	  height: 30px;
-	  background-color: white;
-	  width: 500px;
-	  border: 2px solid;
-	  border-radius: 12px;
-	  
-	  font-size: 16px;
-	  font-weight: bold;
-	  text-align: left;
- 	  padding: 10px 4px 4px 10px;
-	}
-	 /*===================================================*/
 	.buttonContainer
 	{
 		position: absolute;
@@ -242,8 +188,7 @@
     {	
     	var title = $('#title').val();
     	var content = $('#content').val();
-    	var fileUrl = $('#fileUrl').val();
-    	window.location.href = "insertMeeting.action?title="+title+"&content="+content+"&fileUrl="+fileUrl; 
+    	window.location.href = "insertTeamNotice.action?title="+title+"&content="+content; 
     	
     	
     	/*
@@ -309,20 +254,14 @@
 			<div id="directoryBox">	
 				<form action="" method="get">
 
-					<div id="titleIndex" class="smallTitleBox">제목</div>
-					<input type="text" id="title" name="title"  placeholder="제목 입력">
+					<div id="titleIndex">제목</div>
+					<input type="text" id="title" name="title"  placeholder="제목을 입력하세요">
 					
-					<div id="meetingDateIndex" class="smallTitleBox">회의날짜</div>
-					<input type="date" name="meetingDate" id="meetingDate"></input>
-					
-					<div id="fileUrlIndex" class="smallTitleBox">첨부파일</div>
-					<input type="file" id="fileUrl" name="fileUrl"> 
-					
-					<textarea name="content" id="content"  placeholder="내용 입력"></textarea>
+					<textarea name="content" id="content"  placeholder="내용을 입력해주세요"></textarea>
 					
 					<div class="buttonContainer">
 						<button type="button" class="btn" id="insertBtn" onclick="send()">등록하기</button>
-						<a href="TeamMeetingList.action">
+						<a href="teamNoticeList.action">
 							<button type="button" class="btn" id="backBtn">취소하기</button>
 						</a>
 					</div>
@@ -337,11 +276,3 @@
 </body>
 </html>
 
-<!-- 파일 업로드,  아티클에서 다운로드하는거 못함 // URL 얻기 
-<form action="uploadFileOK.jsp" method="post" enctype="multipart/form-data">
-	<input type="file" id="fileUrl" name="fileUrl"><br>
-	
-	<button type="submit">등록</button>
-</form>
-
--->

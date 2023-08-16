@@ -13,7 +13,17 @@ public class TeamMeetingController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// ● 회의록 등록 
+	// ● 회의록 작성 페이지로 이동 
+	@RequestMapping (value = "/writeMeeting.action", method = RequestMethod.GET)
+	public String writeMeeting()
+	{
+		String result = "";
+		result="/WEB-INF/view/TeamMeetingWrite.jsp";
+		return result;
+	}
+	
+	
+	// ● 회의록 등록 (인서트 수행)
 	@RequestMapping (value = "/insertMeeting.action", method = RequestMethod.GET)
 	public String meetingInsert(TeamMeetingDTO dto)
 	{
@@ -21,7 +31,7 @@ public class TeamMeetingController
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
 		dao.add(dto);
 		
-		result="/WEB-INF/view/TeamMeetingWrite.jsp";
+		result = "redirect:teamMeetingArticle.action?meetingNo=" + dto.getMeetingNo();
 		return result;
 	}
 	

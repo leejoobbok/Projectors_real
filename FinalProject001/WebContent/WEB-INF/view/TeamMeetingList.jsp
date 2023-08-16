@@ -238,7 +238,7 @@
 				
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
-					여기 뭐 넣져??
+					
 				</div>
 				
 				
@@ -251,7 +251,7 @@
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
 					<span id="lineNotice">회의록</span>
-					<a href="insertMeeting.action">  <!-- ※ 팀원 모두 사용 -->
+					<a href="writeMeeting.action">  <!-- ※ 작성 페이지로 이동  -->
 						<button type="button" class="btn" id="writeBtn">회의록 작성</button>
 					</a>
 				</div>
