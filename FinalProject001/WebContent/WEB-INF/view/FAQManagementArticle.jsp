@@ -132,7 +132,7 @@
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
+			<c:import url="adminLogo.jsp"></c:import>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
