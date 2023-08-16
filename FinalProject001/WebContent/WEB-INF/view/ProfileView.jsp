@@ -10,8 +10,6 @@
 <meta charset="UTF-8">
 
 <title>이미 프로필을 가지고 있는 회원이 자기 프로필을 보는 곳</title>
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	
 	a{text-decoration: none;}
@@ -86,43 +84,28 @@
 			</div>
 		</div>
 				
-		<div id="ProfileTextBox">
-			<form action="" method="get">
-				<table>
-					<tr>
-						<td>
-							<button type="button" onclick="location.href='profileUpdateForm.action'"> 수정 </button>
-						</td>
-					</tr>
-					<tr>
-						<th>아이디 </th>
-						<td>${profileDTO.id}</td>
-						<td></td>
-					</tr>
-					<tr>
-						<th>닉네임 </th>
-						<td>${profileDTO.nickname }</td>
-					</tr>
-					<tr>
-						<th>희망 포지션 </th>
-						<td>${profileDTO.posName }</td>
-					</tr>
-					<tr>
-						<th>사용 가능 도구</th>
-						<td>
-						<c:forEach var="utool" items="${utool}">
-							【${utool.toolName}】
-						</c:forEach>
-						</td>
-					</tr> 
-					<tr>
-						<th>지역 </th>
-						<td>${profileDTO.regionName } | ${profileDTO.subRegionName }</td>
-					</tr>
-					</table>
-					<br /><br />
-
-					<div id=rateBox>
+		<div class="myProfileOuter">
+			<h3>지원하기</h3>
+			
+			<!-- 프로필 가져오기 -->
+			<span class="smallTitle">나의 프로필</span>
+			<button type="button" class="updateProfileBtn" onclick="updateProfile()">프로필 수정하기</button><br>
+			
+			<div class="myProfile">
+				<div class="photo">
+					<img class="img" alt="profileImg" src="<%=cp %>/${memberInfo.photoUrl }">
+				</div>
+				<div class="etc">
+				닉네임 : ${profileDTO.nickname }<br>
+				희망포지션 : ${profileDTO.posName }<br>
+				활동지역 : ${profileDTO.regionName } | ${profileDTO.subRegionName }<br>
+				사용가능 언어 및 환경<br>
+				: &nbsp; 
+				<c:forEach var="utool" items="${utool}">
+						<span>【${utool.toolName}】&nbsp;&nbsp;</span>
+				</c:forEach>
+				</div>
+				<div id=rateBox>
 						
 						<table border="1px solid black">
 						<p>평가</p>
@@ -134,20 +117,9 @@
 							</c:forEach>
 							
 						</table>
-					</div>
-				</form>
-
-
-<!-- 
-			<table>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</table>
--->			
-		</div> <!-- end of #ProfileBox div-->
+				</div> <!-- end rateBox  -->
+			</div> <!-- end myProfile -->
+		</div>	<!--end myProfileOuter"  -->
          
         </c:when> 
         <c:otherwise>
