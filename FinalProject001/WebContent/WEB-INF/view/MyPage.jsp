@@ -133,6 +133,7 @@ String cp = request.getContextPath();
 		
  
 <c:set var="result" value="${result}" scope="session"/>
+<c:set var="utoolResult" value="${utoolResult}" scope="session"/>
 <c:choose>
         <c:when test="${result == 1 }">
              
@@ -174,9 +175,17 @@ String cp = request.getContextPath();
 				<div class="toolBox" >
 				<p>「사용가능 언어 및 환경」</p>
 				<hr />
-				<c:forEach var="utool" items="${utool}">
-						【${utool.toolName}】
-				</c:forEach>
+				
+				<c:choose>	
+					<c:when test="${utoolResult > 0 }">			
+						<c:forEach var="utool" items="${utool}">
+									【${utool.toolName}】
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						사용 기술이 없습니다.
+					</c:otherwise>
+				</c:choose>
 				</div>
 			
 			</div> <!-- end myProfile -->

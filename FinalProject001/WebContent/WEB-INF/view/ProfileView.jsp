@@ -2,123 +2,210 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String cp = request.getContextPath();
+String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>MyPage.jsp(마이페이지)</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
 
-<title>이미 프로필을 가지고 있는 회원이 자기 프로필을 보는 곳</title>
 <style type="text/css">
-	
-	a{text-decoration: none;}
-	
-	#ProfileContainer		/* 전체 컨테이너 */
-	{
-		margin: 10px;
-	}
-	
-	#profileTitleBox			/*타이틀 박스영역*/
-	{	
-		margin-right: 10px;
-		text-align: left;
-	}
-	#profileTitle				/* 타이틀 */
-	{
-		font-weight: bold;
-		font-size: 14pt;
-	}
-	#profileImgContainer		/*프로필 이미지 등록 영역*/
-	{	
-		float: left;
-		background-color: #dedcf2;
-		width: 140px;
-		height: 170px;
-		margin-right: 20px;
-		border-radius:10px;
-	}
-	#profileImgBox	 	/* 프로필 사진 영역*/
-	{
-		width: 100px;
-		height: 100px;
-	}
-	#ProfileTextBox	/* 프로필 텍스트 입력/수정영역 */
-	{
-		text-align: left;
-	}
-	#updateBtn /*수정 버튼*/
-	{
-		border-radius: 14px;
-	}
 
+*
+{
+	text-align: center;
 	
+	margin: auto;
+}
+
+/* ---------- 상단 고정 스타일(메뉴바까지) ----------*/
+#logoBox /*로고 이미지*/ {
+	text-align: center;
+	height: 100px;
+	padding-top: 20px;
+	/* border: 1px solid; */
+}
+
+#upperBarBox /*최상단 바(로그인..쪽지)*/ {
+	text-align: right;
+}
+
+#menuBar /*메뉴바(메인|공지..)*/ {
+	text-align: center;
+	position: sticky;
+	padding-top: 32px;
+	top: -32px;
+}
+/*--- 여기까지 상단 고정 스타일 (메뉴바까지) ------*/
+#myPageBox /* 전체 박스 클래스 */ {
+	width: 1007px; /* 윈도우 조절해도 안 줄어들게 고정 */
+	margin: auto;
+	border: 1px solid;
+	border-radius: 20px;
+}
+
+#myPageTitle /*마이페이지 (타이틀)*/ {
+	margin: 10px 20px;
+	font-weight: bold;
+	font-size: 16pt;
+	text-align: left;
+}
+
+.smallTitile /* 소제목 */ {
+	font-size: 14pt;
+	margin-left: 40px;
+}
+
+#myPageMenus /*마이페이지 메뉴들 */ {
+	border: 1px solid;
+	border-radius: 20px;
+	font-weight: bold;
+	padding: 10px 10px 10px 10px;
+	background-color: white;
+
+	/* position :sticky;  */ /*sticky 속성*/
+	/*  top: 70px; */ /*sticky 속성*/
+}
+
+#myProfile /*내 프로필 영역*/ {
+	
+}
 </style>
 
+
 </head>
+
+
 <body>
+	<div id="root">
+
+		<div class="header">
+
+			<!-- header -->
+			<c:choose>
+				<c:when test="${not empty pinNo}">
+					<div class="header-member">
+						<c:import url="memberBar.jsp"></c:import>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="header-member">
+						<c:import url="GuestBar.jsp"></c:import>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
+			<div class="header-logo">
+				<a href="projectorsmain.action"><img style="width: 530px;"
+					src="<%=cp%>/images/NEXTART_LOGO.png" /></a>
+			</div>
+
+		</div>
+
+		<div class="header-menu">
+			<c:import url="menuBar.jsp"></c:import>
+		</div>
+		<!-- ============================================================ -->
+
+
+		<div id="myPageBox">
+
+			<div id="myPageMenus">
+				<span id="myPageTitle">마이페이지</span> <!-- <a href="profileview.action">내
+					프로필</a> --> <b>▶내 프로필 |</b>
+				<!-- <a href="MyPage.jsp">찜한 모집 공고</a> -->
+				<a href="accountManage.action">계정관리</a>
+			</div>
+
+
+			<!-- ====== 나의 프로필 ====== -->
+		<!--★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★  -->
+
 	<div id="ProfileContainer"> <!-- 프로필 전체 컨테이너 -->
 		<div id="profileTitleBox">
 			<h2 id="profileTitle"> 나의 프로필</h2>
 		</div>
 		
 		
-		
-		
  
 <c:set var="result" value="${result}" scope="session"/>
+<c:set var="utoolResult" value="${utoolResult}" scope="session"/>
 <c:choose>
         <c:when test="${result == 1 }">
              
   	
-		<div id="profileImgContainer">
-			<div id="profileImgBox">
+		<div id="profileImgContainer" style="margin: auto;">
+			<div id="profileImgBox" style="margin: auto;">
 				<img style="width:100px; height: 100px; margin:20px; border-radius: 6px"
-				  alt="profileImg"
+				  alt="profileImg" 
 				  src="${profileDTO.photourl}">
 			</div>
 			<div style="margin: 30px 16px;">
 			<button type="submit"
 				 onclick="window.open('<%= request.getContextPath()%>/photoUpdateForm.action','photoUpdate',
 				 'left=500,top=300,width=400,height=400,resizable=no, location=no')" >사진 등록/수정</button>	 
+			
+			<button type="button" onclick="location.href='profileUpdateForm.action'">프로필 수정하기</button>
 			</div>
 		</div>
 				
 		<div class="myProfileOuter">
-			<h3>지원하기</h3>
+	<!-- 		
+			프로필 가져오기
+			<span class="smallTitle">나의 프로필</span> -->
+		
 			
-			<!-- 프로필 가져오기 -->
-			<span class="smallTitle">나의 프로필</span>
-			<button type="button" class="updateProfileBtn" onclick="updateProfile()">프로필 수정하기</button><br>
-			
-			<div class="myProfile">
+			<div class="myProfile" style="width:200px;" >
+<%-- 			
 				<div class="photo">
-					<img class="img" alt="profileImg" src="<%=cp %>/${memberInfo.photoUrl }">
-				</div>
+					<img class="img" alt="profileImg" src="<%=cp %>/${profileDTO.photourl}">
+				</div> 
+				
+--%>
 				<div class="etc">
 				닉네임 : ${profileDTO.nickname }<br>
 				희망포지션 : ${profileDTO.posName }<br>
 				활동지역 : ${profileDTO.regionName } | ${profileDTO.subRegionName }<br>
-				사용가능 언어 및 환경<br>
-				: &nbsp; 
-				<c:forEach var="utool" items="${utool}">
-						<span>【${utool.toolName}】&nbsp;&nbsp;</span>
-				</c:forEach>
 				</div>
-				<div id=rateBox>
+				
+				<div class="toolBox" >
+				<p>「사용가능 언어 및 환경」</p>
+				<hr />
+				
+				<c:choose>	
+					<c:when test="${utoolResult > 0 }">			
+						<c:forEach var="utool" items="${utool}">
+									【${utool.toolName}】
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						사용 기술이 없습니다.
+					</c:otherwise>
+				</c:choose>
+				</div>
+			
+			</div> <!-- end myProfile -->
+
+				<br />
+				<br />
+				<hr />			
+				<div id=rateBox >
 						
-						<table border="1px solid black">
-						<p>평가</p>
+						<table >
+						<p style="font-size:x-large; font-family: 궁서체">평가</p>
 							<c:forEach var="totalRate" items="${totalRate}">
 							<tr>
-								<th>${totalRate.rateName }</th>
-								<td>${totalRate.count }</td>
+								<th border="1px solid black">${totalRate.rateName }</th>
+								<td border="1px solid black">${totalRate.count }</td>
 							</tr>	
 							</c:forEach>
 							
 						</table>
 				</div> <!-- end rateBox  -->
-			</div> <!-- end myProfile -->
 		</div>	<!--end myProfileOuter"  -->
          
         </c:when> 
@@ -130,7 +217,24 @@
 </c:choose>
 	
 	</div> <!-- end of #wrapper div -->
+	
+<!--★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★  -->
+
+
+
+			<!-- ===== 내가 찜한 모집공고 ====== -->
+			<%-- 			<hr>
+			<div id="myPick">
+				<h2 class="smallTitile">찜한 모집 공고</h2>
+				<c:import url="PickedPost.jsp"></c:import>
+			</div>
+			 --%>
+		</div>
+		<!-- end of #myPageBox div -->
+
+	</div>
+	<!-- end of #root div -->
+
 </body>
 </html>
 
-<!-- location 주소창 보이기 속성은 오페라에서만 동작 -->

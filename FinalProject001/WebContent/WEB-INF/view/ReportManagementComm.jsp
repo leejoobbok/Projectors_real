@@ -235,14 +235,20 @@ function cancelReport(button)
 					</td>
 					<td><a href="applyarticle.action?applyNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
-						${report.reportedNickName }
+						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo }"
+  							 onclick="window.open(this.href, 'photoUpdate',
+                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
+            						return false;">${report.reportedNickName }</a>
 						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
 							value="${report.reportedNickName }" />
 						<input type="hidden" class="reportedUserPinNo" name="reportedUserPinNo" 
 							value="${report.reportedUserPinNo }" />
 					</td>
 					<td>
-						${report.reportNickName }
+						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportUserPinNo}"
+  							 onclick="window.open(this.href, 'photoUpdate',
+                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
+            						return false;">${report.reportNickName }</a>
 						<input type="hidden" class="reportUserPinNo" name="reportUserPinNo" 
 							value="${report.reportUserPinNo }" />					
 					</td>

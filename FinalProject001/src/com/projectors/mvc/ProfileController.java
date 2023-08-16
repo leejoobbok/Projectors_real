@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,12 +54,18 @@ public class ProfileController
 
 		// 2 사용 기술
 
+		
+		
+		int utoolResult = profileDAO.chekUserTool(pinNo);
+		
 		ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
 
 		/* System.out.println(utool); */
-
+		
 		model.addAttribute("utool", utool);
-
+		model.addAttribute("utoolResult", utoolResult);
+		
+		
 		// 3 평가 출력
 
 		ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
@@ -80,6 +87,7 @@ public class ProfileController
 	public String profileView(Model model, HttpServletRequest request)
 	{
 
+		/*
 		String url = "";
 
 		IProfileDAO profileDAO = sqlSession.getMapper(IProfileDAO.class);
@@ -106,10 +114,59 @@ public class ProfileController
 
 		ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
 
-		/* System.out.println(utool); */
+		// System.out.println(utool); 
 
 		model.addAttribute("utool", utool);
 
+		// 3 평가 출력
+
+		ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
+
+		// System.out.println("평가출력의" + totalRate); 
+
+		model.addAttribute("totalRate", totalRate);
+
+		url = "/WEB-INF/view/ProfileView.jsp";
+
+		return url;
+		*/
+		
+	String url="";
+		
+		IProfileDAO profileDAO = sqlSession.getMapper(IProfileDAO.class);
+		
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		
+		// 0 프로필 유무 확인
+
+		int result = profileDAO.getResult(pinNo);
+
+		System.out.println(result);
+
+		model.addAttribute("result", result);
+
+		// 1 프로필 내용
+
+		ProfileDTO profileDTO = profileDAO.getProfile(pinNo);
+
+		model.addAttribute("profileDTO", profileDTO);
+
+		// 2 사용 기술
+
+		
+		
+		int utoolResult = profileDAO.chekUserTool(pinNo);
+		
+		ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
+
+		/* System.out.println(utool); */
+		
+		model.addAttribute("utool", utool);
+		model.addAttribute("utoolResult", utoolResult);
+		
+		
 		// 3 평가 출력
 
 		ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
@@ -118,9 +175,10 @@ public class ProfileController
 
 		model.addAttribute("totalRate", totalRate);
 
-		url = "/WEB-INF/view/ProfileView.jsp";
+		url = "/WEB-INF/view/MyPage.jsp";
 
 		return url;
+		
 
 	}
 
@@ -350,6 +408,62 @@ public class ProfileController
 		  return url;
 		  
 	  }
+	
+	  
+	  // 신규 -=- 관리자가 신고 처리 사이트에서 보는 유저의 프로필
+	  @RequestMapping(value="/profileadminview.action", method = RequestMethod.GET)
+	  public String profileAdminView(Model model,HttpServletRequest request)
+	  {
+		  String url="";
+			
+		  IProfileDAO profileDAO = sqlSession.getMapper(IProfileDAO.class);
+		  
+			String pinNo = request.getParameter("pinNo");
+			
+			// 0 프로필 유무 확인
+
+			int result = profileDAO.getResult(pinNo);
+
+			System.out.println(result);
+
+			model.addAttribute("result", result);
+
+			// 1 프로필 내용
+
+			ProfileDTO profileDTO = profileDAO.getProfile(pinNo);
+
+			model.addAttribute("profileDTO", profileDTO);
+
+			// 2 사용 기술
+
+			
+			
+			int utoolResult = profileDAO.chekUserTool(pinNo);
+			
+			ArrayList<ProfileDTO> utool = profileDAO.getUserTool(pinNo);
+
+			/* System.out.println(utool); */
+			
+			model.addAttribute("utool", utool);
+			model.addAttribute("utoolResult", utoolResult);
+			
+			
+			// 3 평가 출력
+
+			ArrayList<ProfileDTO> totalRate = profileDAO.getTotalRate(pinNo);
+
+			/* System.out.println("평가출력의" + totalRate); */
+
+			model.addAttribute("totalRate", totalRate);
+
+			url = "/WEB-INF/view/MiniProfile.jsp";
+			return url;
+	  }
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 	  @RequestMapping(value="/accountManage.action", method = RequestMethod.GET)
@@ -373,6 +487,8 @@ public class ProfileController
 	  {
 		  return "/WEB-INF/view/Leave.jsp";
 	  }
+	  
+	  
 	  
 	  
 
