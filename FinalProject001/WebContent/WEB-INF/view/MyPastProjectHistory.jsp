@@ -11,7 +11,20 @@
 <title>나의 프로젝트 :projectors</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/flexBoxTwo.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/myproject.css">
+<style type="text/css">
+	th 
+	{
+		width:13.5%;
+		
+		border-bottom: 1px solid black;
+	}
+	
+	td
+	{
+		text-align: center;
+	}
 
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -84,7 +97,7 @@
 			
 			  
 			<div class="right">
-				<span class="titleText1">진행중인 프로젝트</span>
+				<span class="titleText1">과거 프로젝트</span>
 				<br>
 				
 				<div class="listsDiv">	
