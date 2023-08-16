@@ -627,3 +627,28 @@ RIGHT JOIN USER_PIN UP
 ON U.PIN_NO = UP.PIN_NO
 WHERE U.ID LIKE 'spb@naver.com' || '%'
 ;
+
+================================================================================
+
+-- 로그인 로그 리스트
+SELECT LOGIN_REC
+     , PIN_NO
+     , LOGIN_DATE
+FROM LOGIN_REC
+ORDER BY LOGIN_DATE DESC;
+
+SELECT LOGOUT_REC as logOutRecNo
+     , PIN_NO as pinNo
+     , TO_CHAR(LOGOUT_DATE, 'YYYY-MM-DD HH24:MI:SS') as logOutDate
+FROM LOGOUT_REC
+ORDER BY logOutRecNo DESC
+;
+
+select *
+from logout_rec;
+
+-- 컬럼 명 수정
+ALTER TABLE LOGOUT_REC
+RENAME COLUMN LOGIN_DATE TO LOGOUT_DATE;
+
+CREATE SEQUENCE LOGOUTREC
