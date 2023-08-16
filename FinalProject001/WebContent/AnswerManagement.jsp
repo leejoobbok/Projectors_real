@@ -137,13 +137,13 @@
 	 	<!-- ========== 공통 상단 영역( 메뉴바까지) ======================== -->
 		
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
-			<c:import url="AdminUpperBar.jsp"></c:import>
+			<c:import url="/WEB-INF/view/AdminUpperBar.jsp"></c:import>
 		</div>	
 		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
+			<a href="/WEB-INF/view/AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
 		</div>
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
-			<c:import url="AdminBar.jsp"></c:import>
+			<c:import url="/WEB-INF/view/AdminBar.jsp"></c:import>
 		</div>
 		<!-- ============================================================= -->
 		

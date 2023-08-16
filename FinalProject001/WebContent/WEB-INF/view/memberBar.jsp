@@ -55,7 +55,7 @@
 		$("#myBtn").click(function()
 		{
 			// alert("마이페이지");
-			$(location).attr("href", "MyPage.jsp");
+			$(location).attr("href", "mypage.action");
 		});
 		
 		// 쪽지
@@ -68,14 +68,14 @@
 		$("#faqBtn").click(function()
 		{
 			// alert("문의");
-			$(location).attr("href", "FAQLists.jsp");
+			$(location).attr("href", "faq-list.action");
 		});
 		
 		// 로그아웃
 		$("#logoutBtn").click(function()
 		{
 			// alert("로그아웃");
-			// $(location).attr("href", "");
+			 $(location).attr("href", "logout.action");
 		});
 		
 	});

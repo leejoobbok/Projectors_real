@@ -27,10 +27,39 @@ public class ApplyController
 
 		model.addAttribute("memberInfo", dao.memberInfo(pinNo));
 		model.addAttribute("recruitInfo", dao.recruitInfo(recruitPosNo));
-		System.out.println(5);
 		
-		return "/recruit_jakupjung/ApplyForm.jsp";
+		return "/WEB-INF/view/ApplyForm.jsp";
 	}
+	
+	@RequestMapping(value = "/applyinsert.action", method = RequestMethod.POST)
+	public String applyinsert(ApplyDTO dto ,String recruitPosNo, HttpServletRequest request)
+	{
+		IApplyDAO dao = sqlsession.getMapper(IApplyDAO.class);
 
+		HttpSession session = request.getSession();
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		dto.setPinNo(pinNo);
+		dto.setRecruitPosNo(recruitPosNo);
+		
+		System.out.println(dto.getPinNo());
+		System.out.println(dto.getRecruitPosNo());
+		System.out.println(dto.getContent());
+		
+		dao.applyInsert(dto);
+		
+		return "/WEB-INF/view/ApplyComplete.jsp";
+	}
+	
+
+	@RequestMapping(value = "/applyarticle.action", method = RequestMethod.GET)
+	public String applyarticle(Model model, String applyNo)
+	{
+		IApplyDAO dao = sqlsession.getMapper(IApplyDAO.class);
+
+		model.addAttribute("article", dao.applyArticle(applyNo));
+		
+		return "/WEB-INF/view/ApplyComplete.jsp";
+	}
 	
 }

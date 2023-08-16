@@ -74,8 +74,9 @@ li {list-style-type: none;}
 }
 
 .recrutor {
+	font-family: 'SUITE-Regular';
 	text-align: center;
-	margin-left: 33%;
+	margin-left: 30%;
 	margin-bottom: 7px;
 	margin-top: -25px;
 }
@@ -182,7 +183,7 @@ li {list-style-type: none;}
 
 .applyInsertArea {
 	margin-top: 25px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 	padding-left: 23%;
 	padding-right: 30%;
 }
@@ -207,12 +208,23 @@ li {list-style-type: none;}
 }
 
 .etcBtnBox {
+	margin: auto;
+	text-align: center;
+	margin-top: 55px;
 }
 
-.reportBtn {
+.reportBtn, .removeBtn {
+	font-size: 12pt;
+	width: 100px;
+	height: 30px;
+	background-color: #dfdfdf;
+	border: none;
+	border-radius: 7px;
 }
 
-.removeBtn {
+.reportBtn:hover, .removeBtn:hover {
+	background-color: #717171;
+	color: white;
 }
 
 

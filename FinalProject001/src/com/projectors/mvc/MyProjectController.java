@@ -30,7 +30,6 @@ public class MyProjectController
 		String url="";
 	
 		
-		
 		int checkPresentProject = dao.checkPresentProject(pinNo);
 		/* System.out.println("확인용 카운트:" + checkPresentProject); */
 		
@@ -56,7 +55,7 @@ public class MyProjectController
 		}
 		
 		
-		url="MyProjectHistory.jsp";
+		url="/WEB-INF/view/MyProjectHistory.jsp";
 		
 		return url;
 	}
@@ -94,14 +93,10 @@ public class MyProjectController
 			model.addAttribute("memberCountDTO", pastProjectDTO);
 			model.addAttribute("checkPastProject", checkPastProject);
 			
-			
-			
-			
 		}
 		
-		
 	
-		url="MyPastProjectHistory.jsp";
+		url="/WEB-INF/view/MyPastProjectHistory.jsp";
 		
 		return url;
 	}

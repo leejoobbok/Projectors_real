@@ -23,7 +23,7 @@ public class LoginController
 	{
 		String result = "";
 
-		result = "Login.jsp";
+		result = "/WEB-INF/view/Login.jsp";
 
 		return result;
 	}
@@ -57,7 +57,7 @@ public class LoginController
 				/*세션에 관리자 pin 등록*/
 				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
 				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
-				dao.loginRec(dao.getUserPin(loginDTO));
+				/* dao.loginRec(dao.getUserPin(loginDTO)); */
 				
 			}
 			else
@@ -94,6 +94,17 @@ public class LoginController
 		}
 		
 		return result;
+	}
+	
+	
+	@RequestMapping(value="/logout.action", method=RequestMethod.GET)
+	public String logOut(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+
+		return "redirect:projectorsmain.action";
 	}
 
 }

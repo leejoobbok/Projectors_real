@@ -28,7 +28,7 @@ public class FaqController
 		model.addAttribute("faqList", dao.getFaqList());
 		
 		/* result = "/WEB-INF/view/FAQLists.jsp"; */
-		result = "/FAQLists.jsp";
+		result = "/WEB-INF/view/FAQLists.jsp";
 		return result; 
 	}
 	
@@ -43,7 +43,7 @@ public class FaqController
 		model.addAttribute("faqArticle", dao.viewFaqDetail(faqNo));
 		
 		/* result = "/WEB-INF/view/FaqArticle.jsp"; */
-		result = "/FAQArticle.jsp";
+		result = "/WEB-INF/view/FAQArticle.jsp";
 		return result; 
 	}
 

@@ -58,7 +58,7 @@
 		// 문의
 		$("#faqBtn").click(function()
 		{
-			$(location).attr("href", "FAQLists.jsp");
+			$(location).attr("href", "faq-list.action");
 		});
 		
 	});

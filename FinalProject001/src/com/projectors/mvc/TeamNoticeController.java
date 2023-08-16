@@ -25,7 +25,7 @@ public class TeamNoticeController
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		dao.add(dto); 
 		
-		result="redirect:teamNoticeList.action";
+		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
 		
 		return result;
 	}
@@ -63,7 +63,7 @@ public class TeamNoticeController
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		model.addAttribute("list", dao.getList());
 		
-		result = "TeamNoticeList.jsp";
+		result = "/WEB-INF/view/TeamNoticeList.jsp";
 		return result;
 	}
 	
@@ -75,7 +75,7 @@ public class TeamNoticeController
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		model.addAttribute("teamArticle", dao.viewArticle(spaceNoticeNo));
 		
-		result = "TeamNoticeArticle.jsp";
+		result = "/WEB-INF/view/TeamNoticeArticle.jsp";
 		return result;
 	}
 	

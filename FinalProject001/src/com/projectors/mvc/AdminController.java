@@ -33,7 +33,7 @@ public class AdminController
 		model.addAttribute("newReportCnt", dao.newReportCnt());
 		model.addAttribute("newQuestionCnt", dao.newQuestionCnt());
 		
-		result = "/AdminMainPage.jsp";
+		result = "/WEB-INF/view/AdminMainPage.jsp";
 		
 		return result;
 	}
@@ -50,7 +50,7 @@ public class AdminController
 		
 		model.addAttribute("lists", dao.lists());
 		
-		result = "/AdminMainNoticeLists.jsp";
+		result = "/WEB-INF/view/AdminMainNoticeLists.jsp";
 		
 		return result;
 	}
@@ -65,7 +65,7 @@ public class AdminController
 		
 		model.addAttribute("article", dao.article(adminNoticeNo));
 		
-		result = "/AdminMainNoticeArticle.jsp";
+		result = "/WEB-INF/view/AdminMainNoticeArticle.jsp";
 		
 		return result;
 	}
@@ -78,7 +78,7 @@ public class AdminController
 		
 		IAdminNoticeDAO dao = sqlSession.getMapper(IAdminNoticeDAO.class);
 		
-		result = "/MainNoticeInsert.jsp";
+		result = "/WEB-INF/view/MainNoticeInsert.jsp";
 		
 		return result;
 	}
@@ -134,7 +134,7 @@ public class AdminController
 		
 		model.addAttribute("lists", dao.getFaqList());
 		
-		result = "/FAQManagement.jsp";
+		result = "/WEB-INF/view/FAQManagement.jsp";
 		
 		return result;
 	}
@@ -149,7 +149,7 @@ public class AdminController
 		
 		model.addAttribute("article", dao.viewFaqDetail(faqNo));
 
-		result = "/FAQManagementArticle.jsp";
+		result = "/WEB-INF/view/FAQManagementArticle.jsp";
 		
 		return result;
 	}
@@ -162,7 +162,7 @@ public class AdminController
 		
 		IfaqDAO dao = sqlSession.getMapper(IfaqDAO.class);
 		
-		result = "/FAQInsert.jsp";
+		result = "/WEB-INF/view/FAQInsert.jsp";
 		
 		return result;
 	}
@@ -192,7 +192,7 @@ public class AdminController
 		
 		model.addAttribute("article", dao.viewFaqDetail(faqNo));
 
-		result = "/FAQUpdate.jsp";
+		result = "/WEB-INF/view/FAQUpdate.jsp";
 		
 		return result;
 	}
@@ -250,7 +250,7 @@ public class AdminController
 	    model.addAttribute("members", members);
 		
 
-		result = "ContentsManagement.jsp";
+		result = "/WEB-INF/view/ContentsManagement.jsp";
 	
 		return result;
 	}

@@ -21,7 +21,7 @@ public class TeamMeetingController
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
 		dao.add(dto);
 		
-		result="TeamMeetingWrite.jsp";
+		result="/WEB-INF/view/TeamMeetingWrite.jsp";
 		return result;
 	}
 	
@@ -31,6 +31,7 @@ public class TeamMeetingController
 	{
 		String result = "";
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
+
 		dao.modify(dto);
 		
 		result = "redirect:teamMeetingArticle.action?meetingNo=" + dto.getMeetingNo();
@@ -58,7 +59,7 @@ public class TeamMeetingController
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
 		model.addAttribute("list", dao.getList());
 		
-		result = "TeamMeetingList.jsp";
+		result = "/WEB-INF/view/TeamMeetingList.jsp";
 		return result;
 	}
 	
@@ -70,7 +71,7 @@ public class TeamMeetingController
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
 		model.addAttribute("meetingArticle", dao.viewArticle(meetingNo));
 		
-		result = "TeamMeetingArticle.jsp";
+		result = "/WEB-INF/view/TeamMeetingArticle.jsp";
 		return result;
 	}
 }

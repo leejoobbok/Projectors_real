@@ -20,15 +20,18 @@ $().ready(function()
 {
 	$(".applyBtn").click(function()
 	{
-		// alert($(this).val());
-		window.location.href = "applyform.action?recruitPosNo=" + $(this).val();
+		var recruitPosNo = $(this).val();
+        var url = 'applyform.action?recruitPosNo=' + recruitPosNo;
+        var options = "left=400,top=200,width=600,height=600,resizable=no,location=no";
+        
+        window.open(url, 'applyRecruit', options);
 	});
 	
 	$("#reportBtn").click(function()
 	{
 		var recruitNo = $(this).val();
-        var url = popUpRecruitReport.action?recruitNo= + recruitNo;
-        var options = "left=500,top=300,width=520,height=520,resizable=no,location=no";
+        var url = 'popUpRecruitReport.action?recruitNo=' + recruitNo;
+        var options = "left=500,top=300,width=520,height=420,resizable=no,location=no";
         
         window.open(url, 'reportRecruit', options);
  		    
@@ -112,7 +115,7 @@ $().ready(function()
 			</ul>
 		</div>
 		
-		<div class="recrutor">팀장</div>
+		<div class="recrutor">작성자 ${article.nickName }</div>
 		
 		</div> <!-- end.articleArea1 -->
 		<hr class="line1">
@@ -132,7 +135,7 @@ $().ready(function()
 		
 		
 		
-		<h3 class="smallTitle">사용언어 & 환경</h3>
+		<h3 class="smallTitle">사용언어 &amp; 환경</h3>
 		<hr class="line2">
 		
 		<div class="articleArea">
@@ -196,14 +199,21 @@ $().ready(function()
 		</c:forEach>
 		</ul>
 		
-		
-		<div class="etcBtnBox">
-			<button id="reportBtn" class="reportBtn" type="button" value="${article.recruitNo }">신고</button>
-			<button class="removeBtn" value="${article.recruitNo }">삭제</button>
-		</div> <!-- end.etcBtnBox -->
 		</div>
 			 
 			 
+		<div class="etcBtnBox">
+			
+			<c:choose>
+				<c:when test="${article.pinNo == pinNo }">
+					<button class="removeBtn" value="${article.recruitNo }">삭제</button>
+				</c:when>
+				<c:otherwise>
+					<button id="reportBtn" class="reportBtn" type="button" value="${article.recruitNo }">신고</button>
+				</c:otherwise>
+			</c:choose>
+		</div> <!-- end.etcBtnBox -->
+		
 
 		<h3 class="replyTitle">댓글<span>(1)</span></h3>
 		<hr class="line3">

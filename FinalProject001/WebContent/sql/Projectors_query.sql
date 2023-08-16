@@ -2156,4 +2156,8 @@ SELECT * FROM REPORT_NOTE;
 
 SELECT * FROM REP_NOTE_RESULT;
 
+select * from login_rec;
+
+
+select * from admin;
 

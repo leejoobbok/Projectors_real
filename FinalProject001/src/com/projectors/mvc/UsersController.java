@@ -32,7 +32,7 @@ public class UsersController
 	{
 		String result = "";
 
-		result = "CreateAccount.jsp";
+		result = "/WEB-INF/view/CreateAccount.jsp";
 
 		return result;
 
@@ -132,17 +132,20 @@ public class UsersController
 	{
 		IUsersDAO dao = sqlSession.getMapper(IUsersDAO.class);
 		
-		String result="";
 		dao.addPin();
 		dao.addUsers(usersDTO);
+
+		return "aftercreateaccount.action";
 		
-		result="MainPage.jsp";
-				
-		return result;
-		
-		
-	
 	}
+	
+	@RequestMapping(value="/aftercreateaccount.action", method=RequestMethod.GET)
+	public String afterCreateAccount()
+	{
+		return "/WEB-INF/view/AfterCreateAccount.jsp";
+		
+	}
+	
 	
 	
 	@RequestMapping(value="photoUpdateForm.action", method=RequestMethod.GET)
@@ -160,7 +163,7 @@ public class UsersController
 		
 		model.addAttribute("photourl", photourl);
 		
-		url="PhotoUpdate.jsp";
+		url="/WEB-INF/view/PhotoUpdate.jsp";
 		return url;
 	}
 	
@@ -229,7 +232,7 @@ public class UsersController
 		
 		model.addAttribute("lists", dao.list());
 		
-		result = "UserManagement.jsp";
+		result = "/WEB-INF/view/UserManagement.jsp";
 		
 		return result;
 	}
@@ -247,7 +250,7 @@ public class UsersController
 		else if (searchKey.equals("2"))
 			model.addAttribute("lists", dao.searchNickname(searchValue));
 			
-		result = "UserManagement.jsp";
+		result = "/WEB-INF/view/UserManagement.jsp";
 			
 		return result;
 	}

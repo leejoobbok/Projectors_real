@@ -22,7 +22,7 @@ public class SendReportController // 신고 전송 컨트롤러
 		String result = "";
 
 		HttpSession session = request.getSession();
-		result = "RecruitReportForm.jsp";
+		result = "/WEB-INF/view/RecruitReportForm.jsp";
 		
 		return result;
 	}
@@ -45,7 +45,7 @@ public class SendReportController // 신고 전송 컨트롤러
 		
 		dao.reportRecruit(dto);
 		
-		result = "AfterReport.jsp";
+		result = "/WEB-INF/view/AfterReport.jsp";
 		
 		return result;
 	}

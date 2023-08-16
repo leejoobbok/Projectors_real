@@ -33,7 +33,7 @@ public class AdminReportController
 		model.addAttribute("periods", dao.periods());
 		model.addAttribute("reportedNickName", reportedNickName);
 		
-		result = "ManagementReport.jsp";
+		result = "WEB-INF/view/ManagementReport.jsp";
 		
 		return result;
 	}
@@ -49,7 +49,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.reportedRecruitList());
 		
-		result = "ReportManagement.jsp";
+		result = "/WEB-INF/view/ReportManagement.jsp";
 		
 		return result;
 	}
@@ -115,7 +115,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.reportedRecruitList());
 		
-		result = "ReportManagementApply.jsp";
+		result = "/WEB-INF/view/ReportManagementApply.jsp";
 		
 		return result;
 	}
@@ -180,7 +180,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.reportedCommList());
 		
-		result = "ReportManagementComm.jsp";
+		result = "/WEB-INF/view/ReportManagementComm.jsp";
 		
 		return result;
 	}
@@ -239,7 +239,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.reportedNoteList());
 		
-		result = "ReportManagementNote.jsp";
+		result = "/WEB-INF/view/ReportManagementNote.jsp";
 		
 		return result;
 	}
@@ -305,7 +305,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.recruitReportComplete());
 		
-		result = "ReportManagementComplete.jsp";
+		result = "/WEB-INF/view/ReportManagementComplete.jsp";
 		
 		return result;
 	}
@@ -329,7 +329,7 @@ public class AdminReportController
 		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
 		//System.out.println(lists);
 		
-		result = "ReportManagementComplete.jsp";
+		result = "/WEB-INF/view/ReportManagementComplete.jsp";
 		
 		return result;
 	}
@@ -345,7 +345,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.applyReportComplete());
 		
-		result = "ReportManagementCompleteApply.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
 		
 		return result;
 	}
@@ -367,7 +367,7 @@ public class AdminReportController
 			model.addAttribute("lists", dao.applySearchRepNo(searchVal));
 		
 		
-		result = "ReportManagementCompleteApply.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
 		
 		return result;
 	}
@@ -383,7 +383,7 @@ public class AdminReportController
 		
 		model.addAttribute("lists", dao.commReportComplete());
 		
-		result = "ReportManagementCompleteComm.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
 		
 		return result;
 	}
@@ -407,7 +407,7 @@ public class AdminReportController
 		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
 		//System.out.println(lists);
 		
-		result = "ReportManagementCompleteComm.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
 		
 		return result;
 	}
@@ -448,7 +448,7 @@ public class AdminReportController
 		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
 		//System.out.println(lists);
 		
-		result = "ReportManagementCompleteNote.jsp";
+		result = "/WEB-INF/view/ReportManagementCompleteNote.jsp";
 		
 		return result;
 	}

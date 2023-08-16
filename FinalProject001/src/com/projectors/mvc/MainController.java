@@ -37,8 +37,7 @@ public class MainController
 	    model.addAttribute("tools", tools);
 	    model.addAttribute("recruitMember", recruitMember);
 	    
-		// String result = "/WEB-INF/view/RecruitLists.jsp";
-		return "/recruit_jakupjung/ProjectorsMainPage.jsp";
+		return "/WEB-INF/view/ProjectorsMainPage.jsp";
 	}
 
 }

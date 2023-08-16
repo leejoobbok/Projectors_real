@@ -103,8 +103,8 @@
 			<div id="myPageMenus">
 				<span id="myPageTitle">마이페이지</span>
 				<a href="profileview.action">내 프로필</a>
-				<a href="MyPage.jsp">찜한 모집 공고</a>
-				<a href="AccountManagement.jsp">계정관리</a>
+				<!-- <a href="MyPage.jsp">찜한 모집 공고</a> -->
+				<a href="accountManage.action">계정관리</a>
 			</div>
 			
 			
