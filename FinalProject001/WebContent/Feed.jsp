@@ -72,8 +72,26 @@
 		border-radius: 10px;
 	}
 </style>
-<script type="text/javascript">
 
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+	//담벼락 기존 메세지 불러오기
+	function loadPastFeed()
+	{
+		$("#feed").load("loadFeed.action");
+		
+	}
+	
+	$(document).ready(function() 
+	{
+	    loadPastFeed();
+	    
+	    
+	});
+	
+	
 	//담벼락에 메세지 붙이기
 	function sendFeed() {
 	    var feedMsg = document.getElementById("feedInsert").value;
@@ -91,11 +109,12 @@
 	        }
 	    });
 	}
+	
 </script>
 
 
 </head>
-<body>
+<body onload="loadPastFeed()">
 
 <div id="feedContent">
 	<ul>
