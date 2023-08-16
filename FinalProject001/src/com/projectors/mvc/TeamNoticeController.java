@@ -16,6 +16,16 @@ public class TeamNoticeController
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// ● 공지글 작성 페이지로 이동 
+	@RequestMapping (value = "/writeTeamNotice.action", method = RequestMethod.GET)
+	public String writeTeamNotice()
+	{
+		String result = "";
+		result="/WEB-INF/view/TeamNoticeInsert.jsp";
+		return result;
+	}
+	
+	
 	// ● 공지글 등록 (팀장)
 	@RequestMapping (value = "/insertTeamNotice.action", method = RequestMethod.GET)
 	public String teamNoticeInsert(TeamNoticeDTO dto)

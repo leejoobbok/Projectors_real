@@ -139,7 +139,7 @@
 		<c:import url="AdminUpperBar.jsp"></c:import>
 	</div>	
 	<div id="logoBox">    		<!-- 로고 이미지 -->
-		<a href="adminMain.action"><img src="images/tmp_logo_admin.jpg"/></a>
+		<c:import url="adminLogo.jsp"></c:import>
 	</div>
 	<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 		<c:import url="AdminBar.jsp"></c:import>
@@ -213,77 +213,3 @@
 
 </body>
 </html>
-
-
-<!-- 정적 구성
-				<tr>
-					<td>29</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">지원한 내역이 안보여요</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>28</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">상대방에게 쪽지를 보내고 싶어요</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>27</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">프로젝트를 삭제하고 싶어요</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>26</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">프로젝트에 어떻게 참여하나요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>25</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">프로젝트의 진행 방식은 어떤가요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>24</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">제3자가 이 프로젝트를 열람할 수 있을까요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>23</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">기술적인 도움을 받을 수 있는 방법은 무엇인가요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>22</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">버그 리포트는 어떻게 제출하나요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>21</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">개발 가이드나 설명서는 제공하나요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style="width: 97%"/></th>
-				</tr>
-				<tr>
-					<td>20</td>
-					<td class="leftTd"><a href="FAQManagementArticle.jsp">추가 기능이나 업데이트 예정인 내용이 있을까요?</a></td>
-				</tr>
-				<tr>
-					<th colspan="2"><hr style=""/></th>
-				</tr>
-				 -->

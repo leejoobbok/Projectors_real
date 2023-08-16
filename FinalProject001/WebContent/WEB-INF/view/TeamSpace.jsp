@@ -174,16 +174,11 @@
 
 <script type="text/javascript">
 	
-	/*
-	//○ 윈도우 리사이즈 해도 초기 크기로 강제 되돌리는 기능 (적용 안돼서 주석처리..)
-	function setFixedSize() {
-	  window.resizeTo(1400, 1000); // #root 의 가로 세로
-	}
-	//페이지 최초 로드 또는 리사이징 시도 시 호출
-	window.onload = setFixedSize;
-	window.onresize = setFixedSize;
-	-------------------------------------------------*/
-
+	
+	
+	
+	
+	
 </script>
 
 
@@ -207,7 +202,7 @@
 					</a>
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
-				<div class="index idx3"><a href="">작업실</a></div>
+				<div class="index idx3"><a href="">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
 				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
 				<div class="index idx6"><a href="teamMemberInfo.action">멤버</a></div>
@@ -218,7 +213,7 @@
 				
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
-					여기 뭐 넣져??
+					
 				</div>
 				
 				
@@ -237,17 +232,13 @@
 				<!-- ==========[ 멤버별 작업실 미리보기(메인)]========== -->
 				<div id="workSpaceBox">
 					
-					여긴 아마도 작업실 관련 내용 간단히 보여주고(새 글 등)멤버별 작업실 이동 버튼..?
+					
 				</div>
 				
 				<!-- ==========[ 메인에는 무슨 기능을 넣어야 할까]========== -->
 				<div>
 					
-					이부분은.. 머가 들어가야 할라나~~ <br>
-					기존 게시판에서 내용을 끌어와서 보여주든.. 디데이 같이 별도 기능이든.. <br>
-					메인 어떻게 구성할지는 나중에 논의해봅시돠 <br>
-					일단 레이아웃 대충 짰고
-					나중에 내부 영역 추가하거나 위치, 크기 조정하는건 다 파악해놨으니 금방할수잇서여<br>
+					
 				</div>
 				
 				<!-- ====================================================================================== -->
