@@ -2456,7 +2456,10 @@ SELECT * FROM USERS;
 COMMIT;
 
 
+SELECT * from USER_TOOL;
 
-UPDATE USERS SET  PHOTOURL='images/defaultPhoto.jpg';
-
-COMMIT;
+			SELECT COUNT(UTOOL_NO) AS COUNT
+			FROM USER_TOOL
+			WHERE PROFILE_NO = ( SELECT PROFILE_NO
+                  			     FROM PROFILE
+                     			 WHERE PIN_NO='UP2');
