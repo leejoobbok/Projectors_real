@@ -39,5 +39,28 @@ public class MainController
 	    
 		return "/WEB-INF/view/ProjectorsMainPage.jsp";
 	}
+	
+	
+	@RequestMapping(value = "/noticelists.action", method = RequestMethod.GET)
+	public String noticelists(Model model)
+	{
+		IAdminNoticeDAO dao = sqlsession.getMapper(IAdminNoticeDAO.class);
+		
+		model.addAttribute("lists", dao.lists());
+		
+		return "/WEB-INF/view/MainNoticeLists.jsp";
+	}
+	
+	
+	@RequestMapping(value = "/noticearticle.action", method = RequestMethod.GET)
+	public String noticearticle(Model model, String adminNoticeNo)
+	{
+		IAdminNoticeDAO dao = sqlsession.getMapper(IAdminNoticeDAO.class);
+
+		model.addAttribute("article", dao.article(adminNoticeNo));
+		
+		return "/WEB-INF/view/MainNoticeArticle.jsp";
+	}
+	
 
 }
