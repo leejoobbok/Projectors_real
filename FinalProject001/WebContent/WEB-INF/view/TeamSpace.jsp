@@ -219,7 +219,8 @@
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
-					<jsp:include page="loadFeed.action" />
+					<%-- <jsp:include page="loadFeed.action" /> --%>
+					<jsp:include page="Feed.jsp" />
 				</div>	
 				
 				<!-- ===========[ 상단 한 줄 공지 ]=========== -->

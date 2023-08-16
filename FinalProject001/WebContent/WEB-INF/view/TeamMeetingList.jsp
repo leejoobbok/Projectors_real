@@ -222,7 +222,7 @@
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
 				<div class="index idx1">
-					<a href="TeamSpace.jsp">
+					<a href="teamSpaceMain.action">
 						<img src="images/home.png" style="width:30px;"/>
 					</a>
 				</div>
