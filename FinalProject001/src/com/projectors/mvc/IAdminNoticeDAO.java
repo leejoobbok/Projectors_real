@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IAdminNoticeDAO
 {
-	public ArrayList<AdminDTO> lists();
+	public ArrayList<AdminNoticeDTO> lists();
 	
 	public int add(AdminNoticeDTO dto);
 	

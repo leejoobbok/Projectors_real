@@ -52,3 +52,26 @@ a {text-decoration: none;}
 	font-size: 14pt;
     font-family: 'SUITE-Regular';
 }
+
+
+td
+{
+   text-align: center;
+   border-top: 1px solid black;
+}
+
+.table 
+ {
+   text-align: auto;
+   width: 90%;
+}
+
+.right-left {
+   width: 80%;
+}
+
+.right-right {
+   width: 10%;
+}
+
+
