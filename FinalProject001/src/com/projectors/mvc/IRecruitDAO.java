@@ -32,4 +32,6 @@ public interface IRecruitDAO
 	public String getCapApplyNo(RecruitDTO dto);
 	public void insertFirstCKCap(RecruitDTO dto);
 	
+	public int regDateCheck(String pinNo);
+	
 }

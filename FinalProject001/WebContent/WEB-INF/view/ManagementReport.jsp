@@ -43,7 +43,6 @@
 		    var reguNo = $("#reason").val();
 		    var reguPeriodNo = $("#period").val();
 		    
-		    
 			// 데이터 전달 및 부모 창으로 메시지 보내기
 		    var dataToSend = { param1: reguNo, param2: reguPeriodNo };
 		    window.opener.postMessage(JSON.stringify(dataToSend), window.location.origin);
@@ -73,7 +72,8 @@
 					</tr>					
 					<tr>
 						<th>재제대상</th>
-						<td><input type="text" readonly="readonly" value="${reportedNickName}"/></td>						
+						<td><input type="text" readonly="readonly" value="${reportedNickName}"/>
+						<input  id="pinNoReg" name="pinNoReg"  type="hidden" value="${reportedPinNo}"> </td>
 					</tr>
 					<tr>
 						<th>재제사유</th>

@@ -23,7 +23,7 @@ public class RecruitController
 	private SqlSession sqlsession;
 	
 	@RequestMapping(value = "/recruitlist.action", method = RequestMethod.GET)
-	public String recruitlist(Model model, String recruitNo)
+	public String recruitlist(HttpServletRequest request, Model model, String recruitNo)
 	{
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
 		List<ArrayList<String>> tools = new ArrayList<ArrayList<String>>();
@@ -36,6 +36,14 @@ public class RecruitController
 			recruitNo = dao.lists().get(i).getRecruitNo();
 			tools.add(dao.showTool(recruitNo));
 			members.add(dao.countRecruitMember(recruitNo));
+		}
+
+		HttpSession session = request.getSession();
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		if (pinNo != null)
+		{
+			model.addAttribute("regDateCheck", dao.regDateCheck(pinNo));
 		}
 		
 	    model.addAttribute("tools", tools);

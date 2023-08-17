@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminReportController
@@ -56,24 +57,32 @@ public class AdminReportController
 	
 	//-- 공고신고 처리 insert
 	@RequestMapping (value = "/clearManageReport.action", method = RequestMethod.GET)
-	public String clearManageReoprt(HttpServletRequest request)
+	public String clearManageReoprt(@RequestParam(value = "reguNo", required=false) String reguNo,
+									@RequestParam(value = "reguPeriodNo", required=false) String reguPeriodNo,
+									HttpServletRequest request)
 	{
 		String result = "";
-		
+		/*
+		System.out.println("repNo : "+request.getParameter("repNo"));
+	    System.out.println("reguNo : "+reguNo);
+	    System.out.println("reguPeriodNo : "+reguPeriodNo);
+		*/
+	    // ,와 공백 제거
+	    reguNo = reguNo.replaceAll(",\\s*", "").trim();
+	    reguPeriodNo = reguPeriodNo.replaceAll(",\\s*", "").trim();
+/*
+	    System.out.println("reguNo : "+reguNo);
+	    System.out.println("reguPeriodNo : "+reguPeriodNo);
+*/		
 		HttpSession session = request.getSession();
 		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 		
 		ReportDTO dto = new ReportDTO();
-		
+
 		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
 		dto.setRepNo(request.getParameter("repNo"));
-		dto.setReguNo(request.getParameter("reguNo"));
-		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-		
-		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
-		//System.out.println("repNo : "+request.getParameter("repNo"));
-		//System.out.println("reguNo : "+request.getParameter("reguNo"));
-		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
+	    dto.setReguNo(reguNo);
+	    dto.setReguPeriodNo(reguPeriodNo);
 		
 		dao.clearManageReport(dto);
 

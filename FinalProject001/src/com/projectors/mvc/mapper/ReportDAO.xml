@@ -30,7 +30,7 @@
 		REPREASON
 		FROM REPRECRUITNULL
 	</select>
-
+	
 	<!-- 공고 신고 처리 -->
 	<insert id="clearManageReport">
 		INSERT INTO REP_RECRUIT_RESULT

@@ -56,11 +56,11 @@ a {text-decoration: none;}
 }
 
 .qnaListTitle {
-	width: 55%;
+	width: 50%;
 }
 
 .qnaListDate {
-	width: 18%;
+	width: 23%;
 }
 
 .qnaListAns {
@@ -88,12 +88,12 @@ a {text-decoration: none;}
 .qnaListDate2 {
 	font-size: 11pt;
     text-align: center;
-	width: 18%;
+	width: 23%;
 }
 
 .qnaListTitle2 {
 	font-size: 11pt;
-	width: 55%;
+	width: 50%;
 }
 
 .qnaListTitle2 a:hover {
