@@ -2400,7 +2400,7 @@ SELECT COUNT(RP.RECRUIT_POS_NO) AS COUNT
 SELECT RP.RECRUIT_POS_NO AS RECRUITPOSNO, POS.POS_NO, POS.POS_NAME AS POSNAME
 FROM RECRUIT_POS RP
 LEFT JOIN POSITION POS ON RP.POS_NO =  POS.POS_NO
-WHERE RECRUIT_NO ='RC14' AND RECRUIT_POS_NO NOT IN (SELECT RP.RECRUIT_POS_NO
+WHERE RECRUIT_NO ='RC17' AND RECRUIT_POS_NO NOT IN (SELECT RP.RECRUIT_POS_NO
                                                     FROM FIRST_CK FS
                                                     LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
                                                     LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
@@ -2463,3 +2463,13 @@ SELECT * from USER_TOOL;
 			WHERE PROFILE_NO = ( SELECT PROFILE_NO
                   			     FROM PROFILE
                      			 WHERE PIN_NO='UP2');
+
+
+select * from rep_recruit_result;
+
+select * from rep_recruit;
+
+select * from recruit;
+
+select * from recruit_pos where recruit_no='RC17';
+
