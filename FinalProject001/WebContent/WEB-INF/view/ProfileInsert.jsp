@@ -153,7 +153,7 @@ String cp = request.getContextPath();
 					document.getElementById("insertForm").submit();
 				} else
 				{
-					alert("도구 체크된 것이 있다!!!!!");
+					// alert("도구 체크된 것이 있다!!!!!");
 
 					document.getElementById("toolException").value = "0";
 

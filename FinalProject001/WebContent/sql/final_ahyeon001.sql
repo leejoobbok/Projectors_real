@@ -453,51 +453,478 @@ FROM (APPLY A FULL OUTER JOIN USERS U
 --==>> 앞에서 데이터 연결 먼저 해야할 것 같아서 보류.
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
---▣ 08.11 금 (오전 9시 ~)// 팀 스페이스 관련 작업중 
+--▣ 08.11 금 (오전 9시 ~)// 팀 스페이스 > 공지 게시판 작업
 
 --==>> 테이블 데이터들 확인.. 
 SELECT * FROM RECRUIT;  -- 모집공고
 SELECT * FROM PROJECT; --(플젝번호, 공고번호, 프로젝트 생성일) 
 SELECT * FROM USER_PIN; -- 회원 식별번호
-SELECT * FROM NOTE; -- 쪽지
-
-SELECT * FROM FEED; -- 담벼락
+SELECT * FROM NOTE;     -- 쪽지
+SELECT * FROM FEED;     -- 담벼락
+SELECT * FROM SPACE_NOTICE;  -- 스페이스 공지 
 --------------------------------------------------------------------------------
-
---// 팀  스페이스 >  공지 게시판
-
---● 공지글 리스트로 불러오기 (샘플 데이터 없어서 몇 개 인서트)
---(스페이스 공지번호, 플젝번호, 공지글제목, 내용, 작성일)  
-SELECT * FROM SPACE_NOTICE;
-
-INSERT INTO SPACE_NOTICE 
-VALUES('SN'||TO_CHAR()
-
--- 현재 계정의 모든 시퀀스 조회 
-SELECT sequence_name, min_value, max_value, increment_by, last_number
-FROM user_sequences;
 
 -- 스페이스 공지 번호 시퀀스 생성
 CREATE SEQUENCE SPACENOTICENOSEQ
 NOCACHE;
 --==>> Sequence SPACENOTICENOSEQ이(가) 생성되었습니다.
---------------------------------------------------------------------------------
-
---● 공지글 등록
-
-
-
+--DROP SEQUENCE SPACENOTICENOSEQ;
 
 --------------------------------------------------------------------------------
+--○ 스페이스 공지글 샘플 데이터 입력 (20개)
+--(스페이스 공지번호, 플젝번호, 공지글제목, 내용, 작성일)
+
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL)
+,'PJ1'
+, '그라운드 룰 공지 및 첫 회의'
+, '안녕하세요. 첫 공지입니다. 제가 미리 정한 룰은 회의를 통해 변경할 수 있으니 의견이 있으시면..'
+, SYSDATE);
+
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 2회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 3회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 4회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 5회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 6회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 7회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 8회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 9회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 10회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 11회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 12회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 13회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 14회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 15회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 16회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 17회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 18회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 19회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+INSERT INTO SPACE_NOTICE 
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL),'PJ1', '정기 회의 20회차 안내'
+, '안녕하세요. 벌써 새로운 한 주가 시작되었네요! 지난 회의때 미결된 안은 XXX..이며..', SYSDATE);
+
+--==>> 1 행 이(가) 삽입되었습니다. * 20  --커밋 완료 
+
+COMMIT;
+
+---------------------------[스페이스 공지 관련 기능]---------------------------
+--● 공지글 등록 (팀장)
+INSERT INTO SPACE_NOTICE
+VALUES('SN'||TO_CHAR(SPACENOTICENOSEQ.NEXTVAL)
+,'PJ1'
+,'공지인척 하는 글'
+,'우히히'
+,SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다.
+
+--● 공지글 본문 수정 (팀장)
+UPDATE SPACE_NOTICE
+SET CONTENT='프로젝트 종료가 코앞이네요. 지난 n개월 동안 고생 많으셨습니다'
+WHERE SPACE_NOTICE_NO = 'SN44';
+--==>> 1 행 이(가) 업데이트되었습니다.
+
+--● 공지글 삭제  (팀장)
+DELETE FROM SPACE_NOTICE
+WHERE SPACE_NOTICE_NO = 'SN11'
+;
+--==>> 1 행 이(가) 삭제되었습니다.
+
+--● 공지글 리스트로 불러오기 (모든 팀원)
+--(공지번호, 제목 , 작성일)  
+SELECT SUBSTR(SPACE_NOTICE_NO,3) AS spaceNoticeNo
+, TITLE AS title
+, CREATED_DATE AS createdDate
+FROM  SPACE_NOTICE
+WHERE PRJ_NO ='PJ1'
+ORDER BY spaceNoticeNo DESC
+;
+
+--● 공지글 아티클 읽기 (모든 팀원)
+--(공지번호, 제목, 내용, 작성일) 
+SELECT SUBSTR(SPACE_NOTICE_NO,3) AS spaceNoticeNo
+, TITLE AS title
+, CONTENT AS content
+, CREATED_DATE AS createdDate
+FROM  SPACE_NOTICE
+WHERE SPACE_NOTICE_NO ='SN44'
+;
+
+SELECT * FROM SPACE_NOTICE;
+--DELETE FROM SPACE_NOTICE;
+
+--==>> 공지 게시판 기능 끝
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--▣ 2023.08.12 토 
+
+--------------------------------[ 담벼락 기능 ]---------------------------------
+-- 테이블 데이터확인
+SELECT * FROM FEED;  
+
+-- 현재 계정의 모든 시퀀스 조회 
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+-- 담벼락 시퀀스 생성
+CREATE SEQUENCE FEEDNOSEQ
+NOCACHE;
+--==>> Sequence FEEDNOSEQ이(가) 생성되었습니다. 
+
+--DROP SEQUENCE FEEDNOSEQ;
+
+-- 샘플 데이터 입력 ( PJ1 의 팀스페이스 팀원들이 1번씩 작성) 
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL        
+        , 'FN1'
+        , '우와 안녕하세요'
+        , SYSDATE);
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL                        
+        , 'FN2'
+        , '네 안녕하세요'
+        , SYSDATE);
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL 
+        , 'FN3'
+        , '반갑습니다'
+        , SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다. *3 
+
+-- 샘플 데이터 입력2 ( PJ2 의 팀스페이스 팀원 8명 중 2명이 1번씩 작성) 
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL        
+        , 'FN5'
+        , '하이하이'
+        , SYSDATE);
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL                        
+        , 'FN6'
+        , '바이바이요'
+        , SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다. *2
+
+SELECT * FROM FEED;
+SELECT * FROM FINAL;
+SELECT * FROM PROJECT;
+
+--DELETE FROM FEED;
+--------------------------------------------------------------------------------
+--● 담벼락 입력(등록) 쿼리문 (피드 글번호, 최종합류번호, 내용, 등록일) 
+INSERT INTO FEED(FEED_NO, FINAL_NO, CONTENT, CREATED_DATE) 
+VALUES(FEEDNOSEQ.NEXTVAL
+        , 'FN1'                         --  이후 동적 구성해야되는 최종합류번호 
+        , '우와 안녕하세요'
+        , SYSDATE);
+
+--● 팀 스페이스별 담벼락 내용 불러오기 (무한 스크롤)
+SELECT U.NICKNAME nickName, F.CONTENT content, F.CREATED_DATE createdDate
+FROM FEED F JOIN FINAL FN 
+ON F.FINAL_NO = FN.FINAL_NO -- 최종 합류번호로 조인
+    JOIN FIRST_CK FC 
+    ON FN.FIRST_CK_NO = FC.FIRST_CK_NO -- 1차 합격 번호로 조인
+        JOIN APPLY A 
+        ON FC.APPLY_NO = A.APPLY_NO -- 포지션 지원번호로 조인
+            JOIN USERS U 
+            ON A.PIN_NO = U.PIN_NO  -- PIN 번호로 조인 
+WHERE F.FINAL_NO IN ('FN1', 'FN2', 'FN3') -- 같은 팀스페이스 사람들 조건
+ORDER BY F.CREATED_DATE DESC;  -- 최신순 정렬 
+
+------------------------------[ 회의록 게시판 ]---------------------------------
+
+-- 회의록 게시판 
+-- 현재 계정의 모든 시퀀스 조회 
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+-- 회의록 번호 시퀀스 생성
+CREATE SEQUENCE MEETINGNOSEQ
+NOCACHE;
+--==>> Sequence MEETINGNOSEQ이(가) 생성되었습니다.
+
+-- 샘플 데이터 인서트
+--(회의록 번호, 최종합류번호, 제목, 내용, 첨부파일URL, 작성일, 회의날짜 )
+--(히스토리에는 회의 날짜 기준으로 기록됨)
+
+INSERT INTO MEETING (MEETING_NO, FINAL_NO, TITLE, CONTENT, FILEURL, CREATED_DATE, MEETING_DATE)
+VALUES('MT'||TO_CHAR(MEETINGNOSEQ.NEXTVAL)
+        , 'FN1'
+        , '1차: 기획 회의'
+        , '담당자: 팀원1 .. 장소 어쩌구.. 내용 어쩌구..'
+        , NULL
+        , SYSDATE
+        , '2023-08-01');
+INSERT INTO MEETING (MEETING_NO, FINAL_NO, TITLE, CONTENT, FILEURL, CREATED_DATE, MEETING_DATE)
+VALUES('MT'||TO_CHAR(MEETINGNOSEQ.NEXTVAL)
+        , 'FN2'
+        , '2차: 기획 회의'
+        , '담당자: 팀원2 .. 장소 어쩌구.. 내용 어쩌구..'
+        , NULL
+        , SYSDATE
+        , '2023-08-02');
+
+--==>> 1 행 이(가) 삽입되었습니다. *2
+--COMMIT;
+
+-- 테이블, 데이터 체크
+SELECT * FROM MEETING;
+--==>>
+/*
+--(회의록번호, 최종합류번호(작성자), 제목, 내용, 첨부파일URL, 작성일, 회의날짜 )
+MT1	FN1	1차: 기획 회의	담당자: 팀원1 .. 장소 어쩌구.. 내용 어쩌구..	2023-08-13	2023-08-01
+MT2	FN2	2차: 기획 회의	담당자: 팀원2 .. 장소 어쩌구.. 내용 어쩌구..		2023-08-13	2023-08-02
+*/
 
 
 
+--------------------------------------------------------------------------------
+--● 회의록 등록 쿼리문
+INSERT INTO MEETING (MEETING_NO, FINAL_NO, TITLE, CONTENT, FILEURL, CREATED_DATE, MEETING_DATE)
+VALUES('MT'||TO_CHAR(MEETINGNOSEQ.NEXTVAL)
+        , 'FN2'
+        , '5차: 스토리보드'
+        , '담당자: 팀원3 .. 장소 어쩌구.. 내용 어쩌구..'
+        , NULL
+        , SYSDATE
+        , '2023-08-07')
+;
+
+--------------------------------------------------------------------------------
+--● 회의록 수정 쿼리문
+UPDATE MEETING 
+SET TITLE = '3차: 스토리보드'
+    ,CONTENT = '담당자: 팀원3.. 이번 주부터 진행할 스토리보드..'
+    ,FILEURL = '/images/exit.png'
+    ,MEETING_DATE = '2023-08-04'
+WHERE MEETING_NO = 'MT3'
+;
+--==>>1 행 이(가) 업데이트되었습니다.
+--------------------------------------------------------------------------------
+--● 회의록 삭제 쿼리문
+DELETE FROM MEETING
+WHERE MEETING_NO = 'MT2'
+;
+--==>> 1 행 이(가) 삭제되었습니다.
+--------------------------------------------------------------------------------
+--● 회의록 목록(게시판) 조회 (5개 속성)
+--(글 번호, 제목, 작성자, 회의날짜, 작성일) 
+SELECT SUBSTR(M.MEETING_NO,3) meetingNo
+      , U.NICKNAME nickName
+      , M.TITLE title
+      , M.CREATED_DATE createdDate
+      , M.MEETING_DATE meetingDate
+FROM MEETING M JOIN FINAL F
+ON M.FINAL_NO = F.FINAL_NO              -- 최종 합류 번호로 조인 
+    JOIN FIRST_CK FC 
+    ON F.FIRST_CK_NO = FC.FIRST_CK_NO -- 1차 합격 번호로 조인
+        JOIN APPLY A 
+        ON FC.APPLY_NO = A.APPLY_NO -- 포지션 지원번호로 조인
+            JOIN USERS U 
+            ON A.PIN_NO = U.PIN_NO  -- 핀 번호로 조인 
+WHERE M.FINAL_NO IN('FN1','FN2','FN3')
+;
+
+--------------------------------------------------------------------------------
+--● 회의록 아티클 조회 (7개 속성)
+--(글 번호, 제목, 내용, 첨부파일, 작성자, 회의날짜, 작성일)
+SELECT SUBSTR(M.MEETING_NO,3) meetingNo
+      , M.TITLE title
+      , M.CONTENT content
+      , NVL(M.FILEURL,'첨부파일없음') fileUrl
+      , U.NICKNAME nickName
+      , M.CREATED_DATE createdDate
+      , M.MEETING_DATE meetingDate
+FROM MEETING M JOIN FINAL F
+ON M.FINAL_NO = F.FINAL_NO              -- 최종 합류 번호로 조인 
+    JOIN FIRST_CK FC 
+    ON F.FIRST_CK_NO = FC.FIRST_CK_NO -- 1차 합격 번호로 조인
+        JOIN APPLY A 
+        ON FC.APPLY_NO = A.APPLY_NO -- 포지션 지원번호로 조인
+            JOIN USERS U 
+            ON A.PIN_NO = U.PIN_NO  -- 핀 번호로 조인 
+WHERE M.MEETING_NO ='MT1'
+;
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--▣ 2023.08.14 월 // 유저의 신고 접수 기능(인서트) (공고,쪽지,댓글,지원서)
+
+-- 데이터 확인 
+
+SELECT * FROM REP_RECRUIT; -- 모집 공고 신고 
+SELECT * FROM REPORT_REASON; -- 신고 사유 
+SELECT * FROM PROJECT;   
+SELECT * FROM REPORT_APPLY;
+SELECT * FROM APPLY;
+SELECT * FROM COMMENTS;
+/*
+1	부적절한 언어 사용
+2	저작권 침해
+3	도배 및 광고
+4	개인정보 침해
+5	허위사실유포
+*/
+CREATE SEQUENCE REPAPPLYNOSEQ
+NOCACHE;
+--==>> Sequence REPAPPLYNOSEQ이(가) 생성되었습니다
+
+--------------------------------------------------------------------------------
+--● 공고 신고 인서트 (공고신고번호, 공고번호, 신고자핀번호, 신고일, 신고사유) 
+INSERT INTO REP_RECRUIT(REP_RECRUIT_NO, RECRUIT_NO, PIN_NO, CREATED_DATE, REP_REASON_NO)
+VALUES('REPR'|| TO_CHAR(REPRECNOSEQ.NEXTVAL)
+       ,'RC8','UP1',SYSDATE, 5)
+;
+--==>> 1 행 이(가) 삽입되었습니다.
+--------------------------------------------------------------------------------
+--● 지원서 신고 인서트 (지원서신고번호, 지원서번호, 신고자핀번호, 신고일, 신고사유) 
+INSERT INTO REPORT_APPLY(REP_APPLY_NO, APPLY_NO, PIN_NO, CREATED_DATE, REP_REASON_NO)
+VALUES('REPA'|| TO_CHAR(REPAPPLYNOSEQ.NEXTVAL)
+       ,'AP14','UP2',SYSDATE, 1)
+;
+--==>>1 행 이(가) 삽입되었습니다.
+--------------------------------------------------------------------------------
+--● 댓글 신고 인서트 (댓글신고번호, 댓글번호, 신고자핀번호, 신고일, 신고사유) 
+INSERT INTO REPORT_COMM(REP_COMM_NO, COMM_NO, PIN_NO, REP_DATE, REP_REASON_NO)
+VALUES(REPCOMMNOSEQ.NEXTVAL,1,'UP3',SYSDATE, 1)
+;
+--==>> 1 행 이(가) 삽입되었습니다.
+--------------------------------------------------------------------------------
+--● 쪽지 신고 인서트 (쪽지신고번호, 쪽지번호, 신고자핀번호, 신고사유, 신고일) 
+INSERT INTO REPORT_NOTE(REP_NOTE_NO, NOTE_NO, PIN_NO, REP_REASON_NO, CREATED_DATE)
+VALUES('REPN'|| TO_CHAR(REPNOTENOSEQ.NEXTVAL)
+    ,'NN1', 'UP15', 1, SYSDATE )
+;
+--==>> 1 행 이(가) 삽입되었습니다.
+SELECT * FROM REPORT_NOTE;
+--==>> REPN1	NN1	UP15	1	2023-08-14
+
+--------------------------------------------------------------------------------
+--==>> 신고 접수(인서트) 기능은 DTO ~ 컨트롤러까지 구성 완료.
+--==>> 공고 신고는 연결까지 끝. 지원서는 아직 모집자 입장에서 지원서 확인하는거 
+-- 안 만들어져서 댓글이랑 쪽지 먼저 하겠음 ( 오후 12시 36분) 
+--------------------------------------------------------------------------------
+---------------[로그인 한 유저가 본인 쪽지만 볼 수 있게 구성하기]---------------
 
 
+--데이터 확인
+SELECT * FROM NOTE;
+--==>> 신고용 쪽지만 몇 개 있음.
+
+-- 샘플 데이터 입력
+DELETE FROM NOTE;
+
+--● 쪽지 전송하기 (인서트)
+--(쪽지번호, 보낸사람핀번호, 받는사람핀번호, 보낸날짜, 읽은날짜,
 
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--▣ 2023.08.16 수
+--==>> 쪽지 기능 중단하고 팀스페이스기능 이어서
 
 
+SELECT * FROM PROJECT
+WHERE RECRUIT_NO ='RC2'; -- PJ1  프로젝트의 공고번호는 RC2고 팀장은 UP2 
+SELECT * FROM RECRUIT
+WHERE RECRUIT_NO ='RC2';
 
+---------------------------------[ 작업실 ]-------------------------------------
+
+-- 현재 계정의 모든 시퀀스 조회 
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+-- 작업 게시글 번호 시퀀스 생성 
+CREATE SEQUENCE WORKSPACENOSEQ
+NOCACHE;
+--==>> Sequence WORKSPACENOSEQ이(가) 생성되었습니다.
+
+
+-- 작업실 글, 댓글 데이터 확인, 샘플데이터 입력
+SELECT * FROM workspace;--(작업글번호, 최종합류번호, 제목, 내용, 작성일) 
+SELECT * FROM workspace_comm;
+
+--------------------------------------------------------------------------------
+--● 작업 게시글 등록 쿼리문
+INSERT INTO WORKSPACE(WORKSPACE_NO, FINAL_NO, TITLE, CONTENT, CREATED_DATE)
+VALUES ('WS'||TO_CHAR(WORKSPACENOSEQ.nextval)
+        ,'FN1'
+        ,'작업 10일차!'
+        ,'요구분석서와 스토리보드가 끝났습니다!'
+        ,SYSDATE);
+--==>> 1 행 이(가) 삽입되었습니다. *10 
+--------------------------------------------------------------------------------
+--● 작업글 수정 쿼리문 
+UPDATE WORKSPACE
+SET TITLE = '작업 10일차 (수정)'
+    ,CONTENT = '끝난 줄 알았지만..아직 할 게 남았네요'
+WHERE WORKSPACE_NO = 'WS20';
+--==>> 1 행 이(가) 업데이트되었습니다.
+
+--------------------------------------------------------------------------------    
+--● 작업글 삭제 쿼리문
+DELETE
+FROM WORKSPACE
+WHERE WORKSPACE_NO = 'WS21';
+--==>> 1 행 이(가) 삭제되었습니다.
+
+--------------------------------------------------------------------------------
+--● 특정 유저의 작업글 목록 조회 쿼리문
+SELECT W.WORKSPACE_NO workspaceNo
+     , U.NICKNAME nickname
+     , W.TITLE title
+     , W.CREATED_DATE createdDate
+FROM WORKSPACE W JOIN FINAL F
+ON W.FINAL_NO = F.FINAL_NO              -- 최종 합류 번호로 조인 
+    JOIN FIRST_CK FC 
+    ON F.FIRST_CK_NO = FC.FIRST_CK_NO -- 1차 합격 번호로 조인
+        JOIN APPLY A 
+        ON FC.APPLY_NO = A.APPLY_NO -- 포지션 지원번호로 조인
+            JOIN USERS U 
+            ON A.PIN_NO = U.PIN_NO  -- 핀 번호로 조인 
+WHERE FINAL_NO = 'FN1';
+--------------------------------------------------------------------------------
+--● 작업글 아티클 상세 조회 쿼리문
+SELECT WORKSPACE_NO workspace, FINAL_NO finalNo, TITLE title
+      , CONTENT content, CREATED_DATE createdDate
+FROM WORKSPACE
+WHERE WORKSPACE_NO = 'WS15'; 
+--------------------------------------------------------------------------------
 
 

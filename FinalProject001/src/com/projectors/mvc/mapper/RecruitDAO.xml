@@ -168,6 +168,10 @@
 		VALUES ('FS'||TO_CHAR(FIRSTCKSEQ.NEXTVAL), #{applyNo }, SYSDATE)
 	</insert>
 	
+	<select resultType="java.lang.Integer" id="regDateCheck">
+		SELECT COUNT(*) AS COUNTREG FROM REGVIEW WHERE PINNO = #{pinNo} AND REGDATE > 0
+	</select>
+	
 	
 	<!--
 	private int regionNo, subRegionNo, posNo, toolNo;

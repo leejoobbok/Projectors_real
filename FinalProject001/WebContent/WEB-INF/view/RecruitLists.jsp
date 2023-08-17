@@ -236,8 +236,15 @@
 	// 프로필 미작성자 / 이미 지원 / 모집 / 팀프로젝트가 있는 사람 예외처리
 	function writeRecruit() {
 		var member = '${pinNo}';
-		if (!(member == null && member == ""))
+		if (!(member == null && member == "")) {
+			if ($("#regCheck").val() > 0)
+			{
+				alert("제재중인 회원은 게시글 작성이 불가합니다.");
+				// alert($("#regCheck").val());
+			}
+			else
 			window.location.href = 'writerecruit.action';
+		}
 		else
 			alert("회원만 모집공고 작성이 가능합니다.");
 	}
@@ -348,6 +355,7 @@
 			<c:choose>
 			<c:when test="${not empty pinNo}">
 				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
+				<input type="hidden" id="regCheck" name="regCheck" value="${regDateCheck }">
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="guestBtn" onclick="cannotWriteRecruit()">공고 작성하기</button>
