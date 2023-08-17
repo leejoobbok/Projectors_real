@@ -127,29 +127,29 @@
 							<td colspan="8"><b>진행되었던 과거 프로젝트 이력이 존재하지 않습니다.</b></td>
 						</c:when>
 						<c:otherwise>
-
+							<c:forEach var="pastProject" items="${pastProjectDTO}">
+							<tr>
+								<td>${pastProject.prjNo }</td>
+								<td>${pastProject.recruitName }</td>
+								<td>${pastProject.prjStart }~ ${pastProject.prjEnd }</td>
+								<td>${pastProject.count }</td>
+								<td>${pastProject.posName }</td>
+								<td><span class="prjStatus">완료(정적)</span></td>
+								<td>
+									<button type="button" class="ingMember"
+										onclick="moveToTeamSpace()">이동</button>
+								</td>
+								<td>
+									<button type="button" class="ingMember"
+										onclick="rateAllMember()">팀원 평가</button>
+								</td>
+							</tr>
+							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 
 
-					<c:forEach var="pastProject" items="${pastProjectDTO}">
-						<tr>
-							<td>${pastProject.prjNo }</td>
-							<td>${pastProject.recruitName }</td>
-							<td>${pastProject.prjStart }~ ${pastProject.prjEnd }</td>
-							<td>${pastProject.count }</td>
-							<td>${pastProject.posName }</td>
-							<td><span class="prjStatus">완료(정적)</span></td>
-							<td>
-								<button type="button" class="ingMember"
-									onclick="moveToTeamSpace()">이동</button>
-							</td>
-							<td>
-								<button type="button" class="ingMember"
-									onclick="rateAllMember()">팀원 평가</button>
-							</td>
-						</tr>
-					</c:forEach>
+				
 
 				</table>
 			</div>
