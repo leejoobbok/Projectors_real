@@ -34,6 +34,7 @@ public class MyProjectController
 		/* System.out.println("확인용 카운트:" + checkPresentProject); */
 		
 		
+		// 현재 진행 중인 프로젝트가 없다면
 		if (checkPresentProject == 0)
 		{
 			model.addAttribute("checkPresentProject", checkPresentProject);
@@ -74,7 +75,7 @@ public class MyProjectController
 		
 		
 		int checkPastProject = dao.checkPastProject(pinNo);
-		
+		// 과거 진행했던 프로젝트가 없다면
 		if (checkPastProject == 0)
 		{
 			model.addAttribute("checkPastProject", checkPastProject);
