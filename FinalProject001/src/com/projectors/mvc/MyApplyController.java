@@ -19,6 +19,7 @@ public class MyApplyController
 		return "/WEB-INF/view/MyApply.jsp";
 	}
 	
+	
 
 	@RequestMapping(value="/mypastapply.action",method = RequestMethod.GET )
 	public String mypastapply(Model model)
