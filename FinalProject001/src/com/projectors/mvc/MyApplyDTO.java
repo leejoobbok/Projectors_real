@@ -3,16 +3,45 @@ package com.projectors.mvc;
 public class MyApplyDTO
 {
 	private String pinNo, profileNo, nickName, applyNo, recruitNo, recruitPosNo, content;
-	
-	private int posNo, toolNo, subRegionNo;
-	private String posName, toolName, subRegionName;
+	private int posNo, count;
 	private String title, photoUrl;
-	
-	
+	private String posName, applyDate, ckDate, firstCkNo;
 	// getter / setter
 	public String getPinNo()
 	{
 		return pinNo;
+	}
+	public String getFirstCkNo()
+	{
+		return firstCkNo;
+	}
+	public void setFirstCkNo(String firstCkNo)
+	{
+		this.firstCkNo = firstCkNo;
+	}
+	public String getCkDate()
+	{
+		return ckDate;
+	}
+	public void setCkDate(String ckDate)
+	{
+		this.ckDate = ckDate;
+	}
+	public int getCount()
+	{
+		return count;
+	}
+	public void setCount(int count)
+	{
+		this.count = count;
+	}
+	public String getApplyDate()
+	{
+		return applyDate;
+	}
+	public void setApplyDate(String applyDate)
+	{
+		this.applyDate = applyDate;
 	}
 	public void setPinNo(String pinNo)
 	{
@@ -74,22 +103,7 @@ public class MyApplyDTO
 	{
 		this.posNo = posNo;
 	}
-	public int getToolNo()
-	{
-		return toolNo;
-	}
-	public void setToolNo(int toolNo)
-	{
-		this.toolNo = toolNo;
-	}
-	public int getSubRegionNo()
-	{
-		return subRegionNo;
-	}
-	public void setSubRegionNo(int subRegionNo)
-	{
-		this.subRegionNo = subRegionNo;
-	}
+	
 	public String getPosName()
 	{
 		return posName;
@@ -98,22 +112,7 @@ public class MyApplyDTO
 	{
 		this.posName = posName;
 	}
-	public String getToolName()
-	{
-		return toolName;
-	}
-	public void setToolName(String toolName)
-	{
-		this.toolName = toolName;
-	}
-	public String getSubRegionName()
-	{
-		return subRegionName;
-	}
-	public void setSubRegionName(String subRegionName)
-	{
-		this.subRegionName = subRegionName;
-	}
+	
 	public String getTitle()
 	{
 		return title;
