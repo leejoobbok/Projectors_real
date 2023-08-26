@@ -6,10 +6,36 @@ public class MyApplyDTO
 	private int posNo, count;
 	private String title, photoUrl;
 	private String posName, applyDate, ckDate, firstCkNo;
+	private String passDate, finalCkDate;
+	private String fsApplyNo;
 	// getter / setter
 	public String getPinNo()
 	{
 		return pinNo;
+	}
+	public String getFsApplyNo()
+	{
+		return fsApplyNo;
+	}
+	public void setFsApplyNo(String fsApplyNo)
+	{
+		this.fsApplyNo = fsApplyNo;
+	}
+	public String getPassDate()
+	{
+		return passDate;
+	}
+	public void setPassDate(String passDate)
+	{
+		this.passDate = passDate;
+	}
+	public String getFinalCkDate()
+	{
+		return finalCkDate;
+	}
+	public void setFinalCkDate(String finalCkDate)
+	{
+		this.finalCkDate = finalCkDate;
 	}
 	public String getFirstCkNo()
 	{
