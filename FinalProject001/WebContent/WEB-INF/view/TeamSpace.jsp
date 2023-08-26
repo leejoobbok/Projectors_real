@@ -14,40 +14,42 @@
 
 <style type="text/css">
 	
-	body { overflow: hidden;} /* 스크롤 제거*/
 	a{text-decoration: none;} 
 	a:hover{text-decoration: underline;}
 	li{text-decoration: none;}
+	body{margin-bottom: 20px;}
 	/*===================================================*/
 	#root						   /*루트 박스*/
-	{
-		width: 1400px;
-		height:1000px;
-		margin: auto;
-		/* border: 2px solid #d1d7e0; */  /*영역 확인용*/
+	{	
+		position: relative;
+		width: 1200px; 
+		/*border: 2px solid #d1d7e0;*/   /*영역 확인용*/
 	}
-	#innerBox				
-	{
-		margin: auto;
-	}
+
 	/*===================================================*/
-	#spaceName 					/*스페이스 명(최상단 타이틀 )*/
+	#spaceName			    	 /* 스페이스명*/
 	{
-		display: inline-block;
 		text-align: left;
 		font-size: 26px;
-		padding-left: 80px;		/* 왼쪽 패딩*/
-		
+		padding-left: 40px;		
+	}
+	
+	#spaceNameBox				/*스페이스 이름 영역*/
+	{	
+		position:absolute;
+		top: 6px;
 	}
 	/*===================================================*/
 	#categoryBar 				/* 메뉴 인덱스바 영역*/
 	{	
+		position: absolute;
+		top: 80px;
 		width: 660px;
 		height: 40px;
 		
 		background-color: #fae896;
 		padding: 10px 0px 0px 20px;
-		margin-left: 60px;
+		margin-left: 2px;
 		
 		border-top: 2px solid;
 		border-left: 2px solid;
@@ -78,22 +80,23 @@
 	#exitBtn					/* 나가기 버튼 */
 	{	
 		float: right;  
-		margin-top: -12px; 	   /* 위 여백 줄여서 이미지를 위로 */
-		padding-right: 60px;  /* 왼쪽으로*/
+		margin-top: 34px; 	   /* 위 여백 줄여서 이미지를 위로 */
+		margin-right: -60px;
 	}
 	/*===================================================*/
 	#directoryBox 	/*(메뉴 인덱스 제외) 폴더모양 박스 영역 전체*/
 	{	
-		position: relative; /* 자식요소 위치 고정을 위한 속성지정 */
+		position: absolute;
+		left: 30px;
+		top: 130px;
+		
   		border: 2px solid;
-		border: 2px solid; 
 		border-radius: 20px;
 		
-		width: 1300px;
+		width: 1280px;
 		height:740px;
 		
 		background-color: #fae896;  
-		margin: auto;	/* 가운데 정렬*/
 	}
 	/*===================================================*/
 	#topLeftBox			/* 좌측 상단 영역 */
@@ -185,9 +188,8 @@
 </head>
 <body>
 	<div id="root">
-		<div id="innerBox">
 			
-			<div>
+			<div id="spaceNameBox">
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
@@ -245,7 +247,6 @@
 				<!-- ====================================================================================== -->
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
 			
-		</div><!-- end of #innerBox div  -->
 		
 	</div><!-- end of #root div -->
 </body>
