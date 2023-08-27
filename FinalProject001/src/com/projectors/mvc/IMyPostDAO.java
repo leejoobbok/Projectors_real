@@ -72,12 +72,10 @@ public interface IMyPostDAO
 	public ArrayList<MyPostDTO> postionCount(String recruitNo);
 	
 	
+	//▼▼▼▼▼▼ 과거 모집 공고들 출력하는 메소드
+	public int checkPastPost(String pinNo);
 	
-	
-	/*
-	 * // project 테이블에 기입 
-	 * public void insertProject(String recruitNo);
-	 */
+	public ArrayList<MyPostDTO> myPastPost(String pinNo);
 	
 	
 	

@@ -124,6 +124,7 @@ th
 											<th><div>닉네임</div></th>
 											<th><div>지원 날짜</div></th>
 											<th><div>결과</div></th>
+											<th><div>프로젝트</div></th>
 										</div>
 									</tr>
 									<c:forEach var="pastApply" items="${pastApplyDTO}">
@@ -146,6 +147,16 @@ th
 															불합격
 														</c:otherwise>
 													</c:choose>
+											</div></td>
+											<td><div>
+												<c:choose>
+													<c:when test="${not empty pastApply.prjNo }">
+														<button type="button">바로가기</button>
+													</c:when>
+													<c:otherwise>
+														미생성
+													</c:otherwise>
+												</c:choose>
 											</div></td>
 										</div>
 									</tr>

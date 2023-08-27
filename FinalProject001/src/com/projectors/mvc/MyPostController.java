@@ -114,12 +114,6 @@ public class MyPostController
 		return url;
 	}
 
-	@RequestMapping(value = "/mypastpost.action", method = RequestMethod.GET)
-	public String mypastpost()
-	{
-		return "/WEB-INF/view/MyPastPostLists.jsp";
-	}
-
 	@RequestMapping(value = "/readApply.action", method = RequestMethod.GET)
 	public String readApply(Model model, HttpServletRequest request)
 	{
@@ -176,5 +170,34 @@ public class MyPostController
 		return url;
 
 	}
+	
+	//▼ 나의 과거 모집 메소드~
+	@RequestMapping(value = "/mypastpost.action", method = RequestMethod.GET)
+	public String mypastpost(Model model, HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String)session.getAttribute("pinNo");
+		
+		IMyPostDAO dao = sqlSession.getMapper(IMyPostDAO.class);
+		
+		int checkPastPost = dao.checkPastPost(pinNo);
+		
+		// if 과거 모집 이력이 존재하지 않을 경우 else 존재하는 경우
+		if (checkPastPost == 0)
+		{
+			model.addAttribute("checkPastPost", checkPastPost);
+		}
+		else
+		{
+			ArrayList<MyPostDTO> myPastPostDTO = dao.myPastPost(pinNo);
+			
+			model.addAttribute("checkPastPost", checkPastPost);
+			model.addAttribute("myPastPostDTO", myPastPostDTO);
+		}
+		
+		return "/WEB-INF/view/MyPastPostLists.jsp";
+	}
+
 
 }
