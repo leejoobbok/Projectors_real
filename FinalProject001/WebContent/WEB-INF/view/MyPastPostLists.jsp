@@ -96,60 +96,47 @@
 				
 				<!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★시작 -->
 				
-				
-<table class="table">
+			<c:choose>
+			<c:when test="${checkPastPost == 0}">
+				<h3>과거 모집 이력이 존재하지 않습니다.</h3>
+			</c:when>
+			<c:otherwise>
+			<table class="table">
 			<!-- 8개 -->
 			<tr>
 				<th>게시물 번호</th>
 				<th>제목</th>
-				<th>모집 인원</th>
 				<th>합류 인원</th>
+				<th>모집 인원</th>
 				<th>모집시작일</th>
 				<th>프로젝트 기간</th>
-				<th>지원서</th>
 				<th>상태</th>
 			</tr>
+			<c:forEach var="myPastPost" items="${myPastPostDTO}">			
 			<tr>
-				<td>18997</td>
+				<td>${myPastPost.recruitNo }</td>
 				<td>
-					<a href="PostFormSample.jsp">주차 시스템  프로젝트</a>
+					<a href="">${myPastPost.recruitName}</a>
 				</td>
-				<td>프론트엔드 0/4 | 백엔드 0/7</td>
-				<td>프론트엔드 4  | 백엔드 7</td>
-				<td>22.03.02</td>
-				<td>23.03.25~23.06.10</td>
-				<td>읽음 32 |  안읽음 0</td>
-				<td>마감(모집완료)</td>
+				<td>${myPastPost.firstCkCount}</td>
+				<td>${myPastPost.totalCount}</td>
+				<td>${myPastPost.createdDate }</td>
+				<td>${myPastPost.prjStart }~${myPastPost.prjEnd }</td>
+				<td>마감(
+					<c:choose>
+						<c:when test="${not empty myPastPost.prjNo}">
+							<button type="button">프로젝트</button>
+						</c:when>
+						<c:otherwise>
+							인원부족
+						</c:otherwise>
+					</c:choose>
+					)</td>
 			</tr>
-			<tr>
-				<td>14221</td>
-				<td>
-					<a href="PostFormSample.jsp">스포츠 분석 시스템</a>
-				</td>
-				<td>프론트엔드 1/2 | 백엔드 2/4</td>
-				<td>-</td>
-				<td>21.07.08</td>
-				<td>22.08.27~22.10.15</td>
-				<td>읽음 3 | 안읽음 0</td>
-				<td>마감(기간만료)</td>
-			</tr>
-			<tr>
-				<td>12354</td>
-				<td>
-					<a href="PostFormSample.jsp">웹 메신저 ‘코코넛톡</a>
-				</td>
-				<td>프론트엔드 0/2 | 백엔드 0/5</td>
-				<td>-</td>
-				<td>21.04.01</td>
-				<td>21.05.01~21.05.20</td>
-				<td>읽음 3| 안읽음 1</td>
-				<td>모집 취소</td>
-			</tr>
-		</table>
-
-					
-					
-					
+			</c:forEach>
+			</table>
+			</c:otherwise>
+			</c:choose>
 				<!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★끝 -->
 					
 					
