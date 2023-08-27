@@ -4,19 +4,76 @@ public class MyPostDTO
 {	
 	private String recruitNo, recruitName, pinNo, applyNo, posNo, posName;
 	private String recruitPosNo, recruitPosName;
-	private String applyDate, ckDate, passDate;
+	private String applyDate, ckDate, passDate, createdDate, prjNo, prjStart, prjEnd;
 	private String nickname;
-	
+	private int firstCkCount, totalCount;
 	// 마감된 포지션인지 확인용
 	private int fullCount, count;
 	private String firstCkNo, finalNo, projectNo, deadline;
-	
 	private int countAll, countPos;
-	
-	
+	//getter/setter 구성
 	public int getCountAll()
 	{
 		return countAll;
+	}
+	public String getCreatedDate()
+	{
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate)
+	{
+		this.createdDate = createdDate;
+	}
+
+	public String getPrjNo()
+	{
+		return prjNo;
+	}
+
+	public void setPrjNo(String prjNo)
+	{
+		this.prjNo = prjNo;
+	}
+
+	public String getPrjStart()
+	{
+		return prjStart;
+	}
+
+	public void setPrjStart(String prjStart)
+	{
+		this.prjStart = prjStart;
+	}
+
+	public String getPrjEnd()
+	{
+		return prjEnd;
+	}
+
+	public void setPrjEnd(String prjEnd)
+	{
+		this.prjEnd = prjEnd;
+	}
+
+	public int getFirstCkCount()
+	{
+		return firstCkCount;
+	}
+
+	public void setFirstCkCount(int firstCkCount)
+	{
+		this.firstCkCount = firstCkCount;
+	}
+
+	public int getTotalCount()
+	{
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount)
+	{
+		this.totalCount = totalCount;
 	}
 
 	public void setCountAll(int countAll)
