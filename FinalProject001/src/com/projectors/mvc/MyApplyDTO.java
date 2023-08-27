@@ -8,10 +8,19 @@ public class MyApplyDTO
 	private String posName, applyDate, ckDate, firstCkNo;
 	private String passDate, finalCkDate;
 	private String fsApplyNo;
+	private String prjNo;
 	// getter / setter
 	public String getPinNo()
 	{
 		return pinNo;
+	}
+	public String getPrjNo()
+	{
+		return prjNo;
+	}
+	public void setPrjNo(String prjNo)
+	{
+		this.prjNo = prjNo;
 	}
 	public String getFsApplyNo()
 	{
