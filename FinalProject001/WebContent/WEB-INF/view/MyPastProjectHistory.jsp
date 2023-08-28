@@ -113,7 +113,7 @@
 			<div id="projectInfo">
 				<table id="pastPrjLists">
 					<tr>
-						<th>프로젝트 번호</th>
+						<!-- <th>프로젝트 번호</th> -->
 						<th>프로젝트 명</th>
 						<th>프로젝트 기간</th>
 						<th>인원</th>
@@ -129,7 +129,7 @@
 						<c:otherwise>
 							<c:forEach var="pastProject" items="${pastProjectDTO}">
 							<tr>
-								<td>${pastProject.prjNo }</td>
+								<%-- <td>${pastProject.prjNo }</td> --%>
 								<td>${pastProject.recruitName }</td>
 								<td>${pastProject.prjStart }~ ${pastProject.prjEnd }</td>
 								<td>${pastProject.count }</td>

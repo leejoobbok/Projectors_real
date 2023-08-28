@@ -25,6 +25,11 @@ public class MyApplyController
 		
 		String pinNo = (String)session.getAttribute("pinNo");
 		
+		if (pinNo == null)
+		{
+			return "/WEB-INF/view/Login.jsp";
+		}
+		
 		IMyApplyDAO dao = sqlSession.getMapper(IMyApplyDAO.class);
 		
 		int checkPresent = dao.checkPresentApply(pinNo);

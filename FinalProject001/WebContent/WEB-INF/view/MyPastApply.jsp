@@ -19,10 +19,9 @@ table
 	text-align: center;
 }
 
-th
+tr
 {
-	border: 1px solid black;
-	border-radius: 10%;
+	border-bottom: 1px solid black;
 }
 
 .recruitTitle

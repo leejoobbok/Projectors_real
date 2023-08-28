@@ -54,27 +54,23 @@ public interface IMyPostDAO
 	public ArrayList<MyPostDTO> positionInfo(String recruitNo);
 	// 각 포지션별 마감 인원 구하는 메소드
 	public ArrayList<MyPostDTO> doneInfo(String recruitNo);
-	// 각
-	
-	//2. final 테이블에 insert
-	public void finalCk(String applyNo);
-	// a- final 테이블에 있는 인원수 
-	public int finalCount(String recruitNo);
 
-	/*
-	 * // 모집 현황 포지션 명 2 /3 이런꼴로 보이기 위함 public ArrayList<MyPostDTO>
-	 * posYetCount(String recruitNo); public ArrayList<MyPostDTO>
-	 * posDoneCount(String recruitNo);
-	 * 
-	 * 
-	 */
 	// 모집 현황 포지션 명 2 /3 이런꼴로 보이기 위함 public ArrayList<MyPostDTO>
 	public ArrayList<MyPostDTO> postionCount(String recruitNo);
 	
 	
-	//▼▼▼▼▼▼ 과거 모집 공고들 출력하는 메소드
-	public int checkPastPost(String pinNo);
+	// 최종 합류 대기자 존재하는지 
+	public int checkFinal(String recruitNo);
+	// (최종 합류 자 / 전체 인원) ==> 프로젝트 생성되었는지 유무로도 사용할 수 있음 
+	public MyPostDTO finalCount(String recruitNo);
+	// 최종 합류 수락 후 프로젝트 생성 대기자들 출력
+	public ArrayList<MyPostDTO> finalWait(String recruitNo);
 	
+	
+	//▼▼▼▼▼▼ 과거 모집 공고들 출력하는 메소드
+	// 과거 모집 공고가 존재하는지
+	public int checkPastPost(String pinNo);
+	// 과거 모집 공고 정보 출력
 	public ArrayList<MyPostDTO> myPastPost(String pinNo);
 	
 	

@@ -26,9 +26,17 @@ public class MyPostController
 
 		String pinNo = (String) session.getAttribute("pinNo");
 
+		if (pinNo == null)
+		{
+			return "/WEB-INF/view/Login.jsp";
+		}
+			
 		String url = "";
 
 		int check = dao.presentCheck(pinNo);
+		
+		System.out.println(check);
+		
 		// 현재 모집 중인 공고가 존재한다면
 		if (check > 0)
 		{
@@ -69,7 +77,7 @@ public class MyPostController
 				model.addAttribute("presentNone", presentNone);
 
 			}
-
+			// 보류자 존재시
 			if (dao.checkPresentX(recruitNo) > 0)
 			{
 				ArrayList<MyPostDTO> dto = dao.presentX(recruitNo);
@@ -96,18 +104,30 @@ public class MyPostController
 
 				// model.addAttribute("presentX", dao.presentX(recruitNo));
 			}
-
+			// 1차 합격자 존재시
 			if (dao.checkPresentO(recruitNo) > 0)
 			{
 				model.addAttribute("presentO", dao.presentO(recruitNo));
 			}
-
+			
+			// 최종 합류 대기자 존재시
+			if (dao.checkFinal(recruitNo) > 0)
+			{
+				ArrayList<MyPostDTO> finalMemberDTO = dao.finalWait(recruitNo);
+				MyPostDTO finalCountDTO = dao.finalCount(recruitNo);
+				
+				model.addAttribute("finalMemberDTO", finalMemberDTO);
+				model.addAttribute("finalCountDTO", finalCountDTO);
+			}
+			
 			model.addAttribute("checkPresentNone", dao.checkPresentNone(recruitNo));
 			model.addAttribute("checkPresentX", dao.checkPresentX(recruitNo));
 			model.addAttribute("checkPresentO", dao.checkPresentO(recruitNo));
+			model.addAttribute("checkFinal", dao.checkFinal(recruitNo));
 		}
 
-		model.addAttribute("presentCheck", check);
+		
+		model.addAttribute("check", check);
 
 		url = "/WEB-INF/view/MyPostLists.jsp";
 

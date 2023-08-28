@@ -10,6 +10,7 @@
 		BY RECRUITNO </select> -->
 
 	<!-- 현재 모집 공고 정보 가져오기 -->
+<!-- 
 	<select id="presentRecruit"
 		resultType="com.projectors.mvc.MyPostDTO">
 		SELECT REC.RECRUIT_NO AS RECRUITNO, REC.TITLE AS RECRUITNAME, REC.PRJ_START AS PRJSTART
@@ -19,8 +20,20 @@
 		WHERE REC.PIN_NO=#{pinNo} AND REC.CREATED_DATE > SYSDATE-14 AND
 		REC.RECRUIT_NO NOT IN (SELECT RECRUIT_NO FROM PROJECT)
 	</select>
-
-	<!-- 현재 올려놓은 모집 공고가 있는지  -->
+ -->
+ 	<select id="presentRecruit"
+		resultType="com.projectors.mvc.MyPostDTO">
+		SELECT REC.RECRUIT_NO AS RECRUITNO, REC.TITLE AS RECRUITNAME, REC.PRJ_START AS PRJSTART
+		, REC.PRJ_END AS PRJEND
+		, REC.CREATED_DATE AS CREATEDDATE, (REC.CREATED_DATE + 13 ) AS DEADLINE
+		FROM RECRUIT REC
+		WHERE REC.PIN_NO=#{pinNo} AND REC.CREATED_DATE > SYSDATE-14
+	</select>
+ 
+ 
+ 
+ 	<!-- 현재 올려놓은 모집 공고가 있는지  -->
+<!-- 	
 	<select id="presentCheck" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM RECRUIT REC
@@ -28,7 +41,18 @@
 		AND REC.CREATED_DATE >
 		SYSDATE-14 AND REC.RECRUIT_NO NOT IN (SELECT RECRUIT_NO FROM PROJECT)
 	</select>
-
+ -->	
+ 	
+	<select id="presentCheck" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM RECRUIT REC
+		WHERE REC.PIN_NO=#{pinNo}
+		AND REC.CREATED_DATE > SYSDATE-14 
+	</select>
+ 
+ 
+ 
+	<!-- 미열람자들 존재하는지  -->
 	<select id="checkPresentNone" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM APPLY AP
@@ -43,10 +67,11 @@
 		WHERE REC.RECRUIT_NO=#{recruitNo} AND AP.CK_DATE IS NULL AND
 		AP.APPLY_NO NOT IN (SELECT APPLY_NO FROM FIRST_CK)
 	</select>
-
+	
+	<!-- 미열람자 출력 -->
 	<select id="presentNone" resultType="com.projectors.mvc.MyPostDTO">
 	SELECT AP.APPLY_NO AS APPLYNO, AP.PIN_NO AS PINNO, RP.POS_NO AS POSNO,
-	US.NICKNAME AS NICKNAME, POS.POS_NAME AS POSNAME, REC.RECRUIT_NO AS
+	NVL(US.NICKNAME,'탈퇴회원') AS NICKNAME, POS.POS_NAME AS POSNAME, REC.RECRUIT_NO AS
 	RECRUITNO, AP.CK_DATE AS CKDATE, RP.RECRUIT_POS_NO AS RECRUITPOSNO
 	FROM APPLY AP
 	LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
@@ -58,7 +83,7 @@
 	</select>
 
 
-
+	<!-- 보류자들 존재하는지  -->
 	<select id="checkPresentX" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM APPLY AP
@@ -78,10 +103,10 @@
 		(SELECT APPLY_NO FROM FIRST_CK)
 	</select>
 
-
+	<!-- 보류자 출력  -->
 	<select id="presentX" resultType="com.projectors.mvc.MyPostDTO">
 		SELECT AP.APPLY_NO AS APPLYNO, AP.PIN_NO AS PINNO, RP.POS_NO AS POSNO,
-		US.NICKNAME AS NICKNAME, POS.POS_NAME AS POSNAME, REC.RECRUIT_NO AS
+		NVL(US.NICKNAME,'탈퇴회원') AS NICKNAME, POS.POS_NAME AS POSNAME, REC.RECRUIT_NO AS
 		RECRUITNO, AP.CK_DATE AS CKDATE, RP.RECRUIT_POS_NO AS RECRUITPOSNO  
 		FROM APPLY AP
 		LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
@@ -91,7 +116,7 @@
 		WHERE REC.RECRUIT_NO=#{recruitNo} AND AP.CK_DATE IS NOT NULL AND AP.APPLY_NO NOT IN
 		(SELECT APPLY_NO FROM FIRST_CK)
 	</select>
-
+	<!-- 1차 합격자들 존재하는지  -->
 	<select id="checkPresentO" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM APPLY AP
@@ -100,10 +125,15 @@
 		LEFT JOIN USERS US ON AP.PIN_NO = US.PIN_NO
 		LEFT JOIN POSITION POS ON RP.POS_NO = POS.POS_NO
 		WHERE REC.RECRUIT_NO=#{recruitNo} AND AP.APPLY_NO IN (SELECT APPLY_NO FROM FIRST_CK)
+		AND AP.APPLY_NO NOT IN 
+								(SELECT FS.APPLY_NO
+								 FROM FIRST_CK FS 
+								 LEFT JOIN FINAL FN
+								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO)
 	</select>
-
+	<!-- 1차 합격자 출력  -->
 	<select id="presentO" resultType="com.projectors.mvc.MyPostDTO">
-		SELECT AP.APPLY_NO AS APPLYNO, AP.PIN_NO AS PINNO, RP.POS_NO AS POSNO, US.NICKNAME AS NICKNAME,
+		SELECT AP.APPLY_NO AS APPLYNO, AP.PIN_NO AS PINNO, RP.POS_NO AS POSNO, NVL(US.NICKNAME,'탈퇴회원') AS NICKNAME,
 		POS.POS_NAME AS POSNAME, REC.RECRUIT_NO AS RECRUITNO, AP.CK_DATE AS	CKDATE, RP.RECRUIT_POS_NO AS RECRUITPOSNO
 		FROM APPLY AP
 		LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO =
@@ -115,16 +145,22 @@
 		POSITION POS ON RP.POS_NO = POS.POS_NO
 		WHERE
 		REC.RECRUIT_NO=#{recruitNo} AND AP.APPLY_NO IN (SELECT APPLY_NO FROM
-		FIRST_CK)
+		FIRST_CK) AND AP.APPLY_NO NOT IN 
+								(SELECT FS.APPLY_NO
+								 FROM FIRST_CK FS 
+								 LEFT JOIN FINAL FN
+								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO)
+										
 	</select>
-
+	
+	<!-- 열람 처리  -->
 	<update id="readApply">
 		UPDATE APPLY
 		SET CK_DATE = SYSDATE
 		WHERE APPLY_NO=#{applyNo}
 	</update>
 
-
+	<!-- 모집 총원 -->
 	<select id="fullCheckRecPos" resultType="java.lang.Integer">
 		SELECT COUNT(RP.RECRUIT_POS_NO) AS COUNT
 		FROM RECRUIT_POS RP
@@ -145,8 +181,7 @@
 			GROUP BY POSNAME
 	</select>
 
-
-
+	<!-- 모집자가 1차 합격 시킬시 실행될 insert 구문  -->
 	<insert id="firstCk">
 		INSERT INTO FIRST_CK
 		(FIRST_CK_NO
@@ -176,35 +211,45 @@
 		LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
 		LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
 		WHERE REC.RECRUIT_NO=#{recruitNo}
-	</select>
-		
-	<insert id="finalCk">
-		INSERT INTO FINAL
-		VALUES
-		( 'FN'||TO_CHAR(FINALNOSEQ.NEXTVAL)
-		 , (SELECT FIRST_CK_NO
-		    FROM FIRST_CK
-		    WHERE APPLY_NO=#{applyNo})
-		 , SYSDATE )
-	</insert>
-
-	<select id="finalCount" resultType="java.lang.Integer">
+	</select>	
+	
+	<!-- 최종 합류 자 존재하는지  -->
+	<select id="checkFinal" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM FINAL FN
 		LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
-		LEFT JOIN APPLY AP ON FS.APPLY_NO =  AP.APPLY_NO
-		LEFT JOIN RECRUIT_POS RP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
-		WHERE RP.RECRUIT_NO=#{recruitNo}
+		LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO=#{recruitNo}
 	</select>
 	
-
-	<insert id="insertProject">
-		INSERT INTO PROJECT
-		VALUES
-		( 'PJ'||TO_CHAR(PROJECTNOSEQ.NEXTVAL)
-		, #{recruitNo}
-		, SYSDATE)
-	</insert>
+	<!-- 최종 합류자 수 / 답변 대기자 인원 출력 + 프로젝트 생성 유무 알림용  -->
+	<select id="finalCount" resultType="com.projectors.mvc.MyPostDTO">
+		SELECT COUNT(FN.FINAL_NO) AS FINALCOUNT, COUNT(REP.RECRUIT_POS_NO) AS TOTALCOUNT 
+		FROM FINAL FN
+		LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+		LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO=#{recruitNo}	
+	</select>
+	
+	<!-- 최종 합류자 출력  -->
+	<select id="finalWait" resultType="com.projectors.mvc.MyPostDTO">
+		SELECT FN.FINAL_NO AS FINALNO, NVL(US.NICKNAME, '탈퇴회원') AS NICKNAME, POS.POS_NAME AS POSNAME, FN.FINAL_CK_DATE AS FINALCKDATE
+			   , AP.APPLY_NO AS APPLYNO
+		FROM FINAL FN
+		LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+		LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		LEFT JOIN POSITION POS ON REP.POS_NO = POS.POS_NO
+		LEFT JOIN USERS US ON AP.PIN_NO = US.PIN_NO 
+		WHERE REC.RECRUIT_NO=#{recruitNo}
+		ORDER BY FN.FINAL_CK_DATE DESC
+	</select>
+	
 	
 	<!--▼▼▼ 나의 과거 모집 공고 관련 쿼리문  -->
 	<select id="checkPastPost" resultType="java.lang.Integer">
