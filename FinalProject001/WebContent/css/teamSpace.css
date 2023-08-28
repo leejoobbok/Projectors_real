@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+a{text-decoration: none;} 
+a:hover{text-decoration: underline;}
+li{text-decoration: none;}
+body{margin-bottom: 20px;}
+/*===================================================*/
+#root						   /*루트 박스*/
+{	
+	position: relative;
+	width: 1200px; 
+	/*border: 2px solid #d1d7e0;*/   /*영역 확인용*/
+}
+
+/*===================================================*/
+#spaceName			    	 /* 스페이스명*/
+{
+	text-align: left;
+	font-size: 26px;
+	padding-left: 40px;		
+}
+
+#spaceNameBox				/*스페이스 이름 영역*/
+{	
+	position:absolute;
+	top: 6px;
+}
+/*===================================================*/
+#categoryBar 				/* 메뉴 인덱스바 영역*/
+{	
+	position: absolute;
+	top: 80px;
+	width: 660px;
+	height: 40px;
+	
+	background-color: #fae896;
+	padding: 10px 0px 0px 20px;
+	margin-left: 2px;
+	
+	border-top: 2px solid;
+	border-left: 2px solid;
+	border-right: 2px solid;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.index					/*메뉴 인덱스 클래스 영역*/
+{
+	display: inline;
+	/* border: 2px solid;  */			 /* 영역 확인용 */
+	border-radius: 10px;
+	
+	vertical-align: bottom;
+	font-weight: bold;
+	padding: 6px 8px;
+}			
+
+.index a				/* 메뉴 인덱스 글자*/
+{
+	text-decoration: none;
+	 
+	font-size: 20px;
+	padding: 4px 6px;
+	margin: 0px;
+}
+/*===================================================*/	
+#exitBtn					/* 나가기 버튼 */
+{	
+	float: right;  
+	margin-top: 34px; 	   /* 위 여백 줄여서 이미지를 위로 */
+	margin-right: -60px;
+}
+/*===================================================*/
+#directoryBox 	/*(메뉴 인덱스 제외) 폴더모양 박스 영역 전체*/
+{	
+	position: absolute;
+	left: 30px;
+	top: 130px;
+	
+ 		border: 2px solid;
+	border-radius: 20px;
+	
+	width: 1280px;
+	height:740px;
+	
+	background-color: #fae896;  
+}
