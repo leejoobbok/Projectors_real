@@ -96,6 +96,11 @@
 				<span class="titleText1">현재 모집 이력</span>
 				<br>
 				
+				<c:choose>
+				<c:when test="${check==0}">
+					<h3>&nbsp;&nbsp;&nbsp; 현재 회원님께서 모집 중인 공고가 존재하지 않습니다.</h3>
+				</c:when>
+				<c:otherwise>
 				<div class="listsDiv">	
 				
 				<!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★시작 -->
@@ -170,7 +175,7 @@
 			                     <c:choose>
 			                        <c:when test="${checkPresentX == 0}">
 			                           <tr>
-			                              <td colspan="5">보류 지원자가 없습니다.</td>
+			                              <td colspan="6">보류 지원자가 없습니다.</td>
 			                           </tr>
 			                        </c:when>
 			                        <c:otherwise>
@@ -200,7 +205,7 @@
 			                  </table>
 			             
 			               <br /> <br />
-			               <h2>합격 지원자</h2>
+			               <h2>합격 지원자(1차)</h2>
 			               <hr />
 			               <br />
 			          
@@ -220,7 +225,7 @@
 			                        <c:otherwise>
 			                           <c:forEach var="presentO" items="${presentO }">
 			                              <tr>
-			                                 <td>${presentO.recruitNo }</td>
+			                                 <td>${presentO.applyNo }</td>
 			                                 <td>${presentO.posName }</td>
 			                                 <td>${presentO.nickname }</td>
 			                                 <td><c:if test="${not empty presentO.ckDate}">
@@ -233,28 +238,67 @@
 			                  </table>
 			          
 			            </div>
-			            <hr />
 			            <br />
 			            <div>
 			               <div class="right-left">
 			          <!--         <p>모집 현황</p> -->
 			                  
 			               </div>
-			               <div class="right-right">
+<!-- 			               
+							 <div class="right-right">
 			                  <button class="blackBtn" style="background-color: grat;">모집
 			                     취소<br />(공사중)</button>
-			               </div>
-			               <hr>
+			               	</div> 
+-->
+			          	   <br />
 			               <br>
 							
-							<h2>최종 합류</h2>
+							<h2>
+								최종 합류
+								<c:choose>
+									<c:when test="${finalCountDTO.finalCount == finalCountDTO.totalCount}">
+										(프로젝트 생성 완료)&nbsp;<button type="button"
+										onclick="window.location.href='myproject.action'"> 프로젝트 </button>
+									</c:when>
+								</c:choose>
+								
+								
+								
+								<c:choose>
+									<c:when test="${checkFinal != 0 }">
+										<h4>
+										합류 인원:${finalCountDTO.finalCount } /
+										모집 인원:${finalCountDTO.totalCount }
+										</h4>
+									</c:when>
+								</c:choose>
+							</h2>
 			               <hr />
-			               <table class="table" style="text-align: left;">
+							<br />
+			               <table class="table" >
 			               <tr>
-			               		
+			               		<th>지원서 번호</th>
 			               		<th>포지션</th>
 			               		<th>닉네임</th>
+			               		<th>최종 합류 일시</th>
 			               </tr>
+			               <c:choose>
+							  <c:when test="${checkFinal == 0}">
+			               		<tr>
+			               			<td colspan="4">최종 합류자가 없습니다.</td>
+			               		</tr>
+			               	  </c:when>
+			               	  <c:otherwise>
+			               	  	<c:forEach var="finalMember" items="${finalMemberDTO }">
+									<tr>
+										<td>${finalMember.applyNo }</td>
+										<td>${finalMember.posName }</td>
+										<td>${finalMember.nickname }</td>
+										<td>${finalMember.finalCkDate }
+									</tr>
+			               	  	</c:forEach>
+			               	  </c:otherwise>
+			               </c:choose>
 			               </table>
 			            </div>
 			
@@ -262,8 +306,11 @@
 					
 				<!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★끝 -->
 					
-					
 				</div><!-- listsDiv -->
+				</c:otherwise>
+				</c:choose>
+				
+				
 			</div><!-- right -->
 		</div> <!-- container -->
 	</div><!-- main -->
