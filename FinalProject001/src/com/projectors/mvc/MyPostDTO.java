@@ -4,9 +4,9 @@ public class MyPostDTO
 {	
 	private String recruitNo, recruitName, pinNo, applyNo, posNo, posName;
 	private String recruitPosNo, recruitPosName;
-	private String applyDate, ckDate, passDate, createdDate, prjNo, prjStart, prjEnd;
+	private String applyDate, ckDate, passDate, createdDate, prjNo, prjStart, prjEnd, finalCkDate;
 	private String nickname;
-	private int firstCkCount, totalCount;
+	private int firstCkCount, finalCount, totalCount;
 	// 마감된 포지션인지 확인용
 	private int fullCount, count;
 	private String firstCkNo, finalNo, projectNo, deadline;
@@ -15,6 +15,22 @@ public class MyPostDTO
 	public int getCountAll()
 	{
 		return countAll;
+	}
+	public String getFinalCkDate()
+	{
+		return finalCkDate;
+	}
+	public void setFinalCkDate(String finalCkDate)
+	{
+		this.finalCkDate = finalCkDate;
+	}
+	public int getFinalCount()
+	{
+		return finalCount;
+	}
+	public void setFinalCount(int finalCount)
+	{
+		this.finalCount = finalCount;
 	}
 	public String getCreatedDate()
 	{
