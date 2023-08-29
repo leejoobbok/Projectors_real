@@ -9,7 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title> 피드 (팀 스페이스 메인 임포트용)</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style>
 	
