@@ -64,9 +64,9 @@
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
-					<%-- <jsp:include page="loadFeed.action" /> --%>
-					<jsp:include page="Feed.jsp" />
+					<c:import url="/loadFeed.action"/>
 				</div>	
+				
 				
 				<!-- ===========[ 상단 한 줄 공지 ]=========== -->
 				<div id="lineNoticeBox">
