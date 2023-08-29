@@ -10,86 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>팀 스페이스: 메인 - Projectors </title>
-<link rel="stylesheet" type="text/css" href="css/teamSpace.css">
 
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/teamSpace.css">
 <style type="text/css">
-	
-	
-	/*===================================================*/
-	#topLeftBox			/* 좌측 상단 영역 */
-	{
-		width: 260px;
-		height: 200px;
-		border: 2px solid;
-		border-radius: 10px;
-		margin: 30px 20px 20px 20px;
-		padding: 10px;
-		background-color: gray;
-	}
-	/*===================================================*/
-	#feed					/* 담벼락 영역 */
-	{
-		float: left;
-		width: 268px;
-		height: 430px;
-		
-		text-align: center;
-		padding: 5px;
-		margin: 0px 20px 10px 20px;
-		
-		border: 3px solid #757575;
-		border-radius: 10px;
-		background-color: #a8adad;
-	}
 
-    /*===================================================*/
-	#lineNoticeBox 	/* 한 줄 공지 영역*/
-	{
-	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 30px;         /* 고정 top 마진 */
-	  right: 20px;      /* 고정 우측 마진 */
-	  
-	  background-color: white;
-	  width: 920px;
-	  
-	  border: 2px solid;
-	  border-radius: 10px;
-	  
-	  font-size: 16px;
-	  font-weight: bold;
-	  text-align: left;
-	  padding: 4px 4px 6px 14px;
-	}
-	
-	#lineNotice	,#noticeDate	/* 공지 글씨 (span) */
-	{
-		vertical-align: super;	/*베이스 라인을 위로.*/
-	}
-	#noticeDate  /* 공지 날짜 */
-	{
-		font-size: 10pt;
-		text-color: gray;
-		margin-left: 10px;
-	}
-	/*===================================================*/
-	#workSpaceBox			/* 작업실 미리보기 영역*/
-	{	
-	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 90px;   		/* 고정 top 마진 */
-	  right: 20px; 		/* 고정 우측 마진 */
-	  
-	  background-color: white;
-	  width: 920px;
-	  height: 160px;
-	  border: 2px solid;
-	  border-radius: 10px;
-	  
-	  font-size: 16px;
-	  font-weight: bold;
-	  text-align: left;
-	  padding: 10px;
-	}
 </style>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 <script type="text/javascript">
