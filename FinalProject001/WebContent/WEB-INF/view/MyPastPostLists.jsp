@@ -90,7 +90,7 @@
 			  
 			<div class="right">
 				<span class="titleText1">과거 모집 이력</span>
-				<br>
+				<br><br />
 				
 				<div class="listsDiv">	
 				

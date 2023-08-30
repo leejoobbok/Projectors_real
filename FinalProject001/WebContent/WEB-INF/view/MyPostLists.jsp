@@ -94,7 +94,7 @@
 			  
 			<div class="right">
 				<span class="titleText1">현재 모집 이력</span>
-				<br>
+				<br><br />
 				
 				<c:choose>
 				<c:when test="${check==0}">
