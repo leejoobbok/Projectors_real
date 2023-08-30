@@ -74,6 +74,13 @@ String cp = request.getContextPath();
 #myProfile /*내 프로필 영역*/ {
 	
 }
+
+td
+{
+	border: 1px solid black;
+}
+
+
 </style>
 
 
@@ -158,6 +165,41 @@ String cp = request.getContextPath();
 			프로필 가져오기
 			<span class="smallTitle">나의 프로필</span> -->
 		
+				<table class="center" style="border: 1px solid black; width:400px; margin: auto;">
+					<tr>
+						<td><b>닉네임</b></td>
+						<td> ${profileDTO.nickname }</td>
+					</tr>
+					<tr>
+						<td><b>희망포지션</b></td>
+						<td>${profileDTO.posName }</td>
+					</tr>
+					<tr>
+						<td><b>활동 지역</b></td>
+						<td>${profileDTO.regionName } - ${profileDTO.subRegionName }</td>
+					</tr>
+				</table>
+			
+				<br />
+				
+				<table class="center" style="border: 1px solid black; width:400px; margin: auto;">
+					<td>사용가능 언어 및 환경</td>
+					<td style="text-align: justify;">
+					<c:choose>	
+					<c:when test="${utoolResult > 0 }">			
+						<c:forEach var="utool" items="${utool}">
+									● &nbsp;&nbsp;&nbsp; ${utool.toolName}<br />
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						사용 기술이 없습니다.
+					</c:otherwise>
+					</c:choose>
+					</td>
+				</table>
+			
+			
+			
 			
 			<div class="myProfile" style="width:200px;" >
 <%-- 			
@@ -165,14 +207,12 @@ String cp = request.getContextPath();
 					<img class="img" alt="profileImg" src="<%=cp %>/${profileDTO.photourl}">
 				</div> 
 				
---%>
-				<div class="etc">
-				닉네임 : ${profileDTO.nickname }<br>
-				희망포지션 : ${profileDTO.posName }<br>
-				활동지역 : ${profileDTO.regionName } | ${profileDTO.subRegionName }<br>
-				</div>
-				
+--%>			
 				<div class="toolBox" >
+				
+				
+				
+<!-- 			
 				<p>「사용가능 언어 및 환경」</p>
 				<hr />
 				
@@ -186,6 +226,7 @@ String cp = request.getContextPath();
 						사용 기술이 없습니다.
 					</c:otherwise>
 				</c:choose>
+				 -->	
 				</div>
 			
 			</div> <!-- end myProfile -->
@@ -196,7 +237,7 @@ String cp = request.getContextPath();
 				<div id=rateBox >
 						
 						<table >
-						<p style="font-size:x-large; font-family: 궁서체">평가</p>
+						<p style="font-size:x-large; font-family: 맑은 고딕">▶평가ㅁ</p>
 							<c:forEach var="totalRate" items="${totalRate}">
 							<tr>
 								<th border="1px solid black">${totalRate.rateName }</th>
@@ -234,6 +275,12 @@ String cp = request.getContextPath();
 
 	</div>
 	<!-- end of #root div -->
+
+	<div class="footer">
+		<!-- footer -->
+		<c:import url="Footer.jsp"></c:import>
+	</div>
+
 
 </body>
 </html>
