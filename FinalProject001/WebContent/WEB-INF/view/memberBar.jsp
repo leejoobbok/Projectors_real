@@ -54,8 +54,35 @@
 		// 마이페이지
 		$("#myBtn").click(function()
 		{
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						$(location).attr("href", "mypage.action");	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+			
 			// alert("마이페이지");
-			$(location).attr("href", "mypage.action");
+			
 		});
 		
 		// 쪽지
