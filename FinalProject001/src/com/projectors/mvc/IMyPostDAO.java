@@ -7,9 +7,22 @@ public interface IMyPostDAO
 	
 	// 현재 모집 중인 공고가 있는지 체크
 	public int presentCheck(String pinNo);
-	
 	// 현재 모집 중인 공고 검색
 	public MyPostDTO presentRecruit(String pinNo);
+	
+	
+	// 공고 취소 가능한 상태인지 체크
+	public int checkDelete(String recruitNo);
+	// ① 1차 합격자(들) 데이터 삭제
+	public void deleteFirstCk(String recruitNo);
+	// ② 지원서(들) 데이터 삭제
+	public void deleteApply(String recruitNo);
+	// ③ 모집 포지션 삭제
+	public void deleteRecruitPos(String recruitNo);
+	// ④ 공고 툴 데이터 삭제
+	public void deleteRecruitTool(String recruitNo);
+	// ⑤ 공고 삭제
+	public void deleteRecruit(String recruitNo);
 	
 	
 	// 미열람자 수 체크

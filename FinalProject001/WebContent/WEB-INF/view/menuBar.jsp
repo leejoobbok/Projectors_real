@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Bar.jsp</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <style type="text/css">
 
 @font-face {
@@ -38,19 +38,148 @@
 	.Main_category a:hover { color: orange; }
 	.Main_category a:active { color: gold; }
 </style>
+<script type="text/javascript">
+	
+	// ajax 를 통해 관리자의 접근 차단하기
+	$(function() {
+		$("#myapply").click(function()
+		{
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						window.location.href="myapply.action";	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+		
+		$("#mypost").click(function()
+		{
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						window.location.href="mypost.action";	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+		
+		$("#myproject").click(function()
+		{
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						window.location.href="myproject.action";	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+		
+		$("#teamSpaceMain").click(function()
+		{
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						window.location.href="teamSpaceMain.action";	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+		
+	});
+
+
+</script>
 </head>
 
 <body>
+	<input type="hidden" id="pinNo" value="${pinNo }">
 	<div style="background-color: white;">
 	<div class="Main_category_Outer">
 	<br>
 		<a class="Main_category" href="projectorsmain.action">메인</a>
 		<a class="Main_category" href="noticelists.action">공지</a>
 		<a class="Main_category" href="recruitlist.action">공고 둘러보기</a>
-		<a class="Main_category" href="myapply.action">나의 지원 이력</a>
-		<a class="Main_category" href="mypost.action">나의 모집 공고</a>
-		<a class="Main_category" href="myproject.action">나의 프로젝트</a>
-		<a class="Main_category" href="teamSpaceMain.action">팀 스페이스</a>
+		<a class="Main_category"  id="myapply">나의 지원 이력</a>
+		<a class="Main_category"  id="mypost">나의 모집 공고</a>
+		<a class="Main_category"  id="myproject">나의 프로젝트</a>
+		<a class="Main_category"  id="teamSpaceMain">팀 스페이스</a>
 	</div>
 		<hr style="width: 90%;"><br>
 	</div>

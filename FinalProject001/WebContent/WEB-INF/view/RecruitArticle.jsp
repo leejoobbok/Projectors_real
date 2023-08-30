@@ -43,7 +43,6 @@ $().ready(function()
 </head>
 <body>
 
-
 <div class="wrapper">
 
 	<div class="header">

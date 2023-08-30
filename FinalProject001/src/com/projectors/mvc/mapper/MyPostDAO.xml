@@ -50,6 +50,71 @@
 		AND REC.CREATED_DATE > SYSDATE-14 
 	</select>
  
+ 	<!-- 모집 취소가 가능한 상태인지  -->
+	<select id="checkDelete" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM FIRST_CK FS
+		LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO = #{recruitNo}
+	</select>
+ 
+    <!-- 모집 취소시 수행될 DELETE 쿼리문 (1), (2), (3), (4)  -->
+    <!-- (1) 1차 합격자 delete -->
+ 	<delete id="deleteFirstCk">
+		DELETE 
+		FROM FIRST_CK
+		WHERE FIRST_CK_NO IN
+		(SELECT FS.FIRST_CK_NO
+		FROM FIRST_CK FS
+		LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO 
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO=#{recruitNo})
+ 	</delete>
+ 	
+	<!-- (2) 지원서 delete  -->
+ 	<delete id="deleteApply">
+		DELETE 
+		FROM APPLY
+		WHERE APPLY_NO IN
+		(SELECT AP.APPLY_NO
+		FROM APPLY AP
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO 
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO=#{recruitNo})
+ 	</delete>
+ 	
+ 	<!-- (3) 모집 포지션 delete -->
+ 	<delete id="deleteRecruitPos">
+		DELETE 
+		FROM RECRUIT_POS
+		WHERE RECRUIT_POS_NO IN
+		(SELECT REP.RECRUIT_POS_NO
+		FROM RECRUIT_POS REP
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE REC.RECRUIT_NO=#{recruitNo})
+ 	</delete>
+ 	
+ 	<!-- (4) 공고 툴 delete -->
+ 	<delete id="deleteRecruitTool">
+ 		DELETE
+		FROM RECRUIT_TOOL
+		WHERE RECRUIT_NO = #{recruitNo}
+ 	</delete>
+ 	
+
+ 	<!-- (5) 공고 delete -->
+ 	<delete id="deleteRecruit">
+		DELETE 
+		FROM RECRUIT
+		WHERE RECRUIT_NO=#{recruitNo}
+ 	</delete>
+ 
+ 
+ 
+ 
  
  
 	<!-- 미열람자들 존재하는지  -->
@@ -129,7 +194,8 @@
 								(SELECT FS.APPLY_NO
 								 FROM FIRST_CK FS 
 								 LEFT JOIN FINAL FN
-								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO)
+								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO
+								 	 WHERE FN.FINAL_NO IS NOT NULL)
 	</select>
 	<!-- 1차 합격자 출력  -->
 	<select id="presentO" resultType="com.projectors.mvc.MyPostDTO">
@@ -149,7 +215,8 @@
 								(SELECT FS.APPLY_NO
 								 FROM FIRST_CK FS 
 								 LEFT JOIN FINAL FN
-								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO)
+								 	ON FS.FIRST_CK_NO = FN.FIRST_CK_NO
+								 	 WHERE FN.FINAL_NO IS NOT NULL)
 										
 	</select>
 	
@@ -193,15 +260,12 @@
 		, SYSDATE)
 	</insert>
 	
-	
-	
 	<!-- 공고 전제 모집 총원 구하는 메소드 -->
 	<select id="recruitCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) AS COUNT
 		FROM RECRUIT_POS RP
 		WHERE RP.RECRUIT_NO=#{recruitNo}
 	</select>
-	
 	
 	<!-- 1차 합격자수 구하는 메소드  -->
 	<select id="firstCount" resultType="java.lang.Integer">
@@ -271,6 +335,6 @@
 		GROUP BY REC.TITLE, REC.CREATED_DATE,REC.RECRUIT_NO, REC.PRJ_START, REC.PRJ_END, PRJ.PRJ_NO
 	</select>
 	 
-	
+
 
 </mapper>

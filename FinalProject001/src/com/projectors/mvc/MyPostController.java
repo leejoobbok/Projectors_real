@@ -35,7 +35,7 @@ public class MyPostController
 
 		int check = dao.presentCheck(pinNo);
 		
-		System.out.println(check);
+		/* System.out.println(check); */
 		
 		// 현재 모집 중인 공고가 존재한다면
 		if (check > 0)
@@ -120,6 +120,10 @@ public class MyPostController
 				model.addAttribute("finalCountDTO", finalCountDTO);
 			}
 			
+			/* System.out.println("모집 취소 체크" + dao.checkDelete(recruitNo)); */
+			
+			
+			model.addAttribute("checkDelete", dao.checkDelete(recruitNo));
 			model.addAttribute("checkPresentNone", dao.checkPresentNone(recruitNo));
 			model.addAttribute("checkPresentX", dao.checkPresentX(recruitNo));
 			model.addAttribute("checkPresentO", dao.checkPresentO(recruitNo));
@@ -134,6 +138,29 @@ public class MyPostController
 		return url;
 	}
 
+	@RequestMapping(value= "/deleteRecruit.action", method = RequestMethod.GET)
+	public String deleteRecruit(String recruitNo)
+	{
+		IMyPostDAO dao = sqlSession.getMapper(IMyPostDAO.class);
+		
+		//System.out.println("삭제할 공고 번호 확인 : " + recruitNo);
+		
+		// 1차 합격자 데이터 삭제
+		dao.deleteFirstCk(recruitNo);
+		// 지원서 데이터 삭제
+		dao.deleteApply(recruitNo);
+		// 모집 포지션 데이터 삭제
+		dao.deleteRecruitPos(recruitNo);
+		// 공고 툴 데이터 삭제
+		dao.deleteRecruitTool(recruitNo);
+		// 공고 데이터 삭제
+		dao.deleteRecruit(recruitNo);
+		
+		return "redirect:mypost.action";
+	}
+	
+	
+	
 	@RequestMapping(value = "/readApply.action", method = RequestMethod.GET)
 	public String readApply(Model model, HttpServletRequest request)
 	{
@@ -190,6 +217,10 @@ public class MyPostController
 		return url;
 
 	}
+	// 공고 취소 관련 메소드
+	
+	
+	
 	
 	//▼ 나의 과거 모집 메소드~
 	@RequestMapping(value = "/mypastpost.action", method = RequestMethod.GET)
