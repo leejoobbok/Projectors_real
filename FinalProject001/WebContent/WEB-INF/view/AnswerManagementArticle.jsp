@@ -13,7 +13,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
@@ -184,9 +183,7 @@
 		<div id="upperBarBox">		<!-- 로그인/ 회원가입 문의/ 쪽지 -->
 			<c:import url="AdminUpperBar.jsp"></c:import>
 		</div>	
-		<div id="logoBox">    		<!-- 로고 이미지 -->
-			<a href="AdminMainPage.jsp"><img src="images/tmp_logo_admin.jpg"/></a>
-		</div>
+		<c:import url="adminLogo.jsp"></c:import> <!-- 로고이미지 -->
 		<div id="menuBar">						<!-- 메뉴바( 메인 | 공지..) -->
 			<c:import url="AdminBar.jsp"></c:import>
 		</div>

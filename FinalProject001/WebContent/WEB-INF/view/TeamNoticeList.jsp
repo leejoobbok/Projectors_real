@@ -97,7 +97,6 @@
 <body>
 
 	<div id="root">
-		<div id="innerBox">
 			
 			<div>
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
@@ -127,7 +126,6 @@
 						
 					
 				</div>
-				
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
@@ -172,7 +170,6 @@
 				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
 			
-		</div><!-- end of #innerBox div  -->
 		
 	</div><!-- end of #root div -->
 

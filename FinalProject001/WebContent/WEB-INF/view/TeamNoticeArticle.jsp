@@ -3,43 +3,39 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	String spaceNoticeNo = request.getParameter("spaceNoticeNo"); //-- 이전 페이지로부터 넘겨받은 팀 공지번호
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>팀 스페이스 > 공지 상세: Projectors </title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/teamSpace.css">
 
 <style type="text/css">
-	
-	body { overflow: hidden;} /* 스크롤 제거*/
+	/*
+	body { overflow: hidden;} 
 	a{text-decoration: none;} 
-	/*===================================================*/
-	#root						   /*루트 박스*/
+	#root						   
 	{
 		width: 1400px;
 		height:1000px;
 		margin: auto;
-		/* border: 2px solid #d1d7e0; */  /*영역 확인용*/
+		border: 2px solid #d1d7e0;
 		
 	}
 	#innerBox				
 	{
 		margin: auto;
 	}
-	/*===================================================*/
-	#spaceName 					/*스페이스 명(최상단 타이틀 )*/
+	#spaceName 					
 	{
 		display: inline-block;
 		text-align: left;
 		font-size: 26px;
-		padding-left: 80px;		/* 왼쪽 패딩*/
+		padding-left: 80px;		
 		
 	}
-	/*===================================================*/
-	#categoryBar 				/* 메뉴 인덱스바 영역*/
+	#categoryBar 				
 	{	
 		width: 660px;
 		height: 40px;
@@ -54,10 +50,10 @@
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
 	}
-	.index					/*메뉴 인덱스 클래스 영역*/
+	.index					
 	{
 		display: inline;
-		/* border: 2px solid;  */			 /* 영역 확인용 */
+		border: 2px solid;  
 		border-radius: 10px;
 		
 		vertical-align: bottom;
@@ -65,7 +61,7 @@
 		padding: 6px 8px;
 	}			
 	
-	.index a				/* 메뉴 인덱스 글자*/
+	.index a			
 	{
 		text-decoration: none;
 		 
@@ -73,17 +69,15 @@
 		padding: 4px 6px;
 		margin: 0px;
 	}
-	/*===================================================*/	
-	#exitBtn					/* 나가기 버튼 */
+	#exitBtn					
 	{	
 		float: right;  
-		margin-top: -12px; 	   /* 위 여백 줄여서 이미지를 위로 */
-		padding-right: 60px;  /* 왼쪽으로*/
+		margin-top: -12px; 	  
+		padding-right: 60px;  
 	}
-	/*===================================================*/
-	#directoryBox 	/*(메뉴 인덱스 제외) 폴더모양 박스 영역 전체*/
+	#directoryBox 
 	{	
-		position: relative; /* 자식요소 위치 고정을 위한 속성지정 */
+		position: relative; 
   		border: 2px solid;
 		border: 2px solid; 
 		border-radius: 20px;
@@ -92,10 +86,9 @@
 		height:740px;
 		
 		background-color: #fae896;  
-		margin: auto;	/* 가운데 정렬*/
+		margin: auto;	
 	}
-	/*===================================================*/
-	#topLeftBox			/* 좌측 상단 영역 */
+	#topLeftBox		
 	{
 		width: 260px;
 		height: 200px;
@@ -105,8 +98,7 @@
 		padding: 10px;
 		background-color: gray;
 	}
-	/*===================================================*/
-	#feed					/* 담벼락 영역 */
+	#feed				
 	{
 		float: left;
 		width: 268px;
@@ -120,8 +112,9 @@
 		border-radius: 10px;
 		background-color: #a8adad;
 	}
-    /*===================================================*/
-	#titleBox 	/* 타이틀 영역 */
+	*/
+	
+	#titleBox 	
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 30px;   /* 고정 top 마진 */
@@ -219,15 +212,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	var spaceNoticeNo = <%=spaceNoticeNo%>;
 	
 	// 삭제 버튼 클릭시 확인받기 
 	function deleteTeamNotice() 
 	{
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
-        
+       
         if (confirmDelete) {
-            window.location.href = "teamNoticeDelete.action?spaceNoticeNo="+spaceNoticeNo;
+        	
+        	//alert(${teamArticle.spaceNoticeNo });
+            window.location.href = "teamNoticeDelete.action?spaceNoticeNo=SN"+${teamArticle.spaceNoticeNo};
         }
     }
 	
@@ -257,7 +251,7 @@
          
          //alert(teamNoticeTextArea);
          
-         window.location.href = "teamNoticeModify.action?spaceNoticeNo="+spaceNoticeNo+"&content=" + teamNoticeTextArea;
+         window.location.href = "teamNoticeModify.action?spaceNoticeNoSN"+${teamArticle.spaceNoticeNo}+"&content=" + teamNoticeTextArea;
      };
 </script>
 
@@ -299,7 +293,7 @@
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
-					<jsp:include page="loadFeed.action" />
+					<c:import url="/loadFeed.action"/>
 				</div>
 				
 				<!-- ===========[ 타이틀 (공지게시판)  ]=========== -->

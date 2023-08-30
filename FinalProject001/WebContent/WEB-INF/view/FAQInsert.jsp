@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>문의관리 FAQ : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
@@ -138,14 +137,14 @@
 
 <div id="leftBar">
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="faqManagement.action">FAQ</a>
-		</button>
+		<a href="faqManagement.action">
+			<button type="button" class="btn">FAQ</button>
+		</a>
 	</div>
 	<div class="btnHeight">
-		<button type="button" class="btn">
-			<a href="AnswerManagement.jsp">1:1문의</a>
-		</button>
+		<a href="AnswerManagement.jsp">
+			<button type="button" class="btn">1:1문의</button>
+		</a>
 	</div>
 </div><!-- end #leftBar -->
 

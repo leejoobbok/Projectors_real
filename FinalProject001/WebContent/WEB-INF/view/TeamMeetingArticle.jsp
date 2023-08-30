@@ -11,116 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>팀 스페이스 > 회의록 상세 : Projectors </title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/teamSpace.css">
 <style type="text/css">
 	
-	body { overflow: hidden;} /* 스크롤 제거*/
-	a{text-decoration: none;} 
-	/*===================================================*/
-	#root						   /*루트 박스*/
-	{
-		width: 1400px;
-		height:1000px;
-		margin: auto;
-		/* border: 2px solid #d1d7e0; */  /*영역 확인용*/
-		
-	}
-	#innerBox				
-	{
-		margin: auto;
-	}
-	/*===================================================*/
-	#spaceName 					/*스페이스 명(최상단 타이틀 )*/
-	{
-		display: inline-block;
-		text-align: left;
-		font-size: 26px;
-		padding-left: 80px;		/* 왼쪽 패딩*/
-		
-	}
-	/*===================================================*/
-	#categoryBar 				/* 메뉴 인덱스바 영역*/
-	{	
-		width: 660px;
-		height: 40px;
-		
-		background-color: #fae896;
-		padding: 10px 0px 0px 20px;
-		margin-left: 60px;
-		
-		border-top: 2px solid;
-		border-left: 2px solid;
-		border-right: 2px solid;
-		border-top-left-radius: 10px;
-		border-top-right-radius: 10px;
-	}
-	.index					/*메뉴 인덱스 클래스 영역*/
-	{
-		display: inline;
-		/* border: 2px solid;  */			 /* 영역 확인용 */
-		border-radius: 10px;
-		
-		vertical-align: bottom;
-		font-weight: bold;
-		padding: 6px 8px;
-	}			
-	
-	.index a				/* 메뉴 인덱스 글자*/
-	{
-		text-decoration: none;
-		 
-		font-size: 20px;
-		padding: 4px 6px;
-		margin: 0px;
-	}
-	/*===================================================*/	
-	#exitBtn					/* 나가기 버튼 */
-	{	
-		float: right;  
-		margin-top: -12px; 	   /* 위 여백 줄여서 이미지를 위로 */
-		padding-right: 60px;  /* 왼쪽으로*/
-	}
-	/*===================================================*/
-	#directoryBox 	/*(메뉴 인덱스 제외) 폴더모양 박스 영역 전체*/
-	{	
-		position: relative; /* 자식요소 위치 고정을 위한 속성지정 */
-  		border: 2px solid;
-		border: 2px solid; 
-		border-radius: 20px;
-		
-		width: 1300px;
-		height:740px;
-		
-		background-color: #fae896;  
-		margin: auto;	/* 가운데 정렬*/
-	}
-	/*===================================================*/
-	#topLeftBox			/* 좌측 상단 영역 */
-	{
-		width: 260px;
-		height: 200px;
-		border: 2px solid;
-		border-radius: 10px;
-		margin: 30px 20px 20px 20px;
-		padding: 10px;
-		background-color: gray;
-	}
-	/*===================================================*/
-	#feed					/* 담벼락 영역 */
-	{
-		float: left;
-		width: 268px;
-		height: 430px;
-		
-		text-align: center;
-		padding: 5px;
-		margin: 0px 20px 10px 20px;
-		
-		border: 3px solid #757575;
-		border-radius: 10px;
-		background-color: #a8adad;
-	}
-    /*===================================================*/
 	#titleBox 	/* 타이틀 영역 */
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
@@ -357,7 +250,7 @@
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
-					<jsp:include page="loadFeed.action" />
+					<c:import url="/loadFeed.action"/>
 				</div>
 				
 				<!-- ===========[ 타이틀 (회의록 게시판)  ]=========== -->

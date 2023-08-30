@@ -45,7 +45,7 @@
 <select id="newQuestionCnt" resultType="java.lang.Integer">
 	SELECT COUNT(CASE WHEN A.CREATED_DATE IS NULL THEN 1 END)AS newQuestionCnt
 	FROM QUESTION Q
-	JOIN ANSWER A
+	LEFT JOIN ANSWER A
 	ON Q.QUESTION_NO = A.QUESTION_NO
 </select>
 

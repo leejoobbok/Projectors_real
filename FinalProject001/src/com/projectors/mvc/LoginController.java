@@ -57,6 +57,10 @@ public class LoginController
 				/*세션에 관리자 pin 등록*/
 				session.setAttribute("pinNo", dao.getAdminPin(loginDTO));
 				session.setAttribute("adminNo", dao.getAdminNo(loginDTO));
+				
+				// 추가 코드 : 세션 유지 시간 설정
+				// 32,400 (6시간) 테스트용 600 (10분)
+				session.setMaxInactiveInterval(600);
 				dao.loginRec(dao.getAdminPin(loginDTO));
 				
 			}

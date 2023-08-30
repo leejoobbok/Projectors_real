@@ -24,17 +24,21 @@ public class AdminReportController
 	
 	//-- 공고, 지원서 ,쪽지, 댓글 신고 처리시 띄워줄 미니창 
 	@RequestMapping (value = "/managementReport.action", method = RequestMethod.GET)
-	public String managementReport(Model model, String reportedNickName)
+	public String managementReport(Model model, String reportedNickName, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("punishContent", dao.punishContent());
-		model.addAttribute("periods", dao.periods());
-		model.addAttribute("reportedNickName", reportedNickName);
-		
-		result = "WEB-INF/view/ManagementReport.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("punishContent", dao.punishContent());
+			model.addAttribute("periods", dao.periods());
+			model.addAttribute("reportedNickName", reportedNickName);
+			
+			result = "WEB-INF/view/ManagementReport.jsp";
+		}
 		
 		return result;
 	}
@@ -42,15 +46,19 @@ public class AdminReportController
 	// ※ 공고
 	//-- 공고신고 처리대기 리스트 페이지
 	@RequestMapping (value = "/reportRecruit.action", method = RequestMethod.GET)
-	public String reportedRecruitList(Model model)
+	public String reportedRecruitList(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.reportedRecruitList());
-		
-		result = "/WEB-INF/view/ReportManagement.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.reportedRecruitList());
+			
+			result = "/WEB-INF/view/ReportManagement.jsp";
+		}
 		
 		return result;
 	}
@@ -61,32 +69,28 @@ public class AdminReportController
 									@RequestParam(value = "reguPeriodNo", required=false) String reguPeriodNo,
 									HttpServletRequest request)
 	{
-		String result = "";
-		/*
-		System.out.println("repNo : "+request.getParameter("repNo"));
-	    System.out.println("reguNo : "+reguNo);
-	    System.out.println("reguPeriodNo : "+reguPeriodNo);
-		*/
-	    // ,와 공백 제거
-	    reguNo = reguNo.replaceAll(",\\s*", "").trim();
-	    reguPeriodNo = reguPeriodNo.replaceAll(",\\s*", "").trim();
-/*
-	    System.out.println("reguNo : "+reguNo);
-	    System.out.println("reguPeriodNo : "+reguPeriodNo);
-*/		
+		String result = "redirect:loginForm.action";
+
 		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		ReportDTO dto = new ReportDTO();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			// ,와 공백 제거
+			reguNo = reguNo.replaceAll(",\\s*", "").trim();
+			reguPeriodNo = reguPeriodNo.replaceAll(",\\s*", "").trim();
 
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setRepNo(request.getParameter("repNo"));
-	    dto.setReguNo(reguNo);
-	    dto.setReguPeriodNo(reguPeriodNo);
-		
-		dao.clearManageReport(dto);
-
-		result = "redirect:reportRecruit.action";
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			ReportDTO dto = new ReportDTO();
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setRepNo(request.getParameter("repNo"));
+			dto.setReguNo(reguNo);
+			dto.setReguPeriodNo(reguPeriodNo);
+			
+			dao.clearManageReport(dto);
+			
+			result = "redirect:reportRecruit.action";
+		}
 		
 		return result;
 	}
@@ -95,18 +99,22 @@ public class AdminReportController
 	@RequestMapping (value = "/rejectManageReport.action", method = RequestMethod.GET)
 	public String rejectManageReport(ReportDTO dto, HttpServletRequest request)
 	{
-		String result = "";
+		String result = "redirect:loginForm.action";
 		
 		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setReguNo(request.getParameter("repNo"));
-		
-		dao.rejectManageReport(dto);
-		
-		
-		result = "redirect:reportRecruit.action";
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setReguNo(request.getParameter("repNo"));
+			
+			dao.rejectManageReport(dto);
+			
+			result = "redirect:reportRecruit.action";
+
+		}
+
 		return result;
 	}
 	
@@ -116,15 +124,19 @@ public class AdminReportController
 	// ※ 지원서
 	//-- 지원서 신고 처리대기 리스트 페이지
 	@RequestMapping (value = "/reportApply.action", method = RequestMethod.GET)
-	public String reportedApplyList(Model model)
+	public String reportedApplyList(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.reportedRecruitList());
-		
-		result = "/WEB-INF/view/ReportManagementApply.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.reportedRecruitList());
+			
+			result = "/WEB-INF/view/ReportManagementApply.jsp";
+		}
 		
 		return result;
 	}
@@ -133,26 +145,29 @@ public class AdminReportController
 	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
 	public String clearManageApplyReoprt(HttpServletRequest request)
 	{
-		String result = "";
-		
-		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		ReportDTO dto = new ReportDTO();
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setRepNo(request.getParameter("repNo"));
-		dto.setReguNo(request.getParameter("reguNo"));
-		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-		
-		//System.out.println("adminPinNo : "+dto.getAdminPinNo());
-		//System.out.println("repNo : "+request.getParameter("repNo"));
-		//System.out.println("reguNo : "+request.getParameter("reguNo"));
-		//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
-		
-		dao.clearManageApplyReport(dto);
+		String result = "redirect:loginForm.action";
 
-		result = "redirect:reportApply.action";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			ReportDTO dto = new ReportDTO();
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setRepNo(request.getParameter("repNo"));
+			dto.setReguNo(request.getParameter("reguNo"));
+			dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+			
+			//System.out.println("adminPinNo : "+dto.getAdminPinNo());
+			//System.out.println("repNo : "+request.getParameter("repNo"));
+			//System.out.println("reguNo : "+request.getParameter("reguNo"));
+			//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
+			
+			dao.clearManageApplyReport(dto);
+			
+			result = "redirect:reportApply.action";
+		}
 		
 		return result;
 	}
@@ -161,18 +176,21 @@ public class AdminReportController
 	@RequestMapping (value = "/rejectManageApplyReport.action", method = RequestMethod.GET)
 	public String rejectManageApplyReport(ReportDTO dto, HttpServletRequest request)
 	{
-		String result = "";
-		
+		String result = "redirect:loginForm.action";
+
 		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setReguNo(request.getParameter("repNo"));
+			
+			dao.rejectManageApplyReport(dto);
+			
+			result = "redirect:reportApply.action";
+		}
 		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setReguNo(request.getParameter("repNo"));
-		
-		dao.rejectManageApplyReport(dto);
-		
-		
-		result = "redirect:reportApply.action";
 		return result;
 	}
 	
@@ -181,15 +199,19 @@ public class AdminReportController
 	// ※ 댓글
 	//-- 댓글 신고 처리대기 리스트 페이지
 	@RequestMapping (value = "/reportComm.action", method = RequestMethod.GET)
-	public String reportedCommList(Model model)
+	public String reportedCommList(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.reportedCommList());
-		
-		result = "/WEB-INF/view/ReportManagementComm.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.reportedCommList());
+			
+			result = "/WEB-INF/view/ReportManagementComm.jsp";
+		}
 		
 		return result;
 	}
@@ -198,21 +220,24 @@ public class AdminReportController
 	@RequestMapping (value = "/clearManageCommReport.action", method = RequestMethod.GET)
 	public String clearManageCommReport(HttpServletRequest request)
 	{
-		String result = "";
-		
-		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		ReportDTO dto = new ReportDTO();
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setRepNo(request.getParameter("repNo"));
-		dto.setReguNo(request.getParameter("reguNo"));
-		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-		
-		dao.clearManageCommReport(dto);
+		String result = "redirect:loginForm.action";
 
-		result = "redirect:reportComm.action";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			ReportDTO dto = new ReportDTO();
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setRepNo(request.getParameter("repNo"));
+			dto.setReguNo(request.getParameter("reguNo"));
+			dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+			
+			dao.clearManageCommReport(dto);
+
+			result = "redirect:reportComm.action";
+		}
 		
 		return result;
 	}
@@ -221,18 +246,20 @@ public class AdminReportController
 	@RequestMapping (value = "/rejectManageCommReport.action", method = RequestMethod.GET)
 	public String rejectManageCommReport(ReportDTO dto, HttpServletRequest request)
 	{
-		String result = "";
-		
+		String result = "redirect:loginForm.action";
+
 		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setReguNo(request.getParameter("repNo"));
-		
-		dao.rejectManageCommReport(dto);
-		
-		
-		result = "redirect:reportComm.action";
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setReguNo(request.getParameter("repNo"));
+			
+			dao.rejectManageCommReport(dto);
+
+			result = "redirect:reportComm.action";
+		}
 		return result;
 	}	
 	//-------------------------------------------------
@@ -240,16 +267,20 @@ public class AdminReportController
 	// ※ 쪽지
 	//-- 쪽지 신고 처리대기 리스트 페이지
 	@RequestMapping (value = "/reportNote.action", method = RequestMethod.GET)
-	public String reportedNoteList(Model model)
+	public String reportedNoteList(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.reportedNoteList());
-		
-		result = "/WEB-INF/view/ReportManagementNote.jsp";
-		
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.reportedNoteList());
+			
+			result = "/WEB-INF/view/ReportManagementNote.jsp";
+		}
+
 		return result;
 	}
 	
@@ -257,21 +288,24 @@ public class AdminReportController
 	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
 	public String clearManageNoteReoprt(HttpServletRequest request)
 	{
-		String result = "";
-		
-		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		ReportDTO dto = new ReportDTO();
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setRepNo(request.getParameter("repNo"));
-		dto.setReguNo(request.getParameter("reguNo"));
-		dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-		
-		dao.clearManageNoteReport(dto);
+		String result = "redirect:loginForm.action";
 
-		result = "redirect:reportNote.action";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			ReportDTO dto = new ReportDTO();
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setRepNo(request.getParameter("repNo"));
+			dto.setReguNo(request.getParameter("reguNo"));
+			dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
+			
+			dao.clearManageNoteReport(dto);
+			
+			result = "redirect:reportNote.action";
+		}
 		
 		return result;
 	}
@@ -280,18 +314,21 @@ public class AdminReportController
 	@RequestMapping (value = "/rejectManageNoteReport.action", method = RequestMethod.GET)
 	public String rejectManageNoteReport(ReportDTO dto, HttpServletRequest request)
 	{
-		String result = "";
-		
+		String result = "redirect:loginForm.action";
+
 		HttpSession session = request.getSession();
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-		dto.setReguNo(request.getParameter("repNo"));
-		
-		dao.rejectManageNoteReport(dto);
-		
-		
-		result = "redirect:reportNote.action";
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+			dto.setReguNo(request.getParameter("repNo"));
+			
+			dao.rejectManageNoteReport(dto);
+			
+			result = "redirect:reportNote.action";
+		}
+
 		return result;
 	}
 	//-------------------------------------------------
