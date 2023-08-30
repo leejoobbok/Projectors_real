@@ -167,6 +167,25 @@ String cp = request.getContextPath();
 				
 --%>
 				<div class="etc">
+<%-- 				
+				<table style="border: 1px solid black;">
+					<tr>
+						<th>닉네임</th>
+						<td> ${profileDTO.nickname }</td>
+					</tr>
+					<tr>
+						<th>희망포지션</th>
+						<td>${profileDTO.posName }</td>
+					</tr>
+					<tr>
+						<th>활동 지역</th>
+						<td>${profileDTO.regionName } - ${profileDTO.subRegionName }</td>
+					</tr>
+					
+					
+				</table>
+				
+	 --%>			
 				닉네임 : ${profileDTO.nickname }<br>
 				희망포지션 : ${profileDTO.posName }<br>
 				활동지역 : ${profileDTO.regionName } | ${profileDTO.subRegionName }<br>
