@@ -41,6 +41,11 @@
 	WHERE SPACE_NOTICE_NO = #{spaceNoticeNo}
 </select>
 
+<select id="findTeamNoticeNo" resultType="java.lang.String">
+	SELECT TO_CHAR(MAX(SPACE_NOTICE_NO)) AS spaceNoticeNo
+	FROM SPACE_NOTICE
+</select>
+
 </mapper>
 
 
