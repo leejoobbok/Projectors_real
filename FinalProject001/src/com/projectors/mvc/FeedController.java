@@ -26,7 +26,7 @@ public class FeedController
 		model.addAttribute("list", dao.loadFeed());
 		
 		System.out.println(dao.loadFeed());
-		result = "Feed.jsp";
+		result = "/WEB-INF/view/Feed.jsp";
 		
 		return result;
 	}
