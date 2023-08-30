@@ -127,7 +127,6 @@
 					
 				</div>
 				
-				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
 					<c:import url="/loadFeed.action"/>

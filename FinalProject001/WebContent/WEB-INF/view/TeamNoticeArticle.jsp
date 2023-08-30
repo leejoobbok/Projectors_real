@@ -3,7 +3,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	String spaceNoticeNo = request.getParameter("spaceNoticeNo"); //-- 이전 페이지로부터 넘겨받은 팀 공지번호
 %>
 <!DOCTYPE html>
 <html>
@@ -213,15 +212,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	var spaceNoticeNo = <%=spaceNoticeNo%>;
 	
 	// 삭제 버튼 클릭시 확인받기 
 	function deleteTeamNotice() 
 	{
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
-        
+       
         if (confirmDelete) {
-            window.location.href = "teamNoticeDelete.action?spaceNoticeNo="+spaceNoticeNo;
+        	
+        	//alert(${teamArticle.spaceNoticeNo });
+            window.location.href = "teamNoticeDelete.action?spaceNoticeNo=SN"+${teamArticle.spaceNoticeNo};
         }
     }
 	
@@ -251,7 +251,7 @@
          
          //alert(teamNoticeTextArea);
          
-         window.location.href = "teamNoticeModify.action?spaceNoticeNo="+spaceNoticeNo+"&content=" + teamNoticeTextArea;
+         window.location.href = "teamNoticeModify.action?spaceNoticeNoSN"+${teamArticle.spaceNoticeNo}+"&content=" + teamNoticeTextArea;
      };
 </script>
 
