@@ -30,10 +30,21 @@
 			window.open('ApplyArticle.jsp', 'applyArticle','left=500,top=300,width=1000,height=1000,resizable=no,location=no');
 		});
 	});
+	
  
-
-	
-	
+ 	function preDelete()
+	{
+		if (confirm("취소 후 복구할 수 없습니다. 취소하시겠습니까?"))
+		{
+			var recruitNo = document.getElementById("recruitNo").value;
+			
+			window.location.href="deleteRecruit.action?recruitNo="+recruitNo;
+		}
+		else
+		{
+			return;		
+		}
+	}
 	
 </script>
 
@@ -111,6 +122,16 @@
 			                  모집 중인 공고
 			                  <button type="button" id="showRecruit" name="showRecruit"
 			                     class="blackBtn" onclick="window.location.href='recruitarticle.action?recruitNo=${presentRecruit.recruitNo}'">모집공고 보러가기</button>
+			                     
+								<!-- 코어태그랑 공고취소 버튼 달릴 자리  -->
+								<c:choose>
+									<c:when test="${checkDelete == 1}">
+										<button type="button" onclick="preDelete()">
+											<span style="color: red;">모집 취소</span>
+										</button>
+										<input type="hidden" id="recruitNo" value="${presentRecruit.recruitNo }" />
+									</c:when>
+								</c:choose>
 			               </h2>
 			               ${presentRecruit.recruitName }
 			            </div>
