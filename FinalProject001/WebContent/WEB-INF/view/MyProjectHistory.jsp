@@ -106,6 +106,7 @@
 			  
 			<div class="right">
 				<span class="titleText1">진행중인 프로젝트</span>
+				<br />
 				<br>
 				
 				<div class="listsDiv">	
@@ -116,7 +117,7 @@
 
 	<c:choose>
 		<c:when test="${checkPresentProject == 0 }">
-			<h1>현재 진행 중인 프로젝트가 존재하지 않습니다.</h1>
+			<h3>현재 진행 중인 프로젝트가 존재하지 않습니다.</h3>
 		</c:when>
 		<c:otherwise>
 			<div>
