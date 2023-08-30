@@ -328,6 +328,11 @@ String cp = request.getContextPath();
 
 	</div>
 	<!-- end of #root div -->
+	
+	<div class="footer">
+		<!-- footer -->
+		<c:import url="Footer.jsp"></c:import>
+	</div>
 </body>
 </html>
 
