@@ -8,6 +8,7 @@
 		SELECT FAQ_NO as faqNo
 		, TITLE
 		FROM FAQ
+		ORDER BY faqNo DESC
 	</select>
 
 	<select id="viewFaqDetail" resultType="com.projectors.mvc.FaqDTO">
@@ -41,4 +42,3 @@
 	</select>
 </mapper>
 
-<!-- 뷰 이름 써야하는데 일단 테이블명으로 -->
