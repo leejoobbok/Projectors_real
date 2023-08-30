@@ -1,6 +1,8 @@
 package com.projectors.mvc;
 
 //import javax.servlet.http.HttpServletRequest;
+
+//import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -34,8 +36,7 @@ public class TeamNoticeController
 		
 		ITeamNoticeDAO dao = sqlSession.getMapper(ITeamNoticeDAO.class);
 		dao.add(dto); 
-		
-		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dto.getSpaceNoticeNo();
+		result = "redirect:teamNoticeArticle.action?spaceNoticeNo=" + dao.findTeamNoticeNo();
 		
 		return result;
 	}
