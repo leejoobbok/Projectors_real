@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>문의관리 FAQ : Projectors</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <style type="text/css">
 	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
 	#logoBox 					   /*로고 이미지*/
