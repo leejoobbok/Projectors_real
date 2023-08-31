@@ -343,117 +343,147 @@ public class AdminReportController
 	// ※ 공고
 	//-- 리스트 출력
 	@RequestMapping (value = "/reportManageComplete.action", method = RequestMethod.GET)
-	public String reportManageComplete(Model model)
+	public String reportManageComplete(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.recruitReportComplete());
-		
-		result = "/WEB-INF/view/ReportManagementComplete.jsp";
-		
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.recruitReportComplete());
+			
+			result = "/WEB-INF/view/ReportManagementComplete.jsp";
+		}
 		return result;
 	}
+	
 	//-- 검색 리스트 출력
 	@RequestMapping (value = "/recruitReportManageCompleteSearch.action", method = RequestMethod.GET)
-	public String reportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	public String reportManageCompleteSearch(Model model, String searchKey, String searchVal, HttpServletRequest request)
 	{
-		String result = "";
+		String result = "redirect:loginForm.action";
 
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
-		
-		if (searchKey.equals("1"))
-			model.addAttribute("lists", dao.searchAdminPinNo(searchVal));
-		else if (searchKey.equals("2")) 
-			model.addAttribute("lists", dao.searchReportedUserPinNo(searchVal));
-		else
-			model.addAttribute("lists", dao.searchRepNo(searchVal));
-		
-		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
-		//System.out.println(lists);
-		
-		result = "/WEB-INF/view/ReportManagementComplete.jsp";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+			
+			if (searchKey.equals("1"))
+				model.addAttribute("lists", dao.searchAdminPinNo(searchVal));
+			else if (searchKey.equals("2")) 
+				model.addAttribute("lists", dao.searchReportedUserPinNo(searchVal));
+			else
+				model.addAttribute("lists", dao.searchRepNo(searchVal));
+			
+			//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+			//System.out.println(lists);
+			
+			result = "/WEB-INF/view/ReportManagementComplete.jsp";
+		}
 		
 		return result;
 	}
 	
+	
 	// ※ 지원서
 	//-- 리스트 출력
 	@RequestMapping (value = "/applyManageComplete.action", method = RequestMethod.GET)
-	public String applyReportComplete(Model model)
+	public String applyReportComplete(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.applyReportComplete());
-		
-		result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.applyReportComplete());
+			
+			result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
+		}
 		
 		return result;
 	}
+	
 	//-- 검색 리스트 출력
 	@RequestMapping (value = "/applyReportManageCompleteSearch.action", method = RequestMethod.GET)
-	public String applyReportCompleteSearch(Model model, String searchKey, String searchVal)
+	public String applyReportCompleteSearch(Model model, String searchKey, String searchVal, HttpServletRequest request)
 	{
-		String result = "";
+		String result = "redirect:loginForm.action";
 
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
-		
-		if (searchKey.equals("1"))
-			model.addAttribute("lists", dao.applySearchAdminPinNo(searchVal));
-		else if (searchKey.equals("2")) 
-			model.addAttribute("lists", dao.applySearchReportedUserPinNo(searchVal));
-		else
-			model.addAttribute("lists", dao.applySearchRepNo(searchVal));
-		
-		
-		result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+			
+			if (searchKey.equals("1"))
+				model.addAttribute("lists", dao.applySearchAdminPinNo(searchVal));
+			else if (searchKey.equals("2")) 
+				model.addAttribute("lists", dao.applySearchReportedUserPinNo(searchVal));
+			else
+				model.addAttribute("lists", dao.applySearchRepNo(searchVal));
+			
+			
+			result = "/WEB-INF/view/ReportManagementCompleteApply.jsp";
+		}
 		
 		return result;
 	}
+	
+	
 	// ※ 팀스페이스
+	
+	
 	// ※ 댓글
 	//-- 리스트 출력
 	@RequestMapping (value = "/commManageComplete.action", method = RequestMethod.GET)
-	public String commReportComplete(Model model)
+	public String commReportComplete(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.commReportComplete());
-		
-		result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.commReportComplete());
+			
+			result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
+		}
 		
 		return result;
 	}
 	//-- 검색 리스트 출력
 	@RequestMapping (value = "/commReportManageCompleteSearch.action", method = RequestMethod.GET)
-	public String commReportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	public String commReportManageCompleteSearch(Model model, String searchKey, String searchVal, HttpServletRequest request)
 	{
-		String result = "";
+		String result = "redirect:loginForm.action";
 
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
-		
-		if (searchKey.equals("1"))
-			model.addAttribute("lists", dao.commSearchAdminPinNo(searchVal));
-		else if (searchKey.equals("2")) 
-			model.addAttribute("lists", dao.commSearchReportedUserPinNo(searchVal));
-		else
-			model.addAttribute("lists", dao.commSearchRepNo(searchVal));
-		
-		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
-		//System.out.println(lists);
-		
-		result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+			
+			if (searchKey.equals("1"))
+				model.addAttribute("lists", dao.commSearchAdminPinNo(searchVal));
+			else if (searchKey.equals("2")) 
+				model.addAttribute("lists", dao.commSearchReportedUserPinNo(searchVal));
+			else
+				model.addAttribute("lists", dao.commSearchRepNo(searchVal));
+			
+			//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+			//System.out.println(lists);
+			
+			result = "/WEB-INF/view/ReportManagementCompleteComm.jsp";
+		}
 		
 		return result;
 	}
@@ -462,39 +492,48 @@ public class AdminReportController
 	// ※ 쪽지
 	//-- 리스트 출력
 	@RequestMapping (value = "/noteManageComplete.action", method = RequestMethod.GET)
-	public String noteManageComplete(Model model)
+	public String noteManageComplete(Model model, HttpServletRequest request)
 	{
-		String result = "";
-		
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		model.addAttribute("lists", dao.noteReportComplete());
-		
-		result = "ReportManagementCompleteNote.jsp";
+		String result = "redirect:loginForm.action";
+
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			model.addAttribute("lists", dao.noteReportComplete());
+			
+			result = "ReportManagementCompleteNote.jsp";
+		}
 		
 		return result;
 	}
+	
 	//-- 검색 리스트 출력
 	@RequestMapping (value = "/noteReportManageCompleteSearch.action", method = RequestMethod.GET)
-	public String noteReportManageCompleteSearch(Model model, String searchKey, String searchVal)
+	public String noteReportManageCompleteSearch(Model model, String searchKey, String searchVal, HttpServletRequest request)
 	{
-		String result = "";
+		String result = "redirect:loginForm.action";
 
-		IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
-		
-		//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
-		
-		if (searchKey.equals("1"))
-			model.addAttribute("lists", dao.noteSearchAdminPinNo(searchVal));
-		else if (searchKey.equals("2")) 
-			model.addAttribute("lists", dao.noteSearchReportedUserPinNo(searchVal));
-		else
-			model.addAttribute("lists", dao.noteSearchRepNo(searchVal));
-		
-		//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
-		//System.out.println(lists);
-		
-		result = "/WEB-INF/view/ReportManagementCompleteNote.jsp";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("adminNo")!=null)
+		{
+			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+			
+			//System.out.println("searchKey : " + searchKey + ", searchValue : " + searchVal);
+			
+			if (searchKey.equals("1"))
+				model.addAttribute("lists", dao.noteSearchAdminPinNo(searchVal));
+			else if (searchKey.equals("2")) 
+				model.addAttribute("lists", dao.noteSearchReportedUserPinNo(searchVal));
+			else
+				model.addAttribute("lists", dao.noteSearchRepNo(searchVal));
+			
+			//ArrayList<ReportDTO> lists = dao.searchAdminPinNo(searchVal);
+			//System.out.println(lists);
+			
+			result = "/WEB-INF/view/ReportManagementCompleteNote.jsp";
+		}
 		
 		return result;
 	}
