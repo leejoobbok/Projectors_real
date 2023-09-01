@@ -45,6 +45,12 @@ public class MyApplyController
 		{
 			MyApplyDTO presentApplyDTO = dao.getPresentApply(pinNo);
 			
+			// 삭제 가능한 지원서인지 판별
+			String applyNo = presentApplyDTO.getApplyNo();
+			model.addAttribute("checkDeleteApply", dao.checkDeleteApply(applyNo));
+			//System.out.println(dao.checkDeleteApply("1이면 지원서 삭제 가능 : "+applyNo));
+
+			//
 			model.addAttribute("presentApply", presentApplyDTO);
 			model.addAttribute("checkPresent", checkPresent);
 		}
@@ -137,5 +143,16 @@ public class MyApplyController
 		  
 		  return "/WEB-INF/view/MyPastApply.jsp"; 
 	  }
-	 
+	  
+	@RequestMapping(value="/deleteapply.action", method = RequestMethod.GET)
+	public String deleteApply(Model model, String applyNo)
+	{
+		IMyApplyDAO dao = sqlSession.getMapper(IMyApplyDAO.class);
+		
+		dao.deleteApply(applyNo);
+		
+		return "redirect:myapply.action";
+	}
+	  
+	  
 }
