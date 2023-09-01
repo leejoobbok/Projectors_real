@@ -51,6 +51,21 @@ tr
 			return;
 		}
 	}
+	
+	function preDelete()
+	{
+		var applyNo = document.getElementById("applyNo").value;
+		
+		if (confirm("정말 지원을 취소하시겠습니까?"))
+		{
+			/* alert("지원 취소 결정!"); */
+			window.location.href="deleteapply.action?applyNo="+applyNo;
+		}
+		else
+		{
+			/* alert("지원 취소 안 할래요"); */
+		}
+	}
 
 </script>
 
@@ -111,6 +126,20 @@ tr
 			  
 			<div class="right">
 				<span class="titleText1">현재 지원 이력</span>
+					<c:choose>
+						<c:when test="${checkPresent == 0 || checkFirstCk !=0 || checkFinal != 0}">
+						</c:when>	
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${checkDeleteApply == 1}">
+									&nbsp;
+									<button type="button" onclick="preDelete()" >
+										지원 취소
+									</button>
+								</c:when>
+							</c:choose>	
+						</c:otherwise>				
+					</c:choose>
 				<hr />
 				<br>
 				
@@ -135,6 +164,7 @@ tr
 					</tr>
 					<tr>
 					<div> <!-- 현재 지원 데이터  -->
+						<input type="hidden" id="applyNo" value="${presentApply.applyNo }">
 						<td><div>${presentApply.applyNo}</div></td>
 						<td><div>${presentApply.posName}</div></td>
 						<td><div><a href="recruitarticle.action?recruitNo=${presentApply.recruitNo}">${presentApply.title}</a></div></td>
@@ -157,15 +187,13 @@ tr
 					
 					
 					<div class="applyNow">
-					없음
 					</div>
 					<div class="applyComplete">
-					없음
 					</div>
 					
 				</c:otherwise>
 				</c:choose>
-				
+				<br />
 				
 		</div><!-- right -->
 		
