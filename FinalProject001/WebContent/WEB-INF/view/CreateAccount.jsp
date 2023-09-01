@@ -118,7 +118,7 @@
     	
 		ajax = createAjax();
 		
-		ajax.open("GET", url, true);
+		ajax.open("POST", url, true);
     	
 		ajax.onreadystatechange = function()
 		{
@@ -313,7 +313,7 @@
 					<br />
 					<span class="smallCheckListTitle">비밀번호 </span>
 					<input type="password" id="userPw" name="userPw" placeholder="최소 8자 최대 16자, 영문 숫자 조합"
-					required="required"/>
+					required="required" oninput="checkRePw()"/>
 					<!-- <button type="button">비밀번호 확인</button><br> -->
 					
 					
