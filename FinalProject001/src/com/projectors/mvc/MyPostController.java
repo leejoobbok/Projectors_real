@@ -114,14 +114,16 @@ public class MyPostController
 			if (dao.checkFinal(recruitNo) > 0)
 			{
 				ArrayList<MyPostDTO> finalMemberDTO = dao.finalWait(recruitNo);
-				MyPostDTO finalCountDTO = dao.finalCount(recruitNo);
 				
 				model.addAttribute("finalMemberDTO", finalMemberDTO);
-				model.addAttribute("finalCountDTO", finalCountDTO);
+				
 			}
 			
 			/* System.out.println("모집 취소 체크" + dao.checkDelete(recruitNo)); */
 			
+			// 프로젝트로 이동하는 버튼 만들어줄지 안 만들어줄지 
+			MyPostDTO finalCountDTO = dao.finalCount(recruitNo);
+			model.addAttribute("finalCountDTO", finalCountDTO);
 			
 			model.addAttribute("checkDelete", dao.checkDelete(recruitNo));
 			model.addAttribute("checkPresentNone", dao.checkPresentNone(recruitNo));
