@@ -283,8 +283,6 @@
 									</c:when>
 								</c:choose>
 								
-								
-								
 								<c:choose>
 									<c:when test="${checkFinal != 0 }">
 										<h4>
