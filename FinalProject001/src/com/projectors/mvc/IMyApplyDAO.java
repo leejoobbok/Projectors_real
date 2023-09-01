@@ -10,6 +10,12 @@ public interface IMyApplyDAO
 	// 현재 지원서 정보
 	public MyApplyDTO getPresentApply(String pinNo);
 	
+	// 현재 지원서 중 합격 처리가 되지 않은 지원서 취소 가능한지 조회
+	public int checkDeleteApply(String applyNo);
+	
+	// 지원서 취소가 가능하다면 취소 시켜주는 쿼리문
+	public void deleteApply(String applyNo);
+	
 	// 현재 1차 합격 지원서가 있는지 조회
 	public int checkFirstCk(String pinNo);
 	

@@ -237,7 +237,7 @@ td
 				<div id=rateBox >
 						
 						<table >
-						<p style="font-size:x-large; font-family: 맑은 고딕">▶평가ㅁ</p>
+						<p style="font-size:x-large; font-family: 맑은 고딕">▶평가◀</p>
 							<c:forEach var="totalRate" items="${totalRate}">
 							<tr>
 								<th border="1px solid black">${totalRate.rateName }</th>

@@ -44,6 +44,22 @@
 	
 	
 	<!--  ▲  보여줄 이력이 있는지 판단하기 위함 -->
+	
+	
+	<!-- ▷ 지원서가 취소 가능한 상태인지 조회  -->
+	<select id="checkDeleteApply" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM APPLY AP
+		WHERE AP.APPLY_NO = #{applyNo} AND AP.APPLY_NO NOT IN (SELECT APPLY_NO FROM FIRST_CK)
+	</select>
+	
+	<!-- ▷ 지원서 취소하는 쿼리문  -->
+	<delete id="deleteApply">
+		DELETE
+		FROM APPLY
+		WHERE APPLY_NO=#{applyNo}
+	</delete>	
+	
 	<!--  ▼  각 상태에 따른 지원 이력 정보 가지고 오기 위함 -->
 	
 	<select id="getPresentApply" resultType="com.projectors.mvc.MyApplyDTO">

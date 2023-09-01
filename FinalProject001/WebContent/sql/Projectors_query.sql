@@ -2789,3 +2789,39 @@ FROM RECRUIT
 WHERE RECRUIT_NO='RC20'
 
 */
+
+
+
+--■ 지원 취소 기능
+-- ① 먼저 삭제할 수 있는 지원서인지 체크 COUNT 가 1이면 삭제 가능
+SELECT COUNT(*) AS COUNT
+FROM APPLY AP
+WHERE AP.APPLY_NO = 'AP5' AND AP.APPLY_NO NOT IN (SELECT APPLY_NO FROM FIRST_CK);
+
+-- ② 삭제 하기
+SELECT *
+FROM APPLY
+WHERE APPLY_NO='AP5';
+/*
+└▷ SELECT 를 DELETE로 바꿔주는 작업
+
+DELETE
+FROM APPLY
+WHERE APPLY_NO=#{applyNo}
+*/
+
+SELECT * FROM USERS;
+-->> US66	UP68	지원돌@test.com	java0022	지원돌	images/defaultPhoto.jpg
+
+--□ 비밀번호 변경 관련 쿼리문
+--1 먼저 입력한 현재 비밀번호가 맞는지 확인
+SELECT COUNT(*) AS COUNT
+FROM USERS
+WHERE PIN_NO='UP68' AND PW='java0022';
+
+
+
+
+
+	
+
