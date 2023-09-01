@@ -102,29 +102,31 @@ public class UsersController
 		
 	}
 /*checkrepw.action*/	
-	@RequestMapping(value="/checkrepw.action", method=RequestMethod.GET)
+	@RequestMapping(value="/checkrepw.action")
 	public void CheckRePw(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String userPw = (request.getParameter("userPw")).trim();
 		String userPwCk = (request.getParameter("userPwCk")).trim();
 		
 		int result = 0;
-		
-		if (userPw.equals(userPwCk))
+		//if 변경 비밀번호와 변경 비밀번호 확인이 동일한 경우 else 동일하지 않은 경우
+		if (userPw.equals(userPwCk) && !userPw.equals(""))
 		{
 			result = 10;
+		}
+		else if((userPw.equals("") && userPwCk.equals("")) || userPwCk.equals(""))
+		{
+			result = 111; 
 		}
 		else
 		{
 			result = 11;
 		}
 		
-		
 		request.setAttribute("result", result);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("repw_ck_ajax.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 	
 	@RequestMapping(value="/userRegist.action",method=RequestMethod.GET)
