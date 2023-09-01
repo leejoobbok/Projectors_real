@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IAccountManagementDAO">
+<!-- 샘플
+	<select id="checkId" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM IDCHECK
+		WHERE ID=#{userId}
+	</select>
+  	<update id="updatePhoto">
+  		UPDATE USERS
+  		SET PHOTOURL=${photourl}
+  		WHERE PIN_NO=${pinNo}
+  	</update>
+--> 
+	<!-- 입력한 현재 비밀번호가 제대로 입력되었는지 확인 -->
+	<select id="checkPw" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM USERS
+		WHERE PIN_NO=#{pinNo} AND PW=#{pw}
+	</select>
+
+	<!-- 조건 검사 통과 후 수행될 비밀번호 변경 메소드  -->
+	<update id="changePw">
+		UPDATE USERS
+		SET PW = #{newPw}
+		WHERE PIN_NO = #{pinNo}	
+	</update>
+
+</mapper>
