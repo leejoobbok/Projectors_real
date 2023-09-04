@@ -136,7 +136,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
-	// 삭제 버튼 클릭시 확인받기 
+	
+	// 삭제 버튼 클릭시..
 	function deleteMeeting() 
 	{	
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
@@ -199,7 +200,7 @@
          var content = document.getElementById("meetingTextArea").value;
          var fileUrl = document.getElementById("fileUrl").textContent;
          
-         alert(fileUrl);
+         //alert(fileUrl);
          if (fileUrl === undefined) {
              fileUrl = null;
          }                         
@@ -272,7 +273,8 @@
 							</tr>
 							
 							<tr>
-								<td>${meetingArticle.meetingNo }
+								<td>
+									${meetingArticle.meetingNo }
 								</td>
 								<td> 
 									<input id="title" name="title" type="text" readonly="readonly" disabled="disabled"
