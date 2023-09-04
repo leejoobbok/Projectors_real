@@ -461,31 +461,24 @@ public class ProfileController
 	  }
 	  
 	  
-	  
-	  
-	  
-	  
+
 	  
 	  @RequestMapping(value="/accountManage.action", method = RequestMethod.GET)
 	  public String accountManageMent()
 	  {
-		  
-		  
 		  return "/WEB-INF/view/AccountManagement.jsp";
 	  }
-	  
 	  
 	  @RequestMapping(value="/changePassword.action", method = RequestMethod.GET)
 	  public String changePassword()
 	  {
 		  return "/WEB-INF/view/ChangePassword.jsp";
-		  
 	  }
 	  
 	  @RequestMapping(value="/leave.action", method = RequestMethod.GET)
 	  public String leave()
 	  {
-		  return "/WEB-INF/view/Leave.jsp";
+		  return "/WEB-INF/view/WithDrawUser.jsp";
 	  }
 	  
 	  
