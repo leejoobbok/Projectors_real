@@ -18,13 +18,41 @@
 
 $().ready(function()
 {
+	
 	$(".applyBtn").click(function()
 	{
-		var recruitPosNo = $(this).val();
-        var url = 'applyform.action?recruitPosNo=' + recruitPosNo;
-        var options = "left=400,top=200,width=600,height=600,resizable=no,location=no";
-        
-        window.open(url, 'applyRecruit', options);
+		var pinNo = "${pinNo}";
+		
+		$.ajax(
+		{
+			type:"POST"
+			, url:"checkadmin.action"
+			, data:{ pinNo: pinNo }
+			, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+			, success:function(result)
+			{
+				if (result == 0)
+				{
+					
+					var recruitPosNo = $(".applyBtn").val();
+			        var url = 'applyform.action?recruitPosNo=' + recruitPosNo;
+			        var options = "left=400,top=200,width=600,height=600,resizable=no,location=no";
+			        
+			        window.open(url, 'applyRecruit', options);	
+				}
+				else
+				{
+					alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+					return;
+				}
+			}
+			, error:function(e)
+			{
+				alert(e.responseText);
+			}
+			
+		});
+
 	});
 	
 	$("#reportBtn").click(function()
