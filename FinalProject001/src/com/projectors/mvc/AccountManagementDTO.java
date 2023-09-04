@@ -5,10 +5,20 @@ public class AccountManagementDTO
 	// 주요 속성 구성 
 	private String pinNo, pw, newPw; 
 	private int checkPw;
+	// 회원 탈퇴에만 쓰일 메소드
+	private int wdTypeNo;
 	// getter/ setter 구성
 	public String getPinNo()
 	{
 		return pinNo;
+	}
+	public int getWdTypeNo()
+	{
+		return wdTypeNo;
+	}
+	public void setWdTypeNo(int wdTypeNo)
+	{
+		this.wdTypeNo = wdTypeNo;
 	}
 	public void setPinNo(String pinNo)
 	{
