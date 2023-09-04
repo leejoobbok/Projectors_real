@@ -106,8 +106,8 @@
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
-				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
-			</div> 
+				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
+			</div>  
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
@@ -156,14 +156,14 @@
 							<th width="200px">작업일</th>
 							<th width="200px">작성일</th>
 						</tr> 
-						<c:forEach var="teamMyWork" items="${list }">
+						<c:forEach var="teamMyWork" items="${list}">
 						<tr>
 							<td>${teamMyWork.workspaceNo}</td>
 							<td>
 								<a href="teamMyWorkArticle.action?workspaceNo=WS${teamMyWork.workspaceNo}">${teamMyWork.title}</a>
 							</td>
-							<td>${teamMyWork.workDate }</td>
-							<td>${teamMyWork.createdDate }</td>
+							<td>${teamMyWork.workDate}</td>
+							<td>${teamMyWork.createdDate}</td>
 						</tr>
 						</c:forEach>
 					</table><!-- ==== 한 페이지당 n개로 구성 ===== -->
