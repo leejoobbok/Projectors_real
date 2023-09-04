@@ -18,6 +18,13 @@
 		, TO_CHAR(PERIOD) AS period
 		FROM REGULATION_PERIOD
 	</select>
+	
+	<!-- 신고 된 동일한 공고/댓글/지원/쪽지 가 있는지 확인 -->
+	<select id="samePostNo" resultType="com.projectors.mvc.ReportDTO">
+		SELECT REP_RECRUIT_NO
+		FROM REP_RECRUIT
+		WHERE RECRUIT_NO = #{postNo}
+	</select>
 
 	<!-- =================================================================================== -->
 
@@ -29,6 +36,7 @@
 		,REGUDATE, REPNO, POSTNO, REPORTDATE,
 		REPREASON
 		FROM REPRECRUITNULL
+		ORDER BY REPORTDATE DESC
 	</select>
 	
 	<!-- 공고 신고 처리 -->
