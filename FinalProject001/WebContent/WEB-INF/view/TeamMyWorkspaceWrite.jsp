@@ -155,6 +155,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 	
+
     function send() // 등록 버튼 -> 로딩 -> 등록완료!
     {	
     	var title = $('#title').val();
@@ -162,7 +163,7 @@
     	var workDate = $('#workDate').val();
     	
     	window.location.href = "insertMyWork.action?title="+title+"&content="+content+"&workDate="+workDate;
-    
+    }
 </script>
 
 
@@ -176,8 +177,8 @@
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
-				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
-			</div> 
+				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
+			</div>  
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
@@ -195,7 +196,7 @@
 			</div>
 			
 			<div id="directoryBox">	
-				<form action="teamMyWorkspace.action" method="get">
+				<form action="" method="get">
 
 					<div id="titleIndex" class="smallTitleBox">제목</div>
 					<input type="text" id="title" name="title"  placeholder="제목 입력">
