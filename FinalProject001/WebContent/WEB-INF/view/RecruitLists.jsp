@@ -206,6 +206,39 @@
 				
 			});
 		});
+		
+		$("#writeBtn").click(function()
+		{	
+			var pinNo = document.getElementById("pinNo").value;
+			
+			$.ajax(
+			{
+				type:"POST"
+				, url:"checkadmin.action"
+				, data:{ pinNo: pinNo }
+				, contentType:  "application/x-www-form-urlencoded; charset=UTF-8"
+				, success:function(result)
+				{
+					if (result == 0)
+					{
+						
+						writeRecruit();	
+					}
+					else
+					{
+						alert("관리자 계정으로 해당 기능에 접근할 수 없습니다.");
+						return;
+					}
+				}
+				, error:function(e)
+				{
+					alert(e.responseText);
+				}
+				
+			});
+		});
+				
+		
 	});
 	
 	
@@ -253,6 +286,9 @@
 		alert("회원만 모집공고 작성이 가능합니다.");
 	}
 	
+
+	
+	
 </script>
 
 
@@ -264,7 +300,7 @@
 <div class="wrapper">
 
 	<div class="header">
-	
+		
 		<!-- header -->
 		<c:choose>
 		<c:when test="${not empty pinNo}">
@@ -354,7 +390,7 @@
 			
 			<c:choose>
 			<c:when test="${not empty pinNo}">
-				<button type="button" class="writeBtn" onclick="writeRecruit()">공고 작성하기</button>
+				<button type="button" id="writeBtn" class="writeBtn">공고 작성하기</button>
 				<input type="hidden" id="regCheck" name="regCheck" value="${regDateCheck }">
 			</c:when>
 			<c:otherwise>
@@ -407,6 +443,8 @@
 					</ul>
 					</div> <!-- end.recruitList -->
 				</c:forEach>
+				
+				<input type="hidden" id="pinNo" name="pinNo" value="${pinNo }"/>
 				
 			</div> <!-- end.recruitLists -->
 		</div> <!-- end.container -->
