@@ -9,6 +9,8 @@ public interface IReportDAO
 	// 신고 처벌 - 기간
 	public ArrayList<ReportDTO> periods();
 	
+	public ArrayList<String> samePostNo(String postNo);
+	
 	//--------------------------------------------------------------------------------------
 	
 	// 공고신고처리대기 리스트
