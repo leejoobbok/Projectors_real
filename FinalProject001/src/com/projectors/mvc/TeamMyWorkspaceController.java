@@ -15,7 +15,7 @@ public class TeamMyWorkspaceController
 	
 	//● 작업글 리스트로 불러오기 (내 작업실 게시판 메인)
 	@RequestMapping(value = "/teamMyWorkspace.action", method = RequestMethod.GET)
-	public String meetingList(Model model)
+	public String myWorkList(Model model)
 	{
 		String result = "";
 		ITeamMyWorkspaceDAO dao = sqlSession.getMapper(ITeamMyWorkspaceDAO.class);
@@ -27,11 +27,11 @@ public class TeamMyWorkspaceController
 	
 	//● 회의록 아티클 읽기 (모든 팀원)
 	@RequestMapping(value = "/teamMyWorkArticle.action", method = RequestMethod.GET)
-	public String meetingArticle(String workspaceNo, Model model)
+	public String myWorkArticle(String workspaceNo, Model model)
 	{
 		String result = "";
-		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
-		model.addAttribute("myWorkArticle", dao.viewArticle(workspaceNo));
+		ITeamMyWorkspaceDAO dao = sqlSession.getMapper(ITeamMyWorkspaceDAO.class);
+		model.addAttribute("myWorkArticle", dao.readArticle(workspaceNo));
 		
 		result = "/WEB-INF/view/TeamMyWorkArticle.jsp";
 		return result;
@@ -39,7 +39,7 @@ public class TeamMyWorkspaceController
 	//=========================================================================
 	// ● 작업글 작성 폼 페이지로 이동 
 	@RequestMapping (value = "/writeMyWork.action", method = RequestMethod.GET)
-	public String writeMeeting()
+	public String writeMyWork()
 	{
 		String result = "";
 		result="/WEB-INF/view/TeamMyWorkspaceWrite.jsp";
