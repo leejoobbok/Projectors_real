@@ -9,7 +9,6 @@ public interface ITeamMeetingDAO
 	public int modify(TeamMeetingDTO dto);		// 수정
 	public int delete(String meetingNo);		// 삭제
 	public TeamMeetingDTO viewArticle(String meetingNo); // 아티클 조회
-	
 }
 // dto 속성
 // 회의게시판번호, 최종합류번호(작성자), 제목, 내용, 첨부파일url, 작성일, 회의날짜

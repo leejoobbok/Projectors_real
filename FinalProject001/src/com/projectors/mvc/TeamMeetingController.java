@@ -31,7 +31,7 @@ public class TeamMeetingController
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
 		dao.add(dto);
 		
-		result = "redirect:teamMeetingArticle.action?meetingNo=" + dto.getMeetingNo();
+		result = "redirect:TeamMeetingList.action";
 		return result;
 	}
 	
@@ -50,11 +50,11 @@ public class TeamMeetingController
 	
 	//● 회의록 삭제 (작성자 본인만)
 	@RequestMapping(value = "/deleteMeeting.action", method = RequestMethod.GET)
-	public String meetingDelete(String MeetingNo)
+	public String meetingDelete(String meetingNo)
 	{
 		String result = "";
 		ITeamMeetingDAO dao = sqlSession.getMapper(ITeamMeetingDAO.class);
-		dao.delete(MeetingNo);
+		dao.delete(meetingNo);
 		
 		result = "redirect:TeamMeetingList.action";
 		return result;
