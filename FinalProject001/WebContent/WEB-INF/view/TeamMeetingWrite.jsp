@@ -28,15 +28,15 @@
     #titleIndex		/* 제목 제목박스 */
     {
     	 top: 60px;  /* 고정 top 마진 */
-	  	 left: 182px; /* 고정 왼쪽 마진 */
+	  	 left: 166px; /* 고정 왼쪽 마진 */
 	  	 width: 50px;
 	  	 background-color: #c6fa96;
     }
     
     #meetingDateIndex /* 회의 날짜제목 박스*/
     {
-    	 top: 116px;  /* 고정 top 마진 */
-	  	 left: 182px; /* 고정 왼쪽 마진 */
+    	 top: 60px;  /* 고정 top 마진 */
+	  	 right: 334px; 
 	  	 width: 80px;
 	  	 background-color: pink;
     }
@@ -53,11 +53,12 @@
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 60px;  			/* 고정 top 마진 */
-	  right: 180px; 	/* 고정 우측 마진 */
+	  left: 236px; 	
 	  
+	  width: 570px;
 	  height: 30px;
 	  background-color: white;
-	  width: 850px;
+	 
 	  
 	  border: 2px solid;
 	  border-radius: 12px;
@@ -71,7 +72,8 @@
 	#content		/* 내용 작성란 */
 	{	
 		 position: absolute; 
-		 top: 150px;
+		/*  top: 150px; */
+		 top: 110px;
 		 right: 152px;
 		 
 		 font-size: 16px;
@@ -85,15 +87,15 @@
 		 height:460px;
 	}
 	
-	#meetingDate  /* 회의 날짜 작성란 */
+	#meetingDate  /* 회의 날짜 선택란 */
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
-	  top: 116px;  			/* 고정 top 마진 */
-	  left: 284px; 			/* 고정 왼쪽 마진 */
+	  top: 60px;  			/* 고정 top 마진 */
+	  right: 170px; 		
 	  
 	  height: 30px;
 	  background-color: white;
-	  width: 180px;
+	  width: 140px;
 	  border: 2px solid;
 	  border-radius: 12px;
 	  
@@ -158,8 +160,11 @@
     {	
     	var title = $('#title').val();
     	var content = $('#content').val();
-    	var fileUrl = $('#fileUrl').val();
-    	window.location.href = "insertMeeting.action?title="+title+"&content="+content+"&fileUrl="+fileUrl; 
+    	var meetingDate = $('#meetingDate').val();
+    	/* var fileUrl = $('#fileUrl').val(); */
+    	// 파일 업로드 폼은 post 방식만 사용가능함
+    	
+    	window.location.href = "insertMeeting.action?title="+title+"&content="+content+"&meetingDate="+meetingDate;
     	
     	
     	/*
@@ -223,7 +228,8 @@
 			</div>
 			
 			<div id="directoryBox">	
-				<form action="" method="get" enctype="multipart/form-data">
+				<!-- <form action="" method="post" enctype="multipart/form-data"> -->
+				<form action="TeamMeetingList.action" method="get">
 
 					<div id="titleIndex" class="smallTitleBox">제목</div>
 					<input type="text" id="title" name="title"  placeholder="제목 입력">
@@ -231,8 +237,8 @@
 					<div id="meetingDateIndex" class="smallTitleBox">회의날짜</div>
 					<input type="date" name="meetingDate" id="meetingDate"></input>
 					
-					<div id="fileUrlIndex" class="smallTitleBox">첨부파일</div>
-					<input type="file" id="fileUrl" name="fileUrl"> 
+				<!-- <div id="fileUrlIndex" class="smallTitleBox">첨부파일</div>
+					<input type="file" id="fileUrl" name="fileUrl">  -->
 					
 					<textarea name="content" id="content"  placeholder="내용 입력"></textarea>
 					
