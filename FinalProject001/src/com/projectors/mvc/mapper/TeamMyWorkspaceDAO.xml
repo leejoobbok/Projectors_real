@@ -24,7 +24,7 @@
 	     , 'FN1'  <!-- 작성자의 최종합류번호 (임시 정적구성)  -->
 	     , #{title}
 	     , #{content}
-	     , #{workDate}
+	     , NVL(#{workDate},SYSDATE)
 	     , SYSDATE)
 </insert>
 
