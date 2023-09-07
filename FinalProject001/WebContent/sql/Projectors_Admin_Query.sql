@@ -201,10 +201,10 @@ expression must have same datatype as corresponding expression
             WHERE PIN_NO = C.PIN_NO 
             )AS reportedNickName
         , C.PIN_NO AS reportedUserPinNo
-        , ( SELECT NICKNAME
+        , NVL('包府磊',( SELECT NICKNAME
             FROM USERS
             WHERE PIN_NO = RC.PIN_NO 
-            )AS reportNickName
+            ))AS reportNickName
         , RC.PIN_NO AS reportUserPinNo
         , RCR.REGU_DATE AS reguDate
         , RC.REP_COMM_NO AS repNo
@@ -272,10 +272,18 @@ FROM REPAPPLYNULL
             WHERE PIN_NO = R.PIN_NO 
             )AS reportedNickName 
         , R.PIN_NO AS reportedUserPinNo
-        , ( SELECT NICKNAME
-            FROM USERS
+        , COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = RR.PIN_NO )
+           ,(SELECT '呕硼雀盔'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = RR.PIN_NO)
+           ,('包府磊'||SUBSTR(( SELECT ADMIN_NO
+            FROM ADMIN
             WHERE PIN_NO = RR.PIN_NO 
-            )AS reportNickName
+            ),3))
+        ) AS reportNickName
         , RR.PIN_NO AS reportUserPinNo
         , RRR.REGU_DATE AS reguDate
         , RR.REP_RECRUIT_NO AS repNo
@@ -651,4 +659,16 @@ from logout_rec;
 ALTER TABLE LOGOUT_REC
 RENAME COLUMN LOGIN_DATE TO LOGOUT_DATE;
 
-CREATE SEQUENCE LOGOUTREC
+CREATE SEQUENCE LOGOUTREC;
+
+		SELECT REP_RECRUIT_NO
+		FROM REP_RECRUIT
+		WHERE RECRUIT_NO = 'RC13';
+        
+delete
+from REPRECRUITCOMPLETE
+where repno = 'REPR5'
+and resultno != 'RESR37'
+;
+
+commit;
