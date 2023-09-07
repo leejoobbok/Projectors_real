@@ -2870,9 +2870,118 @@ VALUES
 --2 USERS 테이블에서 DELETE
 DELETE
 FROM USERS
-WHERE PIN_NO=#{pinNo}
+WHERE PIN_NO=#{pinNo};
 
 ----3 PROFILE 테이블에서 DELETE  ( 굳이 필요 없을 거 같음)
 --DELETE
 --FROM PROFILE
 --WHERE PIN_NO=#{pinNo}
+
+DESC MEMBER_OUT;
+DESC PROJECT_
+
+
+
+-- ★★★★공고 지원 예외 처리에 필요한 쿼리문들
+-- (0) 프로필이 존재하는지
+SELECT COUNT(*) AS COUNT
+FROM PROFILE
+WHERE PIN_NO='UP6';
+
+--(1) 현재 프로젝트가 있는지
+SELECT COUNT(*)
+FROM PROJECT PRJ
+LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+LEFT JOIN POSITION POS ON POS.POS_NO = RP.POS_NO
+WHERE AP.PIN_NO = 'UP6' AND PRJ.PRJ_NO NOT IN 
+                                         ( SELECT DISTINCT PRJ_NO
+                                            FROM (
+                                                SELECT PRJ.PRJ_NO
+                                                FROM MEMBER_OUT MO
+                                                LEFT JOIN FINAL FN ON MO.FINAL_NO = FN.FINAL_NO
+                                                LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+                                                LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+                                                LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
+                                                LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN PROJECT PRJ ON REC.RECRUIT_NO = PRJ.RECRUIT_NO
+                                                WHERE AP.PIN_NO = 'UP6'
+                                                
+                                                UNION
+                                                
+                                                SELECT PS.PRJ_NO
+                                                FROM PROJECT_STOP PS
+                                                LEFT JOIN PROJECT PRJ ON PS.PRJ_NO = PRJ.PRJ_NO
+                                                LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+                                                LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+                                                WHERE AP.PIN_NO = 'UP6'
+                                                
+                                                UNION
+                                                
+                                                SELECT PRJ.PRJ_NO
+                                                FROM PROJECT PRJ
+                                                LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+                                                LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+                                                LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+                                                WHERE SYSDATE > REC.PRJ_END AND AP.PIN_NO = 'UP6'
+                                                                                                         )
+                                        );
+--(2) 현재 올린 모집 공고가 있는지
+		SELECT COUNT(*) AS COUNT
+		FROM RECRUIT REC
+		WHERE REC.PIN_NO= 'UP6'
+		AND REC.CREATED_DATE > SYSDATE-14; 
+        
+--(3) 현재 제출한 지원서가 있는지
+		SELECT  COUNT(*) AS COUNT
+		FROM APPLY AP
+		LEFT JOIN RECRUIT_POS REP ON AP.RECRUIT_POS_NO = REP.RECRUIT_POS_NO
+		LEFT JOIN RECRUIT REC ON REP.RECRUIT_NO = REC.RECRUIT_NO
+		WHERE AP.PIN_NO='UP6' AND REC.CREATED_DATE > SYSDATE-14;
+
+--(4) 개인 이탈 경우 제재 중인지
+SELECT COUNT(*) AS COUNT
+    FROM MEMBER_OUT MO
+    LEFT JOIN FINAL FN ON MO.FINAL_NO = FN.FINAL_NO
+    LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+    LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+    LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
+    LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN PROJECT PRJ ON REC.RECRUIT_NO = PRJ.RECRUIT_NO
+    WHERE AP.PIN_NO = 'UP6' AND MO.OUT_DATE + 14 > SYSDATE;
+
+--(5) 팀 닫기로 인한 제재 중인지
+SELECT COUNT(*) AS COUNT
+    FROM PROJECT_STOP PS
+    LEFT JOIN PROJECT PRJ ON PS.PRJ_NO = PRJ.PRJ_NO
+    LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+    LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+    WHERE AP.PIN_NO = 'UP6' AND PS.STOP_DATE + 14 > SYSDATE;
+
+--(6) 전체 개인 이탈 중 팀 닫기 공고가 포함되어 있으면
+SELECT COUNT(REC.RECRUIT_NO) AS COUNT
+    FROM PROJECT_STOP PS
+    LEFT JOIN PROJECT PRJ ON PS.PRJ_NO = PRJ.PRJ_NO
+    LEFT JOIN RECRUIT REC ON PRJ.RECRUIT_NO = REC.RECRUIT_NO
+    LEFT JOIN RECRUIT_POS RP ON REC.RECRUIT_NO = RP.RECRUIT_NO
+    LEFT JOIN APPLY AP ON RP.RECRUIT_POS_NO = AP.RECRUIT_POS_NO
+    WHERE AP.PIN_NO = 'UP6' AND PS.STOP_DATE + 14 > SYSDATE
+                            AND REC.RECRUIT_NO IN (SELECT REC.RECRUIT_NO
+                                                       FROM MEMBER_OUT MO
+                                                       LEFT JOIN FINAL FN ON MO.FINAL_NO = FN.FINAL_NO
+                                                       LEFT JOIN FIRST_CK FS ON FN.FIRST_CK_NO = FS.FIRST_CK_NO
+                                                       LEFT JOIN APPLY AP ON FS.APPLY_NO = AP.APPLY_NO
+                                                       LEFT JOIN RECRUIT_POS RP ON AP.RECRUIT_POS_NO = RP.RECRUIT_POS_NO
+                                                       LEFT JOIN RECRUIT REC ON RP.RECRUIT_NO = REC.RECRUIT_NO
+                                                       LEFT JOIN PROJECT PRJ ON REC.RECRUIT_NO = PRJ.RECRUIT_NO
+                                                       WHERE AP.PIN_NO = 'UP6');
+
+
+
+
+
+    
+
