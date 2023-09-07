@@ -35,7 +35,7 @@
 	}
 
 	/*===================================================*/
-	#workSpaceBox			/* 공지글 리스트 영역*/
+	#workSpaceBox			/* 작업글 리스트 영역*/
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 90px;   		/* 고정 top 마진 */
@@ -49,7 +49,7 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#teamMeetingListTbl /* 회의록 목록 테이블*/
+	#myWorkListTbl /* 작업글 목록 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
@@ -99,7 +99,7 @@
 
 </head>
 <body>
-
+	
 	<div id="root">
 			
 			<div>
@@ -109,7 +109,7 @@
 				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
 			</div>  
 			
-			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
+			<!-- 공지, 작업실, 회의록, 히스토리, 멤버, 설정 -->
 			<div id="categoryBar">
 				<div class="index idx1">
 					<a href="teamSpaceMain.action">
@@ -159,9 +159,7 @@
 						<c:forEach var="teamMyWork" items="${list}">
 						<tr>
 							<td>${teamMyWork.workspaceNo}</td>
-							<td>
-								<a href="teamMyWorkArticle.action?workspaceNo=WS${teamMyWork.workspaceNo}">${teamMyWork.title}</a>
-							</td>
+							<td><a href="teamMyWorkArticle.action?workspaceNo=WS${teamMyWork.workspaceNo}">${teamMyWork.title}</a></td>
 							<td>${teamMyWork.workDate}</td>
 							<td>${teamMyWork.createdDate}</td>
 						</tr>
