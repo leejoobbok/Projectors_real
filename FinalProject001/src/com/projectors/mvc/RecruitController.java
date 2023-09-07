@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.xml.internal.ws.resources.HttpserverMessages;
+
 
 @Controller
 public class RecruitController
@@ -26,6 +28,8 @@ public class RecruitController
 	public String recruitlist(HttpServletRequest request, Model model, String recruitNo)
 	{
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+		IExceptionDAO exceptionDao = sqlsession.getMapper(IExceptionDAO.class);
+		
 		List<ArrayList<String>> tools = new ArrayList<ArrayList<String>>();
 		List<ArrayList<RecruitDTO>> members = new ArrayList<ArrayList<RecruitDTO>>();
 		
@@ -46,6 +50,15 @@ public class RecruitController
 			model.addAttribute("regDateCheck", dao.regDateCheck(pinNo));
 		}
 		
+	    // 예외 처리 확인하는 값들 Model로 넘겨주기
+	    model.addAttribute("limitByProfile", exceptionDao.limitByProfile(pinNo));
+	    model.addAttribute("limitByRecruit", exceptionDao.limitByRecruit(pinNo));
+	    model.addAttribute("limitByApply", exceptionDao.limitByApply(pinNo));
+	    model.addAttribute("limitByProject", exceptionDao.limitByProject(pinNo));
+	    model.addAttribute("reguMemOut", exceptionDao.reguMemOut(pinNo));
+	    model.addAttribute("reguTeamOut", exceptionDao.reguTeamOut(pinNo));
+	    model.addAttribute("twiceReguException", exceptionDao.twiceReguException(pinNo));
+		
 	    model.addAttribute("tools", tools);
 	    model.addAttribute("members", members);
 		
@@ -53,6 +66,7 @@ public class RecruitController
 	    model.addAttribute("dotypes", dao.optionDoType());
 	    model.addAttribute("poss", dao.optionPos());
 
+	    
 		String result = "/WEB-INF/view/RecruitLists.jsp";
 		return result;
 	}
@@ -132,9 +146,29 @@ public class RecruitController
 	}
 	
 	@RequestMapping(value = "/recruitarticle.action", method = RequestMethod.GET)
-	public String recruitarticle(Model model, String recruitNo)
+	public String recruitarticle(Model model, HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		
+		String pinNo = (String) session.getAttribute("pinNo");
+		String recruitNo = request.getParameter("recruitNo");
+		
 		IRecruitDAO dao = sqlsession.getMapper(IRecruitDAO.class);
+		IExceptionDAO exceptionDao = sqlsession.getMapper(IExceptionDAO.class);
+		
+		if (pinNo != null)
+		{
+			model.addAttribute("regDateCheck", dao.regDateCheck(pinNo));
+		}
+		
+	    // 예외 처리 확인하는 값들 Model로 넘겨주기
+	    model.addAttribute("limitByProfile", exceptionDao.limitByProfile(pinNo));
+	    model.addAttribute("limitByRecruit", exceptionDao.limitByRecruit(pinNo));
+	    model.addAttribute("limitByApply", exceptionDao.limitByApply(pinNo));
+	    model.addAttribute("limitByProject", exceptionDao.limitByProject(pinNo));
+	    model.addAttribute("reguMemOut", exceptionDao.reguMemOut(pinNo));
+	    model.addAttribute("reguTeamOut", exceptionDao.reguTeamOut(pinNo));
+	    model.addAttribute("twiceReguException", exceptionDao.twiceReguException(pinNo));
 		
 		model.addAttribute("article", dao.article(recruitNo));
 		model.addAttribute("tools", dao.showTool(recruitNo));
