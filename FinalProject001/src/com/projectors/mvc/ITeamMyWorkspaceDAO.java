@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface ITeamMyWorkspaceDAO
 {
-	public ArrayList<TeamMyWorkspaceDTO> getList(); // 내 작업글 목록 불러오기
+	public ArrayList<TeamMyWorkspaceDTO> getList(String finalNo); // 내 작업글 목록 불러오기
 	
 	public TeamMyWorkspaceDTO readArticle(String workspaceNo); // 특정 작업글 아티클 읽기 
 	
