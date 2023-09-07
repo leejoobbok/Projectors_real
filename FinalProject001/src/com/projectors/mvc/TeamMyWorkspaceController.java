@@ -15,11 +15,11 @@ public class TeamMyWorkspaceController
 	
 	//● 작업글 리스트로 불러오기 (내 작업실 게시판 메인)
 	@RequestMapping(value = "/teamMyWorkspace.action", method = RequestMethod.GET)
-	public String myWorkList(Model model)
+	public String myWorkList(String finalNo, Model model)
 	{
 		String result = "";
 		ITeamMyWorkspaceDAO dao = sqlSession.getMapper(ITeamMyWorkspaceDAO.class);
-		model.addAttribute("list", dao.getList());
+		model.addAttribute("list", dao.getList(finalNo));
 		
 		result = "/WEB-INF/view/TeamMyWorkspace.jsp";
 		return result;
