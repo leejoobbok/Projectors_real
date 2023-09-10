@@ -9,7 +9,10 @@ public interface IReportDAO
 	// 신고 처벌 - 기간
 	public ArrayList<ReportDTO> periods();
 	
+	// 신고가 들어온 동일한 공고번호 찾기
 	public ArrayList<String> samePostNo(String postNo);
+	// 신고가 들어온 동일한 지원서번호 찾기
+	public ArrayList<String> sameApplyNo(String postNo);
 	
 	//--------------------------------------------------------------------------------------
 	
