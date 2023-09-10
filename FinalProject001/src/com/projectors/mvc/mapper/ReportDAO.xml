@@ -25,6 +25,13 @@
 		FROM REP_RECRUIT
 		WHERE RECRUIT_NO = #{postNo}
 	</select>
+	
+	<!-- 신고 된 동일한 지원서가 있는지 확인 -->
+	<select id="sameApplyNo" resultType="java.lang.String">
+		SELECT REP_RECRUIT_NO as repNo
+		FROM REP_APPLY
+		WHERE RECRUIT_NO = #{postNo}
+	</select>
 
 	<!-- =================================================================================== -->
 
