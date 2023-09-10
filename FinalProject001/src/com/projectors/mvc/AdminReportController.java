@@ -131,14 +131,13 @@ public class AdminReportController
 		{
 			String postNo = request.getParameter("postNo");
 
-			String repNo = request.getParameter("repNo");
 			String reguNo = request.getParameter("reguNo");
 			String reguPeriodNo = request.getParameter("reguPeriodNo");
 
-			System.out.println("postNo : " + postNo);
-			System.out.println("repNo : " + repNo);
-			System.out.println("reguNo : " + reguNo);
-			System.out.println("reguPeriodNo : " + reguPeriodNo);
+			//System.out.println("postNo : " + postNo);
+			//System.out.println("repNo : " + repNo);
+			//System.out.println("reguNo : " + reguNo);
+			//System.out.println("reguPeriodNo : " + reguPeriodNo);
 			
 			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 
@@ -177,8 +176,6 @@ public class AdminReportController
 		{
 			String postNo = request.getParameter("postNo");
 
-			String repNo = request.getParameter("repNo");
-			
 			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 
 			// 동일한 공고 번호가 있는 신고번호들 찾기
@@ -235,42 +232,64 @@ public class AdminReportController
 		if (session.getAttribute("adminNo")!=null)
 		{
 			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
+
+			String postNo = request.getParameter("postNo");
+
+			String reguNo = request.getParameter("reguNo");
+			String reguPeriodNo = request.getParameter("reguPeriodNo");
 			
-			ReportDTO dto = new ReportDTO();
-			
-			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-			dto.setRepNo(request.getParameter("repNo"));
-			dto.setReguNo(request.getParameter("reguNo"));
-			dto.setReguPeriodNo(request.getParameter("reguPeriodNo"));
-			
-			//System.out.println("adminPinNo : "+dto.getAdminPinNo());
-			//System.out.println("repNo : "+request.getParameter("repNo"));
-			//System.out.println("reguNo : "+request.getParameter("reguNo"));
-			//System.out.println("reguPeriodNo : "+request.getParameter("reguPeriodNo"));
-			
-			dao.clearManageApplyReport(dto);
+			// 동일한 지원서 번호가 있는 신고번호들 찾기
+			ArrayList<String> sameApplyNo = new ArrayList<String>();
+			sameApplyNo = dao.sameApplyNo(postNo);
+
+			System.out.println(sameApplyNo);
+
+			for (String reportNo : sameApplyNo)
+			{
+				ReportDTO dto = new ReportDTO();
+				
+				dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+				dto.setRepNo(reportNo);
+				dto.setReguNo(reguNo);
+				dto.setReguPeriodNo(reguPeriodNo);
+				
+				dao.clearManageReport(dto);
+			}
 			
 			result = "redirect:reportApply.action";
 		}
-		
+
 		return result;
 	}
 	
 	//-- 지원서 신고 반려
 	@RequestMapping (value = "/rejectManageApplyReport.action", method = RequestMethod.GET)
-	public String rejectManageApplyReport(ReportDTO dto, HttpServletRequest request)
+	public String rejectManageApplyReport(HttpServletRequest request)
 	{
 		String result = "redirect:loginForm.action";
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("adminNo")!=null)
 		{
+			String postNo = request.getParameter("postNo");
+			
 			IReportDAO dao = sqlSession.getMapper(IReportDAO.class);
 			
-			dto.setAdminPinNo((String)session.getAttribute("pinNo"));
-			dto.setReguNo(request.getParameter("repNo"));
+			// 동일한 지원서 번호가 있는 신고번호들 찾기
+			ArrayList<String> sameApplyNo = new ArrayList<String>();
+			sameApplyNo = dao.sameApplyNo(postNo);
 			
-			dao.rejectManageApplyReport(dto);
+			System.out.println(sameApplyNo);
+
+			for (String reportNo : sameApplyNo)
+			{
+				ReportDTO dto = new ReportDTO();
+				
+				dto.setAdminPinNo((String)session.getAttribute("pinNo"));
+				dto.setRepNo(reportNo);
+				
+				dao.rejectManageApplyReport(dto);
+			}
 			
 			result = "redirect:reportApply.action";
 		}
