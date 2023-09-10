@@ -11,9 +11,7 @@
 <meta charset="UTF-8">
 <title>신고처리대기-공고 : Projectors</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/reportManagement.css">
-<style type="text/css">
 
-</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
@@ -40,11 +38,10 @@ function manageReport(button)
         row.querySelector('.reguPeriodNo').value = receivedData.param2;
         
         var postNo = row.querySelector('.postNo').value;
-        var repNo = row.querySelector('.repNo').value;
         var reguNo = row.querySelector('.reguNo').value;
         var reguPeriodNo = row.querySelector('.reguPeriodNo').value;
         
-        window.location.href = 'clearManageReport.action?repNo='+repNo+'&postNo='+postNo
+        window.location.href = 'clearManageReport.action?postNo='+postNo
         							+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
  	});
     
@@ -53,12 +50,11 @@ function manageReport(button)
 function cancelReport(button)
 {
 	var row = button.closest('tr');
-	var repNo = row.querySelector('.repNo').value;
 	var postNo = row.querySelector('.postNo').value;
 	
 	if (confirm("정말 신고 처리 취소 하시겠습니까?"))
 	{
-		window.location.href = "rejectManageReport.action?repNo="+repNo+'&postNo='+postNo;
+		window.location.href = "rejectManageReport.action?postNo="+postNo;
 	}
 	return;
 }
@@ -144,7 +140,6 @@ function cancelReport(button)
 		<%-- 신고번호 --%>
 		<td>
 			${report.repNo }
-			<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
 		</td>
 		<%-- 공고번호 --%>
 		<td>
