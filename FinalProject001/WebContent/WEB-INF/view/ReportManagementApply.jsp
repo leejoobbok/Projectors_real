@@ -10,108 +10,8 @@
 <meta charset="UTF-8">
 <title>신고처리대기-지원서 : Projectors</title>
 
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/reportManagement.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style type="text/css">
-
-	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
-	#logoBox 					   /*로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-		/* border: 1px solid; */
-	}
-	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
-	{
-		text-align: right;
-	}
-	#menuBar					/*메뉴바(메인|공지..)*/
-	{
-		text-align: center;
-		position :sticky;  
-		padding-top: 32px;
-	    top: -32px;
-	}
-	/*==========================================================*/
-	/*=========================서브메뉴바=========================*/
-	a 
-	{
-		text-decoration: none;
-		padding: 4px 14px 4px 14px;
-	}
-	
-	#subMenuBar
-	{
-		text-align: left;
-		font-size: 12pt;
-		font-weight: bold;
-		background-color: white;
-	}
-	/*==========================================================*/
-
-	/* ====================== 좌측바 ========================= */
-	#leftBar
-	{
-		float: left;
-		width: 20%;
-		height : 300px;
-		text-align: center;
-	}
-	
-	.btnHeight
-	{
-		padding: 10px;
-		border-right: 3px solid black;
-	}
-	
-	/* ======================================================= */
-	
-	
-	/* ====================== 우측바 ========================= */
-	#rightBar
-	{
-		float: right;
-		width: 70%;
-		padding : 0% 5% 0% 5%;
-	}
-	
-	.blackBtn
-	{
-		font-size: x-small;
-		color: white;
-		background-color: black;
-		border: none;
-	}
-	.table
-	{
-		text-align: auto;
-		width: 100%;
-	}
-	
-	th
-	{
-		border-bottom: 1px solid gray;
-	}
-	
-	td
-	{
-		text-align: center;
-	}
-	
-	.right-left { width: 80%;}
-	.right-right { width: 10%;}
-	/* ======================================================= */
-	
-	#paging
-	{
-		margin: auto;
-		text-align: center;
-	}
-	
-</style>
 
 <script type="text/javascript">
 function manageReport(button)
@@ -136,13 +36,12 @@ function manageReport(button)
         row.querySelector('.reguNo').value = receivedData.param1;
         row.querySelector('.reguPeriodNo').value = receivedData.param2;
         
-        var repNo = row.querySelector('.repNo').value;
-        var reguNo = row.querySelector('.reguPeriodNo').value;
+        var postNo = row.querySelector('.postNo').value;
+        var reguNo = row.querySelector('.reguNo').value;
         var reguPeriodNo = row.querySelector('.reguPeriodNo').value;
         
-        var f = document.forms.reportForm;
-        f.action = 'clearManageReport.action?repNo='+repNo+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
-        f.submit();
+        window.location.href = 'clearManageApplyReport.action?postNo='+postNo
+        							+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
  	});
     
 }
@@ -150,12 +49,11 @@ function manageReport(button)
 function cancelReport(button)
 {
 	var row = button.closest('tr');
-	var repNo = row.querySelector('.repNo').value;
+	var postNo = row.querySelector('.postNo').value;
+	
 	if (confirm("정말 신고 처리 취소 하시겠습니까?"))
 	{
-		var f = document.forms.reportForm;
-	    f.action ="rejectManageReport.action?repNo="+repNo;
-	    f.submit();
+		window.location.href = "rejectManageApplyReport.action?postNo="+postNo;
 	}
 	return;
 }
@@ -214,7 +112,7 @@ function cancelReport(button)
 	<br />
 
 	<div>
-	<form action="" method="get" id="reportForm" name="reportForm">
+	<form action="" method="get">
 		<table class="table">
 			<tr>
 				<th>신고번호</th>
@@ -231,9 +129,11 @@ function cancelReport(button)
 				<tr class="${i.count }">
 					<td>
 						${report.repNo }
-						<input type="hidden" class="repNo" name="repNo" value="${report.repNo }"/>
 					</td>
-					<td><a href="applyarticle.action?applyNo=${report.postNo }">${report.postNo }</a></td>
+					<td>
+						<a href="applyarticle.action?applyNo=${report.postNo }">${report.postNo }</a>
+						<input type="hidden" class="postNo" name="postNo" value="${report.postNo }"/>
+					</td>
 					<td>
 						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo}"
   							 onclick="window.open(this.href, 'photoUpdate',
