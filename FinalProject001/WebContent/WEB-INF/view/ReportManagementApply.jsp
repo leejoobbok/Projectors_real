@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -135,22 +136,41 @@ function cancelReport(button)
 						<input type="hidden" class="postNo" name="postNo" value="${report.postNo }"/>
 					</td>
 					<td>
-						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo}"
-  							 onclick="window.open(this.href, 'photoUpdate',
-                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
-            						return false;">${report.reportedNickName }</a>
+						<c:choose>
+						<c:when test="${fn:contains(report.reportNickName, '탈퇴회원') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:otherwise>
+							<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo}"
+										 onclick="window.open(this.href, 'photoUpdate',
+				                      'left=500,top=300,width=400,height=400,resizable=no,location=no');
+				         						return false;">${report.reportedNickName }</a>
+						</c:otherwise>
+						</c:choose>
 						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
 							value="${report.reportedNickName }" />
 						<input type="hidden" class="reportedUserPinNo" name="reportedUserPinNo" 
 							value="${report.reportedUserPinNo }" />
 					</td>
 					<td>
-						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportUserPinNo}"
-  							 onclick="window.open(this.href, 'photoUpdate',
-                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
-            						return false;">${report.reportNickName }</a>
+						<c:choose>
+						<c:when test="${fn:contains(report.reportNickName, '관리자') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:when test="${fn:contains(report.reportNickName, '탈퇴회원') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:otherwise>
+							<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportUserPinNo}"
+									 onclick="window.open(this.href, 'photoUpdate',
+					                    'left=500,top=300,width=400,height=400,resizable=no,location=no');
+					       						return false;">${report.reportNickName }</a>
+						</c:otherwise>
+						</c:choose>
+			
 						<input type="hidden" class="reportUserPinNo" name="reportUserPinNo" 
 							value="${report.reportUserPinNo }" />					
+							
 					</td>
 					<td>
 						${report.repReason } 
