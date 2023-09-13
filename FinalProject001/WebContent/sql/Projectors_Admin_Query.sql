@@ -196,10 +196,14 @@ expression must have same datatype as corresponding expression
 -- ´ñ±Û 
     CREATE OR REPLACE VIEW REPCOMMNULL
     AS
-    SELECT ( SELECT NICKNAME
-            FROM USERS 
-            WHERE PIN_NO = C.PIN_NO 
-            )AS reportedNickName
+    SELECT  COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = C.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = C.PIN_NO)
+        ) AS reportedNickName
         , C.PIN_NO AS reportedUserPinNo
         , COALESCE(
             (SELECT NICKNAME
@@ -233,10 +237,14 @@ expression must have same datatype as corresponding expression
 -- Áö¿ø¼­
     CREATE OR REPLACE VIEW REPAPPLYNULL
     AS
-    SELECT ( SELECT NICKNAME
-            FROM USERS 
-            WHERE PIN_NO = A.PIN_NO 
-            )AS reportedNickName 
+    SELECT  COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = A.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = A.PIN_NO)
+        ) AS reportedNickName
         , A.PIN_NO AS reportedUserPinNo
         , COALESCE(
             (SELECT NICKNAME
@@ -283,10 +291,14 @@ FROM REPAPPLYNULL
 -- °ø°í
     CREATE OR REPLACE VIEW REPRECRUITNULL
     AS
-    SELECT ( SELECT NICKNAME
-            FROM USERS 
-            WHERE PIN_NO = R.PIN_NO 
-            )AS reportedNickName 
+    SELECT  COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = R.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = R.PIN_NO)
+        ) AS reportedNickName
         , R.PIN_NO AS reportedUserPinNo
         , COALESCE(
             (SELECT NICKNAME
@@ -331,10 +343,14 @@ from recruit;
 -- ÂÊÁö
     CREATE OR REPLACE VIEW REPNOTENULL
     AS
-    SELECT (SELECT NICKNAME
-            FROM USERS 
-            WHERE PIN_NO = N.SENDER
-            )AS reportedNickName 
+    SELECT COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = N.SENDER )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = N.SENDER)
+        ) AS reportedNickName
         , N.SENDER AS reportedUserPinNo
         , COALESCE(
             (SELECT NICKNAME
@@ -342,11 +358,7 @@ from recruit;
              WHERE PIN_NO = RN.PIN_NO )
            ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
              FROM WITHDRAW_USER
-             WHERE PIN_NO = RN.PIN_NO)
-           ,('°ü¸®ÀÚ'||SUBSTR(( SELECT ADMIN_NO
-            FROM ADMIN
-            WHERE PIN_NO = RN.PIN_NO 
-            ),3))
+             WHERE PIN_NO = RN.PIN_NO )
         ) AS reportNickName
         , RN.PIN_NO AS reportUserPinNo
         , RNR.REGU_DATE AS reguDate
