@@ -201,10 +201,18 @@ expression must have same datatype as corresponding expression
             WHERE PIN_NO = C.PIN_NO 
             )AS reportedNickName
         , C.PIN_NO AS reportedUserPinNo
-        , NVL('°ü¸®ÀÚ',( SELECT NICKNAME
-            FROM USERS
+        , COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = RC.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = RC.PIN_NO)
+           ,('°ü¸®ÀÚ'||SUBSTR(( SELECT ADMIN_NO
+            FROM ADMIN
             WHERE PIN_NO = RC.PIN_NO 
-            ))AS reportNickName
+            ),3))
+        ) AS reportNickName
         , RC.PIN_NO AS reportUserPinNo
         , RCR.REGU_DATE AS reguDate
         , RC.REP_COMM_NO AS repNo
@@ -230,10 +238,18 @@ expression must have same datatype as corresponding expression
             WHERE PIN_NO = A.PIN_NO 
             )AS reportedNickName 
         , A.PIN_NO AS reportedUserPinNo
-        , ( SELECT NICKNAME
-            FROM USERS
+        , COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = RA.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = RA.PIN_NO)
+           ,('°ü¸®ÀÚ'||SUBSTR(( SELECT ADMIN_NO
+            FROM ADMIN
             WHERE PIN_NO = RA.PIN_NO 
-            )AS reportNickName
+            ),3))
+        ) AS reportNickName
         , RA.PIN_NO AS reportUserPinNo
         , RAR.REGU_DATE AS reguDate
         , RA.REP_APPLY_NO AS repNo
@@ -320,10 +336,18 @@ from recruit;
             WHERE PIN_NO = N.SENDER
             )AS reportedNickName 
         , N.SENDER AS reportedUserPinNo
-        , ( SELECT NICKNAME
-            FROM USERS
-            WHERE PIN_NO = RN.PIN_NO
-          ) AS reportNickName
+        , COALESCE(
+            (SELECT NICKNAME
+             FROM USERS
+             WHERE PIN_NO = RN.PIN_NO )
+           ,(SELECT 'Å»ÅðÈ¸¿ø'||TO_CHAR(WD_USER_NO)
+             FROM WITHDRAW_USER
+             WHERE PIN_NO = RN.PIN_NO)
+           ,('°ü¸®ÀÚ'||SUBSTR(( SELECT ADMIN_NO
+            FROM ADMIN
+            WHERE PIN_NO = RN.PIN_NO 
+            ),3))
+        ) AS reportNickName
         , RN.PIN_NO AS reportUserPinNo
         , RNR.REGU_DATE AS reguDate
         , RN.REP_NOTE_NO AS repNo
