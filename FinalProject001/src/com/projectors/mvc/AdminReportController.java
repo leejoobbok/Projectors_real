@@ -388,7 +388,7 @@ public class AdminReportController
 	}
 	
 	//-- 쪽지 신고 처리 insert
-	@RequestMapping (value = "/clearManageApplyReport.action", method = RequestMethod.GET)
+	@RequestMapping (value = "/clearManageNoteReport.action", method = RequestMethod.GET)
 	public String clearManageNoteReoprt(HttpServletRequest request)
 	{
 		String result = "redirect:loginForm.action";
