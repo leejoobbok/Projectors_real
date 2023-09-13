@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -9,109 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>신고처리대기-쪽지 : Projectors</title>
+<link rel="stylesheet" type="text/css" href="<%=cp %>/css/reportManagement.css">
 
-
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style type="text/css">
-
-	/*==========  상단 공통 요소 (메뉴바까지) ==================*/
-	#logoBox 					   /*로고 이미지*/
-	{
-		text-align: center;
-		height: 100px;
-		padding-top: 20px;
-		/* border: 1px solid; */
-	}
-	#upperBarBox 				 /*최상단 바(로그인..쪽지)*/
-	{
-		text-align: right;
-	}
-	#menuBar					/*메뉴바(메인|공지..)*/
-	{
-		text-align: center;
-		position :sticky;  
-		padding-top: 32px;
-	    top: -32px;
-	}
-	/*==========================================================*/
-	/*=========================서브메뉴바=========================*/
-	a 
-	{
-		text-decoration: none;
-		padding: 4px 14px 4px 14px;
-	}
-	
-	#subMenuBar
-	{
-		text-align: left;
-		font-size: 12pt;
-		font-weight: bold;
-		background-color: white;
-	}
-	/*==========================================================*/
-
-	/* ====================== 좌측바 ========================= */
-	#leftBar
-	{
-		float: left;
-		width: 20%;
-		height : 300px;
-		text-align: center;
-	}
-	
-	.btnHeight
-	{
-		padding: 10px;
-		border-right: 3px solid black;
-	}
-	
-	/* ======================================================= */
-	
-	
-	/* ====================== 우측바 ========================= */
-	#rightBar
-	{
-		float: right;
-		width: 70%;
-		padding : 0% 5% 0% 5%;
-	}
-	
-	.blackBtn
-	{
-		font-size: x-small;
-		color: white;
-		background-color: black;
-		border: none;
-	}
-	.table
-	{
-		text-align: auto;
-		width: 100%;
-	}
-	
-	th
-	{
-		border-bottom: 1px solid gray;
-	}
-	
-	td
-	{
-		text-align: center;
-	}
-	
-	.right-left { width: 80%;}
-	.right-right { width: 10%;}
-	/* ======================================================= */
-	
-	#paging
-	{
-		margin: auto;
-		text-align: center;
-	}
-	
-</style>
 
 <script type="text/javascript">
 function manageReport(button)
@@ -137,12 +38,11 @@ function manageReport(button)
         row.querySelector('.reguPeriodNo').value = receivedData.param2;
         
         var repNo = row.querySelector('.repNo').value;
-        var reguNo = row.querySelector('.reguPeriodNo').value;
+        var reguNo = row.querySelector('.reguNo').value;
         var reguPeriodNo = row.querySelector('.reguPeriodNo').value;
         
-        var f = document.forms.reportForm;
-        f.action = 'clearManageReport.action?repNo='+repNo+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
-        f.submit();
+        window.location.href = 'clearManageNoteReport.action?repNo='+repNo
+        							+'&reguNo='+reguNo+'&reguPeriodNo='+reguPeriodNo;
  	});
     
 }
@@ -151,11 +51,10 @@ function cancelReport(button)
 {
 	var row = button.closest('tr');
 	var repNo = row.querySelector('.repNo').value;
+	
 	if (confirm("정말 신고 처리 취소 하시겠습니까?"))
 	{
-		var f = document.forms.reportForm;
-	    f.action ="rejectManageReport.action?repNo="+repNo;
-	    f.submit();
+		window.location.href = "rejectManageNoteReport.action?repNo="+repNo;
 	}
 	return;
 }
@@ -200,7 +99,7 @@ function cancelReport(button)
 <div id="rightBar">
 	<div>
 		<h2>
-			신고 처리 대기 - 지원서
+			신고 처리 대기 - 쪽지
 		</h2> 
 	</div>
 	<div id="subMenuBar">
@@ -214,11 +113,11 @@ function cancelReport(button)
 	<br />
 
 	<div>
-	<form action="" method="get" id="reportForm" name="reportForm">
+	<form action="" method="get">
 		<table class="table">
 			<tr>
 				<th>신고번호</th>
-				<th>지원서번호</th><!-- 클릭시 해당 게시물 이동 -->
+				<th>쪽지번호</th><!-- 클릭시 해당 게시물 이동 -->
 				<th>피신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
 				<th>신고자</th><!-- 클릭시 해당 유저 프로필 이동 -->
 				<th>사유</th>
@@ -235,22 +134,41 @@ function cancelReport(button)
 					</td>
 					<td><a href="note_article.action?noteNo=${report.postNo }">${report.postNo }</a></td>
 					<td>
-						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo }"
-  							 onclick="window.open(this.href, 'photoUpdate',
-                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
-            						return false;">${report.reportedNickName }</a>
+						<c:choose>
+						<c:when test="${fn:contains(report.reportNickName, '탈퇴회원') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:otherwise>
+							<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportedUserPinNo}"
+										 onclick="window.open(this.href, 'photoUpdate',
+				                      'left=500,top=300,width=400,height=400,resizable=no,location=no');
+				         						return false;">${report.reportedNickName }</a>
+						</c:otherwise>
+						</c:choose>
 						<input type="hidden" class="reportedNickName" name="reportedUserPinNo" 
 							value="${report.reportedNickName }" />
 						<input type="hidden" class="reportedUserPinNo" name="reportedUserPinNo" 
 							value="${report.reportedUserPinNo }" />
 					</td>
 					<td>
-						<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportUserPinNo }"
-  							 onclick="window.open(this.href, 'photoUpdate',
-                         'left=500,top=300,width=400,height=400,resizable=no,location=no');
-            						return false;">${report.reportNickName }</a>
+						<c:choose>
+						<c:when test="${fn:contains(report.reportNickName, '관리자') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:when test="${fn:contains(report.reportNickName, '탈퇴회원') }">		
+							${report.reportNickName }
+						</c:when>
+						<c:otherwise>
+							<a href="<%= request.getContextPath()%>/profileadminview.action?pinNo=${report.reportUserPinNo}"
+									 onclick="window.open(this.href, 'photoUpdate',
+					                    'left=500,top=300,width=400,height=400,resizable=no,location=no');
+					       						return false;">${report.reportNickName }</a>
+						</c:otherwise>
+						</c:choose>
+			
 						<input type="hidden" class="reportUserPinNo" name="reportUserPinNo" 
 							value="${report.reportUserPinNo }" />					
+							
 					</td>
 					<td>
 						${report.repReason } 
