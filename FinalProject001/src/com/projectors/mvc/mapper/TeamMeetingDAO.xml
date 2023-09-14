@@ -11,9 +11,9 @@
 	        , #{title}
 	        , #{content}
 	       <!-- , #{fileUrl} -->
-	        , null   <!-- (임시) 첨부파일 없음 -->
+	        , null   <!-- (임시) 첨부파일 없음으로 정적 구성 -->
 	        , SYSDATE
-	        , NVL(#{meetingDate},SYSDATE))
+	        , NVL(#{meetingDate}, SYSDATE))
 </insert>
 
 <update id="modify">
@@ -21,7 +21,7 @@
 	SET TITLE = #{title}
 	,CONTENT = #{content}
 	    <if test="fileUrl != null">
-         ,FILEURL = #{fileUrl, jdbcType=VARCHAR}
+         ,FILEURL = #{fileUrl, jdbcType=VARCHAR} <!-- VARCHAR2로 작성하지 않아도 무방 -->
         </if>
         <if test="fileUrl == null">
         ,FILEURL = NULL
