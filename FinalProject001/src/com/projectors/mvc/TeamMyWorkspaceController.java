@@ -25,7 +25,7 @@ public class TeamMyWorkspaceController
 		return result;
 	}
 	
-	//● 회의록 아티클 읽기 (모든 팀원)
+	//● 작업글 아티클 읽기 (모든 팀원)
 	@RequestMapping(value = "/teamMyWorkArticle.action", method = RequestMethod.GET)
 	public String myWorkArticle(String workspaceNo, Model model)
 	{

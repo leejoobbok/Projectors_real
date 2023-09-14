@@ -160,17 +160,22 @@
     {	
     	var title = $('#title').val();
     	var content = $('#content').val();
-    	var workDate = $('#workDate').val();
+    	var workDate = $('#workDate').val(); //jQuery
     	
-    	if(workDate == undefined) //유저가 작업일을 선택하지 않은 경우
-   		{
-	    	var workDateCheck = confirm("작업일을 선택하지 않으면 오늘 날짜로 등록됩니다. 이대로 등록하시겠습니까?");
+    	//cf. 바닐라js - var workDate = document.getElementById('workDate').value;
+
+       
+    	
+    	if(workDate === '') //유저가 작업일을 선택하지 않은 경우
+   		{	
+    		
+	    	var workDateCheck = confirm("작업일을 선택하지 않으면 오늘 날짜로 등록됩니다. 등록하시겠습니까?");
 	        
 	        if (workDateCheck) {
 	        	
-	        	workDate = null; 
 	            window.location.href = "insertMyWork.action?title="+title+"&content="+content+"&workDate="+workDate;
 	        }
+	        
         }
     	
     }
