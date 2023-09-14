@@ -113,7 +113,7 @@
 					</a>
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
-				<div class="index idx3"><a href="">작업실(공사중)</a></div>
+				<div class="index idx3"><a href="teamMyWorkspace.action">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
 				<div class="index idx5"><a href="">히스토리</a></div>
 				<div class="index idx6"><a href="teamMemberInfo.action">멤버</a></div>
