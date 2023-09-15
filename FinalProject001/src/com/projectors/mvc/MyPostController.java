@@ -168,23 +168,49 @@ public class MyPostController
 	{
 		HttpSession session = request.getSession();
 
-		String url = "";
-
 		String applyNo = request.getParameter("applyNo");
-
+		
 		IMyPostDAO dao = sqlSession.getMapper(IMyPostDAO.class);
-
+		IProfileDAO profileDao = sqlSession.getMapper(IProfileDAO.class);
+		IApplyDAO applyDao = sqlSession.getMapper(IApplyDAO.class);
+		
+		String applyPinNo = dao.pinNoFromApplyNo(applyNo);
+		
 		dao.readApply(applyNo);
-
+		
 		/*
 		 * 특정 지원서 보는 action 처리해줄 파트
 		 */
-
-		url = "redirect:/mypost.action";
-
-		return url;
-
+		
+		model.addAttribute("profile", profileDao.getProfile(applyPinNo));
+		model.addAttribute("tool", profileDao.getUserTool(applyPinNo));
+		model.addAttribute("title", applyDao.getRecruitTitle(applyNo));
+		model.addAttribute("applyArticle", applyDao.applyArticle(applyNo));
+		
+		return "/WEB-INF/view/ApplyArticle.jsp";
 	}
+	
+	@RequestMapping(value = "/onlyRead.action", method = RequestMethod.GET)
+	public String onlyRead(Model model, HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+
+		String applyNo = request.getParameter("applyNo");
+		
+		IMyPostDAO dao = sqlSession.getMapper(IMyPostDAO.class);
+		IProfileDAO profileDao = sqlSession.getMapper(IProfileDAO.class);
+		IApplyDAO applyDao = sqlSession.getMapper(IApplyDAO.class);
+		
+		String applyPinNo = dao.pinNoFromApplyNo(applyNo);
+		
+		model.addAttribute("profile", profileDao.getProfile(applyPinNo));
+		model.addAttribute("tool", profileDao.getUserTool(applyPinNo));
+		model.addAttribute("title", applyDao.getRecruitTitle(applyNo));
+		model.addAttribute("applyArticle", applyDao.applyArticle(applyNo));
+		
+		return "/WEB-INF/view/ApplyArticle.jsp";
+	}
+	
 
 	@RequestMapping(value = "/passApply.action", method = RequestMethod.GET)
 	public String passApply(Model model, HttpServletRequest request)
