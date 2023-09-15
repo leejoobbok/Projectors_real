@@ -220,9 +220,9 @@
 					</a>
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
-				<div class="index idx3"><a href="TeamNoticeList.jsp">작업실</a></div>
+				<div class="index idx3"><a href="teamMyWorkspace.action">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
-				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
+				<div class="index idx5"><a href="TeamHistory.action">히스토리</a></div>
 				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
 				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
