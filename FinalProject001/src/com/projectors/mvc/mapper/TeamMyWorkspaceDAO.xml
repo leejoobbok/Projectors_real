@@ -13,7 +13,7 @@
 </select>
 
 <select id="readArticle" resultType="com.projectors.mvc.TeamMyWorkspaceDTO"> 
-	SELECT WORKSPACE_NO, TITLE, WORK_DATE, CREATED_DATE, CONTENT
+	SELECT WORKSPACE_NO workspaceNo, TITLE title, WORK_DATE workDate, CREATED_DATE createdDate, CONTENT content
 	FROM WORKSPACE 
 	WHERE WORKSPACE_NO = #{workspaceNo} 
 </select>

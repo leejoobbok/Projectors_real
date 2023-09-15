@@ -4,13 +4,13 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스 > 내 작업실 - Projectors </title>
+<title>팀 스페이스 > 히스토리 : Projectors </title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/teamSpace.css">
-
 <style type="text/css">
 	
 	#titleBox 	/* 타이틀 영역 */
@@ -49,11 +49,11 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#myWorkListTbl /* 작업글 목록 테이블*/
+	.ArticleTbl /* 아티클 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
-		margin:auto;
+		margin:20px 10px 10px 10px;
 		font-size: 12pt;
 		text-align: center;
 	}
@@ -61,12 +61,40 @@
 	{
 		background-color: #bfbbb4;
 	}
+	input[id="title"]		/* 제목 인풋 태그 스타일 초기화*/
+	{
+	   border: none;
+	   outline: none;
+	   background: none;
+	   padding: 0;
+	   margin: 0;
+	 }
+	 
+	 
+	#title		 /*작업글 제목 */
+	{
+	   width: 200px;
+	   font-size: 12pt;
+	   text-align: center;
+	}  
+	#meetingDate, #createdDate
+	{
+		font-size: 10pt;
+	}
+	#meetingTextArea /* 내용 출력 부분 */                                             
+	{
+		width: 88%;
+		height: 400px;
+		magin: 10px;
+		border-radius: 10px;
+		padding: 10px;
+	}
 	/*======================================================*/
 	
-	#pageNumBox				/* 페이지 넘버 영역*/
+	#bottomBox				/* 하단 버튼 3개 영역*/
 	{
 		width: 300px;
-		margin: 10px 0px 0px 360px;
+		margin: 10px auto;
 		padding: 4px;
 	}
 	.btn							/* 버튼 클래스 공통 */
@@ -78,36 +106,48 @@
 		padding: 2px 10px;
 		border-radius: 12px;
 	}
-	#writeBtn
+	
+	#prjStartDay
 	{
-		vertical-align: super;	/*베이스 라인을 위로.*/
-		margin-left:6px;
+		border: solid black 1px;
+		border-radius: 10px;
+		
+		font-size: 12pt;
+		font-weight: bold;
+		text-align: center;
+		
+		width: 300px;
+		height: 26px;
+		
+		margin: auto;
+		padding: 4px 10px;
 	}
-	#writeBtn:hover
+	#workHistoryBox /*작업 히스토리 영역(우측)*/
 	{	
-		border: 2px solid black;
-		background-color: white;
-		color: black;
+	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
+	  top: 46px;	
+	  right: 10px; 		/* 고정 우측 마진 */
+	  height: 500px;
 	}
+	
+	
 </style>
-<script type="text/javascript">
-	
-	
 
-</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 
 </head>
 <body>
-	
+
 	<div id="root">
+		<div id="innerBox">
 			
 			<div>
 				<h1 id="spaceName">팀 스페이스 : 우리동네 밥친구 프로젝트 </h1>
 			</div>
 			<div id="exitBtn">
-				<a href="projectorsmain.action"><img src="images/exit.png" style="width:50px"></a>
-			</div>  
+				<a href="MainPage.jsp"><img src="images/exit.png" style="width:50px"></a>
+			</div> 
 			
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
@@ -125,59 +165,48 @@
 			</div>
 				
 			<div id="directoryBox">
-				
+			
 				<div id="topLeftBox"> <!-- 왼쪽 상단 영역 -->
 						
-					
+					여기 뭐 넣져??
 				</div>
 				
 				
 				<!-- ==============[ 담벼락 ] ============= -->
 				<div id="feed">
 					<c:import url="/loadFeed.action"/>
-				</div>	
-				
-				<!-- ===========[ 타이틀 (내 작업실 게시판)  ]=========== -->
-				<div id="titleBox">
-					<img src="images/megaphone.png" style="width:30px;">
-					<span id="lineNotice">내 작업실</span>
-					<a href="writeMyWork.action">  <!-- ※ 작성 페이지로 이동  -->
-						<button type="button" class="btn" id="writeBtn">작업기록 작성</button>
-					</a>
 				</div>
 				
-				<!-- ==========[ 내 작업글 리스트 ]========== -->
+				<!-- ===========[ 타이틀 (내 작업실)  ]=========== -->
+				<div id="titleBox">
+					<img src="images/megaphone.png" style="width:30px;">
+					<span id="lineNotice">팀 히스토리</span>
+				</div>
+				
+				<!-- ==========[ 히스토리 영역  ]========== -->
 				<div id="workSpaceBox">
 					
-					<table id="myWorkListTbl">
-						<tr class="firstTr">
-							<th width="100px">글 번호</th>
-							<th width="400px">제목</th>
-							<th width="200px">작업일</th>
-							<th width="200px">작성일</th>
-						</tr> 
-						<c:forEach var="teamMyWork" items="${list}">
-						<tr>
-							<td>${teamMyWork.workspaceNo}</td>
-							<td><a href="teamMyWorkArticle.action?workspaceNo=WS${teamMyWork.workspaceNo}">${teamMyWork.title}</a></td>
-							<td>${teamMyWork.workDate}</td>
-							<td>${teamMyWork.createdDate}</td>
-						</tr>
-						</c:forEach>
-					</table><!-- ==== 한 페이지당 n개로 구성 ===== -->
-					 
-					
-					<div id="pageNumBox">
-						<span style="text-align: center"> ◀ 이전 1 2 3 4 5 다음 ▶</span>
+					<div id="prjStartDay">
+						프로젝트 시작일: 2023.07.17 
 					</div>
-			
+					
+					<!-- ==========[ 회의록 영역 ]========== -->
+					<div id="meetingHistoryBox">
+						<c:import url="/getMeetingHistory.action"/>
+					</div>
+					
+					<!-- ==========[ 작업기록 영역 ]========== -->
+					<div id="workHistoryBox">
+						<c:import url="/getWorkHistory.action"/>
+					</div>	
+						
 				</div><!-- end of #workSpaceBox  -->
 				
 			</div><!-- end of #directoryBox div (콘텐츠 영역)-->
 			
+		</div><!-- end of #innerBox div  -->
+		
 	</div><!-- end of #root div -->
 
 </body>
 </html>
-						
-						

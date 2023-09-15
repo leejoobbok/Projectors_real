@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IMeetingHistoryDAO">
+
+<select id="getMeetingHistory" resultType="com.projectors.mvc.MeetingHistoryDTO">
+	SELECT TITLE meetingTitle, MEETING_DATE meetingDate   
+	FROM MEETING 
+	WHERE FINAL_NO IN('FN1','FN2','FN3') <!-- 임시 정적구성 -->
+	ORDER BY meetingDate
+</select>
+
+</mapper>

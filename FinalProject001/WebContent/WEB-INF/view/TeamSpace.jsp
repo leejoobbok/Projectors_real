@@ -42,16 +42,16 @@
 			<!-- 공지, 작업실, 회의록, 히스토리 (메뉴 인덱스) -->
 			<div id="categoryBar">
 				<div class="index idx1">
-					<a href="teamSpaceMain.action">
+					<a href="TeamSpace.jsp">
 						<img src="images/home.png" style="width:30px;"/>
 					</a>
 				</div>
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="teamMyWorkspace.action">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
-				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
-				<div class="index idx6"><a href="teamMemberInfo.action">멤버</a></div>
-				<div class="index idx7"><a href="">설정</a></div>
+				<div class="index idx5"><a href="TeamHistory.action">히스토리</a></div>
+				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
+				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
 				
 			<div id="directoryBox">
