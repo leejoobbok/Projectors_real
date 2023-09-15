@@ -2981,7 +2981,12 @@ SELECT COUNT(REC.RECRUIT_NO) AS COUNT
 
 
 
+SELECT * FROM REPORT_RESULT;
 
-
+-- 09 14 회의 후 테이블 
+DROP TABLE DEL_REP_PRJ;
+COMMIT;
+--Table DEL_REP_PRJ이(가) 삭제되었습니다.
+--커밋 완료.
     
 
