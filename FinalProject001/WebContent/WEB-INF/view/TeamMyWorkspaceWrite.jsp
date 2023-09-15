@@ -161,23 +161,25 @@
     	var title = $('#title').val();
     	var content = $('#content').val();
     	var workDate = $('#workDate').val(); //jQuery
-    	
     	//cf. 바닐라js - var workDate = document.getElementById('workDate').value;
-
-       
+	
+    	if(title ===''|| content ==='') // 유저가 필수 입력 사항을 (제목, 내용)누락한 경우
+    	{
+    		alert("제목과 내용은 비워둘 수 없습니다!");
+    		break;
+    	}
     	
     	if(workDate === '') //유저가 작업일을 선택하지 않은 경우
    		{	
-    		
 	    	var workDateCheck = confirm("작업일을 선택하지 않으면 오늘 날짜로 등록됩니다. 등록하시겠습니까?");
 	        
 	        if (workDateCheck) {
 	        	
 	            window.location.href = "insertMyWork.action?title="+title+"&content="+content+"&workDate="+workDate;
 	        }
-	        
         }
-    	
+    	// 필수입력 사항 충족 + 작업일까지 선택한 경우 
+    	window.location.href = "insertMyWork.action?title="+title+"&content="+content+"&workDate="+workDate;
     }
 </script>
 
@@ -205,7 +207,7 @@
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="teamMyWorkspace.action">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
-				<div class="index idx5"><a href="TeamTotalRecord.jsp">히스토리</a></div>
+				<div class="index idx5"><a href="TeamHistory.action">히스토리</a></div>
 				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
 				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
