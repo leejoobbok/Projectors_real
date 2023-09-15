@@ -3,14 +3,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
-	String meetingNo = request.getParameter("meetingNo");
+	String workspaceNo = request.getParameter("workspaceNo");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팀 스페이스 > 회의록 상세 : Projectors </title>
+<title>팀 스페이스 > 작업일지 상세 : Projectors </title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/teamSpace.css">
 <style type="text/css">
 	
@@ -36,7 +36,7 @@
 	}
 
 	/*===================================================*/
-	#workSpaceBox			/* 회의록 리스트 영역*/
+	#workSpaceBox			/* 작업글 리스트 영역*/
 	{
 	  position: absolute; /* 윈도우 조절해도 변화 없이 고정 (부모요소와 연관 제거)*/ 
 	  top: 90px;   		/* 고정 top 마진 */
@@ -50,7 +50,7 @@
 	  border-radius: 10px;
 	  padding: 10px;
 	}
-	#meetingArticleTbl /* 회의록 아티클 테이블*/
+	#meetingArticleTbl /* 작업글 아티클 테이블*/
 	{
 		border: solid 1px;
 		border-radius: 10px;
@@ -72,7 +72,7 @@
 	 }
 	 
 	 
-	#title		 /*회의록 제목 */
+	#title		 /*작업글 제목 */
 	{
 	   width: 200px;
 	   font-size: 12pt;
@@ -138,19 +138,19 @@
 	
 	
 	// 삭제 버튼 클릭시..
-	function deleteMeeting() 
+	function deleteMyWork() 
 	{	
         var confirmDelete = confirm("정말로 삭제하시겠습니까?");
         
         if (confirmDelete) {
-            window.location.href ="deleteMeeting.action?meetingNo=<%=meetingNo%>";
+            window.location.href ="deleteMeeting.action?meetingNo=<%=workspaceNo%>";
         }
     }
 	
 	// 수정하기 버튼 클릭시..
-	function modifyMeeting()    // 편집박스 활성화 및 스타일 변경 
+	function modifyMyWork()    // 편집박스 활성화 및 스타일 변경 
 	{ 	
-         $("#meetingTextArea").removeAttr("readonly").removeAttr("disabled"); //--  본문 수정 가능하게 변경, 디자인 명시 
+         $("#MyWorkTextArea").removeAttr("readonly").removeAttr("disabled"); //--  본문 수정 가능하게 변경, 디자인 명시 
          $("#title").removeAttr("readonly").removeAttr("disabled");			//-- 제목 부분 수정 가능하게 변경 
          $("#title").css({ "border": "1px solid #ccc",						//-- 제목 수정 가능표시를 위해 input  스타일 복구
          				   "padding": "4px",
@@ -177,14 +177,14 @@
     };
 			
 	// 수정 완료 버튼 클릭시 (수정 수행)
-	function saveMeeting() 
+	function saveMyWork() 
 	{			 					 // 수정한 값 저장 버튼 클릭 ▶ 편집 불가로 되돌림, 제목 뒤에 (수정됨) 표시 추가 
 		
          $("#title").attr("readonly",true); 		  //-- 제목에 편집 불가 속성 추가 
          $("#title").css({ "border": "none",						//-- 제목 스타일 복구
 			   "padding": "4px",
 			   "border-radius":"10px"});
-         $("#meetingTextArea").attr("readonly",true); //-- 내용에 편집 불가 속성 추가 		
+         $("#MyWorkTextArea").attr("readonly",true); //-- 내용에 편집 불가 속성 추가 		
          $("#saveBtn").hide();
          $("#modifyBtn").show();
          $("#deleteBtn").show();
@@ -196,17 +196,14 @@
          });
           
          //====== 넘기는 값 처리 
-         var title = document.getElementById("title").value;
-         var content = document.getElementById("meetingTextArea").value;
-         var fileUrl = document.getElementById("fileUrl").textContent;
+    
+        var title = $('#title').val();
+     	var content = $('#content').val();
+     	var workDate = $('#workDate').val();
+                               
          
-         //alert(fileUrl);
-         if (fileUrl === undefined) {
-             fileUrl = null;
-         }                         
-         
-         //수정 가능한 3가지 값을 (제목, 내용, 첨부파일경로) 실제로 제출해서 수정
-         window.location.href = "modifyMeeting.action?meetingNo=<%=meetingNo%>&title=" +title+ "&content=" +content+ "&fileUrl=" +fileUrl;
+         //수정 가능한 3가지 값을 (제목, 내용, 작업일) 실제로 제출해서 수정
+         window.location.href = "modifyMyWork.action?workspaceNo=<%=workspaceNo%>&title="title+ "&content=" +content+ "&workDate=" +workDate;
 	 	 
 	 
    
@@ -236,7 +233,7 @@
 				<div class="index idx2"><a href="teamNoticeList.action">공지</a></div>
 				<div class="index idx3"><a href="teamMyWorkspace.action">내 작업실</a></div>
 				<div class="index idx4"><a href="TeamMeetingList.action">회의록</a></div>
-				<div class="index idx5"><a href="TeamHistory.action">히스토리</a></div>
+				<div class="index idx5"><a href="TeamHistory.jsp">히스토리</a></div>
 				<div class="index idx6"><a href="TeamMemberInfo.jsp">멤버</a></div>
 				<div class="index idx7"><a href="TeamSetting.jsp">설정</a></div>
 			</div>
@@ -254,62 +251,56 @@
 					<c:import url="/loadFeed.action"/>
 				</div>
 				
-				<!-- ===========[ 타이틀 (회의록 게시판)  ]=========== -->
+				<!-- ===========[ 타이틀 (내 작업실)  ]=========== -->
 				<div id="titleBox">
 					<img src="images/megaphone.png" style="width:30px;">
-					<span id="lineNotice">회의록</span>
+					<span id="lineNotice">내 작업실</span>
 				</div>
 				
-				<!-- ==========[ 회의록 아티클 상세 보기 영역 ]========== -->
+				<!-- ==========[ 내 작업글 아티클 상세 보기 영역 ]========== -->
 				<div id="workSpaceBox">
-				<form action="modifyMeeting.action" method="get"> 	<!-- 수정 제출 폼 -->
+				<form action="/modifyMyWork.action" method="get"> 	<!-- 수정 제출 폼 -->
 						<table id="meetingArticleTbl">
 							<tr class="firstTr">
 								<th width="100px">글 번호</th>
 								<th width="300px">제목</th>
 								<th width="200px">작성자</th>
-								<th width="160px">회의일시</th>
-								<th width="160px">작성일시</th>
+								<th width="160px">작업일</th>
+								<th width="160px">작성일</th>
 							</tr>
 							
 							<tr>
 								<td>
-									${meetingArticle.meetingNo }
+									${myWorkArticle.workspaceNo }
 								</td>
 								<td> 
 									<input id="title" name="title" type="text" readonly="readonly" disabled="disabled"
-									 value="${meetingArticle.title }"/>
+									 value="${myWorkArticle.title }"/>
 									 <span id="isModified"></span>
 								</td>
-								<td>${meetingArticle.nickName }</td>
-								<td>${meetingArticle.meetingDate}</td>
-								<td>${meetingArticle.createdDate }</td>
+								<td>${myWorkArticle.finalNo }</td>
+								<td>${myWorkArticle.workDate}</td>
+								<td>${myWorkArticle.createdDate }</td>
 							</tr>
 							<tr>
 	    						<td colspan="5">
 	    							<hr>
-		    						<textarea id="meetingTextArea" name="content" readonly="readonly" disabled="disabled"
-		    						>${meetingArticle.content}</textarea>
+		    						<textarea id="MyWorkTextArea" name="content" readonly="readonly" disabled="disabled"
+		    						>${myWorkArticle.content}</textarea>
 	    						</td>
-							</tr>
-							<tr>
-								<td colspan="5">
-									<span id="fileUrl" name="fileUrl">${meetingArticle.fileUrl }</span>
-								</td>
 							</tr>
 						</table>
 						
 						
 						<div id="bottomBox">
 							
-							<a href="TeamMeetingList.action">
+							<a href="teamMyWorkspace.action">
 								<button type="button" class="btn" id="backBtn">목록으로</button>
 							</a>
-						
-							<!-- ※ 팀장에게만 보이는 버튼 -->
-							<button type="button" id="modifyBtn" class=" btn" onclick="modifyMeeting()">수정하기</button>
-							<button type="button" id="deleteBtn" class="btn"  onclick="deleteMeeting()">삭제하기</button>
-							<button type="button" id="saveBtn" class=" btn"  onclick="saveMeeting()" style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
+							<!-- 작성자 본인에게만 보이는 버튼 -->
+							<button type="button" id="modifyBtn" class=" btn" onclick="modifyMyWork()">수정하기</button>
+							<button type="button" id="deleteBtn" class="btn"  onclick="deleteMyWork()">삭제하기</button>
+							<button type="button" id="saveBtn" class=" btn"  onclick="saveMyWork()" style="display: none;">수정완료</button> <!-- 수정 시 나타나는 버튼 -->
 						</div>
 					</form> 
 				</div><!-- end of #workSpaceBox  -->

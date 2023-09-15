@@ -13,7 +13,7 @@
 </select>
 
 <select id="readArticle" resultType="com.projectors.mvc.TeamMyWorkspaceDTO"> 
-	SELECT WORKSPACE_NO, TITLE, WORK_DATE, CREATED_DATE, CONTENT
+	SELECT WORKSPACE_NO workspaceNo, TITLE title, WORK_DATE workDate, CREATED_DATE createdDate, CONTENT content
 	FROM WORKSPACE 
 	WHERE WORKSPACE_NO = #{workspaceNo} 
 </select>
@@ -21,18 +21,18 @@
 <insert id="add" >
 	INSERT INTO WORKSPACE(WORKSPACE_NO, FINAL_NO, TITLE, CONTENT, WORK_DATE, CREATED_DATE)
 	VALUES('WS'||TO_CHAR(WORKSPACENOSEQ.NEXTVAL) <!-- 작업 글 번호 -->
-	     , 'FN1'  <!-- 작성자의 최종합류번호 (임시 정적구성)  -->
-	     , #{title}
-	     , #{content}
-	     , NVL(#{workDate},SYSDATE)
-	     , SYSDATE)
+	     ,'FN1'  <!-- 작성자의 최종합류번호 (임시 정적구성)  -->
+	     ,#{title}
+	     ,#{content}
+	     ,NVL(#{workDate},SYSDATE)
+	     ,SYSDATE)
 </insert>
 
 <update id="modify">
 	UPDATE WORKSPACE
-	SET TITLE = #{title},
-	    CONTENT =  #{content},
-	    WORK_DATE = #{workDate}
+	SET TITLE = #{title}
+	    ,CONTENT =  #{content}
+	    ,NVL(#{workDate},SYSDATE)
 	WHERE WORKSPACE_NO = #{workspaceNo}
 </update>
 

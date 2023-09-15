@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.projectors.mvc.IWorkHistoryDAO">
+
+<select id="getWorkHistory" resultType="com.projectors.mvc.WorkHistoryDTO">
+	SELECT U.NICKNAME nickName, W.TITLE workTitle, W.WORK_DATE workDate
+	FROM WORKSPACE W  
+	    JOIN FINAL F
+	    ON W.FINAL_NO = F.FINAL_NO
+	        JOIN FIRST_CK FC 
+	        ON F.FIRST_CK_NO = FC.FIRST_CK_NO 
+	            JOIN APPLY A 
+	            ON FC.APPLY_NO = A.APPLY_NO 
+	                JOIN USERS U 
+	                ON A.PIN_NO = U.PIN_NO  
+	WHERE W.FINAL_NO IN('FN1','FN2','FN3') <!-- 임시 정적 구성 -->
+	ORDER BY workDate 
+</select>
+
+</mapper>
