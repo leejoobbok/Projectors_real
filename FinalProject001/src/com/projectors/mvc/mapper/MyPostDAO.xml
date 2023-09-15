@@ -226,6 +226,14 @@
 		SET CK_DATE = SYSDATE
 		WHERE APPLY_NO=#{applyNo}
 	</update>
+	
+	<!-- 열람 눌렀을 때 지원서랑 프로필 불러오기 위해 applyNo를 pinNo로 바꾸는 쿼리문 수행  -->
+	<select id="pinNoFromApplyNo" resultType="java.lang.String">
+		SELECT PIN_NO AS applyPinNo
+		FROM APPLY
+		WHERE APPLY_NO = #{applyNo}
+	</select>
+	
 
 	<!-- 모집 총원 -->
 	<select id="fullCheckRecPos" resultType="java.lang.Integer">

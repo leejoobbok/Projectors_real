@@ -50,6 +50,7 @@ public interface IMyPostDAO
 	
 	//-- 특정 지원서 보기 클릭 시 열람 처리 할 메소드
 	public void readApply(String applyNo);
+	public String pinNoFromApplyNo(String applyNo);
 	
 	
 	//-- 특정 지원서에 대해 수락 버튼 클릭 시 수행될 메소드들

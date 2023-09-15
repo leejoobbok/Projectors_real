@@ -172,8 +172,15 @@
 			                                 <td>${presentNone.recruitNo }</td>
 			                                 <td>${presentNone.posName }</td>
 			                                 <td>${presentNone.nickname }</td>
-			                                 <td><button onclick="window.location.href='readApply.action?applyNo=${presentNone.applyNo}'">지원서 보기</button></td>
+			                                 
+                                             <td>
+			                                 <button onclick="window.open('readApply.action?applyNo=${presentNone.applyNo}', '지원서','width=800, height=900'); ">
+			                                 지원서 보기</button>
+			                                 </td>
+			                                 <%-- <td><button onclick="window.location.href='readApply.action?applyNo=${presentNone.applyNo}'">지원서 보기</button></td> --%>
+			                              
 			                              </tr>
+			                              
 			                           </c:forEach>
 			                        </c:otherwise>
 			                     </c:choose>
@@ -208,8 +215,14 @@
 			                                 <td><c:if test="${not empty presentX.ckDate}">
 			                                 ${presentX.ckDate }
 			                                 </c:if></td>
-											 <td><button onclick="window.location.href='readApply.action?applyNo=${presentX.applyNo}'">지원서 보기</button></td>
 			                                 <td>
+			                                 <button onclick="window.open('onlyRead.action?applyNo=${presentX.applyNo}', '지원서','width=800, height=900'); ">
+			                                 지원서 보기</button>
+			                                 </td>
+			                                 <%-- 
+											 <td><button onclick="window.location.href='onlyRead.action?applyNo=${presentX.applyNo}'">지원서 보기</button></td>
+			                                  --%>
+			                                  <td>
 			                                 <c:choose>
 			                                 <c:when test="${presentX.fullCount == 0 }">
 			                                 	<button onclick="window.location.href='passApply.action?applyNo=${presentX.applyNo}&recruitNo=${presentX.recruitNo}'">합격 처리하기</button>

@@ -49,8 +49,14 @@
 				<div class="etc">
 				닉네임 : ${memberInfo.nickName }<br>
 				활동지역 : ${memberInfo.subRegionName }<br>
-				사용가능 언어 및 환경<br>
-				: &nbsp; <span>Java &nbsp;&nbsp;</span><span>JavaScript</span>
+				『사용가능 언어 및 환경 ↓』<br>
+				──────────────
+				<c:forEach var="tool" items="${toolInfo }">
+						<span>${tool.toolName}&nbsp;&nbsp;</span>	
+				</c:forEach>
+				<!--  
+				 <span>Java &nbsp;&nbsp;</span><span>JavaScript</span>
+				 -->
 				</div>
 			</div>	
 			

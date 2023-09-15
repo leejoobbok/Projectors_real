@@ -21,10 +21,12 @@ public class ApplyController
 	public String applyform(Model model, String recruitPosNo, HttpServletRequest request)
 	{
 		IApplyDAO dao = sqlsession.getMapper(IApplyDAO.class);
-
+		IProfileDAO profileDao = sqlsession.getMapper(IProfileDAO.class);
+		
 		HttpSession session = request.getSession();
 		String pinNo = (String)session.getAttribute("pinNo");
-
+		
+		model.addAttribute("toolInfo", profileDao.getUserTool(pinNo));
 		model.addAttribute("memberInfo", dao.memberInfo(pinNo));
 		model.addAttribute("recruitInfo", dao.recruitInfo(recruitPosNo));
 		
