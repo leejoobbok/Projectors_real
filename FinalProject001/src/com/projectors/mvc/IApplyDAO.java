@@ -6,4 +6,6 @@ public interface IApplyDAO
 	public ApplyDTO recruitInfo(String recruitPosNo);
 	public void applyInsert(ApplyDTO dto);
 	public ApplyDTO applyArticle(String applyNo);
+	
+	public String getRecruitTitle(String applyNo);
 }
